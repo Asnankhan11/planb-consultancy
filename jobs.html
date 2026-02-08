@@ -53,29 +53,55 @@
                 <h2 class="section-title">Job Opportunities We Support</h2>
                 <p class="section-subtitle">Diverse opportunities for different needs and situations</p>
             </div>
-            <div class="card-grid">
-                <div class="card">
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="wfh">Work From Home</button>
+                <button class="filter-btn" data-filter="wfo">Work From Office</button>
+                <button class="filter-btn" data-filter="city">City-Based Jobs</button>
+            </div>
+            <div class="card-grid" id="jobCards">
+                <div class="card" data-category="wfh">
                     <div class="card-icon">🏠</div>
                     <h3>Work From Home Jobs</h3>
                     <p>Safe, verified remote opportunities perfect for women, students, and anyone preferring home-based
                         work.</p>
+                    <div class="card-actions">
+                        <a href="women-wfh-impact.html" class="btn btn-secondary">View Details</a>
+                        <a href="https://wa.me/918390405900?text=Hello%2C%20I%20want%20guidance%20for%20Work%20From%20Home%20opportunities"
+                            class="btn btn-primary" target="_blank">Apply Now</a>
+                    </div>
                 </div>
-                <div class="card">
+                <div class="card" data-category="wfo">
                     <div class="card-icon">🎯</div>
                     <h3>Direct Job Placements</h3>
                     <p>Direct connections with companies looking for talented individuals across various roles and
                         industries.</p>
+                    <div class="card-actions">
+                        <a href="jobs-impact.html" class="btn btn-secondary">View Details</a>
+                        <a href="https://wa.me/918390405900?text=Hello%2C%20I%20want%20guidance%20for%20Direct%20Job%20Placement"
+                            class="btn btn-primary" target="_blank">Apply Now</a>
+                    </div>
                 </div>
-                <div class="card">
+                <div class="card" data-category="wfo">
                     <div class="card-icon">🤝</div>
                     <h3>Recruiter Network Placements</h3>
                     <p>Access to our extensive recruiter network for wider opportunities and better matches.</p>
+                    <div class="card-actions">
+                        <a href="jobs-impact.html" class="btn btn-secondary">View Details</a>
+                        <a href="https://wa.me/918390405900?text=Hello%2C%20I%20want%20guidance%20for%20Recruiter%20Network%20Jobs"
+                            class="btn btn-primary" target="_blank">Apply Now</a>
+                    </div>
                 </div>
-                <div class="card">
+                <div class="card" data-category="city">
                     <div class="card-icon">🏢</div>
                     <h3>MNC & Private Companies</h3>
                     <p>Opportunities in multinational corporations and established private companies with growth
                         potential.</p>
+                    <div class="card-actions">
+                        <a href="jobs-impact.html" class="btn btn-secondary">View Details</a>
+                        <a href="https://wa.me/918390405900?text=Hello%2C%20I%20want%20guidance%20for%20MNC%20and%20Private%20Company%20Jobs"
+                            class="btn btn-primary" target="_blank">Apply Now</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -240,6 +266,8 @@
                     university norms, and company policies.
                 </p>
             </div>
+            <p class="page-disclaimer">Guidance and opportunities are shared based on eligibility, availability, and
+                applicable norms. No guarantees or affiliations are implied.</p>
         </div>
     </footer>
 
@@ -288,6 +316,26 @@
         // Observe all cards and sections
         document.querySelectorAll('.card, .step').forEach(el => {
             observer.observe(el);
+        });
+
+        // Job Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const jobCards = document.querySelectorAll('#jobCards .card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+
+                jobCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
         });
     </script>
 </body>
