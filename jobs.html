@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Latest Job Openings - Apply directly for Work From Home and Office jobs. Amazon, Flipkart, Swiggy, and more. Safe and verified opportunities from Plan-B Consultancy.">
+    <title>Job Opportunities - Plan-B Consultancy</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Plan-B</a>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="jobs.html" class="nav-link active">Jobs</a></li>
+                <li><a href="women-wfh.html" class="nav-link">Women & WFH</a></li>
+                <li><a href="business.html" class="nav-link">Growth</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero job-hero">
+        <div class="hero-content">
+            <p class="hero-tagline">🚀 Career Opportunities</p>
+            <h1>Latest Job Openings – Apply Directly</h1>
+            <p class="hero-subtitle">
+                Apply now and start your career with top companies.<br>
+                Safe, verified, and free guidance.
+            </p>
+            <div class="job-search-container">
+                <input type="text" id="jobSearch" class="job-search-input"
+                    placeholder="Search jobs (e.g., Amazon, WFH, Voice)...">
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Opportunities Section -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Available Positions</h2>
+                <p class="section-subtitle">Find the perfect role that fits your lifestyle and skills.</p>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All Jobs</button>
+                <button class="filter-btn" data-filter="wfh">Work From Home</button>
+                <button class="filter-btn" data-filter="wfo">Work From Office</button>
+                <button class="filter-btn" data-filter="chat">Chat Process</button>
+                <button class="filter-btn" data-filter="voice">Voice Process</button>
+            </div>
+
+            <!-- Job Cards Grid -->
+            <div class="card-grid" id="jobCards">
+
+                <!-- Job 1: Amazon -->
+                <div class="job-card" data-category="wfh wfo chat" data-company="amazon"
+                    data-role="customer service chat">
+                    <div class="job-card-header">
+                        <div class="company-icon">A</div>
+                        <div>
+                            <h3>Amazon</h3>
+                            <span class="job-badge">Chat Process</span>
+                        </div>
+                    </div>
+                    <div class="job-role">Customer Service Associate</div>
+                    <div class="job-salary">
+                        <span>Fresher: ₹21,000/mo</span>
+                        <span>Experienced: ₹35,000/mo</span>
+                    </div>
+                    <div class="job-details-list">
+                        <p><strong>📍 Mode:</strong> Work From Office / Remote</p>
+                        <p><strong>🕒 Shift:</strong> Night Shift (8 Hours)</p>
+                        <p><strong>🎓 Eligibility:</strong> 12th Pass / Grad / Undergrad</p>
+                        <p><strong>⚡ Requirements:</strong> Excellent English writing, Basic computer knowledge</p>
+                    </div>
+                    <div class="job-benefits">
+                        <span>✅ Attractive Salary</span>
+                        <span>✅ Career Growth</span>
+                        <span>✅ System Provided</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary" onclick="openApplyModal('Amazon - Chat Process')">Apply
+                            Now</button>
+                        <a href="https://wa.me/918390405900?text=I%20am%20interested%20in%20Amazon%20Chat%20Process%20Job"
+                            target="_blank" class="btn btn-secondary whatsapp-btn">WhatsApp Apply</a>
+                    </div>
+                </div>
+
+                <!-- Job 2: Tech Mahindra -->
+                <div class="job-card" data-category="wfh voice" data-company="tech mahindra"
+                    data-role="customer service voice">
+                    <div class="job-card-header">
+                        <div class="company-icon">T</div>
+                        <div>
+                            <h3>Tech Mahindra</h3>
+                            <span class="job-badge">Flipkart Voice</span>
+                        </div>
+                    </div>
+                    <div class="job-role">Customer Service Representative</div>
+                    <div class="job-salary">
+                        <span>Fresher: ₹12,861 (In-hand)</span>
+                        <span>Exp: ₹15,880 (In-hand)</span>
+                    </div>
+                    <div class="job-details-list">
+                        <p><strong>📍 Mode:</strong> Work From Home</p>
+                        <p><strong>🕒 Shift:</strong> 5 Days Working, 2 Rotational Offs</p>
+                        <p><strong>🎓 Eligibility:</strong> Min 12th Pass</p>
+                        <p><strong>⚡ Requirements:</strong> Good English & Hindi (Verbal/Written)</p>
+                    </div>
+                    <div class="job-benefits">
+                        <span>✅ Top Client (Flipkart)</span>
+                        <span>✅ WFH</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary" onclick="openApplyModal('Tech Mahindra - Flipkart Voice')">Apply
+                            Now</button>
+                        <a href="https://wa.me/918390405900?text=I%20am%20interested%20in%20Tech%20Mahindra%20Flipkart%20Voice%20Job"
+                            target="_blank" class="btn btn-secondary whatsapp-btn">WhatsApp Apply</a>
+                    </div>
+                </div>
+
+                <!-- Job 3: Blinkit -->
+                <div class="job-card" data-category="wfh chat voice" data-company="blinkit" data-role="blended process">
+                    <div class="job-card-header">
+                        <div class="company-icon" style="background: #F8CB46; color: #000;">B</div>
+                        <div>
+                            <h3>Blinkit</h3>
+                            <span class="job-badge">Blended Process</span>
+                        </div>
+                    </div>
+                    <div class="job-role">Voice + Chat Support</div>
+                    <div class="job-salary">
+                        <span>Salary: ₹20,000 CTC</span>
+                    </div>
+                    <div class="job-details-list">
+                        <p><strong>📍 Mode:</strong> Permanent Work From Home</p>
+                        <p><strong>🕒 Shift:</strong> 9 Hours Rotational, 6 Days Working</p>
+                        <p><strong>🎓 Eligibility:</strong> 12th Pass</p>
+                        <p><strong>💻 System:</strong> Win 10, 8GB RAM, i3/i5, Wifi</p>
+                    </div>
+                    <div class="job-benefits">
+                        <span>✅ Permanent WFH</span>
+                        <span>✅ Professional Growth</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary" onclick="openApplyModal('Blinkit - Blended Process')">Apply
+                            Now</button>
+                        <a href="https://wa.me/918390405900?text=I%20am%20interested%20in%20Blinkit%20Blended%20Process%20Job"
+                            target="_blank" class="btn btn-secondary whatsapp-btn">WhatsApp Apply</a>
+                    </div>
+                </div>
+
+                <!-- Job 4: Swiggy -->
+                <div class="job-card" data-category="wfh voice" data-company="swiggy" data-role="voice process">
+                    <div class="job-card-header">
+                        <div class="company-icon" style="background: #FC8019;">S</div>
+                        <div>
+                            <h3>Swiggy</h3>
+                            <span class="job-badge">Voice Process</span>
+                        </div>
+                    </div>
+                    <div class="job-role">Voice Process Associate</div>
+                    <div class="job-salary">
+                        <span>Salary: ₹15,000 CTC</span>
+                    </div>
+                    <div class="job-details-list">
+                        <p><strong>📍 Mode:</strong> Permanent Work From Home</p>
+                        <p><strong>🕒 Shift:</strong> 7:00 PM – 3:00 AM (Any 9 hrs)</p>
+                        <p><strong>🎓 Eligibility:</strong> Min 12th Pass</p>
+                        <p><strong>⚡ Requirements:</strong> Excellent English Communication</p>
+                        <p><strong>💻 System:</strong> Laptop, Win 10, 8GB RAM, i3/i5</p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary" onclick="openApplyModal('Swiggy - Voice Process')">Apply
+                            Now</button>
+                        <a href="https://wa.me/918390405900?text=I%20am%20interested%20in%20Swiggy%20Voice%20Process%20Job"
+                            target="_blank" class="btn btn-secondary whatsapp-btn">WhatsApp Apply</a>
+                    </div>
+                </div>
+
+                <!-- Job 5: Flipkart -->
+                <div class="job-card" data-category="wfh voice" data-company="flipkart" data-role="voice process l1">
+                    <div class="job-card-header">
+                        <div class="company-icon" style="background: #2874F0;">F</div>
+                        <div>
+                            <h3>Flipkart</h3>
+                            <span class="job-badge">Voice Process L1</span>
+                        </div>
+                    </div>
+                    <div class="job-role">Customer Service Voice</div>
+                    <div class="job-salary">
+                        <span>Fresher: ₹16k CTC</span>
+                        <span>Exp: ₹18.5k CTC</span>
+                    </div>
+                    <div class="job-details-list">
+                        <p><strong>📍 Mode:</strong> Work From Home</p>
+                        <p><strong>🕒 Shift:</strong> Rotational (9 hrs), 6 Days Working</p>
+                        <p><strong>🎓 Eligibility:</strong> Undergrad / Grad</p>
+                        <p><strong>⚡ Requirements:</strong> Good English</p>
+                        <p><strong>💻 System:</strong> Laptop/Desktop, Win 10, 8GB, i3/i5, Wifi</p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary" onclick="openApplyModal('Flipkart - Voice Process L1')">Apply
+                            Now</button>
+                        <a href="https://wa.me/918390405900?text=I%20am%20interested%20in%20Flipkart%20Voice%20Process%20Job"
+                            target="_blank" class="btn btn-secondary whatsapp-btn">WhatsApp Apply</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Modal -->
+    <div id="applyModal" class="job-modal">
+        <div class="job-modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Job Application</h2>
+            <p class="modal-subtitle">Fill in your details to apply for <span id="modalJobTitle"
+                    style="color: var(--primary-color);">Job</span></p>
+
+            <form id="applyForm" name="google-sheet">
+                <input type="hidden" id="jobApplied" name="JobApplied">
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="FullName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number (WhatsApp)</label>
+                    <input type="tel" id="mobile" name="Mobile" required placeholder="Ex: 9876543210">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="Email" required placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="City" required placeholder="Current city">
+                </div>
+
+                <div class="form-group">
+                    <label for="qualification">Highest Qualification</label>
+                    <input type="text" id="qualification" name="Qualification" required
+                        placeholder="Ex: 12th, B.Com, B.Tech">
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Experience Level</label>
+                    <select id="experience" name="Experience" required>
+                        <option value="" disabled selected>Select Experience</option>
+                        <option value="Fresher">Fresher</option>
+                        <option value="Experienced">Experienced (1+ Year)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="resume">Resume / CV (PDF/Word)</label>
+
+                    <input type="file" id="resume" accept=".pdf,.doc,.docx"
+                        onchange="document.getElementById('ResumeFileName').value = this.files[0].name">
+
+                    <input type="hidden" name="ResumeFileName" id="ResumeFileName">
+
+                    <p style="font-size: 0.75rem; color: #aaa; margin-top: 5px;">
+                        * Please apply here first. After submitting, you will be asked to share your resume PDF via
+                        WhatsApp.
+                    </p>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary btn-block">Submit Application</button>
+            </form>
+            <div id="successMessage" class="success-message" style="display: none;">
+                <h3>✅ Application Submitted!</h3>
+                <p>Thank you for applying. Our team will contact you shortly.</p>
+                <p>Please check your WhatsApp for further instructions.</p>
+                <button class="btn btn-secondary" onclick="closeApplyModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/918390405900" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Plan-B Consultancy</h4>
+                    <p>Your backup that actually works.</p>
+                    <p>Managed by Asnan</p>
+                </div>
+                <!-- ... (Rest of footer same as index.html) ... -->
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="admissions.html">Admissions</a>
+                    <a href="jobs.html">Jobs</a>
+                    <a href="women-wfh.html">Women & WFH</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📱 8390405900</p>
+                    <p>📧 teamasnan@gmail.com</p>
+                    <a href="https://wa.me/918390405900" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Plan-B Consultancy. All rights reserved.</p>
+                <p class="disclaimer">
+                    Disclaimer: Guidance and opportunities are provided as per individual eligibility,
+                    university norms, and company policies.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+    <script src="js/jobs.js" defer></script>
+
+</body>
+
+</html>

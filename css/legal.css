@@ -1,0 +1,22 @@
+/* Legal Page Specific Styles */
+.legal-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.legal-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.legal-content ul {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.legal-content li {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
