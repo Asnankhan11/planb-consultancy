@@ -855,3 +855,339 @@ a:hover {
 .mb-3 {
     margin-bottom: var(--spacing-lg);
 }
+
+/* Job Search Bar */
+.job-search-container {
+    margin-top: var(--spacing-lg);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    animation: fadeInUp 1s ease 1s both;
+}
+
+.job-search-input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    backdrop-filter: blur(10px);
+    transition: var(--transition-base);
+    outline: none;
+}
+
+.job-search-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+.job-search-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Detailed Job Cards */
+.job-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    transition: var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    background: var(--bg-card-hover);
+    border-color: rgba(102, 126, 234, 0.4);
+    box-shadow: var(--shadow-lg);
+}
+
+.job-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.company-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.job-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    background: rgba(102, 126, 234, 0.2);
+    color: var(--primary-color);
+    border-radius: 4px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.job-role {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-primary);
+}
+
+.job-salary {
+    margin-bottom: var(--spacing-md);
+    background: rgba(0, 242, 254, 0.1);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border-left: 3px solid var(--success-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.job-salary span {
+    font-weight: 600;
+    color: var(--success-color);
+    font-size: 0.9rem;
+}
+
+.job-details-list p {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    display: flex;
+    gap: 8px;
+}
+
+.job-details-list strong {
+    color: var(--text-secondary);
+    min-width: 80px;
+}
+
+.job-benefits {
+    margin-top: var(--spacing-sm);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: var(--spacing-md);
+}
+
+.job-benefits span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    border-color: transparent;
+    color: #fff;
+}
+
+.whatsapp-btn:hover {
+    background: #20BA5C;
+    border-color: transparent;
+}
+
+/* Application Modal */
+.job-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    animation: fadeIn 0.3s ease;
+}
+
+.job-modal-content {
+    background: #1a1a24;
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-lg);
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-modal:hover {
+    color: var(--text-primary);
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.modal-subtitle {
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.9rem;
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.form-group input[type="file"] {
+    padding: 8px;
+}
+
+/* Success Message */
+.success-message {
+    text-align: center;
+    padding: 20px;
+}
+
+.success-message h3 {
+    font-size: 1.5rem;
+    color: #00f2fe;
+    margin-bottom: 10px;
+}
+
+/* Floating WhatsApp Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.7);
+}
+
+.whatsapp-float img {
+    width: 35px;
+    height: 35px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Response Fix for Mobile */
+@media (max-width: 600px) {
+    .job-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .job-salary {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* Experience dropdown fix */
+select {
+    background-color: #1e1e2f;
+    color: #fff;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+select option {
+    background-color: #1e1e2f;
+    color: #ffffff;
+}
+
+select option:hover {
+    background-color: #4f46e5;
+    color: #ffffff;
+}
