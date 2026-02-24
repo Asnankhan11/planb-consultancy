@@ -279,7 +279,7 @@
 
                 <div class="scarcity-note">⏳ Limited consultation slots available each admission cycle</div>
 
-                <form id="admissionForm" onsubmit="handleAdmissionForm(event)">
+                <form id="admissionForm">
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
                         <input type="text" id="fullName" placeholder="Enter your full name" required>
@@ -376,9 +376,17 @@
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Admission Consultation Form → WhatsApp
-        function handleAdmissionForm(e) {
+        // Google Apps Script endpoint
+        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzZM6ryszeM8bbAuM9mKpjgVLakB6lo6iljaNuYR0w_WxQrASd6uADHk_l34NK6xoCB/exec';
+
+        // Admission Consultation Form → Google Sheets + WhatsApp
+        document.getElementById('admissionForm').addEventListener('submit', async function (e) {
             e.preventDefault();
+
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
 
             const name = document.getElementById('fullName').value;
             const phone = document.getElementById('phone').value;
@@ -387,17 +395,45 @@
             const location = document.getElementById('location').value;
             const budget = document.getElementById('budget').value;
 
-            const message = `*Admission Consultation Request*%0A%0A` +
+            // Save to Google Sheets
+            try {
+                await fetch(SHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name,
+                        phone,
+                        qualification,
+                        course,
+                        location,
+                        budget
+                    })
+                });
+            } catch (err) {
+                console.error('Sheet save error:', err);
+            }
+
+            // Success alert
+            alert('Your consultation request has been submitted successfully.');
+
+            // Open WhatsApp with prefilled message
+            const message =
+                `Admission Consultation Request%0A` +
                 `Name: ${encodeURIComponent(name)}%0A` +
                 `Phone: ${encodeURIComponent(phone)}%0A` +
-                `Current Qualification: ${encodeURIComponent(qualification)}%0A` +
+                `Qualification: ${encodeURIComponent(qualification)}%0A` +
                 `Preferred Course: ${encodeURIComponent(course)}%0A` +
                 `Preferred Location: ${encodeURIComponent(location)}%0A` +
-                `Budget Range: ${encodeURIComponent(budget)}%0A%0A` +
-                `Please guide me with the admission process.`;
+                `Budget Range: ${encodeURIComponent(budget)}`;
 
             window.open(`https://wa.me/918390405900?text=${message}`, '_blank');
-        }
+
+            // Reset form and button
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+            this.reset();
+        });
     </script>
 </body>
 
