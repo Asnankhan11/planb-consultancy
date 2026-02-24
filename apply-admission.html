@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Start your admission consultation with Plan-B Consultancy. Expert guidance for UG, PG, diploma & medical admissions across India.">
+    <title>Start Admission Consultation - Plan-B Consultancy</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Apply Admission Page — Premium Conversion Styles */
+        .apply-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 100px;
+            padding-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .apply-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(218, 165, 32, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .apply-hero .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .apply-hero h1 {
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
+            margin-bottom: var(--spacing-sm);
+            background: var(--premium-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .apply-hero .trust-line {
+            font-size: var(--font-size-lg);
+            color: var(--text-muted);
+            margin-bottom: 0;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .premium-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(244, 196, 48, 0.1);
+            border: 1px solid rgba(244, 196, 48, 0.3);
+            border-radius: 20px;
+            color: var(--premium-gold);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        /* Form Container — Premium Gold Accent */
+        .form-section {
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .apply-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid rgba(218, 165, 32, 0.15);
+            border-radius: var(--border-radius-xl);
+            padding: var(--spacing-2xl);
+            animation: fadeInUp 0.8s ease 0.3s both;
+            position: relative;
+        }
+
+        .apply-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--premium-gradient);
+            border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+        }
+
+        .apply-form-container h3 {
+            font-size: var(--font-size-2xl);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+            text-align: center;
+        }
+
+        .apply-form-container .form-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(218, 165, 32, 0.12);
+            border-radius: var(--border-radius-sm);
+            color: var(--text-primary);
+            font-size: var(--font-size-base);
+            font-family: var(--font-family);
+            transition: var(--transition-base);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--premium-gold);
+            box-shadow: 0 0 0 3px rgba(244, 196, 48, 0.1);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group select option {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--premium-gradient);
+            color: #1a1a2e;
+            border: none;
+            border-radius: var(--border-radius-md);
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            font-family: var(--font-family);
+            cursor: pointer;
+            transition: var(--transition-base);
+            box-shadow: 0 4px 20px rgba(218, 165, 32, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 35px rgba(244, 196, 48, 0.5);
+        }
+
+        /* Divider */
+        .form-divider {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin: var(--spacing-xl) 0;
+            color: var(--text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        .form-divider::before,
+        .form-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* WhatsApp fallback */
+        .whatsapp-fallback {
+            text-align: center;
+        }
+
+        .whatsapp-fallback .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Back link */
+        .back-link {
+            text-align: center;
+            margin-top: var(--spacing-xl);
+        }
+
+        .back-link a {
+            color: var(--text-muted);
+            font-size: var(--font-size-sm);
+            transition: var(--transition-base);
+        }
+
+        .back-link a:hover {
+            color: var(--premium-gold);
+        }
+
+        /* Scarcity note */
+        .scarcity-note {
+            text-align: center;
+            padding: 10px 16px;
+            background: rgba(244, 196, 48, 0.06);
+            border: 1px solid rgba(244, 196, 48, 0.15);
+            border-radius: var(--border-radius-sm);
+            color: var(--premium-gold);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        @media (max-width: 768px) {
+            .apply-hero {
+                min-height: auto;
+                padding-top: 100px;
+                padding-bottom: var(--spacing-md);
+            }
+
+            .apply-form-container {
+                margin: 0 var(--spacing-md);
+                padding: var(--spacing-xl) var(--spacing-lg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Minimal Nav -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Plan-B</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">← Back to Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="apply-hero">
+        <div class="hero-content">
+            <span class="premium-badge">✨ Expert Admission Consultancy</span>
+            <h1>Start Admission Consultation</h1>
+            <p class="trust-line">Personalized guidance • Structured process • Trusted by families — premium consultancy
+                for education decisions</p>
+        </div>
+    </section>
+
+    <!-- Consultation Form -->
+    <section class="form-section">
+        <div class="container">
+            <div class="apply-form-container">
+                <h3>🎓 Request Consultation</h3>
+                <p class="form-subtitle">Share your details and our admission experts will reach out with personalized
+                    guidance</p>
+
+                <div class="scarcity-note">⏳ Limited consultation slots available each admission cycle</div>
+
+                <form id="admissionForm" onsubmit="handleAdmissionForm(event)">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="qualification">Current Qualification</label>
+                        <select id="qualification" required>
+                            <option value="" disabled selected>Select your current qualification</option>
+                            <option value="10th Pass">10th Pass</option>
+                            <option value="12th Pass">12th Pass / HSC</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="Graduation">Graduation (UG)</option>
+                            <option value="Post Graduation">Post Graduation (PG)</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course">Preferred Course / Program</label>
+                        <select id="course" required>
+                            <option value="" disabled selected>Select your preferred program</option>
+                            <option value="UG - Engineering">UG — Engineering / B.Tech</option>
+                            <option value="UG - BBA/BCA">UG — BBA / BCA / B.Com</option>
+                            <option value="UG - BSc">UG — BSc / BA</option>
+                            <option value="Medical - MBBS/BDS">Medical — MBBS / BDS</option>
+                            <option value="Medical - Nursing">Medical — BSc Nursing / Paramedical</option>
+                            <option value="PG - MBA/MCA">PG — MBA / MCA</option>
+                            <option value="PG - MSc/MA">PG — MSc / MA</option>
+                            <option value="Diploma">Diploma Programs</option>
+                            <option value="11th-12th">11th-12th Admission</option>
+                            <option value="Other">Other / Need Guidance</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Preferred Location</label>
+                        <input type="text" id="location" placeholder="e.g. Pune, Mumbai, Bangalore, Any City" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="budget">Budget Range (Annual)</label>
+                        <select id="budget" required>
+                            <option value="" disabled selected>Select your budget range</option>
+                            <option value="Under 50K">Under ₹50,000</option>
+                            <option value="50K - 1L">₹50,000 — ₹1,00,000</option>
+                            <option value="1L - 2L">₹1,00,000 — ₹2,00,000</option>
+                            <option value="2L - 5L">₹2,00,000 — ₹5,00,000</option>
+                            <option value="5L+">₹5,00,000+</option>
+                            <option value="Flexible">Flexible / Need Guidance</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-btn">✨ Request Consultation</button>
+                </form>
+
+                <div class="form-divider">or connect directly</div>
+
+                <div class="whatsapp-fallback">
+                    <a href="https://wa.me/918390405900?text=Hello%2C%20I%20want%20admission%20consultation.%20Please%20guide%20me."
+                        class="btn btn-whatsapp" target="_blank">
+                        💬 Quick Connect on WhatsApp
+                    </a>
+                </div>
+
+                <div class="back-link">
+                    <a href="index.html">← Back to Homepage</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Plan-B Consultancy. All rights reserved.</p>
+                <p class="disclaimer">
+                    Guidance is provided as per individual eligibility, university norms, and institutional policies.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Admission Consultation Form → WhatsApp
+        function handleAdmissionForm(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const qualification = document.getElementById('qualification').value;
+            const course = document.getElementById('course').value;
+            const location = document.getElementById('location').value;
+            const budget = document.getElementById('budget').value;
+
+            const message = `*Admission Consultation Request*%0A%0A` +
+                `Name: ${encodeURIComponent(name)}%0A` +
+                `Phone: ${encodeURIComponent(phone)}%0A` +
+                `Current Qualification: ${encodeURIComponent(qualification)}%0A` +
+                `Preferred Course: ${encodeURIComponent(course)}%0A` +
+                `Preferred Location: ${encodeURIComponent(location)}%0A` +
+                `Budget Range: ${encodeURIComponent(budget)}%0A%0A` +
+                `Please guide me with the admission process.`;
+
+            window.open(`https://wa.me/918390405900?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+
+</html>
