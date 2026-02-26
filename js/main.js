@@ -1,5 +1,5 @@
 // ===================================
-// Plan-B Consultancy - Shared JS
+// Plan-B Consultancy — Shared JS
 // ===================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,11 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Smooth Scroll for Anchor Links (with URL hash update) ---
+    // --- Smooth Scroll for Anchor Links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            if (href === '#') return; // Skip plain # links
+            if (href === '#') return;
             e.preventDefault();
             const target = document.querySelector(href);
             if (target) {
@@ -48,82 +48,74 @@ document.addEventListener('DOMContentLoaded', () => {
                     top: targetPosition,
                     behavior: 'smooth'
                 });
-                // Update URL hash without page reload
                 history.pushState(null, null, href);
             }
         });
     });
 
-    // --- Intersection Observer for Animations ---
+    // --- Soft Fade-In on Scroll ---
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -80px 0px'
+        rootMargin: '0px 0px -60px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
     }, observerOptions);
 
-    // Observe all animatable elements across all pages
+    // Elements to animate
     const animatableSelectors = [
+        '.service-card',
+        '.step-item',
+        '.why-card',
+        '.review-card',
+        '.contact-card',
         '.card',
         '.stat-card',
         '.step',
-        '.review-card',
         '.job-card',
         '.path-card',
         '.value-prop-card',
         '.faq-item',
-        '.contact-card',
         '.workflow-step',
-        '.service-stat-card',
-        '.workflow-column'
+        '.workflow-column',
+        '.service-stat-card'
     ];
 
     document.querySelectorAll(animatableSelectors.join(', ')).forEach(el => {
         el.style.opacity = '0';
+        el.style.transform = 'translateY(15px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         observer.observe(el);
     });
 
-    // Special handling for legal page content animations
+    // Legal page content animations
     document.querySelectorAll('.legal-content h3, .legal-content p, .legal-content ul').forEach(el => {
         el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
         observer.observe(el);
     });
 
-    // --- Floating WhatsApp Label on Scroll ---
+    // --- Floating WhatsApp ---
     const floatingWhatsapp = document.getElementById('floatingWhatsapp');
     if (floatingWhatsapp) {
         let labelShown = false;
-        let labelTimeout = null;
 
-        const showLabel = () => {
+        window.addEventListener('scroll', () => {
             if (!labelShown && window.scrollY > 400) {
                 floatingWhatsapp.classList.add('show-label');
                 labelShown = true;
-
-                // Auto-hide after 5 seconds
-                labelTimeout = setTimeout(() => {
+                setTimeout(() => {
                     floatingWhatsapp.classList.remove('show-label');
                 }, 5000);
             }
-        };
-
-        window.addEventListener('scroll', showLabel);
-
-        // Re-show label periodically
-        setInterval(() => {
-            if (window.scrollY > 400) {
-                floatingWhatsapp.classList.add('show-label');
-                setTimeout(() => {
-                    floatingWhatsapp.classList.remove('show-label');
-                }, 4000);
-            }
-        }, 30000);
+        });
     }
 
 });
@@ -133,12 +125,10 @@ function toggleFaq(element) {
     const faqItem = element.closest('.faq-item');
     const isActive = faqItem.classList.contains('active');
 
-    // Close all FAQ items
     document.querySelectorAll('.faq-item').forEach(item => {
         item.classList.remove('active');
     });
 
-    // Toggle the clicked one
     if (!isActive) {
         faqItem.classList.add('active');
     }
