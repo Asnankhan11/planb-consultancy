@@ -34,16 +34,22 @@
     </nav>
 
     <!-- ===================================
-         1. Hero Section
+         1. Hero Section — Canvas Animation
          =================================== -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Trusted Job & Admission Consultancy in Maharashtra</h1>
-            <p class="hero-subtitle">We guide you step by step — from finding the right job to getting the right
-                college admission. Simple process, honest guidance.</p>
-            <div class="btn-group">
-                <a href="apply-job.html" class="btn btn-accent" id="hero-apply-btn">Apply Now</a>
-                <a href="#services" class="btn btn-secondary" id="hero-learn-btn">Learn More</a>
+    <section class="hero" id="hero">
+        <!-- Fallback gradient if canvas fails -->
+        <div class="hero-fallback-bg"></div>
+        <!-- Canvas animation -->
+        <canvas id="heroCanvas"></canvas>
+        <!-- Glass overlay with content -->
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Trusted Job & Admission Consultancy in Maharashtra</h1>
+                <p class="hero-subtitle">Clear Process. Transparent Guidance. Fast Response.</p>
+                <div class="btn-group">
+                    <a href="apply-job.html" class="btn btn-primary" id="hero-apply-btn">Start Your Application</a>
+                    <a href="#services" class="btn btn-outline" id="hero-learn-btn">Learn More</a>
+                </div>
             </div>
         </div>
     </section>
@@ -367,6 +373,7 @@
         </a>
     </div>
 
+    <script src="js/hero-animation.js"></script>
     <script src="js/main.js" defer></script>
 
 </body>
