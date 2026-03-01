@@ -1393,10 +1393,11 @@ a:hover {
    Social Media Icons
    =================================== */
 
-/* --- Header Facebook Icon --- */
+/* --- Header Social Icons Row --- */
 .nav-social {
     display: flex;
     align-items: center;
+    gap: 10px;
     margin-left: var(--spacing-md);
 }
 
@@ -1407,16 +1408,7 @@ a:hover {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: rgba(24, 119, 242, 0.08);
     transition: var(--transition-base);
-    color: #1877F2;
-}
-
-.nav-social-link:hover {
-    background: #1877F2;
-    color: #FFFFFF;
-    transform: scale(1.12);
-    box-shadow: 0 4px 14px rgba(24, 119, 242, 0.35);
 }
 
 .nav-social-link svg {
@@ -1424,6 +1416,32 @@ a:hover {
     height: 20px;
     fill: currentColor;
     transition: var(--transition-base);
+}
+
+/* Facebook header icon */
+.nav-social-link.facebook {
+    background: rgba(24, 119, 242, 0.08);
+    color: #1877F2;
+}
+
+.nav-social-link.facebook:hover {
+    background: #1877F2;
+    color: #FFFFFF;
+    transform: scale(1.12);
+    box-shadow: 0 4px 14px rgba(24, 119, 242, 0.35);
+}
+
+/* Instagram header icon */
+.nav-social-link.instagram {
+    background: rgba(225, 48, 108, 0.08);
+    color: #E1306C;
+}
+
+.nav-social-link.instagram:hover {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    color: #FFFFFF;
+    transform: scale(1.12);
+    box-shadow: 0 4px 14px rgba(225, 48, 108, 0.35);
 }
 
 /* --- Footer Follow Us --- */
@@ -1449,7 +1467,6 @@ a:hover {
 
 .footer-social-link:hover {
     color: #FFFFFF;
-    background: rgba(24, 119, 242, 0.18);
     transform: scale(1.04);
     padding-left: 18px;
 }
@@ -1457,7 +1474,6 @@ a:hover {
 .footer-social-link svg {
     width: 18px;
     height: 18px;
-    fill: #1877F2;
     flex-shrink: 0;
     transition: var(--transition-base);
 }
@@ -1466,7 +1482,25 @@ a:hover {
     filter: brightness(1.2);
 }
 
-/* --- Responsive: Mobile nav social icon --- */
+/* Footer Facebook */
+.footer-social-link.facebook svg {
+    fill: #1877F2;
+}
+
+.footer-social-link.facebook:hover {
+    background: rgba(24, 119, 242, 0.18);
+}
+
+/* Footer Instagram */
+.footer-social-link.instagram svg {
+    fill: #E1306C;
+}
+
+.footer-social-link.instagram:hover {
+    background: rgba(225, 48, 108, 0.18);
+}
+
+/* --- Responsive: Mobile nav social icons --- */
 @media (max-width: 768px) {
     .nav-social {
         position: absolute;
@@ -1474,6 +1508,7 @@ a:hover {
         top: 50%;
         transform: translateY(-50%);
         margin-left: 0;
+        gap: 8px;
     }
 
     .nav-social-link {
@@ -1482,8 +1517,8 @@ a:hover {
     }
 
     .nav-social-link svg {
-        width: 18px;
-        height: 18px;
+        width: 17px;
+        height: 17px;
     }
 }
 
