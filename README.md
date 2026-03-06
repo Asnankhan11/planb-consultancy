@@ -55,8 +55,8 @@ planb-consultancy/
 
 ## 📱 Contact Information
 
-- **Phone/WhatsApp**: 8390405900
-- **Email**: teamasnan@gmail.com
+- **Phone/WhatsApp**: 9420512501
+- **Email**: planb.consultancy.in@gmail.com
 - **Managed By**: Asnan
 
 ## 🛠️ Technologies Used

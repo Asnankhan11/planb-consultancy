@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `Experience: ${experience}%0A` +
                 `Resume: ${resumeFileName}`;
 
-            const whatsappNumber = '918390405900';
+            const whatsappNumber = '919420512501';
             const url = `https://wa.me/${whatsappNumber}?text=${message}`;
 
             // Open WhatsApp with pre-filled message

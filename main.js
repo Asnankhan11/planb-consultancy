@@ -154,5 +154,5 @@ function handleLeadForm(event) {
 
     const message = `Hello, I'm interested in *${service}*.%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0A%0APlease guide me further.`;
 
-    window.open(`https://wa.me/918390405900?text=${message}`, '_blank');
+    window.open(`https://wa.me/919420512501?text=${message}`, '_blank');
 }

@@ -1043,12 +1043,87 @@ a:hover {
 }
 
 /* ===================================
+   Registration Section (Google Form)
+   =================================== */
+.register-form-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 2px 16px rgba(10, 31, 68, 0.08);
+}
+
+.register-form-container iframe {
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+.register-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.register-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+}
+
+.register-btn svg {
+    flex-shrink: 0;
+}
+
+.register-btn-whatsapp {
+    background: #25D366;
+}
+
+.register-btn-whatsapp:hover {
+    background: #1ebe5d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+    color: #fff;
+}
+
+.register-btn-linkedin {
+    background: #0A66C2;
+}
+
+.register-btn-linkedin:hover {
+    background: #084e96;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(10, 102, 194, 0.35);
+    color: #fff;
+}
+
+.register-note {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 0;
+}
+
+/* ===================================
    Contact Block
    =================================== */
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
     align-items: start;
 }
 
@@ -1056,6 +1131,9 @@ a:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-md);
+    grid-column: 1 / -1;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .contact-card {
@@ -1096,7 +1174,7 @@ a:hover {
     margin-bottom: 0;
 }
 
-/* Lead Form */
+/* Lead Form (legacy) */
 .lead-form {
     background: var(--bg-card);
     border: 1px solid rgba(30, 144, 255, 0.15);
