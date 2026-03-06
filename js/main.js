@@ -198,3 +198,36 @@ function handleLeadForm(event) {
     const message = `Hello, I'm interested in *${service}*.%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0A%0APlease guide me further.`;
     window.open(`https://wa.me/919420512501?text=${message}`, '_blank');
 }
+
+// Digital Services Inquiry Form Handler
+function handleDsInquiry(e) {
+    e.preventDefault();
+    const name = document.getElementById('dsName').value;
+    const business = document.getElementById('dsBusiness').value || 'Not specified';
+    const email = document.getElementById('dsEmail').value;
+    const phone = document.getElementById('dsPhone').value;
+    const projectType = document.getElementById('dsProjectType').value;
+    const description = document.getElementById('dsDescription').value || 'Not provided';
+
+    const message = `Hello, I would like to inquire about *${projectType}* development.%0A%0A` +
+        `*Name:* ${encodeURIComponent(name)}%0A` +
+        `*Business:* ${encodeURIComponent(business)}%0A` +
+        `*Email:* ${encodeURIComponent(email)}%0A` +
+        `*Phone:* ${encodeURIComponent(phone)}%0A` +
+        `*Project Type:* ${encodeURIComponent(projectType)}%0A` +
+        `*Description:* ${encodeURIComponent(description)}%0A%0A` +
+        `Please get back to me with a quote.`;
+
+    window.open(`https://wa.me/919420512501?text=${message}`, '_blank');
+
+    // Show success feedback
+    const btn = document.getElementById('ds-submit-btn');
+    const originalText = btn.textContent;
+    btn.textContent = '✓ Inquiry Sent!';
+    btn.style.background = '#10B981';
+    setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        document.getElementById('dsInquiryForm').reset();
+    }, 3000);
+}
