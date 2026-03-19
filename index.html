@@ -217,19 +217,37 @@ a:hover{color:var(--accent-blue-light)}
 .final-cta h2{font-size:2.5rem;margin-bottom:.75rem}
 .final-cta p{font-size:1.1rem;color:var(--text-muted);max-width:600px;margin:0 auto 2rem}
 /* FOOTER */
-.footer{background:#0A1628;padding:3rem 0 1.5rem}
-.footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.5rem;margin-bottom:2.5rem}
-.footer-section h4{margin-bottom:1rem;color:#fff;font-size:1.1rem}
-.footer-section p,.footer-section a{color:#94A3B8;display:block;margin-bottom:.5rem}
-.footer-section a:hover{color:#93C5FD;padding-left:5px}
-.footer-bottom{text-align:center;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);color:#94A3B8;font-size:.875rem}
-.footer-bottom p{color:#94A3B8}
-.disclaimer{font-size:.75rem;color:#94A3B8;margin-top:1rem;opacity:.7}
-.footer-social-links{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.footer-social-link{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;background:rgba(255,255,255,.06);border-radius:6px;font-size:.875rem;color:#94A3B8;transition:var(--transition)}
-.footer-social-link svg{width:16px;height:16px;fill:#94A3B8;transition:var(--transition)}
-.footer-social-link:hover{background:rgba(59,130,246,.15);color:#93C5FD}
-.footer-social-link:hover svg{fill:#93C5FD}
+.site-footer{background:#0B1120;color:#C8D1E0;padding:4rem 0 0;font-family:var(--font-body)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem;padding-bottom:2.5rem}
+.footer-heading{color:#fff;font-size:1.125rem;font-weight:700;margin-bottom:1.25rem;position:relative;padding-bottom:.75rem}
+.footer-heading::after{content:'';position:absolute;bottom:0;left:0;width:32px;height:2px;background:var(--accent-blue-light);border-radius:2px}
+.footer-desc{font-size:.9rem;line-height:1.7;color:#94A3B8;margin-bottom:.5rem}
+.footer-founder{font-size:.8rem;color:#64748B;margin-bottom:1.25rem}
+.footer-socials{display:flex;gap:.75rem}
+.footer-social-icon{width:38px;height:38px;border-radius:50%;border:1px solid rgba(148,163,184,.2);display:flex;align-items:center;justify-content:center;color:#94A3B8;transition:all .3s ease}
+.footer-social-icon:hover{background:var(--accent-blue-light);border-color:var(--accent-blue-light);color:#fff;transform:translateY(-2px)}
+.footer-social-icon.footer-social-whatsapp:hover{background:#25D366;border-color:#25D366}
+.footer-links{list-style:none;padding:0;margin:0}
+.footer-links li{margin-bottom:.65rem}
+.footer-links a{color:#94A3B8;font-size:.9rem;text-decoration:none;transition:all .25s ease;position:relative;display:inline-block}
+.footer-links a::before{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:var(--accent-blue-light);transition:width .25s ease}
+.footer-links a:hover{color:#fff;padding-left:4px}
+.footer-links a:hover::before{width:100%}
+.footer-contact-list{list-style:none;padding:0;margin:0}
+.footer-contact-list li{display:flex;align-items:center;gap:.6rem;margin-bottom:.85rem;font-size:.9rem;color:#94A3B8}
+.footer-contact-icon{font-size:1rem;flex-shrink:0}
+.footer-contact-list a{color:#94A3B8;text-decoration:none;transition:color .25s ease}
+.footer-contact-list a:hover{color:#fff}
+.footer-notice-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(148,163,184,.15) 30%,rgba(148,163,184,.15) 70%,transparent 100%);margin-bottom:1.25rem}
+.footer-notice{text-align:center;padding:0 2rem 1.5rem}
+.footer-notice p{font-size:.75rem;line-height:1.8;color:#94A3B8;opacity:.55;max-width:800px;margin:0 auto}
+.footer-bottom-bar{border-top:1px solid rgba(148,163,184,.1);padding:1.25rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+.footer-copyright{font-size:.8rem;color:#64748B;margin:0}
+.footer-bottom-links{display:flex;gap:1.5rem}
+.footer-bottom-links a{font-size:.8rem;color:#64748B;text-decoration:none;transition:color .25s ease;position:relative}
+.footer-bottom-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--accent-blue-light);transition:width .25s ease}
+.footer-bottom-links a:hover{color:#fff}
+.footer-bottom-links a:hover::after{width:100%}
 /* FLOATING WA */
 .floating-whatsapp{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;align-items:center;gap:.75rem;transition:var(--transition)}
 .floating-whatsapp-label{background:#25D366;color:#fff;padding:8px 16px;border-radius:20px;font-size:.875rem;font-weight:600;white-space:nowrap;box-shadow:0 4px 15px rgba(37,211,102,.4);opacity:0;transform:translateX(10px);transition:var(--transition);pointer-events:none}
@@ -238,7 +256,7 @@ a:hover{color:var(--accent-blue-light)}
 .floating-whatsapp-btn:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.6);color:#fff}
 @keyframes waFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 /* RESPONSIVE */
-@media(max-width:1024px){.services-grid,.why-grid,.stats-grid{grid-template-columns:repeat(2,1fr)}.ds-pricing-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1024px){.services-grid,.why-grid,.stats-grid{grid-template-columns:repeat(2,1fr)}.ds-pricing-grid{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
 @media(max-width:768px){
 .nav-menu{position:fixed;top:60px;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:.5rem;transform:translateY(-120%);transition:var(--transition);box-shadow:0 8px 30px rgba(10,46,107,.1);z-index:999}
 .nav-menu.active{transform:translateY(0)}
@@ -255,6 +273,7 @@ a:hover{color:var(--accent-blue-light)}
 .contact-cards{grid-template-columns:1fr}
 .ds-portfolio-grid{grid-template-columns:1fr}
 .pay-badge{flex-direction:column;text-align:center;padding:1.5rem}
+.footer-grid{grid-template-columns:1fr;gap:2rem}.footer-notice{padding:0 .5rem 1.25rem}.footer-bottom-bar{flex-direction:column;text-align:center}.footer-bottom-links{justify-content:center}
 }
 @media(max-width:480px){.services-grid,.why-grid,.stats-grid{grid-template-columns:1fr}.ds-features-grid{grid-template-columns:1fr}.register-cta-buttons{flex-direction:column;align-items:center}}
 </style>
@@ -607,25 +626,95 @@ a:hover{color:var(--accent-blue-light)}
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">
-<div class="container">
-<div class="footer-content">
-<div class="footer-section"><h4>Plan-B Consultancy</h4><p>Your trusted partner for jobs, education guidance, and digital solutions across Maharashtra and India.</p><p>Founded by Asnan | Akola, Maharashtra</p><p style="margin-top:.75rem"><strong>📱 9420512501</strong></p></div>
-<div class="footer-section"><h4>Our Services</h4><a href="#services">Job Placements</a><a href="admissions.html">Admission Support</a><a href="women-wfh.html">Work From Home</a><a href="fast-track.html">Fast Track</a><a href="business.html">Income Growth</a></div>
-<div class="footer-section"><h4>Quick Links</h4><a href="#">Home</a><a href="jobs.html">All Jobs</a><a href="admissions.html">Admissions</a><a href="#contact">Contact Us</a><a href="legal.html">Legal & Privacy</a></div>
-<div class="footer-section"><h4>Get in Touch</h4><p>📱 9420512501</p><p>📧 planb.consultancy.in@gmail.com</p><a href="https://wa.me/919420512501" target="_blank" style="display:inline-block;margin-top:.75rem;padding:.5rem 1rem;background:#25D366;color:#fff;border-radius:var(--radius-sm)">💬 WhatsApp</a></div>
-<div class="footer-section"><h4>Follow Us</h4>
-<div class="footer-social-links">
-<a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</a>
-<a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="footer-social-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> Instagram</a>
-</div>
-</div>
-</div>
-<div class="footer-bottom">
-<p>&copy; 2026 Plan-B Consultancy. All rights reserved.</p>
-<p class="disclaimer">Disclaimer: Guidance and opportunities are provided as per individual eligibility, university norms, and company policies. Results may vary.</p>
-</div>
-</div>
+<footer class="site-footer" id="site-footer">
+    <div class="container">
+
+        <!-- Main Footer Grid -->
+        <div class="footer-grid">
+
+            <!-- About Column -->
+            <div class="footer-col footer-about">
+                <h4 class="footer-heading">Plan-B Consultancy</h4>
+                <p class="footer-desc">Your trusted partner for jobs, education guidance, and digital solutions across Maharashtra and India.</p>
+                <p class="footer-founder">Founded by Asnan &bull; Akola, Maharashtra</p>
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="https://wa.me/919420512501" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer-social-icon footer-social-whatsapp">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links Column -->
+            <div class="footer-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="jobs.html">All Jobs</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="fast-track.html">Fast Track</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Services Column -->
+            <div class="footer-col">
+                <h4 class="footer-heading">Our Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">Job Placements</a></li>
+                    <li><a href="admissions.html">Admission Support</a></li>
+                    <li><a href="women-wfh.html">Work From Home</a></li>
+                    <li><a href="business.html">Income Growth</a></li>
+                    <li><a href="business.html">Digital Solutions</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Column -->
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <span class="footer-contact-icon">📞</span>
+                        <a href="tel:+919420512501">9420512501</a>
+                    </li>
+                    <li>
+                        <span class="footer-contact-icon">📧</span>
+                        <a href="mailto:planb.consultancy.in@gmail.com">planb.consultancy.in@gmail.com</a>
+                    </li>
+                    <li>
+                        <span class="footer-contact-icon">📍</span>
+                        <span>Akola, Maharashtra, India</span>
+                    </li>
+                    <li>
+                        <span class="footer-contact-icon">💬</span>
+                        <a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20guidance" target="_blank">WhatsApp Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Important Notice / Terms & Conditions -->
+        <div class="footer-notice-divider"></div>
+        <div class="footer-notice">
+            <p>Plan B Consultancy provides paid placement assistance services. We do not guarantee job placement. By using our services, you agree that once the process has been initiated, all charges are non-refundable. We provide continuous support throughout the hiring process.</p>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom-bar">
+            <p class="footer-copyright">&copy; 2026 Plan-B Consultancy. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="legal.html">Terms &amp; Conditions</a>
+                <a href="legal.html">Privacy Policy</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+
+    </div>
 </footer>
 
 <!-- FLOATING WHATSAPP -->
