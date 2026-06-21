@@ -71,9 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) window.closeApplyModal();
     });
 
-    // --- Form Submit → WhatsApp ---
+    // --- Form Submit → CRM + WhatsApp ---
     if (form) {
-        form.addEventListener('submit', function (e) {
+        form.addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const submitBtn = form.querySelector('button[type="submit"]');
@@ -90,11 +90,39 @@ document.addEventListener('DOMContentLoaded', () => {
             const experience = document.getElementById('experience')?.value || '';
             const job = jobAppliedInput?.value || '';
 
-            // Get resume file name
+            // Get resume file
             const resumeInput = document.getElementById('resume');
-            const resumeFileName = (resumeInput && resumeInput.files.length > 0)
-                ? resumeInput.files[0].name
-                : 'No file';
+            const resumeFile = resumeInput && resumeInput.files.length > 0 ? resumeInput.files[0] : null;
+            const resumeFileName = resumeFile ? resumeFile.name : 'No file';
+
+            // Post to CRM Public API
+            const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:'
+                ? 'http://localhost:3001/api/candidates/public'
+                : 'https://planb-crm-production.up.railway.app/api/candidates/public';
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('mobile', mobile);
+            formData.append('email', email);
+            formData.append('city', city);
+            formData.append('qualification', qualification);
+            formData.append('experience', experience);
+            formData.append('current_company', job);
+            formData.append('source', 'Website - Job Modal');
+            formData.append('stage', 'New Lead');
+
+            if (resumeFile) {
+                formData.append('resume', resumeFile);
+            }
+
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+            } catch (err) {
+                console.error('CRM save error:', err);
+            }
 
             const message = `New Job Application:%0A` +
                 `Job: ${job}%0A` +

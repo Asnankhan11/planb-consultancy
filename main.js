@@ -144,13 +144,34 @@ function toggleFaq(element) {
     }
 }
 
-// --- Lead Form Handler ---
-function handleLeadForm(event) {
+// --- Lead Form Handler → CRM + WhatsApp ---
+async function handleLeadForm(event) {
     event.preventDefault();
 
     const service = document.getElementById('leadService').value;
     const name = document.getElementById('leadName').value;
     const phone = document.getElementById('leadPhone').value;
+
+    // Post to CRM Public API
+    const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:'
+        ? 'http://localhost:3001/api/candidates/public'
+        : 'https://planb-crm-production.up.railway.app/api/candidates/public';
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('mobile', phone);
+    formData.append('current_company', service);
+    formData.append('source', 'Website - Lead Form');
+    formData.append('stage', 'New Lead');
+
+    try {
+        await fetch(API_URL, {
+            method: 'POST',
+            body: formData
+        });
+    } catch (err) {
+        console.error('CRM save error:', err);
+    }
 
     const message = `Hello, I'm interested in *${service}*.%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0A%0APlease guide me further.`;
 
