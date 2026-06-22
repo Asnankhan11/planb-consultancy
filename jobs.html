@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Latest Job Openings - Apply directly for Work From Home and Office jobs. Amazon, Flipkart, Swiggy, and more. Safe and verified opportunities from Plan-B Consultancy.">
-    <title>Job Opportunities - Plan-B Consultancy</title>
+    <meta name="description" content="Latest Job Openings - Apply directly for Work From Home and Office jobs. Amazon, Flipkart, Swiggy, and more. Safe and verified opportunities from Plan-B Consultancy.">
+    <title>Job Opportunities - PlanB Consultancy</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+<body class="bg-[#090514] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
 
-<body>
+    <!-- Decorative background blobs -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-900/10 blur-[150px]"></div>
+        <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-pink-900/10 blur-[150px]"></div>
+        <div class="absolute top-[40%] left-[30%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[150px]"></div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Plan-B</a>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
+    <nav class="navbar scrolled" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white hover:opacity-95 transition-opacity">
+                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">PlanB</span>
+                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">Consultancy</span>
+            </a>
+
+            <ul class="hidden lg:flex items-center gap-2" id="navMenu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="admissions.html" class="nav-link">Admissions</a></li>
                 <li><a href="fast-track.html" class="nav-link">Fast Track</a></li>
@@ -29,205 +35,237 @@
                 <li><a href="business.html" class="nav-link">Growth</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="nav-social">
-                <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="nav-social-link facebook" id="nav-facebook-link" aria-label="Follow us on Facebook" title="Follow us on Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                
-                <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="nav-social-link instagram" id="nav-instagram-link" aria-label="Follow us on Instagram" title="Follow us on Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                </a></a>
+
+            <div class="hidden lg:flex items-center gap-4">
+                <div class="flex items-center gap-3 mr-2">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://x.com/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
+                <a href="apply-job.html" class="px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 hover:scale-[1.02] transition-all">Apply Now</a>
+            </div>
+
+            <!-- Hamburger Toggle -->
+            <div class="lg:hidden flex items-center gap-4">
+                <button class="menu-toggle flex flex-col gap-1.5 p-2 rounded-lg bg-white/5 border border-white/10" id="menuToggle" aria-label="Toggle Menu">
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div class="hidden lg:hidden absolute top-[73px] left-0 w-full bg-[#0d0720]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6" id="mobileMenu">
+            <ul class="flex flex-col gap-4 mb-6">
+                <li><a href="index.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Home</a></li>
+                <li><a href="admissions.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Admissions</a></li>
+                <li><a href="fast-track.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Fast Track</a></li>
+                <li><a href="jobs.html" class="block text-white py-2 text-base font-semibold border-b border-white/5">Jobs</a></li>
+                <li><a href="women-wfh.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Women & WFH</a></li>
+                <li><a href="business.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Growth</a></li>
+                <li><a href="contact.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold">Contact</a></li>
+            </ul>
+            <div class="flex flex-col gap-3">
+                <a href="apply-job.html" class="w-full text-center py-3 rounded-xl font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25">Apply Now</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero job-hero">
-        <div class="hero-content">
-            <p class="hero-tagline">🚀 Career Opportunities</p>
-            <h1>Latest Job Openings – Apply Directly</h1>
-            <p class="hero-subtitle">
-                Apply now and start your career with top companies.<br>
-                Safe, verified, and free guidance.
+    <section class="relative pt-32 pb-16 flex items-center justify-center text-center overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold tracking-wider uppercase mb-6 animate-pulse">
+                🚀 Career Opportunities
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
+                Latest Job Openings – Apply Directly
+            </h1>
+            <p class="text-sm md:text-base text-gray-400 max-w-xl mx-auto mb-8 leading-relaxed">
+                Apply now and start your career with top companies. Safe, verified, and free guidance.
             </p>
-            <div class="job-search-container">
-                <input type="text" id="jobSearch" class="job-search-input"
-                    placeholder="Search jobs (e.g., Amazon, WFH, Voice)...">
+            
+            <!-- Search bar -->
+            <div class="w-full max-w-xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-2.5 backdrop-blur-xl flex items-center gap-3 shadow-xl">
+                <i data-lucide="search" class="w-5 h-5 text-purple-400 flex-shrink-0 ml-2"></i>
+                <input type="text" id="jobSearch" class="bg-transparent w-full text-white text-sm outline-none placeholder:text-gray-500 py-2" placeholder="Search jobs (e.g., Amazon, WFH, Voice)...">
             </div>
         </div>
     </section>
 
     <!-- Job Opportunities Section -->
-    <section class="section" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Available Positions</h2>
-                <p class="section-subtitle">Find the perfect role that fits your lifestyle and skills.</p>
-            </div>
-
+    <section class="py-16 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            
             <!-- Filter Bar -->
-            <div class="filter-bar">
-                <button class="filter-btn active" data-filter="all">All Jobs</button>
-                <button class="filter-btn" data-filter="wfh">Work From Home</button>
-                <button class="filter-btn" data-filter="wfo">Work From Office</button>
-                <button class="filter-btn" data-filter="chat">Chat Process</button>
-                <button class="filter-btn" data-filter="voice">Voice Process</button>
+            <div class="flex flex-wrap gap-2.5 justify-center mb-12 filter-bar">
+                <button class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-purple-500 [&.active]:to-pink-500 [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg active" data-filter="all">All Jobs</button>
+                <button class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-purple-500 [&.active]:to-pink-500 [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="wfh">Work From Home</button>
+                <button class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-purple-500 [&.active]:to-pink-500 [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="wfo">Work From Office</button>
+                <button class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-purple-500 [&.active]:to-pink-500 [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="chat">Chat Process</button>
+                <button class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-purple-500 [&.active]:to-pink-500 [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="voice">Voice Process</button>
             </div>
 
             <!-- Job Cards Grid -->
-            <div class="card-grid" id="jobCards">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 card-grid" id="jobCards">
 
                 <!-- Job 1: Amazon -->
-                <div class="job-card" data-category="wfh wfo chat" data-company="amazon"
-                    data-role="customer service chat">
-                    <div class="job-card-header">
-                        <div class="company-icon">A</div>
-                        <div>
-                            <h3>Amazon</h3>
-                            <span class="job-badge">Chat Process</span>
+                <div class="job-card p-6 rounded-3xl glass-panel border-white/10 flex flex-col justify-between hover:border-purple-500/30 transition-all duration-300" data-category="wfh wfo chat" data-company="amazon" data-role="customer service chat">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-500 flex items-center justify-center font-bold text-lg">A</div>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-semibold">Chat Process</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">Amazon</h3>
+                        <p class="text-purple-400 text-xs font-semibold mb-4">Customer Service Associate</p>
+                        
+                        <div class="border-t border-white/5 pt-4 space-y-2 mb-6">
+                            <p class="text-xs text-gray-400"><strong class="text-white">📍 Mode:</strong> Work From Office / Remote</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">🕒 Shift:</strong> Night Shift (8 Hours)</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">🎓 Eligibility:</strong> 12th Pass / Grad / Undergrad</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">⚡ Requirements:</strong> English writing, basic PC skills</p>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-[10px] px-2.5 py-0.5 rounded bg-green-500/10 text-green-300 border border-green-500/20">Fresher: ₹21,000/mo</span>
+                            <span class="text-[10px] px-2.5 py-0.5 rounded bg-green-500/10 text-green-300 border border-green-500/20">Exp: ₹35,000/mo</span>
+                            <span class="text-[10px] px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/20">System Provided</span>
                         </div>
                     </div>
-                    <div class="job-role">Customer Service Associate</div>
-                    <div class="job-salary">
-                        <span>Fresher: ₹21,000/mo</span>
-                        <span>Experienced: ₹35,000/mo</span>
-                    </div>
-                    <div class="job-details-list">
-                        <p><strong>📍 Mode:</strong> Work From Office / Remote</p>
-                        <p><strong>🕒 Shift:</strong> Night Shift (8 Hours)</p>
-                        <p><strong>🎓 Eligibility:</strong> 12th Pass / Grad / Undergrad</p>
-                        <p><strong>⚡ Requirements:</strong> Excellent English writing, <br>Basic computer knowledge</p>
-                    </div>
-                    <div class="job-benefits">
-                        <span>✅ Attractive Salary</span>
-                        <span>✅ Career Growth</span>
-                        <span>✅ System Provided</span>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn btn-primary" onclick="openApplyModal('Amazon - Chat Process')">Apply
-                            Now</button>
-                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Amazon%20Chat%20Process%20Job"
-                            target="_blank" class="btn btn-secondary whatsapp-btn">WhatsApp Apply</a>
+
+                    <div class="flex gap-3">
+                        <button class="flex-1 py-2.5 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/15 transition-all cursor-pointer" onclick="openApplyModal('Amazon - Chat Process')">Apply Now</button>
+                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Amazon%20Chat%20Process%20Job" target="_blank" class="px-4 py-2.5 rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/20 transition-all flex items-center justify-center"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
                     </div>
                 </div>
 
                 <!-- Job 2: Tech Mahindra -->
-                <div class="job-card" data-category="wfh voice" data-company="tech mahindra"
-                    data-role="customer service voice">
-                    <div class="job-card-header">
-                        <div class="company-icon">T</div>
-                        <div>
-                            <h3>Tech Mahindra</h3>
-                            <span class="job-badge">Flipkart Voice</span>
+                <div class="job-card p-6 rounded-3xl glass-panel border-white/10 flex flex-col justify-between hover:border-pink-500/30 transition-all duration-300" data-category="wfh voice" data-company="tech mahindra" data-role="customer service voice">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-500 flex items-center justify-center font-bold text-lg">T</div>
+                            <span class="px-3 py-1 rounded-full bg-pink-500/10 text-pink-300 text-xs font-semibold">Flipkart Voice</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">Tech Mahindra</h3>
+                        <p class="text-pink-400 text-xs font-semibold mb-4">Customer Service Representative</p>
+                        
+                        <div class="border-t border-white/5 pt-4 space-y-2 mb-6">
+                            <p class="text-xs text-gray-400"><strong class="text-white">📍 Mode:</strong> Work From Home</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">🕒 Shift:</strong> 5 Days Working, 2 Rotational Offs</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">🎓 Eligibility:</strong> Min 12th Pass</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">⚡ Requirements:</strong> Good English & Hindi</p>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-[10px] px-2.5 py-0.5 rounded bg-green-500/10 text-green-300 border border-green-500/20">Fresher: ₹12,861 (In-hand)</span>
+                            <span class="text-[10px] px-2.5 py-0.5 rounded bg-green-500/10 text-green-300 border border-green-500/20">Exp: ₹15,880 (In-hand)</span>
+                            <span class="text-[10px] px-2.5 py-0.5 rounded bg-pink-500/10 text-pink-300 border border-pink-500/20">WFH</span>
                         </div>
                     </div>
-                    <div class="job-role">Customer Service Representative</div>
-                    <div class="job-salary">
-                        <span>Fresher: ₹12,861 (In-hand)</span>
-                        <span>Exp: ₹15,880 (In-hand)</span>
-                    </div>
-                    <div class="job-details-list">
-                        <p><strong>📍 Mode:</strong> Work From Home</p>
-                        <p><strong>🕒 Shift:</strong> 5 Days Working, 2 Rotational Offs</p>
-                        <p><strong>🎓 Eligibility:</strong> Min 12th Pass</p>
-                        <p><strong>⚡ Requirements:</strong> Good English & Hindi (Verbal/Written)</p>
-                    </div>
-                    <div class="job-benefits">
-                        <span>✅ Top Client (Flipkart)</span>
-                        <span>✅ WFH</span>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn btn-primary" onclick="openApplyModal('Tech Mahindra - Flipkart Voice')">Apply
-                            Now</button>
-                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Tech%20Mahindra%20Flipkart%20Voice%20Job"
-                            target="_blank" class="btn btn-secondary whatsapp-btn">WhatsApp Apply</a>
+
+                    <div class="flex gap-3">
+                        <button class="flex-1 py-2.5 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/15 transition-all cursor-pointer" onclick="openApplyModal('Tech Mahindra - Flipkart Voice')">Apply Now</button>
+                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Tech%20Mahindra%20Flipkart%20Voice%20Job" target="_blank" class="px-4 py-2.5 rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/20 transition-all flex items-center justify-center"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
                     </div>
                 </div>
 
                 <!-- Job 3: Blinkit -->
-                <div class="job-card" data-category="wfh chat voice" data-company="blinkit" data-role="blended process">
-                    <div class="job-card-header">
-                        <div class="company-icon" style="background: #F8CB46; color: #000;">B</div>
-                        <div>
-                            <h3>Blinkit</h3>
-                            <span class="job-badge">Blended Process</span>
+                <div class="job-card p-6 rounded-3xl glass-panel border-white/10 flex flex-col justify-between hover:border-blue-500/30 transition-all duration-300" data-category="wfh chat voice" data-company="blinkit" data-role="blended process">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 flex items-center justify-center font-bold text-lg">B</div>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs font-semibold">Blended Process</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">Blinkit</h3>
+                        <p class="text-blue-400 text-xs font-semibold mb-4">Voice + Chat Support</p>
+                        
+                        <div class="border-t border-white/5 pt-4 space-y-2 mb-6">
+                            <p class="text-xs text-gray-400"><strong class="text-white">📍 Mode:</strong> Permanent Work From Home</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">🕒 Shift:</strong> 9 Hours Rotational, 6 Days Working</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">🎓 Eligibility:</strong> 12th Pass</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">💻 System:</strong> Win 10, 8GB RAM, i3/i5, Wifi</p>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-[10px] px-2.5 py-0.5 rounded bg-green-500/10 text-green-300 border border-green-500/20">Salary: ₹20,000 CTC</span>
+                            <span class="text-[10px] px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/20">Permanent WFH</span>
                         </div>
                     </div>
-                    <div class="job-role">Voice + Chat Support</div>
-                    <div class="job-salary">
-                        <span>Salary: ₹20,000 CTC</span>
-                    </div>
-                    <div class="job-details-list">
-                        <p><strong>📍 Mode:</strong> Permanent Work From Home</p>
-                        <p><strong>🕒 Shift:</strong> 9 Hours Rotational, 6 Days Working</p>
-                        <p><strong>🎓 Eligibility:</strong> 12th Pass</p>
-                        <p><strong>💻 System:</strong> Win 10, 8GB RAM, i3/i5, Wifi</p>
-                    </div>
-                    <div class="job-benefits">
-                        <span>✅ Permanent WFH</span>
-                        <span>✅ Professional Growth</span>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn btn-primary" onclick="openApplyModal('Blinkit - Blended Process')">Apply
-                            Now</button>
-                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Blinkit%20Blended%20Process%20Job"
-                            target="_blank" class="btn btn-secondary whatsapp-btn">WhatsApp Apply</a>
+
+                    <div class="flex gap-3">
+                        <button class="flex-1 py-2.5 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/15 transition-all cursor-pointer" onclick="openApplyModal('Blinkit - Blended Process')">Apply Now</button>
+                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Blinkit%20Blended%20Process%20Job" target="_blank" class="px-4 py-2.5 rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/20 transition-all flex items-center justify-center"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
                     </div>
                 </div>
 
                 <!-- Job 4: Swiggy -->
-                <div class="job-card" data-category="wfh voice" data-company="swiggy" data-role="voice process">
-                    <div class="job-card-header">
-                        <div class="company-icon" style="background: #FC8019;">S</div>
-                        <div>
-                            <h3>Swiggy</h3>
-                            <span class="job-badge">Voice Process</span>
+                <div class="job-card p-6 rounded-3xl glass-panel border-white/10 flex flex-col justify-between hover:border-purple-500/30 transition-all duration-300" data-category="wfh voice" data-company="swiggy" data-role="voice process">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 text-orange-500 flex items-center justify-center font-bold text-lg">S</div>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-semibold">Voice Process</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">Swiggy</h3>
+                        <p class="text-purple-400 text-xs font-semibold mb-4">Voice Process Associate</p>
+                        
+                        <div class="border-t border-white/5 pt-4 space-y-2 mb-6">
+                            <p class="text-xs text-gray-400"><strong class="text-white">📍 Mode:</strong> Permanent Work From Home</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">🕒 Shift:</strong> 7:00 PM – 3:00 AM (Any 9 hrs)</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">🎓 Eligibility:</strong> Min 12th Pass</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">⚡ Requirements:</strong> Good English Communication</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">💻 System:</strong> Laptop, Win 10, 8GB RAM, i3/i5</p>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-[10px] px-2.5 py-0.5 rounded bg-green-500/10 text-green-300 border border-green-500/20">Salary: ₹15,000 CTC</span>
                         </div>
                     </div>
-                    <div class="job-role">Voice Process Associate</div>
-                    <div class="job-salary">
-                        <span>Salary: ₹15,000 CTC</span>
-                    </div>
-                    <div class="job-details-list">
-                        <p><strong>📍 Mode:</strong> Permanent Work From Home</p>
-                        <p><strong>🕒 Shift:</strong> 7:00 PM – 3:00 AM (Any 9 hrs)</p>
-                        <p><strong>🎓 Eligibility:</strong> Min 12th Pass</p>
-                        <p><strong>⚡ Requirements:</strong> Excellent English Communication</p>
-                        <p><strong>💻 System:</strong> Laptop, Win 10, 8GB RAM, i3/i5</p>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn btn-primary" onclick="openApplyModal('Swiggy - Voice Process')">Apply
-                            Now</button>
-                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Swiggy%20Voice%20Process%20Job"
-                            target="_blank" class="btn btn-secondary whatsapp-btn">WhatsApp Apply</a>
+
+                    <div class="flex gap-3">
+                        <button class="flex-1 py-2.5 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/15 transition-all cursor-pointer" onclick="openApplyModal('Swiggy - Voice Process')">Apply Now</button>
+                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Swiggy%20Voice%20Process%20Job" target="_blank" class="px-4 py-2.5 rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/20 transition-all flex items-center justify-center"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
                     </div>
                 </div>
 
                 <!-- Job 5: Flipkart -->
-                <div class="job-card" data-category="wfh voice" data-company="flipkart" data-role="voice process l1">
-                    <div class="job-card-header">
-                        <div class="company-icon" style="background: #2874F0;">F</div>
-                        <div>
-                            <h3>Flipkart</h3>
-                            <span class="job-badge">Voice Process L1</span>
+                <div class="job-card p-6 rounded-3xl glass-panel border-white/10 flex flex-col justify-between hover:border-pink-500/30 transition-all duration-300" data-category="wfh voice" data-company="flipkart" data-role="voice process l1">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-500 flex items-center justify-center font-bold text-lg">F</div>
+                            <span class="px-3 py-1 rounded-full bg-pink-500/10 text-pink-300 text-xs font-semibold">Voice Process L1</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-1">Flipkart</h3>
+                        <p class="text-pink-400 text-xs font-semibold mb-4">Customer Service Voice</p>
+                        
+                        <div class="border-t border-white/5 pt-4 space-y-2 mb-6">
+                            <p class="text-xs text-gray-400"><strong class="text-white">📍 Mode:</strong> Work From Home</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">🕒 Shift:</strong> Rotational (9 hrs), 6 Days Working</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">🎓 Eligibility:</strong> Undergrad / Grad</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">⚡ Requirements:</strong> Good English</p>
+                            <p class="text-xs text-gray-400"><strong class="text-white">💻 System:</strong> PC/Laptop, Win 10, 8GB, Wifi</p>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="text-[10px] px-2.5 py-0.5 rounded bg-green-500/10 text-green-300 border border-green-500/20">Fresher: ₹16k CTC</span>
+                            <span class="text-[10px] px-2.5 py-0.5 rounded bg-green-500/10 text-green-300 border border-green-500/20">Exp: ₹18.5k CTC</span>
                         </div>
                     </div>
-                    <div class="job-role">Customer Service Voice</div>
-                    <div class="job-salary">
-                        <span>Fresher: ₹16k CTC</span>
-                        <span>Exp: ₹18.5k CTC</span>
-                    </div>
-                    <div class="job-details-list">
-                        <p><strong>📍 Mode:</strong> Work From Home</p>
-                        <p><strong>🕒 Shift:</strong> Rotational (9 hrs), 6 Days Working</p>
-                        <p><strong>🎓 Eligibility:</strong> Undergrad / Grad</p>
-                        <p><strong>⚡ Requirements:</strong> Good English</p>
-                        <p><strong>💻 System:</strong> Laptop/Desktop, Win 10, 8GB, i3/i5, Wifi</p>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn btn-primary" onclick="openApplyModal('Flipkart - Voice Process L1')">Apply
-                            Now</button>
-                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Flipkart%20Voice%20Process%20Job"
-                            target="_blank" class="btn btn-secondary whatsapp-btn">WhatsApp Apply</a>
+
+                    <div class="flex gap-3">
+                        <button class="flex-1 py-2.5 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/15 transition-all cursor-pointer" onclick="openApplyModal('Flipkart - Voice Process L1')">Apply Now</button>
+                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Flipkart%20Voice%20Process%20Job" target="_blank" class="px-4 py-2.5 rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/20 transition-all flex items-center justify-center"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
                     </div>
                 </div>
 
@@ -236,136 +274,185 @@
     </section>
 
     <!-- Application Modal -->
-    <div id="applyModal" class="job-modal">
-        <div class="job-modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">Job Application</h2>
-            <p class="modal-subtitle">Fill in your details to apply for <span id="modalJobTitle"
-                    style="color: var(--primary-color);">Job</span></p>
+    <div id="applyModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-6 hidden">
+        <div class="bg-[#0f0a21] border border-white/10 max-w-lg w-full rounded-3xl p-6 md:p-8 relative max-h-[90vh] overflow-y-auto">
+            
+            <button class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white flex items-center justify-center close-modal" onclick="closeApplyModal()">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+            
+            <h2 class="text-xl md:text-2xl font-extrabold text-white mb-1">Job Application</h2>
+            <p class="text-xs text-gray-400 mb-6">Applying for <span id="modalJobTitle" class="text-purple-400 font-semibold">Job</span></p>
 
-            <form id="applyForm" name="google-sheet">
+            <form id="applyForm" name="google-sheet" class="space-y-4">
                 <input type="hidden" id="jobApplied" name="JobApplied">
 
-                <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="FullName" required placeholder="Enter your full name">
+                <div class="form-group flex flex-col gap-1.5">
+                    <label for="fullName" class="text-xs font-semibold text-gray-300">Full Name</label>
+                    <input type="text" id="fullName" name="FullName" class="form-input-dark" required placeholder="Enter your full name">
                 </div>
 
-                <div class="form-group">
-                    <label for="mobile">Mobile Number (WhatsApp)</label>
-                    <input type="tel" id="mobile" name="Mobile" required placeholder="Ex: 9876543210">
+                <div class="form-group flex flex-col gap-1.5">
+                    <label for="mobile" class="text-xs font-semibold text-gray-300">Mobile Number (WhatsApp)</label>
+                    <input type="tel" id="mobile" name="Mobile" class="form-input-dark" required placeholder="Ex: 9876543210">
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="Email" required placeholder="Enter your email">
+                <div class="form-group flex flex-col gap-1.5">
+                    <label for="email" class="text-xs font-semibold text-gray-300">Email Address</label>
+                    <input type="email" id="email" name="Email" class="form-input-dark" required placeholder="Enter your email">
                 </div>
 
-                <div class="form-group">
-                    <label for="city">City</label>
-                    <input type="text" id="city" name="City" required placeholder="Current city">
+                <div class="form-group flex flex-col gap-1.5">
+                    <label for="city" class="text-xs font-semibold text-gray-300">City</label>
+                    <input type="text" id="city" name="City" class="form-input-dark" required placeholder="Current city">
                 </div>
 
-                <div class="form-group">
-                    <label for="qualification">Highest Qualification</label>
-                    <input type="text" id="qualification" name="Qualification" required
-                        placeholder="Ex: 12th, B.Com, B.Tech">
+                <div class="form-group flex flex-col gap-1.5">
+                    <label for="qualification" class="text-xs font-semibold text-gray-300">Highest Qualification</label>
+                    <input type="text" id="qualification" name="Qualification" class="form-input-dark" required placeholder="Ex: 12th, B.Com, B.Tech">
                 </div>
 
-                <div class="form-group">
-                    <label for="experience">Experience Level</label>
-                    <select id="experience" name="Experience" required>
+                <div class="form-group flex flex-col gap-1.5">
+                    <label for="experience" class="text-xs font-semibold text-gray-300">Experience Level</label>
+                    <select id="experience" name="Experience" class="form-input-dark text-xs" required style="background-color: #0f0a21;">
                         <option value="" disabled selected>Select Experience</option>
-                        <option value="Fresher">Fresher</option>
-                        <option value="Experienced">Experienced (1+ Year)</option>
+                        <option value="Fresher" class="bg-[#0f0a21]">Fresher</option>
+                        <option value="Experienced" class="bg-[#0f0a21]">Experienced (1+ Year)</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="resume">Resume / CV (PDF/Word)</label>
 
-                    <input type="file" id="resume" accept=".pdf,.doc,.docx"
-                        onchange="document.getElementById('ResumeFileName').value = this.files[0].name">
-
+                <div class="form-group flex flex-col gap-1.5">
+                    <label for="resume" class="text-xs font-semibold text-gray-300">Resume / CV (PDF/Word)</label>
+                    <input type="file" id="resume" class="form-input-dark text-xs file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-500 cursor-pointer" accept=".pdf,.doc,.docx" onchange="document.getElementById('ResumeFileName').value = this.files[0].name">
                     <input type="hidden" name="ResumeFileName" id="ResumeFileName">
-
-                    <p style="font-size: 0.75rem; color: #aaa; margin-top: 5px;">
-                        * Please apply here first. After submitting, you will be asked to share your resume PDF via
-                        WhatsApp.
+                    <p class="text-[10px] text-gray-500 mt-1">
+                        * Please submit details here. After sending, you will be prompted to share your resume PDF via WhatsApp.
                     </p>
                 </div>
 
-
-                <button type="submit" class="btn btn-primary btn-block">Submit Application</button>
+                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold text-sm hover:opacity-95 transition-all shadow-lg shadow-purple-500/20 mt-4 cursor-pointer">
+                    Submit Application
+                </button>
             </form>
-            <div id="successMessage" class="success-message" style="display: none;">
-                <h3>✅ Application Submitted!</h3>
-                <p>Thank you for applying. Our team will contact you shortly.</p>
-                <p>Please check your WhatsApp for further instructions.</p>
-                <button class="btn btn-secondary" onclick="closeApplyModal()">Close</button>
+
+            <div id="successMessage" class="hidden text-center py-8 space-y-4">
+                <div class="w-12 h-12 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 flex items-center justify-center mx-auto text-xl">✓</div>
+                <h3 class="text-lg font-bold text-white">Application Submitted!</h3>
+                <p class="text-xs text-gray-400 max-w-sm mx-auto">Thank you for applying. Our team will contact you shortly. Please check your WhatsApp for further instructions.</p>
+                <button class="px-6 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-xs font-semibold hover:bg-white/10 transition-all cursor-pointer mt-4" onclick="closeApplyModal()">Close</button>
             </div>
         </div>
     </div>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919420512501" class="whatsapp-float" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <a href="https://wa.me/919420512501" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform z-40" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Plan-B Consultancy</h4>
-                    <p>Your backup that actually works.</p>
-                    <p>Managed by Asnan</p>
-                </div>
-                <!-- ... (Rest of footer same as index.html) ... -->
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="admissions.html">Admissions</a>
-                    <a href="jobs.html">Jobs</a>
-                    <a href="women-wfh.html">Women & WFH</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>📱 9420512501</p>
-                    <p>📧 planb.consultancy.in@gmail.com</p>
-                    <a href="https://wa.me/919420512501" target="_blank">WhatsApp</a>
+    <footer class="bg-[#05030c] border-t border-white/5 py-12 relative z-10 text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            
+            <div class="md:col-span-4 flex flex-col items-start gap-4">
+                <a href="index.html" class="text-2xl font-extrabold tracking-tight text-white">
+                    <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">PlanB</span> Consultancy
+                </a>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">Your trusted partner for jobs, education guidance, and digital solutions across Maharashtra and India. Helping candidates secure stable paths.</p>
+                <p class="text-xs text-gray-500 mt-2">Founded by Asnan • Akola, Maharashtra</p>
+                
+                <!-- Social Links -->
+                <div class="flex flex-wrap items-center gap-2 mt-4">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-pink-400 hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://x.com/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-[#25D366] hover:bg-white/10 transition-colors" aria-label="WhatsApp Channel">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    </a>
                 </div>
             </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="footer-social-links">
-                        <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="footer-social-link facebook" id="footer-facebook-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                            planbconsultancy
-                        </a>
-                        <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="footer-social-link instagram" id="footer-instagram-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                            planbconsultancy_india
-                        </a>
-                        <a href="https://chat.whatsapp.com/B5wQu8XxDE14595IWxRSjT" target="_blank" rel="noopener noreferrer" class="footer-social-link whatsapp" id="footer-whatsapp-group-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            WhatsApp Group
-                        </a>
-                    </div>
-                </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Plan-B Consultancy. All rights reserved.</p>
-                <p class="disclaimer">
-                    Disclaimer: Guidance and opportunities are provided as per individual eligibility,
-                    university norms, and company policies.
-                </p>
+
+            <div class="md:col-span-2">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-purple-500 pl-2">Quick Links</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="jobs.html" class="hover:text-white transition-colors">All Jobs</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admissions</a></li>
+                    <li><a href="fast-track.html" class="hover:text-white transition-colors">Fast Track</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                </ul>
             </div>
+
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-pink-500 pl-2">Our Services</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="index.html#services" class="hover:text-white transition-colors">Job Placements</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admission Support</a></li>
+                    <li><a href="women-wfh.html" class="hover:text-white transition-colors">Work From Home</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Income Growth Guidance</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Digital Solutions</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-blue-500 pl-2">Contact Info</h4>
+                <ul class="space-y-3 text-xs">
+                    <li class="flex items-center gap-2.5"><i data-lucide="phone" class="w-4 h-4 text-purple-400"></i> <a href="tel:+919420512501" class="hover:text-white">9420512501</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-pink-400"></i> <a href="mailto:planb.consultancy.in@gmail.com" class="hover:text-white">planb.consultancy.in@gmail.com</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i> <span>Akola, Maharashtra, India</span></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="message-square" class="w-4 h-4 text-[#25D366]"></i> <a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20guidance" target="_blank" class="text-[#25D366] font-semibold hover:underline">WhatsApp Us</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+            <p>&copy; 2026 PlanB Consultancy. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="legal.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="legal.html" class="hover:text-white transition-colors">Terms and Conditions</a>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 mt-8 text-center text-[10px] text-gray-700 leading-relaxed">
+            <p>Plan B Consultancy provides placement assistance services. We do not guarantee jobs. By using our services, you agree that once registration or workflow has been initiated, charges are non-refundable. We coordinate directly to help candidates throughout the application cycle.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide icons
+            lucide.createIcons();
+
+            // Handle URL search query filters
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchParam = urlParams.get('search');
+            const locationParam = urlParams.get('location');
+            const searchInput = document.getElementById('jobSearch');
+            
+            if (searchParam && searchInput) {
+                searchInput.value = searchParam;
+                // trigger input filter event
+                setTimeout(() => {
+                    const event = new Event('input', { bubbles: true });
+                    searchInput.dispatchEvent(event);
+                }, 100);
+            }
+        });
+    </script>
     <script src="js/main.js" defer></script>
     <script src="js/jobs.js" defer></script>
-
 </body>
-
 </html>

@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Admissions Made Simple - UG, PG, 11th & 12th admissions, NEET counselling. Expert guidance from Plan-B Consultancy.">
-    <title>Admissions - Plan-B Consultancy</title>
+    <meta name="description" content="Admissions Made Simple - UG, PG, 11th & 12th admissions, NEET counselling. Expert guidance from Plan-B Consultancy.">
+    <title>Admissions - PlanB Consultancy</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+<body class="bg-[#090514] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
 
-<body>
+    <!-- Decorative background blobs -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-900/10 blur-[150px]"></div>
+        <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-pink-900/10 blur-[150px]"></div>
+        <div class="absolute top-[40%] left-[30%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[150px]"></div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Plan-B</a>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
+    <nav class="navbar scrolled" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white hover:opacity-95 transition-opacity">
+                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">PlanB</span>
+                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">Consultancy</span>
+            </a>
+
+            <ul class="hidden lg:flex items-center gap-2" id="navMenu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="admissions.html" class="nav-link active">Admissions</a></li>
                 <li><a href="fast-track.html" class="nav-link">Fast Track</a></li>
@@ -29,279 +35,318 @@
                 <li><a href="business.html" class="nav-link">Growth</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="nav-social">
-                <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="nav-social-link facebook" id="nav-facebook-link" aria-label="Follow us on Facebook" title="Follow us on Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                
-                <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="nav-social-link instagram" id="nav-instagram-link" aria-label="Follow us on Instagram" title="Follow us on Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                </a></a>
+
+            <div class="hidden lg:flex items-center gap-4">
+                <div class="flex items-center gap-3 mr-2">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://x.com/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
+                <a href="#admission-form" class="px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 hover:scale-[1.02] transition-all">Apply Now</a>
+            </div>
+
+            <!-- Hamburger Toggle -->
+            <div class="lg:hidden flex items-center gap-4">
+                <button class="menu-toggle flex flex-col gap-1.5 p-2 rounded-lg bg-white/5 border border-white/10" id="menuToggle" aria-label="Toggle Menu">
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div class="hidden lg:hidden absolute top-[73px] left-0 w-full bg-[#0d0720]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6" id="mobileMenu">
+            <ul class="flex flex-col gap-4 mb-6">
+                <li><a href="index.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Home</a></li>
+                <li><a href="admissions.html" class="block text-white py-2 text-base font-semibold border-b border-white/5">Admissions</a></li>
+                <li><a href="fast-track.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Fast Track</a></li>
+                <li><a href="jobs.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Jobs</a></li>
+                <li><a href="women-wfh.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Women & WFH</a></li>
+                <li><a href="business.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Growth</a></li>
+                <li><a href="contact.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold">Contact</a></li>
+            </ul>
+            <div class="flex flex-col gap-3">
+                <a href="#admission-form" class="w-full text-center py-3 rounded-xl font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25">Apply Now</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <p class="hero-tagline">🎓 Education Guidance</p>
-            <h1>Admissions Made Simple</h1>
-            <p class="hero-subtitle">
+    <section class="relative pt-32 pb-16 flex items-center justify-center text-center overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold tracking-wider uppercase mb-6 animate-pulse">
+                🎓 Education Guidance
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
+                Admissions Made Simple
+            </h1>
+            <p class="text-sm md:text-base text-gray-400 max-w-xl mx-auto mb-4 leading-relaxed font-semibold">
                 College admissions don't have to be stressful.
             </p>
-            <p class="hero-description">
-                Many students lose time because of wrong information, missed deadlines, and confusing processes.<br>
-                <strong>At Plan-B Consultancy, we simplify everything.</strong>
+            <p class="text-xs md:text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                Many students lose time because of wrong information, missed deadlines, and confusing processes. <strong class="text-purple-300">At PlanB Consultancy, we simplify everything.</strong>
             </p>
         </div>
     </section>
 
-    <!-- Common Problems Section -->
-    <section class="section" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Common Admission Challenges</h2>
-                <p class="section-subtitle">We help you avoid these common pitfalls</p>
+    <!-- Challenges Section -->
+    <section class="py-16 relative z-10 bg-white/[0.01] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <h2 class="text-xs uppercase tracking-widest text-pink-400 font-bold mb-3">Pitfalls to Avoid</h2>
+                <p class="text-2xl md:text-3xl font-extrabold text-white">Common Admission Challenges</p>
             </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">❌</div>
-                    <h3>Wrong Information</h3>
-                    <p>Confusing advice from multiple sources leading to poor decisions and wasted opportunities.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-4">
+                    <span class="text-3xl">❌</span>
+                    <h3 class="text-lg font-bold text-white">Wrong Information</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Confusing advice from multiple unverified sources leading to poor decisions and wasted opportunities.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">⏰</div>
-                    <h3>Missed Deadlines</h3>
-                    <p>Important dates slip by unnoticed, causing students to lose admission chances.</p>
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-4">
+                    <span class="text-3xl">⏰</span>
+                    <h3 class="text-lg font-bold text-white">Missed Deadlines</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Important academic registration dates slip by unnoticed, causing students to lose placement options.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">📋</div>
-                    <h3>Confusing Processes</h3>
-                    <p>Complex application procedures and documentation requirements create unnecessary stress.</p>
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-4">
+                    <span class="text-3xl">📋</span>
+                    <h3 class="text-lg font-bold text-white">Confusing Processes</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Complex university registration procedures and verification checklists create unnecessary parent stress.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- What We Support Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">What We Support</h2>
-                <p class="section-subtitle">Comprehensive admission guidance for all levels</p>
+    <section class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-purple-400 font-bold mb-3">Our Offerings</h2>
+                <p class="text-3xl md:text-4xl font-extrabold text-white">What We Support</p>
             </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">🎓</div>
-                    <h3>UG Admissions</h3>
-                    <p>Undergraduate program admissions across various streams - Arts, Science, Commerce, Engineering,
-                        and more.</p>
-                    <div class="card-actions">
-                        <a href="admissions-impact.html" class="btn btn-secondary">View Details</a>
-                        <a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20guidance%20for%20UG%20Admission"
-                            class="btn btn-primary" target="_blank">Apply Now</a>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <!-- UG Admissions -->
+                <div class="p-6 rounded-3xl glass-panel flex flex-col justify-between hover:border-purple-500/20 transition-all group">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm mb-4">UG</div>
+                        <h3 class="text-lg font-bold text-white mb-2">UG Admissions</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Undergraduate program admissions across various streams - Arts, Science, Commerce, Engineering, and more.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="admissions-impact.html" class="px-4 py-2 rounded-xl text-xs font-semibold glass-panel border-white/5 text-gray-300 hover:text-white hover:bg-white/5 transition-all">View Details</a>
+                        <a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20guidance%20for%20UG%20Admission" target="_blank" class="px-4 py-2 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white transition-all">Apply Now</a>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">📚</div>
-                    <h3>PG Admissions</h3>
-                    <p>Postgraduate program guidance including MBA, M.Tech, M.Sc, MA, and specialized courses.</p>
-                    <div class="card-actions">
-                        <a href="admissions-impact.html" class="btn btn-secondary">View Details</a>
-                        <a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20guidance%20for%20PG%20Admission"
-                            class="btn btn-primary" target="_blank">Apply Now</a>
+
+                <!-- PG Admissions -->
+                <div class="p-6 rounded-3xl glass-panel flex flex-col justify-between hover:border-pink-500/20 transition-all group">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-sm mb-4">PG</div>
+                        <h3 class="text-lg font-bold text-white mb-2">PG Admissions</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Postgraduate program guidance including MBA, M.Tech, M.Sc, MA, and specialized corporate courses.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="admissions-impact.html" class="px-4 py-2 rounded-xl text-xs font-semibold glass-panel border-white/5 text-gray-300 hover:text-white hover:bg-white/5 transition-all">View Details</a>
+                        <a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20guidance%20for%20PG%20Admission" target="_blank" class="px-4 py-2 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white transition-all">Apply Now</a>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">📖</div>
-                    <h3>11th & 12th Admissions</h3>
-                    <p>College admissions for higher secondary education with stream selection guidance.</p>
-                    <div class="card-actions">
-                        <a href="admissions-impact.html" class="btn btn-secondary">View Details</a>
-                        <a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20guidance%20for%2011th%2012th%20Admission"
-                            class="btn btn-primary" target="_blank">Apply Now</a>
+
+                <!-- 11th & 12th Admissions -->
+                <div class="p-6 rounded-3xl glass-panel flex flex-col justify-between hover:border-blue-500/20 transition-all group">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-sm mb-4">HS</div>
+                        <h3 class="text-lg font-bold text-white mb-2">11th & 12th Admissions</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">College admissions for higher secondary education with strategic stream selection guidance.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="admissions-impact.html" class="px-4 py-2 rounded-xl text-xs font-semibold glass-panel border-white/5 text-gray-300 hover:text-white hover:bg-white/5 transition-all">View Details</a>
+                        <a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20guidance%20for%2011th%2012th%20Admission" target="_blank" class="px-4 py-2 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white transition-all">Apply Now</a>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🏥</div>
-                    <h3>NEET Counselling</h3>
-                    <p>Expert NEET counselling and guidance for medical college admissions and seat allocation.</p>
-                    <div class="card-actions">
-                        <a href="admissions-impact.html" class="btn btn-secondary">View Details</a>
-                        <a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20guidance%20for%20NEET%20Counselling"
-                            class="btn btn-primary" target="_blank">Apply Now</a>
+
+                <!-- NEET Counselling -->
+                <div class="p-6 rounded-3xl glass-panel flex flex-col justify-between hover:border-teal-500/20 transition-all group">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center font-bold text-sm mb-4">MD</div>
+                        <h3 class="text-lg font-bold text-white mb-2">NEET Counselling</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Expert NEET counselling and guidance for medical college admissions and seat allocation cycles.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="admissions-impact.html" class="px-4 py-2 rounded-xl text-xs font-semibold glass-panel border-white/5 text-gray-300 hover:text-white hover:bg-white/5 transition-all">View Details</a>
+                        <a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20guidance%20for%20NEET%20Counselling" target="_blank" class="px-4 py-2 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white transition-all">Apply Now</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section class="section" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Easy Process, Step by Step</h2>
-                <p class="section-subtitle">You don't need to run around. You don't need to guess.</p>
+    <!-- Step-by-Step Process -->
+    <section class="py-16 relative z-10 bg-white/[0.01] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-teal-400 font-bold mb-3">Workflow</h2>
+                <p class="text-2xl md:text-3xl font-extrabold text-white mb-4">Easy Process, Step by Step</p>
+                <p class="text-gray-400 text-xs md:text-sm">You don't need to run around. You don't need to guess.</p>
             </div>
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4>Enquiry</h4>
-                    <p>Share your goals and current situation. We listen carefully to understand your needs.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">1</span>
+                    <div class="text-2xl mt-4 mb-2">💬</div>
+                    <h4 class="font-bold text-white text-base">Enquiry</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">Share your goals and current scorecards. We listen carefully to understand your eligibility.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4>Documentation</h4>
-                    <p>We guide you on exactly what documents you need and help you prepare them properly.</p>
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">2</span>
+                    <div class="text-2xl mt-4 mb-2">📄</div>
+                    <h4 class="font-bold text-white text-base">Documentation</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">We guide you on exactly what certificates you need and help you prepare them properly.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4>Application</h4>
-                    <p>Complete application support - forms, deadlines, submissions. We handle the complexity.</p>
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">3</span>
+                    <div class="text-2xl mt-4 mb-2">⚡</div>
+                    <h4 class="font-bold text-white text-base">Application</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">Complete registration support - options lists, deadlines, submissions. We handle the complexity.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h4>Confirmation</h4>
-                    <p>From admission confirmation to enrollment, we're with you until you're settled.</p>
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">4</span>
+                    <div class="text-2xl mt-4 mb-2">🎓</div>
+                    <h4 class="font-bold text-white text-base">Confirmation</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">From seat allocation confirmation to final enrollment, we're with you until you are settled.</p>
                 </div>
             </div>
-            <div class="text-center mt-3">
-                <p style="font-size: var(--font-size-lg); color: var(--text-secondary);">
-                    ✨ <strong>Hundreds of students</strong> have already secured admissions with our support.
-                </p>
-            </div>
+            
+            <p class="text-center text-sm mt-12 text-purple-300 font-semibold flex items-center justify-center gap-1.5"><i data-lucide="sparkles" class="w-4 h-4"></i> Hundreds of students have already secured admissions with our support.</p>
         </div>
     </section>
 
-    <!-- Who This Is For Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Who This Is For</h2>
-                <p class="section-subtitle">We support diverse student needs</p>
+    <!-- Admission Form Embed -->
+    <section class="py-20 relative z-10" id="admission-form">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <h2 class="text-xs uppercase tracking-widest text-purple-400 font-bold mb-3">Apply Today</h2>
+                <p class="text-2xl md:text-3xl font-extrabold text-white mb-4">Fill the Admission Form</p>
+                <p class="text-gray-400 text-xs">Start your admission journey by filling out this quick form. Our team will get back to you shortly.</p>
             </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">🤔</div>
-                    <h3>Confused Students</h3>
-                    <p>Students confused about college options, courses, and career paths need clear direction.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">👨‍👩‍👧</div>
-                    <h3>Parents Seeking Guidance</h3>
-                    <p>Parents who want reliable, trustworthy guidance for their children's education.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">📅</div>
-                    <h3>Drop-Year Students</h3>
-                    <p>Students taking a gap year and planning their next academic move strategically.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">💼</div>
-                    <h3>Working Students</h3>
-                    <p>Working professionals continuing their education while managing their careers.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Admission Form Section -->
-    <section class="section" id="admission-form" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">📝 Fill the Admission Form</h2>
-                <p class="section-subtitle">Start your admission journey by filling out this quick form. Our team will
-                    get back to you shortly.</p>
-            </div>
-            <div style="display: flex; justify-content: center;">
-                <div
-                    style="width: 100%; max-width: 700px; background: var(--bg-primary); border-radius: 16px; padding: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);">
-                    <iframe
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSd4SoroqwiHEe5e3H5zbdh0QihrQWNxP-oPjb56uUruLYxqdw/viewform?embedded=true"
-                        width="100%" height="1800" frameborder="0" marginheight="0" marginwidth="0"
-                        style="border-radius: 12px; display: block;">Loading…</iframe>
-                </div>
+            <!-- Form Wrapper matching exact style rules -->
+            <div class="w-full max-w-2xl mx-auto p-4 md:p-6 rounded-3xl glass-panel border-white/10 bg-purple-950/5 shadow-2xl">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd4SoroqwiHEe5e3H5zbdh0QihrQWNxP-oPjb56uUruLYxqdw/viewform?embedded=true" width="100%" height="1000" frameborder="0" marginheight="0" marginwidth="0" style="border-radius: 16px; display: block;" class="bg-white/5">Loading…</iframe>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="section" style="background: var(--bg-secondary);">
-        <div class="container text-center">
-            <h2 class="section-title">Ready to Simplify Your Admission Process?</h2>
-            <p class="section-subtitle mb-3">Let's discuss your admission goals and create a clear path forward.</p>
-            <div class="btn-group">
-                <a href="https://wa.me/919420512501" class="btn btn-primary" target="_blank">
-                    📱 WhatsApp Us Now
-                </a>
-                <a href="contact.html" class="btn btn-secondary">
-                    📧 Get in Touch
-                </a>
+    <section class="py-16 relative z-10 bg-white/[0.01] border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3">Ready to Simplify Your Admission?</h2>
+            <p class="text-gray-400 text-xs md:text-sm mb-8 max-w-lg mx-auto">Let's discuss your admission goals and create a clear, stress-free pathway forward.</p>
+            <div class="flex flex-wrap gap-3 justify-center">
+                <a href="https://wa.me/919420512501" target="_blank" class="px-6 py-3 rounded-xl text-sm font-semibold bg-[#25D366] text-white hover:bg-[#20ba5c] transition-all flex items-center gap-2 shadow-lg"><i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Us Now</a>
+                <a href="contact.html" class="px-6 py-3 rounded-xl text-sm font-semibold glass-panel border-white/10 text-white hover:bg-white/5 transition-all">Get In Touch</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Plan-B Consultancy</h4>
-                    <p>Your backup that actually works.</p>
-                    <p>Managed by Asnan</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="admissions.html">Admissions</a>
-                    <a href="jobs.html">Jobs</a>
-                    <a href="women-wfh.html">Women & WFH</a>
-                    <a href="business.html">Growth</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <a href="admissions.html">UG/PG Admissions</a>
-                    <a href="admissions.html">NEET Counselling</a>
-                    <a href="jobs.html">Job Placements</a>
-                    <a href="women-wfh.html">Work From Home</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>📱 9420512501</p>
-                    <p>📧 planb.consultancy.in@gmail.com</p>
-                    <a href="https://wa.me/919420512501" target="_blank">WhatsApp</a>
+    <footer class="bg-[#05030c] border-t border-white/5 py-12 relative z-10 text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            
+            <div class="md:col-span-4 flex flex-col items-start gap-4">
+                <a href="index.html" class="text-2xl font-extrabold tracking-tight text-white">
+                    <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">PlanB</span> Consultancy
+                </a>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">Your trusted partner for jobs, education guidance, and digital solutions across Maharashtra and India. Helping candidates secure stable paths.</p>
+                <p class="text-xs text-gray-500 mt-2">Founded by Asnan • Akola, Maharashtra</p>
+                
+                <div class="flex flex-wrap items-center gap-2 mt-4">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-pink-400 hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://x.com/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-[#25D366] hover:bg-white/10 transition-colors" aria-label="WhatsApp Channel">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    </a>
                 </div>
             </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="footer-social-links">
-                        <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="footer-social-link facebook" id="footer-facebook-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                            planbconsultancy
-                        </a>
-                        <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="footer-social-link instagram" id="footer-instagram-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                            planbconsultancy_india
-                        </a>
-                        <a href="https://chat.whatsapp.com/B5wQu8XxDE14595IWxRSjT" target="_blank" rel="noopener noreferrer" class="footer-social-link whatsapp" id="footer-whatsapp-group-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            WhatsApp Group
-                        </a>
-                    </div>
-                </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Plan-B Consultancy. All rights reserved.</p>
-                <p class="disclaimer">
-                    Disclaimer: Guidance and opportunities are provided as per individual eligibility,
-                    university norms, and company policies.
-                </p>
+
+            <div class="md:col-span-2">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-purple-500 pl-2">Quick Links</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="jobs.html" class="hover:text-white transition-colors">All Jobs</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admissions</a></li>
+                    <li><a href="fast-track.html" class="hover:text-white transition-colors">Fast Track</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                </ul>
             </div>
-            <p class="page-disclaimer">Guidance and opportunities are shared based on eligibility, availability, and
-                applicable norms. No guarantees or affiliations are implied.</p>
+
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-pink-500 pl-2">Our Services</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="index.html#services" class="hover:text-white transition-colors">Job Placements</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admission Support</a></li>
+                    <li><a href="women-wfh.html" class="hover:text-white transition-colors">Work From Home</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Income Growth Guidance</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Digital Solutions</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-blue-500 pl-2">Contact Info</h4>
+                <ul class="space-y-3 text-xs">
+                    <li class="flex items-center gap-2.5"><i data-lucide="phone" class="w-4 h-4 text-purple-400"></i> <a href="tel:+919420512501" class="hover:text-white">9420512501</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-pink-400"></i> <a href="mailto:planb.consultancy.in@gmail.com" class="hover:text-white">planb.consultancy.in@gmail.com</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i> <span>Akola, Maharashtra, India</span></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="message-square" class="w-4 h-4 text-[#25D366]"></i> <a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20guidance" target="_blank" class="text-[#25D366] font-semibold hover:underline">WhatsApp Us</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+            <p>&copy; 2026 PlanB Consultancy. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="legal.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="legal.html" class="hover:text-white transition-colors">Terms and Conditions</a>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 mt-8 text-center text-[10px] text-gray-700 leading-relaxed">
+            <p>Plan B Consultancy provides placement assistance services. We do not guarantee jobs. By using our services, you agree that once registration or workflow has been initiated, charges are non-refundable. We coordinate directly to help candidates throughout the application cycle.</p>
         </div>
     </footer>
 
     <script src="js/main.js" defer></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
 </body>
-
 </html>

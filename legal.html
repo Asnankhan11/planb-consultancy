@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -8,192 +8,290 @@
         content="Legal, Privacy Policy and Terms of Service for Plan-B Consultancy. Transparency and trust are our core values.">
     <title>Legal & Privacy - Plan-B Consultancy</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/legal.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Plan-B</a>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
+<body class="bg-[#090514] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
+
+    <!-- Decorative background blobs -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-900/10 blur-[150px]"></div>
+        <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-pink-900/10 blur-[150px]"></div>
+        <div class="absolute top-[40%] left-[30%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[150px]"></div>
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white hover:opacity-95 transition-opacity">
+                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">PlanB</span>
+                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">Consultancy</span>
+            </a>
+
+            <!-- Desktop Nav Menu -->
+            <ul class="hidden lg:flex items-center gap-2">
                 <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
-                <li><a href="fast-track.html" class="nav-link">Fast Track</a></li>
                 <li><a href="jobs.html" class="nav-link">Jobs</a></li>
-                <li><a href="women-wfh.html" class="nav-link">Women & WFH</a></li>
-                <li><a href="business.html" class="nav-link">Growth</a></li>
+                <li><a href="admissions.html" class="nav-link">Services</a></li>
+                <li><a href="index.html#partners" class="nav-link">Companies</a></li>
+                <li><a href="index.html#about" class="nav-link">About Us</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="nav-social">
-                <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="nav-social-link facebook" id="nav-facebook-link" aria-label="Follow us on Facebook" title="Follow us on Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                
-                <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="nav-social-link instagram" id="nav-instagram-link" aria-label="Follow us on Instagram" title="Follow us on Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                </a></a>
+
+            <!-- Right Buttons -->
+            <div class="hidden lg:flex items-center gap-4">
+                <div class="flex items-center gap-3 mr-2">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <i data-lucide="facebook" class="w-4 h-4"></i>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                    </a>
+                </div>
+                <a href="apply-job.html" class="px-5 py-2 rounded-full text-sm font-semibold glass-panel border-white/20 text-white hover:bg-white/10 transition-all">Login</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all">Register</a>
+            </div>
+
+            <!-- Hamburger Toggle -->
+            <div class="lg:hidden flex items-center gap-4">
+                <button class="menu-toggle flex flex-col gap-1.5 p-2 rounded-lg bg-white/5 border border-white/10" id="menuToggle" aria-label="Toggle Menu">
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div class="hidden lg:hidden absolute top-[73px] left-0 w-full bg-[#0d0720]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6" id="mobileMenu">
+            <ul class="flex flex-col gap-4 mb-6">
+                <li><a href="index.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Home</a></li>
+                <li><a href="jobs.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Jobs</a></li>
+                <li><a href="admissions.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Services</a></li>
+                <li><a href="index.html#partners" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Companies</a></li>
+                <li><a href="index.html#about" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">About Us</a></li>
+                <li><a href="contact.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold">Contact</a></li>
+            </ul>
+            <div class="flex flex-col gap-3">
+                <a href="apply-job.html" class="w-full text-center py-3 rounded-xl font-semibold glass-panel border-white/20 text-white hover:bg-white/10 transition-all">Login</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform" target="_blank" rel="noopener noreferrer" class="w-full text-center py-3 rounded-xl font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 transition-all">Register</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <p class="hero-tagline">⚖️ Transparency & Trust</p>
-            <h1>Legal & Privacy Policy</h1>
-            <p class="hero-subtitle">
-                Your trust is our biggest asset.<br>
-                Clear policies for a safe and secure experience.
+    <section class="relative pt-32 pb-16 overflow-hidden flex items-center justify-center min-h-[35vh]">
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold tracking-wider uppercase mb-6 animate-pulse">
+                <i data-lucide="shield" class="w-3.5 h-3.5"></i> Transparency & Trust
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
+                Legal & <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Privacy Policy</span>
+            </h1>
+            <p class="text-gray-400 max-w-xl mx-auto leading-relaxed text-sm md:text-base">
+                Your trust is our biggest asset. We establish clear policies to ensure a safe, secure, and compliant experience for everyone.
             </p>
         </div>
     </section>
 
-    <!-- Legal Content Section -->
-    <section class="section">
-        <div class="container legal-content">
+    <!-- Legal Content -->
+    <section class="py-12 relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="glass-panel rounded-3xl p-8 md:p-12 space-y-12">
 
-            <div class="section-header">
-                <h2 class="section-title">Terms of Service</h2>
-                <div style="width: 50px; height: 3px; background: var(--primary-color); margin: 10px auto;"></div>
+                <!-- Terms of Service -->
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-6 border-b border-white/10 pb-3 flex items-center gap-2.5">
+                        <i data-lucide="file-text" class="text-purple-400 w-6 h-6"></i> Terms of Service
+                    </h2>
+                    
+                    <div class="space-y-6 text-gray-300 text-sm leading-relaxed">
+                        <div>
+                            <h3 class="text-white font-semibold text-base mb-2">1. Introduction</h3>
+                            <p>Welcome to Plan-B Consultancy. By accessing our website and using our services (Job Guidance, Admissions Consulting, Work From Home support), you agree to comply with these Terms of Service. If you do not agree, please do not use our services.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-white font-semibold text-base mb-2">2. Nature of Services</h3>
+                            <p>Plan-B Consultancy acts as a <strong class="text-purple-300">facilitator and guide</strong>. We connect students with educational institutions and job seekers with potential employers. We <strong class="text-pink-300">do not</strong> guarantee admission or employment, as final decisions rest with the respective universities and companies.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-white font-semibold text-base mb-2">3. User Responsibilities</h3>
+                            <p>You agree to provide accurate, current, and complete information during registration or application. You are responsible for maintaining the confidentiality of your communication with us and for all activities that occur under your request.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-white font-semibold text-base mb-2">4. No Guarantee Clause</h3>
+                            <p>While we strive to provide the best opportunities:</p>
+                            <ul class="list-disc pl-6 space-y-2 mt-2 text-gray-400">
+                                <li><strong class="text-gray-300">Jobs:</strong> We facilitate interviews and connections. Selection is based on your performance and the employer's requirements.</li>
+                                <li><strong class="text-gray-300">Admissions:</strong> We guide you through the process. Admission is subject to your eligibility and the institute's availability/norms.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy Policy -->
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-6 border-b border-white/10 pb-3 flex items-center gap-2.5">
+                        <i data-lucide="lock" class="text-pink-400 w-6 h-6"></i> Privacy Policy
+                    </h2>
+                    
+                    <div class="space-y-6 text-gray-300 text-sm leading-relaxed">
+                        <div>
+                            <h3 class="text-white font-semibold text-base mb-2">1. Information We Collect</h3>
+                            <p>To provide our services, we may collect the following personal information:</p>
+                            <ul class="list-disc pl-6 space-y-2 mt-2 text-gray-400">
+                                <li>Name, Email Address, and Phone/WhatsApp Number</li>
+                                <li>Educational Qualifications, Academic Gap years, and Resumes/CVs</li>
+                                <li>Job Preferences, Work Experience, and Career Goals</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-white font-semibold text-base mb-2">2. How We Use Your Information</h3>
+                            <p>Your data is used solely for:</p>
+                            <ul class="list-disc pl-6 space-y-2 mt-2 text-gray-400">
+                                <li>Match-making with suitable Job or Admission opportunities.</li>
+                                <li>Communicating interview schedules, document approvals, or admission updates.</li>
+                                <li>Improving our services, platform flows, and client experience.</li>
+                            </ul>
+                            <p class="mt-4 border-l-2 border-purple-500 pl-3 text-purple-300 font-medium">
+                                We do NOT sell or share your personal data to third-party marketing agencies. Your resume is shared only with potential employers or colleges relevant to your application.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-white font-semibold text-base mb-2">3. Data Security</h3>
+                            <p>We implement appropriate security measures to protect your personal information from unauthorized access, alteration, or disclosure. However, no method of transmission over the internet or method of electronic storage is 100% secure.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety & Verification -->
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-6 border-b border-white/10 pb-3 flex items-center gap-2.5">
+                        <i data-lucide="shield-check" class="text-blue-400 w-6 h-6"></i> Safety &amp; Verification Commitment
+                    </h2>
+                    
+                    <div class="space-y-4 text-gray-300 text-sm leading-relaxed">
+                        <p>For our <strong class="text-blue-300">Women &amp; Work From Home</strong> opportunities, candidate security is paramount. We commit to the following safety protocols:</p>
+                        <ul class="list-disc pl-6 space-y-2 text-gray-400">
+                            <li>We verify the legitimacy of companies offering remote or hybrid work opportunities.</li>
+                            <li>We do not support or guide candidates towards "pay-to-work" schemes where candidates must pay money up-front to secure a job offer.</li>
+                            <li>We encourage all candidates to report any suspicious behavior, requests for personal financials, or unprofessional conduct immediately to Asnan.</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
-
-            <h3>1. Introduction</h3>
-            <p>Welcome to Plan-B Consultancy. By accessing our website and using our services (Job Guidance, Admissions
-                Consulting, Work From Home support), you agree to comply with these Terms of Service. If you do not
-                agree, please do not use our services.</p>
-
-            <h3>2. Nature of Services</h3>
-            <p>Plan-B Consultancy acts as a <strong>facilitator and guide</strong>. We connect students with educational
-                institutions and job seekers with potential employers. We <strong>do not</strong> guarantee admission or
-                employment, as final decisions rest with the respective universities and companies.</p>
-
-            <h3>3. User Responsibilities</h3>
-            <p>You agree to provide accurate, current, and complete information during registration or application. You
-                are responsible for maintaining the confidentiality of your communication with us and for all activities
-                that occur under your request.</p>
-
-            <h3>4. No Guarantee Clause</h3>
-            <p>While we strive to provide the best opportunities:</p>
-            <ul>
-                <li><strong>Jobs:</strong> We facilitate interviews and connections. Selection is based on your
-                    performance and the employer's requirements.</li>
-                <li><strong>Admissions:</strong> We guide you through the process. Admission is subject to your
-                    eligibility and the institute's availability/norms.</li>
-            </ul>
-
-            <hr style="margin: 3rem 0; border: 0; border-top: 1px solid #eee;">
-
-            <div class="section-header">
-                <h2 class="section-title">Privacy Policy</h2>
-                <div style="width: 50px; height: 3px; background: var(--primary-color); margin: 10px auto;"></div>
-            </div>
-
-            <h3>1. Information We Collect</h3>
-            <p>To provide our services, we may collect the following personal information:</p>
-            <ul>
-                <li>Name, Email Address, Phone Number</li>
-                <li>Educational Qualifications and Resumes/CVs</li>
-                <li>Job Preferences and Career Goals</li>
-            </ul>
-
-            <h3>2. How We Use Your Information</h3>
-            <p>Your data is used solely for:</p>
-            <ul>
-                <li>Match-making with suitable Job or Admission opportunities.</li>
-                <li>Communicating interview schedules or admission updates.</li>
-                <li> improving our services and website experience.</li>
-            </ul>
-            <p><strong>We do NOT sell your personal data to third-party marketing agencies.</strong> Your resume is
-                shared only with potential employers or colleges relevant to your application.</p>
-
-            <h3>3. Data Security</h3>
-            <p>We implement appropriate security measures to protect your personal information from unauthorized access,
-                alteration, or disclosure. However, no method of transmission over the internet is 100% secure.</p>
-
-            <hr style="margin: 3rem 0; border: 0; border-top: 1px solid #eee;">
-
-            <div class="section-header">
-                <h2 class="section-title">Safety & Verification Commitment</h2>
-                <div style="width: 50px; height: 3px; background: var(--primary-color); margin: 10px auto;"></div>
-            </div>
-            <p>For our <strong>Women & Work From Home</strong> section, safety is paramount. We:</p>
-            <ul>
-                <li>Verify the legitimacy of companies offering remote work.</li>
-                <li>Do not support "pay-to-work" schemes where you must pay money to get a job offer.</li>
-                <li>Encourage candidates to report any suspicious activity immediately.</li>
-            </ul>
-
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Plan-B Consultancy</h4>
-                    <p>Your backup that actually works.</p>
-                    <p>Managed by Asnan</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="admissions.html">Admissions</a>
-                    <a href="jobs.html">Jobs</a>
-                    <a href="women-wfh.html">Women & WFH</a>
-                    <a href="business.html">Growth</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <a href="admissions.html">UG/PG Admissions</a>
-                    <a href="admissions.html">NEET Counselling</a>
-                    <a href="jobs.html">Job Placements</a>
-                    <a href="women-wfh.html">Work From Home</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>📱 9420512501</p>
-                    <p>📧 planb.consultancy.in@gmail.com</p>
-                    <a href="https://wa.me/919420512501" target="_blank">WhatsApp</a>
+    <!-- FOOTER -->
+    <footer class="bg-[#070310] border-t border-white/5 pt-16 pb-8 text-gray-400 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-11 gap-10 mb-12">
+            
+            <div class="md:col-span-3 flex flex-col gap-3">
+                <a href="index.html" class="text-xl font-bold tracking-tight text-white hover:opacity-95 transition-opacity">
+                    <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">PlanB</span> Consultancy
+                </a>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">Your trusted partner for jobs, education guidance, and digital solutions across Maharashtra and India. Helping candidates secure stable paths.</p>
+                <p class="text-xs text-gray-500 mt-2">Founded by Asnan • Akola, Maharashtra</p>
+                
+                <!-- Social Links -->
+                <div class="flex items-center gap-3 mt-4">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <i data-lucide="facebook" class="w-4 h-4"></i>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                    </a>
                 </div>
             </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="footer-social-links">
-                        <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="footer-social-link facebook" id="footer-facebook-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                            planbconsultancy
-                        </a>
-                        <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="footer-social-link instagram" id="footer-instagram-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                            planbconsultancy_india
-                        </a>
-                        <a href="https://chat.whatsapp.com/B5wQu8XxDE14595IWxRSjT" target="_blank" rel="noopener noreferrer" class="footer-social-link whatsapp" id="footer-whatsapp-group-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            WhatsApp Group
-                        </a>
-                    </div>
-                </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Plan-B Consultancy. All rights reserved.</p>
-                <p class="disclaimer">
-                    <a href="legal.html" style="color: #aaa; text-decoration: none;">Legal & Privacy</a> |
-                    Disclaimer: Guidance and opportunities are provided as per individual eligibility,
-                    university norms, and company policies.
-                </p>
+
+            <div class="md:col-span-2">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-purple-500 pl-2">Quick Links</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="jobs.html" class="hover:text-white transition-colors">All Jobs</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admissions</a></li>
+                    <li><a href="fast-track.html" class="hover:text-white transition-colors">Fast Track</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                </ul>
             </div>
-            <p class="page-disclaimer">Guidance and opportunities are shared based on eligibility, availability, and
-                applicable norms. No guarantees or affiliations are implied.</p>
+
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-pink-500 pl-2">Our Services</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="jobs.html" class="hover:text-white transition-colors">Job Placements</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admission Support</a></li>
+                    <li><a href="women-wfh.html" class="hover:text-white transition-colors">Work From Home</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Income Growth Guidance</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Digital Solutions</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-blue-500 pl-2">Contact Info</h4>
+                <ul class="space-y-3 text-xs">
+                    <li class="flex items-center gap-2.5"><i data-lucide="phone" class="w-4 h-4 text-purple-400"></i> <a href="tel:+919420512501" class="hover:text-white">9420512501</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-pink-400"></i> <a href="mailto:planb.consultancy.in@gmail.com" class="hover:text-white">planb.consultancy.in@gmail.com</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i> <span>Akola, Maharashtra, India</span></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="message-square" class="w-4 h-4 text-[#25D366]"></i> <a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20guidance" target="_blank" class="text-[#25D366] font-semibold hover:underline">WhatsApp Us</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+            <p>&copy; 2026 PlanB Consultancy. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="legal.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="legal.html" class="hover:text-white transition-colors">Terms and Conditions</a>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 mt-8 text-center text-[10px] text-gray-700 leading-relaxed">
+            <p>Plan B Consultancy provides placement assistance services. We do not guarantee jobs. By using our services, you agree that once registration or workflow has been initiated, charges are non-refundable. We coordinate directly to help candidates throughout the application cycle.</p>
         </div>
     </footer>
 
-    <script src="js/main.js" defer></script>
+    <!-- FLOATING CONTACT WIDGET -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3" id="contactWidget">
+        <a href="https://wa.me/919420512501?text=Hi%20I%20am%20interested%20in%20your%20services" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white flex items-center justify-center shadow-lg shadow-green-500/30 hover:scale-[1.08] hover:-translate-y-0.5 active:scale-[0.98] transition-all" aria-label="WhatsApp Chat">
+            <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7 fill-current"></i>
+        </a>
+    </div>
 
+    <!-- JS SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    const spans = menuToggle.querySelectorAll('span');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        spans[0].style.transform = 'translateY(8px) rotate(45deg)';
+                        spans[1].style.opacity = '0';
+                        spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+                    } else {
+                        spans[0].style.transform = 'none';
+                        spans[1].style.opacity = '1';
+                        spans[2].style.transform = 'none';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -1,775 +1,1064 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plan-B Consultancy | Job Placement &amp; Admission Guidance | Akola, Maharashtra</title>
-<meta name="description" content="Plan-B Consultancy in Akola, Maharashtra — trusted job placement, college admission guidance, and website development for Tier-2 India. WhatsApp: 9420512501">
-<meta property="og:title" content="Plan-B Consultancy | Job Placement & Admission Guidance | Akola, Maharashtra">
-<meta property="og:description" content="Plan-B Consultancy in Akola, Maharashtra — trusted job placement, college admission guidance, and website development for Tier-2 India. WhatsApp: 9420512501">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://planb-consultancy.in">
-<meta property="og:image" content="https://placehold.co/1200x630/0A2E6B/FFFFFF?text=Plan-B+Consultancy">
-<meta property="og:locale" content="en_IN">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Plan-B Consultancy | Job Placement & Admission Guidance | Akola, Maharashtra">
-<meta name="twitter:description" content="Trusted job placement, college admission guidance, and website development for Tier-2 India.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--primary:#fff;--primary-light:#F4F7FB;--primary-mid:#EDF1F7;--accent-blue:#0A2E6B;--accent-blue-light:#3B82F6;--accent-blue-dark:#061D45;--white:#fff;--text-light:#4A5568;--text-muted:#64748B;--text-dark:#1A1A2E;--card-bg:#fff;--card-border:rgba(10,46,107,.08);--card-hover-border:rgba(59,130,246,.35);--font-heading:'Outfit',sans-serif;--font-body:'Inter',sans-serif;--shadow-sm:0 2px 8px rgba(10,46,107,.06);--shadow-md:0 4px 20px rgba(10,46,107,.08);--shadow-lg:0 8px 40px rgba(10,46,107,.1);--shadow-blue:0 0 30px rgba(59,130,246,.12);--radius-sm:.5rem;--radius-md:.75rem;--radius-lg:1rem;--transition:.3s ease}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:var(--font-body);background:var(--white);color:var(--text-dark);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:700;line-height:1.2;color:var(--text-dark);margin-bottom:1rem}
-p{margin-bottom:.75rem;color:var(--text-light)}
-a{color:var(--accent-blue);text-decoration:none;transition:var(--transition)}
-a:hover{color:var(--accent-blue-light)}
-.container{max-width:1200px;margin:0 auto;padding:0 2rem}
-.section{padding:5rem 0;position:relative;z-index:1}
-.section-header{text-align:center;margin-bottom:3rem}
-.section-label{display:inline-block;font-size:.75rem;font-weight:700;color:var(--accent-blue-light);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:.75rem}
-.section-title{font-size:clamp(1.8rem,3.5vw,2.5rem);color:var(--text-dark);margin-bottom:.75rem}
-.section-subtitle{font-size:1.125rem;color:var(--text-muted);max-width:600px;margin:0 auto}
-.btn-group{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn{padding:16px 36px;border-radius:50px;font-family:var(--font-body);font-weight:600;font-size:1rem;cursor:pointer;border:none;transition:var(--transition);display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;position:relative;overflow:hidden}
-.btn::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,.15);border-radius:50%;transform:translate(-50%,-50%);transition:width .5s,height .5s}
-.btn:hover::after{width:300px;height:300px}
-.btn-primary{background:linear-gradient(135deg,var(--accent-blue-dark),var(--accent-blue-light));color:#fff;box-shadow:0 4px 20px rgba(10,46,107,.25)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 35px rgba(59,130,246,.4);color:#fff}
-.btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3)}
-.btn-outline:hover{background:rgba(255,255,255,.1);border-color:#93C5FD;color:#93C5FD;transform:translateY(-3px)}
-.btn-secondary{background:transparent;color:var(--accent-blue);border:1.5px solid rgba(10,46,107,.2)}
-.btn-secondary:hover{background:rgba(59,130,246,.06);border-color:var(--accent-blue-light);color:var(--accent-blue-light);transform:translateY(-2px)}
-.fade-up{opacity:0;transform:translateY(35px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
-.fade-up.visible{opacity:1;transform:translateY(0)}
-/* NAV */
-.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(10,46,107,.06);padding:.75rem 0;transition:var(--transition)}
-.navbar.scrolled{background:rgba(255,255,255,.97);box-shadow:0 4px 30px rgba(10,46,107,.08)}
-.nav-container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
-.logo{font-family:var(--font-heading);font-size:1.25rem;font-weight:800;color:var(--accent-blue)}
-.nav-menu{display:flex;list-style:none;gap:.5rem;align-items:center}
-.nav-link{color:var(--text-muted);font-weight:500;padding:8px 16px;border-radius:var(--radius-sm);transition:var(--transition);font-size:.875rem}
-.nav-link:hover,.nav-link.active{color:var(--accent-blue)}
-.menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
-.menu-toggle span{width:24px;height:2.5px;background:var(--accent-blue);border-radius:2px;transition:var(--transition)}
-.nav-social{display:flex;gap:12px;align-items:center}
-.nav-social-link{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%}
-.nav-social-link svg{width:16px;height:16px;fill:var(--text-muted);transition:var(--transition)}
-.nav-social-link:hover svg{fill:var(--accent-blue-light)}
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#050D1A 0%,#0A1628 40%,#0D2247 100%)}
-.hero-content{max-width:850px;padding:120px 2rem 4rem;position:relative;z-index:2}
-.hero-badge{display:inline-block;padding:8px 20px;border-radius:50px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);color:#93C5FD;font-size:.875rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2rem;animation:fadeInUp .8s ease .2s both}
-.hero h1{font-size:clamp(2rem,5vw,3.5rem);color:#fff;font-weight:800;line-height:1.15;margin-bottom:1.5rem;animation:fadeInUp .8s ease .4s both}
-.hero h1 .gold{color:#93C5FD}
-.hero-subtitle{font-size:1.25rem;color:#94A3B8;margin-bottom:2.5rem;line-height:1.8;animation:fadeInUp .8s ease .6s both}
-.hero .btn-group{animation:fadeInUp .8s ease .8s both}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-/* AUDIENCE SECTIONS */
-.audience-section{padding:4rem 0}
-.audience-section:nth-child(even){background:var(--primary-light)}
-.audience-card{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;max-width:1100px;margin:0 auto;padding:0 2rem}
-.audience-card.reverse{direction:rtl}
-.audience-card.reverse>*{direction:ltr}
-.audience-info h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:1rem}
-.audience-info p{font-size:1.05rem;color:var(--text-muted);line-height:1.8;margin-bottom:1.5rem}
-.audience-visual{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius-lg);padding:2.5rem;text-align:center;box-shadow:var(--shadow-sm)}
-.audience-visual .emoji{font-size:4rem;margin-bottom:1rem;display:block}
-.audience-visual h3{font-size:1.25rem;margin-bottom:.5rem}
-.audience-visual ul{list-style:none;text-align:left;padding:0}
-.audience-visual ul li{padding:.4rem 0;color:var(--text-muted);font-size:.95rem}
-.audience-visual ul li::before{content:'✓ ';color:var(--accent-blue-light);font-weight:700}
-/* SERVICES */
-.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
-.service-card{background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-lg);padding:2rem;text-align:center;transition:var(--transition);box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
-.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent-blue-dark),var(--accent-blue-light));transform:scaleX(0);transition:var(--transition);transform-origin:left}
-.service-card:hover{transform:translateY(-6px);border-color:var(--card-hover-border);box-shadow:var(--shadow-lg),var(--shadow-blue)}
-.service-card:hover::before{transform:scaleX(1)}
-.service-card-icon{width:60px;height:60px;margin:0 auto 1rem;background:rgba(59,130,246,.08);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;transition:var(--transition)}
-.service-card:hover .service-card-icon{background:rgba(59,130,246,.15);transform:translateY(-3px)}
-.service-card-icon svg{width:28px;height:28px;stroke:var(--accent-blue-light);fill:none;stroke-width:1.5}
-.service-card h3{font-size:1.15rem;margin-bottom:.5rem;font-weight:600}
-.service-card p{font-size:.875rem;color:var(--text-muted);line-height:1.7;margin-bottom:0}
-/* STATS */
-.stats-section{background:var(--primary-light);border-top:1px solid var(--card-border);border-bottom:1px solid var(--card-border)}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
-.stat-item{text-align:center;padding:1.5rem}
-.stat-number{font-family:var(--font-heading);font-size:clamp(2.2rem,4vw,3rem);font-weight:800;background:linear-gradient(135deg,var(--accent-blue-dark),var(--accent-blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
-.stat-suffix{font-family:var(--font-heading);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;background:linear-gradient(135deg,var(--accent-blue-dark),var(--accent-blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.stat-label{font-size:.875rem;color:var(--text-muted);font-weight:500;margin-top:.5rem}
-/* TESTIMONIALS */
-.review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
-.review-card{background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-lg);padding:2rem;transition:var(--transition);display:flex;flex-direction:column;position:relative;box-shadow:var(--shadow-sm)}
-.review-card::before{content:'"';position:absolute;top:15px;right:25px;font-size:4rem;color:rgba(59,130,246,.1);font-family:Georgia,serif;line-height:1}
-.review-card:hover{transform:translateY(-4px);border-color:var(--card-hover-border);box-shadow:var(--shadow-md)}
-.testimonial-tag{display:inline-block;padding:3px 10px;background:rgba(59,130,246,.08);color:var(--accent-blue-light);border-radius:4px;font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:.75rem;font-weight:700}
-.review-header{display:flex;align-items:center;gap:12px;margin-bottom:.75rem}
-.letter-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:700;font-size:1.1rem;color:#fff;flex-shrink:0}
-.review-info .review-name{font-weight:700;color:var(--text-dark);margin-bottom:2px}
-.review-info .review-role{font-size:.75rem;color:var(--text-muted);margin-bottom:4px}
-.review-stars{color:#F59E0B;font-size:.875rem}
-.review-text{font-style:italic;color:var(--text-light);line-height:1.7;flex-grow:1;font-size:1rem}
-/* WHY US */
-.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
-.why-card{text-align:center;padding:1.5rem;background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-lg);transition:var(--transition);box-shadow:var(--shadow-sm)}
-.why-card:hover{transform:translateY(-4px);border-color:var(--card-hover-border);box-shadow:var(--shadow-md)}
-.why-icon{font-size:2rem;margin-bottom:.75rem;display:block}
-.why-card h4{font-size:1rem;font-weight:600;margin-bottom:.5rem}
-.why-card p{font-size:.875rem;color:var(--text-muted);margin-bottom:0}
-/* PARTNERS */
-.partners-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1.5rem;align-items:center;justify-items:center}
-.partner-logo{padding:1rem 1.5rem;background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-md);transition:var(--transition);display:flex;align-items:center;justify-content:center;min-height:70px;width:100%;box-shadow:var(--shadow-sm)}
-.partner-logo:hover{border-color:var(--card-hover-border);transform:scale(1.05);box-shadow:var(--shadow-md)}
-.partner-logo span{font-family:var(--font-heading);font-weight:700;font-size:1.05rem;color:var(--text-muted);transition:var(--transition)}
-.partner-logo:hover span{color:var(--accent-blue-light)}
-/* ABOUT FOUNDER */
-.about-founder{background:var(--primary-mid)}
-.founder-card{max-width:800px;margin:0 auto;background:#fff;border-radius:var(--radius-lg);padding:3rem;box-shadow:var(--shadow-md);text-align:center;border:1px solid var(--card-border)}
-.founder-avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--accent-blue-dark),var(--accent-blue-light));display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:2.2rem;color:#fff;margin:0 auto 1.5rem}
-.founder-card blockquote{font-size:1.1rem;color:var(--text-light);line-height:1.9;font-style:italic;margin-bottom:1.5rem;position:relative;padding:0 1rem}
-.founder-card .founder-name{font-weight:700;color:var(--text-dark);font-size:1.1rem}
-.founder-card .founder-title{color:var(--text-muted);font-size:.9rem}
-/* FAQ */
-.faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:.75rem}
-.faq-item{background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-md);overflow:hidden;transition:var(--transition);box-shadow:var(--shadow-sm)}
-.faq-item:hover{border-color:var(--card-hover-border)}
-.faq-item.active{border-color:rgba(59,130,246,.3)}
-.faq-question{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;cursor:pointer;transition:var(--transition)}
-.faq-question:hover{background:rgba(59,130,246,.04)}
-.faq-question h4{margin-bottom:0;font-size:1rem;font-weight:600;flex:1;padding-right:1rem}
-.faq-toggle{width:30px;height:30px;border-radius:50%;background:rgba(59,130,246,.08);display:flex;align-items:center;justify-content:center;font-size:1.125rem;color:var(--accent-blue-light);transition:var(--transition);flex-shrink:0}
-.faq-item.active .faq-toggle{transform:rotate(45deg);background:var(--accent-blue-light);color:#fff}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease}
-.faq-answer p{padding:0 1.5rem 1rem;color:var(--text-muted);line-height:1.8}
-.faq-item.active .faq-answer{max-height:300px}
-/* DIGITAL SERVICES & PRICING */
-.ds-features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:3rem}
-.ds-feature-card{background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;transition:var(--transition);box-shadow:var(--shadow-sm)}
-.ds-feature-card:hover{transform:translateY(-6px);border-color:var(--card-hover-border);box-shadow:var(--shadow-lg),var(--shadow-blue)}
-.ds-feature-icon{font-size:2.2rem;margin-bottom:.75rem;display:block}
-.ds-feature-card h4{font-size:1rem;font-weight:600;margin-bottom:.25rem}
-.ds-feature-card p{font-size:.875rem;color:var(--text-muted);margin-bottom:0;line-height:1.6}
-.pay-badge{display:flex;align-items:center;gap:1rem;padding:1.5rem 2.5rem;background:linear-gradient(135deg,#064E3B,#059669);border-radius:var(--radius-lg);box-shadow:0 8px 30px rgba(5,150,105,.2);color:#fff;margin-top:2rem}
-.pay-badge-icon{font-size:2.5rem;flex-shrink:0}
-.pay-badge h3{color:#fff;font-size:1.4rem;margin-bottom:.25rem}
-.pay-badge p{color:rgba(255,255,255,.85);margin-bottom:0;font-size:.95rem}
-/* PORTFOLIO */
-.ds-portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.ds-portfolio-card{background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);box-shadow:var(--shadow-sm)}
-.ds-portfolio-card:hover{transform:translateY(-6px);border-color:var(--card-hover-border);box-shadow:var(--shadow-lg)}
-.ds-portfolio-img{overflow:hidden;height:200px}
-.ds-portfolio-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-.ds-portfolio-card:hover .ds-portfolio-img img{transform:scale(1.05)}
-.ds-portfolio-info{padding:1.5rem}
-.ds-portfolio-info h4{font-size:1.2rem;margin-bottom:.25rem}
-.ds-portfolio-info p{font-size:.875rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.6}
-/* PRICING */
-.ds-pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:stretch}
-.ds-pricing-card{background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-lg);padding:2.5rem 2rem;text-align:center;transition:var(--transition);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;position:relative}
-.ds-pricing-card:hover{transform:translateY(-6px);border-color:var(--card-hover-border);box-shadow:var(--shadow-lg)}
-.ds-pricing-featured{border-color:rgba(59,130,246,.3);box-shadow:var(--shadow-md),0 0 30px rgba(59,130,246,.08);transform:scale(1.03)}
-.ds-pricing-featured:hover{transform:scale(1.03) translateY(-6px)}
-.ds-pricing-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#061D45,#3B82F6);color:#fff;padding:4px 20px;border-radius:0 0 8px 8px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px}
-.ds-pricing-header h3{font-size:1.5rem;margin-bottom:.5rem}
-.ds-pricing-price{font-family:var(--font-heading);font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--accent-blue-dark),var(--accent-blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.5rem}
-.ds-pricing-price span{font-size:.95rem;font-weight:500;-webkit-text-fill-color:var(--text-muted)}
-.ds-pricing-features{list-style:none;padding:0;margin-bottom:2rem;flex-grow:1;text-align:left}
-.ds-pricing-features li{padding:10px 0;border-bottom:1px solid rgba(10,46,107,.06);color:var(--text-light);font-size:1rem}
-.ds-pricing-btn{width:100%;justify-content:center}
-/* REGISTRATION */
-.register-form-container{max-width:900px;margin:0 auto;padding:30px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-md)}
-.register-form-container iframe{display:block;margin:0 auto;border-radius:4px;max-width:100%}
-.register-cta-buttons{display:flex;justify-content:center;gap:20px;margin-top:32px;flex-wrap:wrap}
-.register-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:50px;font-size:1rem;font-weight:600;text-decoration:none;transition:background .25s,transform .2s,box-shadow .25s;cursor:pointer;border:none;color:#fff}
-.register-btn-whatsapp{background:#25D366}
-.register-btn-whatsapp:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.35);color:#fff}
-.register-btn-linkedin{background:#0A66C2}
-.register-btn-linkedin:hover{background:#084e96;transform:translateY(-2px);box-shadow:0 6px 20px rgba(10,102,194,.35);color:#fff}
-.register-helper{text-align:center;margin-top:16px;font-size:.9rem;color:#059669;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px}
-.register-note{text-align:center;margin-top:16px;font-size:.85rem;color:var(--text-muted);margin-bottom:0}
-/* INQUIRY FORM */
-.ds-inquiry-wrapper{display:grid;grid-template-columns:2fr 1fr;gap:3rem;align-items:start}
-.ds-inquiry-form{background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-lg);padding:2.5rem;box-shadow:var(--shadow-sm)}
-.ds-form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.form-group{margin-bottom:1rem}
-.form-group label{display:block;margin-bottom:8px;font-weight:500;color:var(--text-muted);font-size:.875rem}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 18px;background:#F8FAFC;border:1px solid rgba(10,46,107,.1);border-radius:var(--radius-sm);color:var(--text-dark);font-size:1rem;font-family:var(--font-body);outline:none;transition:var(--transition)}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent-blue-light);background:#fff;box-shadow:0 0 0 3px rgba(59,130,246,.1)}
-.ds-submit-btn{width:100%;justify-content:center;margin-top:.75rem}
-.ds-inquiry-contact{display:flex;flex-direction:column;gap:1.5rem}
-.ds-inquiry-contact-card{background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-lg);padding:2rem;text-align:center;box-shadow:var(--shadow-sm)}
-.ds-contact-icon-lg{font-size:2.5rem;margin-bottom:.75rem;display:block}
-.ds-inquiry-contact-card h4{font-size:1.1rem;margin-bottom:.25rem}
-.ds-inquiry-contact-card p{color:var(--text-muted);margin-bottom:.25rem}
-.ds-wa-btn{width:100%;justify-content:center;padding:16px 24px;font-size:1rem;border-radius:50px;background:#25D366;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.3);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;font-weight:600;transition:var(--transition)}
-.ds-wa-btn:hover{background:#20BA5C;transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,.5);color:#fff}
-/* CONTACT */
-.contact-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.contact-card{background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;transition:var(--transition);text-decoration:none;color:inherit;display:block;box-shadow:var(--shadow-sm)}
-.contact-card:hover{transform:translateY(-4px);border-color:var(--card-hover-border);color:inherit;box-shadow:var(--shadow-md)}
-.contact-icon{font-size:2rem;margin-bottom:.75rem;display:block}
-.contact-card h4{font-size:.875rem;font-weight:600;margin-bottom:.25rem}
-.contact-card p{font-size:.875rem;color:var(--text-muted);margin-bottom:0}
-/* CTA */
-.final-cta{text-align:center;padding:5rem 0;background:var(--primary-light);position:relative}
-.final-cta h2{font-size:2.5rem;margin-bottom:.75rem}
-.final-cta p{font-size:1.1rem;color:var(--text-muted);max-width:600px;margin:0 auto 2rem}
-/* FOOTER */
-.site-footer{background:#0B1120;color:#C8D1E0;padding:4rem 0 0;font-family:var(--font-body)}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem;padding-bottom:2.5rem}
-.footer-heading{color:#fff;font-size:1.125rem;font-weight:700;margin-bottom:1.25rem;position:relative;padding-bottom:.75rem}
-.footer-heading::after{content:'';position:absolute;bottom:0;left:0;width:32px;height:2px;background:var(--accent-blue-light);border-radius:2px}
-.footer-desc{font-size:.9rem;line-height:1.7;color:#94A3B8;margin-bottom:.5rem}
-.footer-founder{font-size:.8rem;color:#64748B;margin-bottom:1.25rem}
-.footer-socials{display:flex;gap:.75rem}
-.footer-social-icon{width:38px;height:38px;border-radius:50%;border:1px solid rgba(148,163,184,.2);display:flex;align-items:center;justify-content:center;color:#94A3B8;transition:all .3s ease}
-.footer-social-icon:hover{background:var(--accent-blue-light);border-color:var(--accent-blue-light);color:#fff;transform:translateY(-2px)}
-.footer-social-icon.footer-social-whatsapp:hover{background:#25D366;border-color:#25D366}
-.footer-links{list-style:none;padding:0;margin:0}
-.footer-links li{margin-bottom:.65rem}
-.footer-links a{color:#94A3B8;font-size:.9rem;text-decoration:none;transition:all .25s ease;position:relative;display:inline-block}
-.footer-links a::before{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:var(--accent-blue-light);transition:width .25s ease}
-.footer-links a:hover{color:#fff;padding-left:4px}
-.footer-links a:hover::before{width:100%}
-.footer-contact-list{list-style:none;padding:0;margin:0}
-.footer-contact-list li{display:flex;align-items:center;gap:.6rem;margin-bottom:.85rem;font-size:.9rem;color:#94A3B8}
-.footer-contact-icon{font-size:1rem;flex-shrink:0}
-.footer-contact-list a{color:#94A3B8;text-decoration:none;transition:color .25s ease}
-.footer-contact-list a:hover{color:#fff}
-.footer-notice-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(148,163,184,.15) 30%,rgba(148,163,184,.15) 70%,transparent 100%);margin-bottom:1.25rem}
-.footer-notice{text-align:center;padding:0 2rem 1.5rem}
-.footer-notice p{font-size:.75rem;line-height:1.8;color:#94A3B8;opacity:.55;max-width:800px;margin:0 auto}
-.footer-bottom-bar{border-top:1px solid rgba(148,163,184,.1);padding:1.25rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
-.footer-copyright{font-size:.8rem;color:#64748B;margin:0}
-.footer-bottom-links{display:flex;gap:1.5rem}
-.footer-bottom-links a{font-size:.8rem;color:#64748B;text-decoration:none;transition:color .25s ease;position:relative}
-.footer-bottom-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--accent-blue-light);transition:width .25s ease}
-.footer-bottom-links a:hover{color:#fff}
-.footer-bottom-links a:hover::after{width:100%}
-/* FLOATING CONTACT WIDGET */
-.contact-widget{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
-.contact-widget-tooltip{background:rgba(10,46,107,.92);color:#fff;padding:10px 18px;border-radius:12px;font-size:.8rem;font-weight:600;white-space:nowrap;box-shadow:0 4px 20px rgba(10,46,107,.25);opacity:0;transform:translateY(8px) scale(.95);transition:all .4s cubic-bezier(.4,0,.2,1);pointer-events:none;position:relative}
-.contact-widget-tooltip::after{content:'';position:absolute;bottom:-6px;right:24px;width:12px;height:12px;background:rgba(10,46,107,.92);transform:rotate(45deg);border-radius:2px}
-.contact-widget.show-tooltip .contact-widget-tooltip{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-.contact-widget-btn{display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:50px;font-weight:600;font-size:.9rem;color:#fff;text-decoration:none;transition:all .35s cubic-bezier(.4,0,.2,1);box-shadow:0 4px 20px rgba(0,0,0,.15);position:relative;overflow:hidden}
-.contact-widget-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15) 0%,transparent 50%);opacity:0;transition:opacity .3s ease}
-.contact-widget-btn:hover::before{opacity:1}
-.contact-widget-btn span{max-width:0;overflow:hidden;white-space:nowrap;transition:all .35s cubic-bezier(.4,0,.2,1);opacity:0}
-.contact-widget-btn:hover span{max-width:120px;opacity:1;margin-left:2px}
-.contact-widget-btn:hover{padding:14px 24px}
-.contact-widget-whatsapp{background:linear-gradient(135deg,#25D366,#128C7E);box-shadow:0 4px 20px rgba(37,211,102,.4);animation:widgetPulseGreen 2.5s ease-in-out infinite}
-.contact-widget-whatsapp:hover{transform:scale(1.08) translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.55);color:#fff}
-.contact-widget-call{background:linear-gradient(135deg,#3B82F6,#1D4ED8);box-shadow:0 4px 20px rgba(59,130,246,.4);animation:widgetPulseBlue 2.5s ease-in-out infinite .3s}
-.contact-widget-call:hover{transform:scale(1.08) translateY(-2px);box-shadow:0 8px 30px rgba(59,130,246,.55);color:#fff}
-@keyframes widgetPulseGreen{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,.6),0 0 0 8px rgba(37,211,102,.1)}}
-@keyframes widgetPulseBlue{0%,100%{box-shadow:0 4px 20px rgba(59,130,246,.4)}50%{box-shadow:0 4px 30px rgba(59,130,246,.6),0 0 0 8px rgba(59,130,246,.1)}}
-@keyframes waFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-/* RESPONSIVE */
-@media(max-width:1024px){.services-grid,.why-grid,.stats-grid{grid-template-columns:repeat(2,1fr)}.ds-pricing-grid{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
-@media(max-width:768px){
-.nav-menu{position:fixed;top:60px;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:.5rem;transform:translateY(-120%);transition:var(--transition);box-shadow:0 8px 30px rgba(10,46,107,.1);z-index:999}
-.nav-menu.active{transform:translateY(0)}
-.menu-toggle{display:flex}
-.nav-social{display:none}
-.services-grid,.why-grid,.stats-grid{grid-template-columns:1fr 1fr}
-.audience-card,.audience-card.reverse{grid-template-columns:1fr;direction:ltr}
-.review-grid{grid-template-columns:1fr}
-.ds-pricing-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}
-.ds-pricing-featured{transform:none}
-.ds-pricing-featured:hover{transform:translateY(-6px)}
-.ds-inquiry-wrapper{grid-template-columns:1fr}
-.ds-form-row{grid-template-columns:1fr}
-.contact-cards{grid-template-columns:1fr}
-.ds-portfolio-grid{grid-template-columns:1fr}
-.pay-badge{flex-direction:column;text-align:center;padding:1.5rem}
-.footer-grid{grid-template-columns:1fr;gap:2rem}.footer-notice{padding:0 .5rem 1.25rem}.footer-bottom-bar{flex-direction:column;text-align:center}.footer-bottom-links{justify-content:center}
-}
-@media(max-width:480px){.services-grid,.why-grid,.stats-grid{grid-template-columns:1fr}.ds-features-grid{grid-template-columns:1fr}.register-cta-buttons{flex-direction:column;align-items:center}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanB Consultancy | Job Placement & Admission Guidance | Akola, Maharashtra</title>
+    <meta name="description" content="PlanB Consultancy in Akola, Maharashtra — trusted job placement, college admission guidance, and website development for Tier-2 India. WhatsApp: 9420512501">
+    <meta property="og:title" content="PlanB Consultancy | Job Placement & Admission Guidance | Akola, Maharashtra">
+    <meta property="og:description" content="PlanB Consultancy in Akola, Maharashtra — trusted job placement, college admission guidance, and website development for Tier-2 India. WhatsApp: 9420512501">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://planb-consultancy.in">
+    <meta property="og:image" content="https://placehold.co/1200x630/0A2E6B/FFFFFF?text=PlanB+Consultancy">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PlanB Consultancy | Job Placement & Admission Guidance | Akola, Maharashtra">
+    <meta name="twitter:description" content="Trusted job placement, college admission guidance, and website development for Tier-2 India.">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
+<body class="bg-[#090514] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
 
-<!-- NAV -->
-<nav class="navbar" id="navbar">
-<div class="nav-container">
-<a href="index.html" class="logo">Plan-B Consultancy</a>
-<div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
-<ul class="nav-menu" id="navMenu">
-<li><a href="#" class="nav-link active">Home</a></li>
-<li><a href="#services" class="nav-link">Services</a></li>
-<li><a href="#stats" class="nav-link">Results</a></li>
-<li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-<li><a href="#contact" class="nav-link">Contact</a></li>
-</ul>
-<div class="nav-social">
-<a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="nav-social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-<a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="nav-social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-</div>
-</div>
-</nav>
+    <!-- Decorative background blobs -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-900/10 blur-[150px]"></div>
+        <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-pink-900/10 blur-[150px]"></div>
+        <div class="absolute top-[40%] left-[30%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[150px]"></div>
+    </div>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-<div class="hero-content">
-<div class="hero-badge">Trusted Career Partner in Maharashtra</div>
-<h1>Jobs. Admissions. Growth.<br>— <span class="gold">Plan-B Consultancy, Maharashtra</span></h1>
-<p class="hero-subtitle">Clear process. Transparent guidance. Fast response.<br>From job placements to admission support & website development — we handle it all.</p>
-<div class="btn-group">
-<a href="apply-job.html" class="btn btn-primary" id="hero-apply-btn">Apply Now</a>
-<a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20career%20guidance" target="_blank" class="btn btn-outline" id="hero-guidance-btn">Get Career Guidance</a>
-</div>
-</div>
-</section>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white hover:opacity-95 transition-opacity">
+                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">PlanB</span>
+                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">Consultancy</span>
+            </a>
 
-<!-- AUDIENCE: JOB SEEKERS -->
-<section class="audience-section" id="for-job-seekers">
-<div class="audience-card fade-up">
-<div class="audience-info">
-<span class="section-label">For Job Seekers</span>
-<h2>Land Your Dream Job — Fast & Hassle-Free</h2>
-<p>We connect you directly with top companies like Flipkart, Amazon, Swiggy, Blinkit, Zomato, Meesho, and Myntra. From resume prep to interview scheduling — we do it all so you don't have to stress.</p>
-<a href="apply-job.html" class="btn btn-primary">Apply for Jobs →</a>
-</div>
-<div class="audience-visual">
-<span class="emoji">💼</span>
-<h3>Companies Hiring Through Us</h3>
-<ul><li>Flipkart — Warehouse & Delivery</li><li>Amazon — Operations & Support</li><li>Swiggy & Zomato — Delivery Partners</li><li>Blinkit — Quick Commerce</li><li>Meesho & Myntra — E-commerce</li></ul>
-</div>
-</div>
-</section>
+            <!-- Desktop Nav Menu -->
+            <ul class="hidden lg:flex items-center gap-2">
+                <li><a href="#" class="nav-link active">Home</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="admissions.html" class="nav-link">Services</a></li>
+                <li><a href="#partners" class="nav-link">Companies</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
 
-<!-- AUDIENCE: STUDENTS -->
-<section class="audience-section" id="for-students">
-<div class="audience-card reverse fade-up">
-<div class="audience-info">
-<span class="section-label">For Students</span>
-<h2>Get Into the Right College — Without Confusion</h2>
-<p>Choosing the right course and college can be overwhelming. We guide students and parents through admissions, documentation, and enrollment — step by step, with full transparency.</p>
-<a href="admissions.html" class="btn btn-primary">Explore Admissions →</a>
-</div>
-<div class="audience-visual">
-<span class="emoji">🎓</span>
-<h3>Admission Support Includes</h3>
-<ul><li>Course selection guidance</li><li>College shortlisting</li><li>Document verification</li><li>Application & enrollment support</li><li>Direct university coordination</li></ul>
-</div>
-</div>
-</section>
-
-<!-- AUDIENCE: BUSINESSES -->
-<section class="audience-section" id="for-businesses">
-<div class="audience-card fade-up">
-<div class="audience-info">
-<span class="section-label">For Businesses</span>
-<h2>Grow Your Business Online — We Build It For You</h2>
-<p>Need a professional website or mobile app? Our development team creates custom digital solutions for startups, local businesses, and personal brands — at affordable prices.</p>
-<a href="#digital-services" class="btn btn-primary">View Digital Services →</a>
-</div>
-<div class="audience-visual">
-<span class="emoji">🚀</span>
-<h3>What We Deliver</h3>
-<ul><li>Business websites & landing pages</li><li>Mobile apps (Android & iOS)</li><li>E-commerce solutions</li><li>SEO-friendly, responsive design</li><li>Pay After Development model</li></ul>
-</div>
-</div>
-</section>
-
-<!-- SERVICES -->
-<section class="section" id="services">
-<div class="container">
-<div class="section-header fade-up">
-<span class="section-label">What We Offer</span>
-<h2 class="section-title">Our Professional Services</h2>
-<p class="section-subtitle">Comprehensive career, education, and digital solutions to help you succeed.</p>
-</div>
-<div class="services-grid">
-<div class="service-card fade-up">
-<div class="service-card-icon"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
-<h3>Job Placements</h3>
-<p>Direct placement support with Flipkart, Amazon, Swiggy, Blinkit, Zomato, Meesho & Myntra.</p>
-</div>
-<div class="service-card fade-up">
-<div class="service-card-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-<h3>Interview Preparation</h3>
-<p>Personalized coaching, resume guidance, and mock sessions to boost your confidence.</p>
-</div>
-<div class="service-card fade-up">
-<div class="service-card-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="9" y1="7" x2="17" y2="7"/><line x1="9" y1="11" x2="14" y2="11"/></svg></div>
-<h3>Admission Guidance</h3>
-<p>Expert guidance for college admissions — course selection, documents, and enrollment.</p>
-</div>
-<div class="service-card fade-up">
-<div class="service-card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-<h3>Website & App Development</h3>
-<p>Professional websites and mobile apps for businesses, startups, and personal brands.</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- STATS -->
-<section class="section stats-section" id="stats">
-<div class="container">
-<div class="section-header fade-up">
-<span class="section-label">Our Impact</span>
-<h2 class="section-title">Results That Speak</h2>
-</div>
-<div class="stats-grid">
-<div class="stat-item fade-up"><span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span><p class="stat-label">Candidates Guided</p></div>
-<div class="stat-item fade-up"><span class="stat-number" data-target="350">0</span><span class="stat-suffix">+</span><p class="stat-label">Successful Placements</p></div>
-<div class="stat-item fade-up"><span class="stat-number" data-target="40">0</span><span class="stat-suffix">+</span><p class="stat-label">Business Clients</p></div>
-<div class="stat-item fade-up"><span class="stat-number" data-target="15">0</span><span class="stat-suffix">+</span><p class="stat-label">Education Partners</p></div>
-</div>
-</div>
-</section>
-
-<!-- WHY CHOOSE US -->
-<section class="section" id="why-us">
-<div class="container">
-<div class="section-header fade-up"><span class="section-label">Why Us</span><h2 class="section-title">Why Choose Plan-B?</h2><p class="section-subtitle">A local consultancy you can trust — real people who care about your success.</p></div>
-<div class="why-grid">
-<div class="why-card fade-up"><span class="why-icon">📋</span><h4>Clear Process</h4><p>Every step explained simply. No hidden steps, no surprises.</p></div>
-<div class="why-card fade-up"><span class="why-icon">🤝</span><h4>Local Support</h4><p>We understand Tier-2 and Tier-3 city needs. We speak your language.</p></div>
-<div class="why-card fade-up"><span class="why-icon">⚡</span><h4>Fast Response</h4><p>Message us on WhatsApp — we reply quickly and clearly.</p></div>
-<div class="why-card fade-up"><span class="why-icon">💬</span><h4>Transparent Communication</h4><p>We tell you everything upfront. No hidden fees, no false promises.</p></div>
-</div>
-</div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section" id="testimonials" style="background:var(--primary-mid)">
-<div class="container">
-<div class="section-header fade-up"><span class="section-label">Testimonials</span><h2 class="section-title">What People Say About Us</h2><p class="section-subtitle">Real experiences from real people across Maharashtra and India</p></div>
-<div class="review-grid">
-<div class="review-card fade-up">
-<div class="testimonial-tag">Job Placement</div>
-<div class="review-header"><div class="letter-avatar" style="background:#3B82F6">RY</div><div class="review-info"><div class="review-name">Rahul Yadav</div><div class="review-role">Warehouse Associate, Flipkart</div><div class="review-stars">⭐⭐⭐⭐⭐</div></div></div>
-<p class="review-text">"PlanB helped me join a Flipkart warehouse in 4 days — no confusion. The process was smooth and they coordinated everything from interview to joining."</p>
-</div>
-<div class="review-card fade-up">
-<div class="testimonial-tag">Admission Guidance</div>
-<div class="review-header"><div class="letter-avatar" style="background:#8B5CF6">PS</div><div class="review-info"><div class="review-name">Priya Sharma</div><div class="review-role">BBA Student, Pune University</div><div class="review-stars">⭐⭐⭐⭐⭐</div></div></div>
-<p class="review-text">"The admission consultancy was truly professional. They guided me on the right course, handled all documentation, and made the entire college enrollment stress-free."</p>
-</div>
-<div class="review-card fade-up">
-<div class="testimonial-tag">Job Placement</div>
-<div class="review-header"><div class="letter-avatar" style="background:#EC4899">AB</div><div class="review-info"><div class="review-name">Anshulika Borase</div><div class="review-role">Customer Support Executive</div><div class="review-stars">⭐⭐⭐⭐⭐</div></div></div>
-<p class="review-text">"The process was easy and fast — actual support backed by real guidance. They have Myntra, Flipkart, Zomato, Blinkit, Amazon and Meesho options available."</p>
-</div>
-<div class="review-card fade-up">
-<div class="testimonial-tag">Admission Guidance</div>
-<div class="review-header"><div class="letter-avatar" style="background:#F59E0B">ST</div><div class="review-info"><div class="review-name">Suraj Tripathi</div><div class="review-role">Engineering Student</div><div class="review-stars">⭐⭐⭐⭐⭐</div></div></div>
-<p class="review-text">"Every step during the admission process was explained clearly. Asnan sir helped a lot — the overall experience was really good and well-organized."</p>
-</div>
-<div class="review-card fade-up">
-<div class="testimonial-tag">Job Placement</div>
-<div class="review-header"><div class="letter-avatar" style="background:#10B981">DP</div><div class="review-info"><div class="review-name">Danish Patel</div><div class="review-role">Operations Associate</div><div class="review-stars">⭐⭐⭐⭐⭐</div></div></div>
-<p class="review-text">"The job guidance was honest and practical. I appreciated the clarity before applying to opportunities. Got placed within a week."</p>
-</div>
-<div class="review-card fade-up">
-<div class="testimonial-tag">Admission Guidance</div>
-<div class="review-header"><div class="letter-avatar" style="background:#6366F1">SS</div><div class="review-info"><div class="review-name">Sarada Senapati</div><div class="review-role">Parent — Daughter enrolled in BSc Nursing</div><div class="review-stars">⭐⭐⭐⭐⭐</div></div></div>
-<p class="review-text">"PlanB Consultancy helped us secure admission smoothly without any confusion. Their guidance made the entire process structured and transparent."</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- PARTNERS -->
-<section class="section" id="partners">
-<div class="container">
-<div class="section-header fade-up"><span class="section-label">Our Partners</span><h2 class="section-title">Trusted By Leading Brands</h2></div>
-<div class="partners-grid">
-<div class="partner-logo fade-up"><span>Flipkart</span></div>
-<div class="partner-logo fade-up"><span>Amazon</span></div>
-<div class="partner-logo fade-up"><span>Swiggy</span></div>
-<div class="partner-logo fade-up"><span>Blinkit</span></div>
-<div class="partner-logo fade-up"><span>Zomato</span></div>
-<div class="partner-logo fade-up"><span>Meesho</span></div>
-<div class="partner-logo fade-up"><span>Myntra</span></div>
-</div>
-</div>
-</section>
-
-<!-- ABOUT FOUNDER -->
-<section class="section about-founder" id="about">
-<div class="container">
-<div class="section-header fade-up"><span class="section-label">About Us</span><h2 class="section-title">Meet the Founder</h2></div>
-<div class="founder-card fade-up">
-<div class="founder-avatar">A</div>
-<blockquote>"Hi, I'm Asnan — founder of Plan-B Consultancy in Akola, Maharashtra. I started this to help real people in Tier-2 cities find jobs, get college admissions, and grow their businesses — without confusion or hidden fees."</blockquote>
-<p class="founder-name">Asnan</p>
-<p class="founder-title">Founder, Plan-B Consultancy | Akola, Maharashtra</p>
-</div>
-</div>
-</section>
-
-<!-- FAQ -->
-<section class="section" id="faq">
-<div class="container">
-<div class="section-header fade-up"><span class="section-label">FAQ</span><h2 class="section-title">Frequently Asked Questions</h2></div>
-<div class="faq-list">
-<div class="faq-item fade-up"><div class="faq-question" onclick="toggleFaq(this)"><h4>Is job placement free?</h4><span class="faq-toggle">+</span></div><div class="faq-answer"><p>We offer free initial consultation. Our placement support has a nominal fee which is discussed upfront — no hidden charges at any stage.</p></div></div>
-<div class="faq-item fade-up"><div class="faq-question" onclick="toggleFaq(this)"><h4>How long does placement take?</h4><span class="faq-toggle">+</span></div><div class="faq-answer"><p>Most candidates receive placement within 3–7 working days depending on the role, location, and company. We keep you updated at every step via WhatsApp.</p></div></div>
-<div class="faq-item fade-up"><div class="faq-question" onclick="toggleFaq(this)"><h4>What colleges do you support?</h4><span class="faq-toggle">+</span></div><div class="faq-answer"><p>We work with universities and colleges across Maharashtra and India — covering engineering, medical, management, nursing, and more. Contact us for specific college guidance.</p></div></div>
-<div class="faq-item fade-up"><div class="faq-question" onclick="toggleFaq(this)"><h4>Do I pay before or after the website is built?</h4><span class="faq-toggle">+</span></div><div class="faq-answer"><p>With our "Pay After Development" model, you only pay once the website or app is built and you're satisfied with the result. No upfront payment required.</p></div></div>
-</div>
-</div>
-</section>
-
-<!-- REGISTRATION -->
-<section class="section" id="register">
-<div class="container">
-<div class="section-header fade-up"><span class="section-label">Get Started</span><h2 class="section-title">Register for Job &amp; Admission Assistance</h2><p class="section-subtitle">Fill the form below to receive personalized guidance.</p></div>
-<div class="register-form-container fade-up">
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform?embedded=true" width="100%" height="1800" style="border:0" loading="lazy" title="Registration Form"></iframe>
-<div class="register-cta-buttons">
-<a href="https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10" target="_blank" rel="noopener noreferrer" class="register-btn register-btn-whatsapp">💬 Join WhatsApp Channel</a>
-<a href="https://www.linkedin.com/in/plan-b-consultancy-1a69713b4" target="_blank" rel="noopener noreferrer" class="register-btn register-btn-linkedin">🔗 Follow on LinkedIn</a>
-</div>
-<p class="register-helper">📱 We'll contact you within 24 hours on WhatsApp</p>
-<p class="register-note">Your information is kept confidential and used only for consultancy communication.</p>
-</div>
-</div>
-</section>
-
-<!-- DIGITAL SERVICES -->
-<section class="section" id="digital-services" style="background:var(--primary-light)">
-<div class="container">
-<div class="section-header fade-up"><span class="section-label">Digital Solutions</span><h2 class="section-title">Digital Services for Businesses</h2><p class="section-subtitle">Professional Website & Mobile App Development for startups, businesses, and personal brands.</p></div>
-<div class="ds-features-grid fade-up">
-<div class="ds-feature-card fade-up"><span class="ds-feature-icon">🌐</span><h4>Business Website</h4><p>Professional websites that establish your online presence.</p></div>
-<div class="ds-feature-card fade-up"><span class="ds-feature-icon">📱</span><h4>Mobile App</h4><p>Android & iOS apps with modern frameworks.</p></div>
-<div class="ds-feature-card fade-up"><span class="ds-feature-icon">🎨</span><h4>Custom Design</h4><p>Tailored designs for your brand identity.</p></div>
-<div class="ds-feature-card fade-up"><span class="ds-feature-icon">✨</span><h4>Modern UI/UX</h4><p>Clean, intuitive user experiences.</p></div>
-<div class="ds-feature-card fade-up"><span class="ds-feature-icon">⚡</span><h4>Fast & Scalable</h4><p>High-performance solutions built to grow.</p></div>
-</div>
-<!-- PAY AFTER DEVELOPMENT BADGE -->
-<div class="pay-badge fade-up">
-<span class="pay-badge-icon">✅</span>
-<div><h3>Pay After Development</h3><p>You only pay after the website or app is successfully developed to your satisfaction. No upfront payment required — zero risk for you.</p></div>
-</div>
-</div>
-</section>
-
-<!-- PORTFOLIO -->
-<section class="section" id="portfolio">
-<div class="container">
-<div class="section-header fade-up"><span class="section-label">Our Work</span><h2 class="section-title">Portfolio Preview</h2><p class="section-subtitle">Recent projects by our development team</p></div>
-<div class="ds-portfolio-grid">
-<div class="ds-portfolio-card fade-up"><div class="ds-portfolio-img"><img src="https://placehold.co/600x400/0A2E6B/FFFFFF?text=E-Commerce+Platform" alt="E-Commerce website with product listings and payment integration" loading="lazy"></div><div class="ds-portfolio-info"><h4>E-Commerce Platform</h4><p>Full-featured online store with payment integration and order management.</p><a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20to%20know%20more%20about%20the%20E-Commerce%20project" target="_blank" class="btn btn-secondary">View Project →</a></div></div>
-<div class="ds-portfolio-card fade-up"><div class="ds-portfolio-img"><img src="https://placehold.co/600x400/061D45/F59E0B?text=Restaurant+Website" alt="Restaurant website with online menu and reservation system" loading="lazy"></div><div class="ds-portfolio-info"><h4>Restaurant Website</h4><p>Elegant restaurant site with online menu, reservations, and gallery.</p><a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20to%20know%20more%20about%20the%20Restaurant%20project" target="_blank" class="btn btn-secondary">View Project →</a></div></div>
-<div class="ds-portfolio-card fade-up"><div class="ds-portfolio-img"><img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Fitness+Tracker+App" alt="Mobile fitness tracker app with dashboard and analytics" loading="lazy"></div><div class="ds-portfolio-info"><h4>Fitness Tracker App</h4><p>Cross-platform mobile app with dashboard and push notifications.</p><a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20to%20know%20more%20about%20the%20Mobile%20App%20project" target="_blank" class="btn btn-secondary">View Project →</a></div></div>
-<div class="ds-portfolio-card fade-up"><div class="ds-portfolio-img"><img src="https://placehold.co/600x400/1E3A5F/93C5FD?text=Corporate+Website" alt="Professional corporate website with team profiles and services" loading="lazy"></div><div class="ds-portfolio-info"><h4>Corporate Website</h4><p>Professional multi-page corporate site with team profiles and services.</p><a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20to%20know%20more%20about%20the%20Corporate%20project" target="_blank" class="btn btn-secondary">View Project →</a></div></div>
-</div>
-</div>
-</section>
-
-<!-- PRICING -->
-<section class="section" id="pricing" style="background:var(--primary-light)">
-<div class="container">
-<div class="section-header fade-up"><span class="section-label">Pricing</span><h2 class="section-title">Simple, Transparent Pricing</h2><p class="section-subtitle">Choose the plan that fits your business needs</p></div>
-<div class="ds-pricing-grid">
-<div class="ds-pricing-card fade-up">
-<div class="ds-pricing-header"><h3>Basic Website</h3></div>
-<div class="ds-pricing-price">₹4,999 <span>onwards</span></div>
-<ul class="ds-pricing-features"><li>✓ Business landing page</li><li>✓ Mobile responsive design</li><li>✓ Contact form</li><li>✓ Fast delivery</li></ul>
-<a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20a%20quote%20for%20a%20Basic%20Website" target="_blank" class="btn btn-primary ds-pricing-btn">Request Quote</a>
-</div>
-<div class="ds-pricing-card ds-pricing-featured fade-up">
-<div class="ds-pricing-badge">Popular</div>
-<div class="ds-pricing-header"><h3>Business Website</h3></div>
-<div class="ds-pricing-price">₹12,999 <span>onwards</span></div>
-<ul class="ds-pricing-features"><li>✓ Multi-page website</li><li>✓ Professional design</li><li>✓ SEO-friendly structure</li><li>✓ Content management</li><li>✓ Analytics integration</li></ul>
-<a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20a%20quote%20for%20a%20Business%20Website" target="_blank" class="btn btn-primary ds-pricing-btn">Request Quote</a>
-</div>
-<div class="ds-pricing-card fade-up">
-<div class="ds-pricing-header"><h3>Mobile App</h3></div>
-<div class="ds-pricing-price">₹24,999 <span>onwards</span></div>
-<ul class="ds-pricing-features"><li>✓ Android / iOS app</li><li>✓ Custom functionality</li><li>✓ Modern UI design</li><li>✓ Backend integration</li></ul>
-<a href="https://wa.me/919420512501?text=Hello%2C%20I%20want%20a%20quote%20for%20Mobile%20App%20Development" target="_blank" class="btn btn-primary ds-pricing-btn">Request Quote</a>
-</div>
-</div>
-</div>
-</section>
-
-<!-- CTA -->
-<section class="section final-cta">
-<div class="container"><div class="fade-up">
-<h2>Ready to Take the Next Step?</h2>
-<p>Whether you need a job, college admission guidance, or a website — we are here to help. It's simple, honest, and free to start.</p>
-<div class="btn-group"><a href="apply-job.html" class="btn btn-primary" style="padding:18px 48px;font-size:1.1rem">Start Your Application</a></div>
-</div></div>
-</section>
-
-<!-- INQUIRY FORM -->
-<section class="section" id="ds-inquiry">
-<div class="container">
-<div class="section-header fade-up"><span class="section-label">Get Started</span><h2 class="section-title">Project Inquiry</h2><p class="section-subtitle">Tell us about your project and we'll get back to you within 24 hours</p></div>
-<div class="ds-inquiry-wrapper fade-up">
-<form class="ds-inquiry-form" id="dsInquiryForm" onsubmit="handleDsInquiry(event)">
-<div class="ds-form-row"><div class="form-group"><label for="dsName">Name *</label><input type="text" id="dsName" placeholder="Your full name" required></div><div class="form-group"><label for="dsBusiness">Business / Company</label><input type="text" id="dsBusiness" placeholder="Your company name"></div></div>
-<div class="ds-form-row"><div class="form-group"><label for="dsEmail">Email *</label><input type="email" id="dsEmail" placeholder="your@email.com" required></div><div class="form-group"><label for="dsPhone">Phone *</label><input type="tel" id="dsPhone" placeholder="Your phone number" required></div></div>
-<div class="form-group"><label for="dsProjectType">Project Type *</label><select id="dsProjectType" required><option value="" disabled selected>Select project type</option><option value="Website">Website Development</option><option value="Mobile App">Mobile App Development</option><option value="Both">Website + Mobile App</option></select></div>
-<div class="form-group"><label for="dsDescription">Project Description</label><textarea id="dsDescription" rows="4" placeholder="Describe your project requirements..." style="width:100%;padding:14px 18px;background:#F8FAFC;border:1px solid rgba(10,46,107,.1);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:1rem;outline:none;resize:vertical"></textarea></div>
-<button type="submit" class="btn btn-primary ds-submit-btn" id="ds-submit-btn">Submit Inquiry</button>
-<p class="register-helper">📱 We'll contact you within 24 hours on WhatsApp</p>
-</form>
-<div class="ds-inquiry-contact fade-up">
-<div class="ds-inquiry-contact-card"><span class="ds-contact-icon-lg">📞</span><h4>Call Us Directly</h4><p>9420512501</p><p style="font-weight:600;color:var(--text-dark)">Plan-B Consultancy</p></div>
-<a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20a%20website%20or%20app%20developed" target="_blank" class="ds-wa-btn">💬 Chat on WhatsApp</a>
-</div>
-</div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section class="section" id="contact">
-<div class="container">
-<div class="section-header fade-up"><span class="section-label">Get In Touch</span><h2 class="section-title">Contact Us</h2><p class="section-subtitle">Have questions? Reach out — we are always happy to help.</p></div>
-<div class="contact-cards">
-<a href="tel:+919420512501" class="contact-card fade-up"><span class="contact-icon">📞</span><h4>Call Us</h4><p>9420512501</p></a>
-<a href="mailto:planb.consultancy.in@gmail.com" class="contact-card fade-up"><span class="contact-icon">📧</span><h4>Email</h4><p>planb.consultancy.in@gmail.com</p></a>
-<div class="contact-card fade-up"><span class="contact-icon">📍</span><h4>Location</h4><p>Akola, Maharashtra, India</p></div>
-<a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20guidance" target="_blank" class="contact-card fade-up"><span class="contact-icon">💬</span><h4>WhatsApp</h4><p>Quick response guaranteed</p></a>
-</div>
-</div>
-</section>
-
-<!-- FOOTER -->
-<footer class="site-footer" id="site-footer">
-    <div class="container">
-
-        <!-- Main Footer Grid -->
-        <div class="footer-grid">
-
-            <!-- About Column -->
-            <div class="footer-col footer-about">
-                <h4 class="footer-heading">Plan-B Consultancy</h4>
-                <p class="footer-desc">Your trusted partner for jobs, education guidance, and digital solutions across Maharashtra and India.</p>
-                <p class="footer-founder">Founded by Asnan &bull; Akola, Maharashtra</p>
-                <div class="footer-socials">
-                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <!-- Right Buttons -->
+            <div class="hidden lg:flex items-center gap-4">
+                <div class="flex items-center gap-3 mr-2">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                     </a>
-                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-social-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                     </a>
-                    <a href="https://wa.me/919420512501" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer-social-icon footer-social-whatsapp">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <a href="https://www.youtube.com/@planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://x.com/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
+                <a href="apply-job.html" class="px-5 py-2 rounded-full text-sm font-semibold glass-panel border-white/20 text-white hover:bg-white/10 transition-all">Login</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all">Register</a>
+            </div>
+
+            <!-- Hamburger Toggle -->
+            <div class="lg:hidden flex items-center gap-4">
+                <button class="menu-toggle flex flex-col gap-1.5 p-2 rounded-lg bg-white/5 border border-white/10" id="menuToggle" aria-label="Toggle Menu">
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div class="hidden lg:hidden absolute top-[73px] left-0 w-full bg-[#0d0720]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6" id="mobileMenu">
+            <ul class="flex flex-col gap-4 mb-6">
+                <li><a href="#" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Home</a></li>
+                <li><a href="jobs.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Jobs</a></li>
+                <li><a href="admissions.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Services</a></li>
+                <li><a href="#partners" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Companies</a></li>
+                <li><a href="#about" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">About Us</a></li>
+                <li><a href="#contact" class="block text-gray-300 hover:text-white py-2 text-base font-semibold">Contact</a></li>
+            </ul>
+            <div class="flex flex-col gap-3">
+                <a href="apply-job.html" class="w-full text-center py-3 rounded-xl font-semibold glass-panel border-white/20 text-white hover:bg-white/10 transition-all">Login</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform" target="_blank" rel="noopener noreferrer" class="w-full text-center py-3 rounded-xl font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 transition-all">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[95vh] flex items-center justify-center pt-24 pb-16 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full relative z-10">
+            
+            <!-- Left Info Content -->
+            <div class="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold tracking-wider uppercase mb-6 animate-pulse">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Trusted Career Partner in Maharashtra
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
+                    1000+ Opportunities <br>
+                    <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Available Right Now</span>
+                </h1>
+                
+                <p class="text-lg text-gray-300 max-w-xl mb-4 leading-relaxed font-semibold">
+                    Your Career Journey Starts With PlanB Consultancy
+                </p>
+                <p class="text-sm md:text-base text-gray-400 max-w-lg mb-8 leading-relaxed">
+                    Helping professionals connect with leading multinational companies and India's most trusted brands. Clean process. Transparent guidance. Fast response.
+                </p>
+
+                <!-- Premium Search Bar -->
+                <div class="w-full max-w-2xl bg-white/5 border border-white/10 rounded-2xl md:rounded-full p-2.5 backdrop-blur-xl flex flex-col md:flex-row gap-2 shadow-2xl shadow-purple-950/25">
+                    <div class="flex-1 flex items-center gap-3 px-4 py-2 border-b md:border-b-0 md:border-r border-white/10">
+                        <i data-lucide="search" class="w-5 h-5 text-purple-400 flex-shrink-0"></i>
+                        <input type="text" id="heroSearchKeyword" placeholder="Job Title or Keyword (e.g. Amazon, WFH)" class="bg-transparent w-full text-white text-sm outline-none placeholder:text-gray-500">
+                    </div>
+                    <div class="flex-1 flex items-center gap-3 px-4 py-2">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-pink-400 flex-shrink-0"></i>
+                        <input type="text" id="heroSearchLocation" placeholder="Location / City" class="bg-transparent w-full text-white text-sm outline-none placeholder:text-gray-500">
+                    </div>
+                    <button onclick="handleHeroSearch()" class="px-8 py-3 rounded-xl md:rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white text-sm font-semibold hover:opacity-95 transition-opacity flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                        Search Jobs
+                    </button>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="flex flex-wrap gap-4 items-center justify-center lg:justify-start mt-8 text-xs text-gray-500">
+                    <span class="flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4 text-purple-400"></i> No Hidden Fees</span>
+                    <span class="flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4 text-pink-400"></i> Direct Placement</span>
+                    <span class="flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4 text-blue-400"></i> Quick Response</span>
+                </div>
+            </div>
+
+            <!-- Right Visual Frame containing Founder -->
+            <div class="lg:col-span-5 flex justify-center items-center relative select-none">
+                <div class="relative w-[300px] h-[300px] md:w-[380px] md:h-[380px] flex items-center justify-center">
+                    
+                    <!-- Pulsing Glow Ring background -->
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-500/10 via-pink-500/10 to-blue-500/10 animate-ring scale-110"></div>
+                    
+                    <!-- Decorative Orbital circles -->
+                    <div class="absolute w-[106%] h-[106%] rounded-full border border-dashed border-white/10 animate-spin" style="animation-duration: 40s;"></div>
+                    <div class="absolute w-[80%] h-[80%] rounded-full border border-dotted border-white/15 animate-spin" style="animation-duration: 25s; animation-direction: reverse;"></div>
+
+                    <!-- Circular Founder Photo Container -->
+                    <div class="absolute w-[240px] h-[240px] md:w-[300px] md:h-[300px] rounded-full overflow-hidden border-4 border-white/10 shadow-2xl bg-purple-950/20 z-10 flex items-center justify-center">
+                        <img src="images/founder_asnan.png" alt="Asnan - Founder of PlanB Consultancy" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Floating Badges/Shapes -->
+                    <div class="absolute top-[10%] right-[5%] z-20 p-2.5 rounded-2xl glass-panel border-white/20 animate-float flex items-center justify-center shadow-lg" style="animation-delay: 0.5s;">
+                        <span class="text-xs font-semibold px-2 py-0.5 bg-green-500/20 text-green-300 rounded-lg flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-ping"></span> Hiring</span>
+                    </div>
+                    <div class="absolute bottom-[10%] left-[5%] z-20 p-3 rounded-2xl glass-panel border-white/20 animate-float flex items-center justify-center shadow-lg" style="animation-delay: 1.5s;">
+                        <span class="text-xs font-semibold text-purple-300 flex items-center gap-1.5"><i data-lucide="award" class="w-4 h-4 text-purple-400"></i> Best Placements</span>
+                    </div>
+                    
+                    <!-- Tiny Floating Logos -->
+                    <div class="absolute top-[40%] left-[-8%] z-20 w-10 h-10 rounded-full glass-panel border-white/20 flex items-center justify-center shadow-md animate-orbit-1">
+                        <i data-lucide="message-square" class="w-4 h-4 text-blue-400"></i>
+                    </div>
+                    <div class="absolute bottom-[40%] right-[-8%] z-20 w-10 h-10 rounded-full glass-panel border-white/20 flex items-center justify-center shadow-md animate-orbit-2">
+                        <i data-lucide="briefcase" class="w-4 h-4 text-pink-400"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- STATISTICS SECTION -->
+    <section class="py-12 border-y border-white/5 bg-white/2 backdrop-blur-xl relative z-10" id="stats">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
+                <div class="p-4 flex flex-col justify-center items-center">
+                    <div class="flex items-baseline justify-center">
+                        <span class="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent stat-number" data-target="1000">0</span>
+                        <span class="text-xl md:text-2xl font-bold text-pink-400">+</span>
+                    </div>
+                    <p class="text-xs md:text-sm text-gray-400 mt-2 font-medium tracking-wide">Jobs Available</p>
+                </div>
+                <div class="p-4 flex flex-col justify-center items-center">
+                    <div class="flex items-baseline justify-center">
+                        <span class="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent stat-number" data-target="51">0</span>
+                        <span class="text-xl md:text-2xl font-bold text-blue-400">+</span>
+                    </div>
+                    <p class="text-xs md:text-sm text-gray-400 mt-2 font-medium tracking-wide">Hiring Partners</p>
+                </div>
+                <div class="p-4 flex flex-col justify-center items-center">
+                    <div class="flex items-baseline justify-center">
+                        <span class="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent stat-number" data-target="331">0</span>
+                        <span class="text-xl md:text-2xl font-bold text-purple-400">+</span>
+                    </div>
+                    <p class="text-xs md:text-sm text-gray-400 mt-2 font-medium tracking-wide">Successful Placements</p>
+                </div>
+                <div class="p-4 flex flex-col justify-center items-center">
+                    <div class="flex items-baseline justify-center">
+                        <span class="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent stat-number" data-target="95">0</span>
+                        <span class="text-xl md:text-2xl font-bold text-pink-400">%</span>
+                    </div>
+                    <p class="text-xs md:text-sm text-gray-400 mt-2 font-medium tracking-wide">Candidate Success Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUSTED HIRING PARTNERS (Infinite Auto-scroll Logo Carousel) -->
+    <section class="py-16 overflow-hidden relative z-10" id="partners">
+        <div class="max-w-7xl mx-auto px-6 text-center mb-8">
+            <h2 class="text-xs uppercase tracking-widest text-purple-400 font-bold mb-3">Trusted Network</h2>
+            <p class="text-xl md:text-2xl font-extrabold text-white">Connecting Talent With Leading Multinational Companies</p>
+        </div>
+
+        <!-- Carousel Ticker Container -->
+        <div class="relative w-full py-4 bg-white/[0.01] border-y border-white/5 select-none overflow-hidden">
+            <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#090514] to-transparent z-10"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#090514] to-transparent z-10"></div>
+
+            <div class="logo-slider-track flex gap-8 items-center">
+                <!-- Slide List (duplicated to create infinite loop) -->
+                <!-- Set 1 -->
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Accenture</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Cognizant</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Capgemini</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Tech Mahindra</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">HCL Technologies</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Deloitte</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">IBM</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Genpact</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Concentrix</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Teleperformance</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Amazon</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Flipkart</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Zomato</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Swiggy</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Blinkit</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Reliance Industries</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Jio</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">ITC</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Hindustan Unilever (HUL)</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Tata Communications</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Tata Advanced Systems</span></div>
+
+                <!-- Set 2 -->
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Accenture</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Cognizant</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Capgemini</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Tech Mahindra</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">HCL Technologies</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Deloitte</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">IBM</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Genpact</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Concentrix</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Teleperformance</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Amazon</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Flipkart</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Zomato</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Swiggy</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Blinkit</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Reliance Industries</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Jio</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">ITC</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Hindustan Unilever (HUL)</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Tata Communications</span></div>
+                <div class="flex items-center justify-center px-6 py-3 rounded-xl glass-panel border-white/5 hover:border-purple-500/30 transition-colors"><span class="text-sm font-semibold tracking-wider text-gray-400 hover:text-white transition-colors">Tata Advanced Systems</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ONE PLATFORM, MANY SOLUTIONS (Services Section) -->
+    <section class="py-20 relative z-10" id="services">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-purple-400 font-bold mb-3">Our Expertise</h2>
+                <p class="text-3xl md:text-4xl font-extrabold text-white mb-4">One Platform, Many Solutions</p>
+                <p class="text-gray-400 text-sm md:text-base">We provide a wide array of support, helping candidates land their dream placements and universities discover top student talent.</p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Service 1 -->
+                <div class="p-8 rounded-3xl glass-panel glass-panel-hover flex flex-col items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center">
+                        <i data-lucide="briefcase" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mt-2">Job Placement</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Connecting eligible candidates with leading local employers and global multinational companies seamlessly.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="p-8 rounded-3xl glass-panel glass-panel-hover flex flex-col items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-pink-500/10 border border-pink-500/20 text-pink-400 flex items-center justify-center">
+                        <i data-lucide="file-text" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mt-2">Resume Building</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Professional resume optimization and tailoring services to bypass ATS filters and catch recruiter attention.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="p-8 rounded-3xl glass-panel glass-panel-hover flex flex-col items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center">
+                        <i data-lucide="messages-square" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mt-2">Interview Preparation</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Interactive mock interviews, feedback reports, and localized career guidance to boost self-confidence.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="p-8 rounded-3xl glass-panel glass-panel-hover flex flex-col items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center">
+                        <i data-lucide="compass" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mt-2">Career Counselling</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Personalized support, guidance, and strategic roadmaps for long-term career growth and stability.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="p-8 rounded-3xl glass-panel glass-panel-hover flex flex-col items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 flex items-center justify-center">
+                        <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mt-2">Skill Development</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Industry-focused online & offline training programs tailored for modern operational and delivery roles.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="p-8 rounded-3xl glass-panel glass-panel-hover flex flex-col items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 flex items-center justify-center">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mt-2">HR Consultancy</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">End-to-end local recruitment solutions and outsourced workforce coordination for growing corporate clients.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED JOBS SECTION -->
+    <section class="py-20 bg-white/[0.01] border-y border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-xs uppercase tracking-widest text-pink-400 font-bold mb-3">Explore Careers</h2>
+                    <p class="text-3xl font-extrabold text-white">Featured Job Openings</p>
+                </div>
+                <a href="jobs.html" class="inline-flex items-center gap-2 mt-4 md:mt-0 text-sm text-purple-400 hover:text-purple-300 font-semibold group transition-all">
+                    View All Active Jobs <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Featured Jobs Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Job Card 1 -->
+                <div class="p-6 rounded-3xl glass-panel hover:border-purple-500/30 transition-all flex flex-col h-full group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg">
+                            A
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-semibold">Work From Home</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white group-hover:text-purple-300 transition-colors">Customer Service Associate</h3>
+                    <p class="text-gray-400 text-xs mt-1 mb-4">Amazon India • Operations Support</p>
+                    
+                    <div class="space-y-2 text-xs text-gray-400 border-t border-white/5 pt-4 flex-1">
+                        <p class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-pink-400"></i> Akola / Pune / Remote</p>
+                        <p class="flex items-center gap-2"><i data-lucide="indian-rupee" class="w-3.5 h-3.5 text-green-400"></i> ₹21,000 - ₹35,000 / month</p>
+                        <p class="flex items-center gap-2"><i data-lucide="clock" class="w-3.5 h-3.5 text-blue-400"></i> Full-Time Badge</p>
+                    </div>
+
+                    <div class="mt-6 flex items-center gap-3">
+                        <a href="jobs.html" class="flex-1 text-center py-2.5 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/15 transition-all">
+                            Apply Now
+                        </a>
+                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Amazon%20Customer%20Service%20Job" target="_blank" class="p-2.5 rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/20 transition-all" aria-label="Apply via WhatsApp">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div class="p-6 rounded-3xl glass-panel hover:border-pink-500/30 transition-all flex flex-col h-full group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-lg">
+                            F
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-pink-500/10 text-pink-300 text-xs font-semibold">Work From Home</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white group-hover:text-pink-300 transition-colors">Voice Process L1 Executive</h3>
+                    <p class="text-gray-400 text-xs mt-1 mb-4">Flipkart India • Customer Experience</p>
+                    
+                    <div class="space-y-2 text-xs text-gray-400 border-t border-white/5 pt-4 flex-1">
+                        <p class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-pink-400"></i> Remote (Maharashtra)</p>
+                        <p class="flex items-center gap-2"><i data-lucide="indian-rupee" class="w-3.5 h-3.5 text-green-400"></i> ₹16,000 - ₹18,500 / month</p>
+                        <p class="flex items-center gap-2"><i data-lucide="clock" class="w-3.5 h-3.5 text-blue-400"></i> Full-Time Badge</p>
+                    </div>
+
+                    <div class="mt-6 flex items-center gap-3">
+                        <a href="jobs.html" class="flex-1 text-center py-2.5 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/15 transition-all">
+                            Apply Now
+                        </a>
+                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Flipkart%20Voice%20Process%20Job" target="_blank" class="p-2.5 rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/20 transition-all" aria-label="Apply via WhatsApp">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Job Card 3 -->
+                <div class="p-6 rounded-3xl glass-panel hover:border-blue-500/30 transition-all flex flex-col h-full group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 flex items-center justify-center font-bold text-lg">
+                            B
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs font-semibold">Work From Home</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Blended Support Specialist</h3>
+                    <p class="text-gray-400 text-xs mt-1 mb-4">Blinkit • Quick Commerce Support</p>
+                    
+                    <div class="space-y-2 text-xs text-gray-400 border-t border-white/5 pt-4 flex-1">
+                        <p class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-pink-400"></i> Remote (Permanent)</p>
+                        <p class="flex items-center gap-2"><i data-lucide="indian-rupee" class="w-3.5 h-3.5 text-green-400"></i> ₹20,000 / month CTC</p>
+                        <p class="flex items-center gap-2"><i data-lucide="clock" class="w-3.5 h-3.5 text-blue-400"></i> Full-Time Badge</p>
+                    </div>
+
+                    <div class="mt-6 flex items-center gap-3">
+                        <a href="jobs.html" class="flex-1 text-center py-2.5 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/15 transition-all">
+                            Apply Now
+                        </a>
+                        <a href="https://wa.me/919420512501?text=I%20am%20interested%20in%20Blinkit%20Blended%20Process%20Job" target="_blank" class="p-2.5 rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/20 transition-all" aria-label="Apply via WhatsApp">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE PLANB CONSULTANCY -->
+    <div id="about" class="relative"></div>
+    <section class="py-20 relative z-10" id="why-us">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-blue-400 font-bold mb-3">Our Values</h2>
+                <p class="text-3xl md:text-4xl font-extrabold text-white mb-4">Why Choose PlanB Consultancy</p>
+                <p class="text-gray-400 text-sm md:text-base">We prioritize candidate growth, building pathways based on transparency, expertise, and continuous guidance.</p>
+            </div>
+
+            <!-- Why Choose Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3">
+                    <span class="text-4xl">✓</span>
+                    <h4 class="text-base font-bold text-white mt-2">Verified Opportunities</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">100% verified positions with premium multi-national companies and trusted Indian brands.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3">
+                    <span class="text-4xl">🤝</span>
+                    <h4 class="text-base font-bold text-white mt-2">Expert Career Support</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">Dedicated counseling, guidance, and interview tips from our expert recruitment professionals.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3">
+                    <span class="text-4xl">⚡</span>
+                    <h4 class="text-base font-bold text-white mt-2">Fast Recruitment</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">Direct placement workflow getting candidates hired in as quick as 3 to 7 working days.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3">
+                    <span class="text-4xl">💬</span>
+                    <h4 class="text-base font-bold text-white mt-2">Trusted By Candidates</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">A trusted consultancy assisting hundreds of job seekers and admissions candidates annually.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SUCCESS STORIES (Testimonials) -->
+    <section class="py-20 bg-white/[0.01] border-y border-white/5 relative z-10" id="testimonials">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-purple-400 font-bold mb-3">Our Placements</h2>
+                <p class="text-3xl md:text-4xl font-extrabold text-white mb-4">What Our Candidates Say</p>
+                <p class="text-gray-400 text-sm md:text-base">Real experiences from candidates placed and guided across Maharashtra and India.</p>
+            </div>
+
+            <!-- Reviews Horizontal Slider / Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Testimonial 1 -->
+                <div class="p-6 rounded-3xl glass-panel flex flex-col justify-between hover:border-purple-500/20 transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-semibold px-2.5 py-1 bg-purple-500/10 text-purple-300 rounded-lg">Job Placement</span>
+                        <div class="text-yellow-400 text-xs flex gap-0.5">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm italic mb-6">"PlanB helped me join a Flipkart warehouse in 4 days — no confusion. The process was smooth and they coordinated everything from interview to joining."</p>
+                    <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-purple-500 text-white font-bold flex items-center justify-center text-sm">
+                            RY
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Rahul Yadav</h4>
+                            <p class="text-xs text-gray-500">Warehouse Associate, Flipkart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="p-6 rounded-3xl glass-panel flex flex-col justify-between hover:border-pink-500/20 transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-semibold px-2.5 py-1 bg-pink-500/10 text-pink-300 rounded-lg">Admission Guidance</span>
+                        <div class="text-yellow-400 text-xs flex gap-0.5">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm italic mb-6">"The admission consultancy was truly professional. They guided me on the right course, handled all documentation, and made the entire college enrollment stress-free."</p>
+                    <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-pink-500 text-white font-bold flex items-center justify-center text-sm">
+                            PS
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Priya Sharma</h4>
+                            <p class="text-xs text-gray-500">BBA Student, Pune University</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="p-6 rounded-3xl glass-panel flex flex-col justify-between hover:border-blue-500/20 transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-semibold px-2.5 py-1 bg-blue-500/10 text-blue-300 rounded-lg">Job Placement</span>
+                        <div class="text-yellow-400 text-xs flex gap-0.5">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm italic mb-6">"The process was easy and fast — actual support backed by real guidance. They have Myntra, Flipkart, Zomato, Blinkit, Amazon and Meesho options available."</p>
+                    <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-500 text-white font-bold flex items-center justify-center text-sm">
+                            AB
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Anshulika Borase</h4>
+                            <p class="text-xs text-gray-500">Customer Support Executive</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFER LETTERS GALLERY -->
+    <section class="py-20 relative z-10" id="offer-letters">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-purple-400 font-bold mb-3">Our Placement History</h2>
+                <p class="text-3xl md:text-4xl font-extrabold text-white mb-4">Recent Offer Letters</p>
+                <p class="text-gray-400 text-sm md:text-base">Success stories of candidates placed in premium positions through PlanB Consultancy.</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" id="offerGallery">
+                <div class="relative rounded-2xl overflow-hidden glass-panel border-white/10 cursor-pointer group hover:scale-[1.03] transition-all duration-300 shadow-md" onclick="openLightbox(0)">
+                    <img src="images/offer-letters/offer1.jpeg" alt="Offer Letter 1" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-xs font-semibold text-purple-300 flex items-center gap-1"><i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Image</span>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden glass-panel border-white/10 cursor-pointer group hover:scale-[1.03] transition-all duration-300 shadow-md" onclick="openLightbox(1)">
+                    <img src="images/offer-letters/offer2.jpeg" alt="Offer Letter 2" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-xs font-semibold text-purple-300 flex items-center gap-1"><i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Image</span>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden glass-panel border-white/10 cursor-pointer group hover:scale-[1.03] transition-all duration-300 shadow-md" onclick="openLightbox(2)">
+                    <img src="images/offer-letters/offer3.jpeg" alt="Offer Letter 3" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-xs font-semibold text-purple-300 flex items-center gap-1"><i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Image</span>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden glass-panel border-white/10 cursor-pointer group hover:scale-[1.03] transition-all duration-300 shadow-md" onclick="openLightbox(3)">
+                    <img src="images/offer-letters/offer4.jpeg" alt="Offer Letter 4" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-xs font-semibold text-purple-300 flex items-center gap-1"><i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Image</span>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden glass-panel border-white/10 cursor-pointer group hover:scale-[1.03] transition-all duration-300 shadow-md" onclick="openLightbox(4)">
+                    <img src="images/offer-letters/offer5.jpeg" alt="Offer Letter 5" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-xs font-semibold text-purple-300 flex items-center gap-1"><i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Image</span>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden glass-panel border-white/10 cursor-pointer group hover:scale-[1.03] transition-all duration-300 shadow-md" onclick="openLightbox(5)">
+                    <img src="images/offer-letters/offer6.jpeg" alt="Offer Letter 6" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-xs font-semibold text-purple-300 flex items-center gap-1"><i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Image</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="py-20 relative z-10" id="faq">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-pink-400 font-bold mb-3">Questions & Answers</h2>
+                <p class="text-3xl font-extrabold text-white">Frequently Asked Questions</p>
+            </div>
+
+            <!-- FAQ List -->
+            <div class="space-y-4" id="faqList">
+
+                <!-- FAQ 1 -->
+                <div class="glass-panel rounded-2xl border-white/5 overflow-hidden faq-item">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors duration-200" aria-expanded="false" id="faq-btn-1">
+                        <span class="font-bold text-white text-sm md:text-base pr-4">Is job placement free?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-purple-400 flex-shrink-0 faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <p class="px-6 pb-6 pt-2 text-gray-400 text-sm leading-relaxed">PlanB Consultancy provides guidance and placement assistance for candidates. Depending on the opportunity and hiring partner, certain services may be free while others may involve minimal processing charges. Our team always maintains transparency throughout the recruitment process.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="glass-panel rounded-2xl border-white/5 overflow-hidden faq-item">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors duration-200" aria-expanded="false" id="faq-btn-2">
+                        <span class="font-bold text-white text-sm md:text-base pr-4">How long does placement take?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-purple-400 flex-shrink-0 faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <p class="px-6 pb-6 pt-2 text-gray-400 text-sm leading-relaxed">Placement timelines vary according to company requirements and candidate profiles. Most candidates receive interview opportunities within a few days to a few weeks after completing registration and profile verification.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="glass-panel rounded-2xl border-white/5 overflow-hidden faq-item">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors duration-200" aria-expanded="false" id="faq-btn-3">
+                        <span class="font-bold text-white text-sm md:text-base pr-4">What colleges do you support?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-purple-400 flex-shrink-0 faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <p class="px-6 pb-6 pt-2 text-gray-400 text-sm leading-relaxed">PlanB Consultancy supports students and graduates from universities and colleges across Maharashtra and India. We assist freshers, diploma holders, graduates, postgraduates, and experienced professionals.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="glass-panel rounded-2xl border-white/5 overflow-hidden faq-item">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors duration-200" aria-expanded="false" id="faq-btn-4">
+                        <span class="font-bold text-white text-sm md:text-base pr-4">Which companies hire through PlanB Consultancy?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-purple-400 flex-shrink-0 faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <p class="px-6 pb-6 pt-2 text-gray-400 text-sm leading-relaxed">We connect candidates with leading companies including Accenture, Cognizant, Capgemini, Tech Mahindra, HCL Technologies, IBM, Genpact, Concentrix, Teleperformance, Amazon, Flipkart, Zomato, Swiggy, Blinkit, Jio, Tata Communications, Tata Advanced Systems, and other reputed organizations.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="glass-panel rounded-2xl border-white/5 overflow-hidden faq-item">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors duration-200" aria-expanded="false" id="faq-btn-5">
+                        <span class="font-bold text-white text-sm md:text-base pr-4">Do you provide opportunities for freshers?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-purple-400 flex-shrink-0 faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <p class="px-6 pb-6 pt-2 text-gray-400 text-sm leading-relaxed">Yes. PlanB Consultancy provides opportunities for freshers as well as experienced professionals across IT, BPO, customer support, operations, sales, logistics, and other sectors.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="glass-panel rounded-2xl border-white/5 overflow-hidden faq-item">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors duration-200" aria-expanded="false" id="faq-btn-6">
+                        <span class="font-bold text-white text-sm md:text-base pr-4">Can I apply from any city?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-purple-400 flex-shrink-0 faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <p class="px-6 pb-6 pt-2 text-gray-400 text-sm leading-relaxed">Yes. Candidates from all over India can apply. Remote, work-from-home, and location-based opportunities are available depending on company requirements.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="glass-panel rounded-2xl border-white/5 overflow-hidden faq-item">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors duration-200" aria-expanded="false" id="faq-btn-7">
+                        <span class="font-bold text-white text-sm md:text-base pr-4">How do I apply for jobs?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-purple-400 flex-shrink-0 faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <p class="px-6 pb-6 pt-2 text-gray-400 text-sm leading-relaxed">You can apply by filling out the registration form on the website or by contacting our team through WhatsApp, email, or social media platforms.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 8 -->
+                <div class="glass-panel rounded-2xl border-white/5 overflow-hidden faq-item">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors duration-200" aria-expanded="false" id="faq-btn-8">
+                        <span class="font-bold text-white text-sm md:text-base pr-4">Will I receive interview preparation support?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-purple-400 flex-shrink-0 faq-chevron transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <p class="px-6 pb-6 pt-2 text-gray-400 text-sm leading-relaxed">Yes. We provide resume guidance, interview preparation, career counseling, and support throughout the hiring process.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER SECTION -->
+    <section class="py-20 relative z-10" id="contact">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="rounded-3xl glass-panel border-white/10 p-8 md:p-12 relative overflow-hidden bg-gradient-to-br from-purple-900/10 via-pink-900/10 to-blue-900/10 flex flex-col md:flex-row items-center gap-8 justify-between">
+                
+                <div class="max-w-md text-center md:text-left">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3">Never Miss New Opportunities</h2>
+                    <p class="text-gray-400 text-sm">Stay updated with the latest openings, job vacancies, and admission updates.</p>
+                </div>
+
+                <div class="w-full max-w-sm space-y-4">
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <input type="tel" id="newsletterPhone" placeholder="Mobile Number (WhatsApp)" class="flex-1 px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-white outline-none focus:border-purple-500 focus:bg-white/10 text-sm">
+                        <button onclick="handleNewsletterSubmit()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-semibold hover:opacity-95 transition-all">Subscribe</button>
+                    </div>
+                    <p class="text-center md:text-left text-xs text-gray-500">
+                        Or join the official updates channel: 
+                        <a href="https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10" target="_blank" class="text-purple-400 hover:text-purple-300 font-semibold underline flex items-center justify-center md:justify-start gap-1 mt-1.5">
+                            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> Follow Plan B Official Channel
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#05030c] border-t border-white/5 py-12 relative z-10 text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            
+            <div class="md:col-span-4 flex flex-col items-start gap-4">
+                <a href="#" class="text-2xl font-extrabold tracking-tight text-white">
+                    <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">PlanB</span> Consultancy
+                </a>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">Your trusted partner for jobs, education guidance, and digital solutions across Maharashtra and India. Helping candidates secure stable paths.</p>
+                <p class="text-xs text-gray-500 mt-2">Founded by Asnan • Akola, Maharashtra</p>
+                
+                <!-- Social Links -->
+                <div class="flex flex-wrap items-center gap-2 mt-4">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-pink-400 hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://x.com/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-[#25D366] hover:bg-white/10 transition-colors" aria-label="WhatsApp Channel">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
                     </a>
                 </div>
             </div>
 
-            <!-- Quick Links Column -->
-            <div class="footer-col">
-                <h4 class="footer-heading">Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="jobs.html">All Jobs</a></li>
-                    <li><a href="admissions.html">Admissions</a></li>
-                    <li><a href="fast-track.html">Fast Track</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
+            <div class="md:col-span-2">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-purple-500 pl-2">Quick Links</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="#" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="jobs.html" class="hover:text-white transition-colors">All Jobs</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admissions</a></li>
+                    <li><a href="fast-track.html" class="hover:text-white transition-colors">Fast Track</a></li>
+                    <li><a href="#contact" class="hover:text-white transition-colors">Contact Us</a></li>
                 </ul>
             </div>
 
-            <!-- Services Column -->
-            <div class="footer-col">
-                <h4 class="footer-heading">Our Services</h4>
-                <ul class="footer-links">
-                    <li><a href="#services">Job Placements</a></li>
-                    <li><a href="admissions.html">Admission Support</a></li>
-                    <li><a href="women-wfh.html">Work From Home</a></li>
-                    <li><a href="business.html">Income Growth</a></li>
-                    <li><a href="business.html">Digital Solutions</a></li>
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-pink-500 pl-2">Our Services</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="#services" class="hover:text-white transition-colors">Job Placements</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admission Support</a></li>
+                    <li><a href="women-wfh.html" class="hover:text-white transition-colors">Work From Home</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Income Growth Guidance</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Digital Solutions</a></li>
                 </ul>
             </div>
 
-            <!-- Contact Column -->
-            <div class="footer-col">
-                <h4 class="footer-heading">Contact</h4>
-                <ul class="footer-contact-list">
-                    <li>
-                        <span class="footer-contact-icon">📞</span>
-                        <a href="tel:+919420512501">9420512501</a>
-                    </li>
-                    <li>
-                        <span class="footer-contact-icon">📧</span>
-                        <a href="mailto:planb.consultancy.in@gmail.com">planb.consultancy.in@gmail.com</a>
-                    </li>
-                    <li>
-                        <span class="footer-contact-icon">📍</span>
-                        <span>Akola, Maharashtra, India</span>
-                    </li>
-                    <li>
-                        <span class="footer-contact-icon">💬</span>
-                        <a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20guidance" target="_blank">WhatsApp Us</a>
-                    </li>
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-blue-500 pl-2">Contact Info</h4>
+                <ul class="space-y-3 text-xs">
+                    <li class="flex items-center gap-2.5"><i data-lucide="phone" class="w-4 h-4 text-purple-400"></i> <a href="tel:+919420512501" class="hover:text-white">9420512501</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-pink-400"></i> <a href="mailto:planb.consultancy.in@gmail.com" class="hover:text-white">planb.consultancy.in@gmail.com</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i> <span>Akola, Maharashtra, India</span></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="message-square" class="w-4 h-4 text-[#25D366]"></i> <a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20guidance" target="_blank" class="text-[#25D366] font-semibold hover:underline">WhatsApp Us</a></li>
                 </ul>
             </div>
+
         </div>
 
-        <!-- Important Notice / Terms & Conditions -->
-        <div class="footer-notice-divider"></div>
-        <div class="footer-notice">
-            <p>Plan B Consultancy provides paid placement assistance services. We do not guarantee job placement. By using our services, you agree that once the process has been initiated, all charges are non-refundable. We provide continuous support throughout the hiring process.</p>
-        </div>
-
-        <!-- Bottom Bar -->
-        <div class="footer-bottom-bar">
-            <p class="footer-copyright">&copy; 2026 Plan-B Consultancy. All rights reserved.</p>
-            <div class="footer-bottom-links">
-                <a href="legal.html">Terms &amp; Conditions</a>
-                <a href="legal.html">Privacy Policy</a>
-                <a href="#contact">Contact</a>
+        <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+            <p>&copy; 2026 PlanB Consultancy. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="legal.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="legal.html" class="hover:text-white transition-colors">Terms and Conditions</a>
             </div>
         </div>
 
+        <div class="max-w-5xl mx-auto px-6 mt-8 text-center text-[10px] text-gray-700 leading-relaxed">
+            <p>Plan B Consultancy provides placement assistance services. We do not guarantee jobs. By using our services, you agree that once registration or workflow has been initiated, charges are non-refundable. We coordinate directly to help candidates throughout the application cycle.</p>
+        </div>
+    </footer>
+
+    <!-- FLOATING CONTACT WIDGET -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3" id="contactWidget">
+        <div class="bg-[#090514] border border-white/10 text-white px-4 py-2.5 rounded-2xl text-xs font-semibold shadow-2xl opacity-0 translate-y-2 pointer-events-none transition-all duration-300 flex items-center gap-2" id="contactTooltip">
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Need career guidance? Chat with us!
+        </div>
+        <a href="https://wa.me/919420512501?text=Hi%20I%20am%20interested%20in%20your%20services" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white flex items-center justify-center shadow-lg shadow-green-500/30 hover:scale-[1.08] hover:-translate-y-0.5 active:scale-[0.98] transition-all" aria-label="WhatsApp Chat">
+            <i data-lucide="message-circle" class="w-6 h-6 md:w-7 md:h-7 fill-current"></i>
+        </a>
     </div>
-</footer>
 
-<!-- FLOATING CONTACT WIDGET -->
-<div class="contact-widget" id="contactWidget">
-<div class="contact-widget-tooltip" id="contactTooltip">Need help? Contact us!</div>
-<a href="https://wa.me/917048303847?text=Hi%20I%20am%20interested%20in%20your%20service" target="_blank" class="contact-widget-btn contact-widget-whatsapp" id="whatsapp-float-btn" aria-label="Chat on WhatsApp">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-<span>WhatsApp</span>
-</a>
-<a href="tel:+917048303847" class="contact-widget-btn contact-widget-call" id="call-float-btn" aria-label="Call Now">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-<span>Call Now</span>
-</a>
-</div>
+    <!-- LIGHTBOX FOR IMAGES -->
+    <div class="offer-lightbox" id="offerLightbox" onclick="closeLightboxOnBg(event)">
+        <button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 transition-colors" onclick="closeLightbox()" aria-label="Close">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <button class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center hover:bg-white/10 transition-colors" onclick="changeLightbox(-1)" aria-label="Previous">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </button>
+        <div class="max-w-[90vw] max-h-[80vh] flex items-center justify-center">
+            <img src="" alt="Offer Letter View" class="max-w-full max-h-[75vh] rounded-2xl shadow-2xl border border-white/10 object-contain" id="offerLightboxImg">
+        </div>
+        <button class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center hover:bg-white/10 transition-colors" onclick="changeLightbox(1)" aria-label="Next">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-semibold text-gray-400" id="offerLightboxCounter">
+            1 / 6
+        </div>
+    </div>
 
-<script>
-document.addEventListener('DOMContentLoaded',()=>{
-// Navbar scroll
-const navbar=document.getElementById('navbar');
-if(navbar)window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',scrollY>50),{passive:true});
-// Mobile menu
-const menuToggle=document.getElementById('menuToggle'),navMenu=document.getElementById('navMenu');
-if(menuToggle&&navMenu){menuToggle.addEventListener('click',()=>navMenu.classList.toggle('active'));document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>navMenu.classList.remove('active')))}
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const h=this.getAttribute('href');if(h==='#')return;e.preventDefault();const t=document.querySelector(h);if(t){const top=t.getBoundingClientRect().top+pageYOffset-(navbar?navbar.offsetHeight:0)-20;scrollTo({top,behavior:'smooth'})}})});
-// Fade animations
-const allFade=document.querySelectorAll('.fade-up');
-if(allFade.length){const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -50px 0px'});
-const gridParents=['services-grid','stats-grid','why-grid','partners-grid','review-grid','contact-cards','ds-features-grid','ds-portfolio-grid','ds-pricing-grid','faq-list'];
-allFade.forEach(el=>{const p=el.parentElement;if(p){const isGrid=gridParents.some(c=>p.classList.contains(c));if(isGrid){const idx=Array.from(p.children).indexOf(el);el.style.transitionDelay=(idx*.1)+'s'}}obs.observe(el)})}
-// Stats counter with IntersectionObserver
-const statNums=document.querySelectorAll('.stat-number[data-target]');
-if(statNums.length){let counted=false;const cObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting&&!counted){counted=true;statNums.forEach(n=>{const target=parseInt(n.dataset.target),dur=2000,start=performance.now();function update(now){const p=Math.min((now-start)/dur,1),eased=1-Math.pow(1-p,3);n.textContent=Math.floor(eased*target);p<1?requestAnimationFrame(update):n.textContent=target}requestAnimationFrame(update)});cObs.disconnect()}})},{threshold:.3});const ss=document.getElementById('stats');if(ss)cObs.observe(ss)}
-// Contact Widget tooltip
-const cw=document.getElementById('contactWidget');
-if(cw){let shown=false;window.addEventListener('scroll',()=>{if(!shown&&scrollY>400){cw.classList.add('show-tooltip');shown=true;setTimeout(()=>cw.classList.remove('show-tooltip'),5000)}},{passive:true})}
-});
-// FAQ toggle
-function toggleFaq(el){const item=el.closest('.faq-item'),active=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('active'));if(!active)item.classList.add('active')}
-// DS Inquiry form
-function handleDsInquiry(e){e.preventDefault();const n=document.getElementById('dsName').value,b=document.getElementById('dsBusiness').value||'Not specified',em=document.getElementById('dsEmail').value,ph=document.getElementById('dsPhone').value,pt=document.getElementById('dsProjectType').value,d=document.getElementById('dsDescription').value||'Not provided';
-const msg=`Hello, I would like to inquire about *${pt}* development.%0A%0A*Name:* ${encodeURIComponent(n)}%0A*Business:* ${encodeURIComponent(b)}%0A*Email:* ${encodeURIComponent(em)}%0A*Phone:* ${encodeURIComponent(ph)}%0A*Project Type:* ${encodeURIComponent(pt)}%0A*Description:* ${encodeURIComponent(d)}%0A%0APlease get back to me with a quote.`;
-window.open(`https://wa.me/919420512501?text=${msg}`,'_blank');
-const btn=document.getElementById('ds-submit-btn'),orig=btn.textContent;btn.textContent='✓ Inquiry Sent!';btn.style.background='#10B981';setTimeout(()=>{btn.textContent=orig;btn.style.background='';document.getElementById('dsInquiryForm').reset()},3000)}
-</script>
+    <!-- JS SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // Navbar scroll handling
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.add('scrolled'); // keep it solid/glass for readability
+                    }
+                }, { passive: true });
+            }
+
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    // animate active lines if needed
+                    const spans = menuToggle.querySelectorAll('span');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        spans[0].style.transform = 'translateY(8px) rotate(45deg)';
+                        spans[1].style.opacity = '0';
+                        spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+                    } else {
+                        spans[0].style.transform = 'none';
+                        spans[1].style.opacity = '1';
+                        spans[2].style.transform = 'none';
+                    }
+                });
+            }
+
+            // Stats counter animation
+            const statNumbers = document.querySelectorAll('.stat-number');
+            if (statNumbers.length > 0) {
+                let counted = false;
+                const countObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !counted) {
+                            counted = true;
+                            statNumbers.forEach(num => {
+                                const target = parseInt(num.getAttribute('data-target'));
+                                const duration = 2000;
+                                const startTime = performance.now();
+
+                                function updateCounter(currentTime) {
+                                    const elapsed = currentTime - startTime;
+                                    const progress = Math.min(elapsed / duration, 1);
+                                    const eased = 1 - Math.pow(1 - progress, 3);
+                                    num.textContent = Math.floor(eased * target);
+                                    if (progress < 1) {
+                                        requestAnimationFrame(updateCounter);
+                                    } else {
+                                        num.textContent = target;
+                                    }
+                                }
+                                requestAnimationFrame(updateCounter);
+                            });
+                            countObserver.disconnect();
+                        }
+                    });
+                }, { threshold: 0.3 });
+
+                const statsSection = document.getElementById('stats');
+                if (statsSection) countObserver.observe(statsSection);
+            }
+
+            // Contact Widget tooltip reveal
+            const cw = document.getElementById('contactWidget');
+            const tooltip = document.getElementById('contactTooltip');
+            if (cw && tooltip) {
+                let shown = false;
+                window.addEventListener('scroll', () => {
+                    if (!shown && window.scrollY > 400) {
+                        tooltip.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+                        shown = true;
+                        setTimeout(() => {
+                            tooltip.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+                        }, 5000);
+                    }
+                }, { passive: true });
+            }
+        });
+
+        // FAQ Toggle — smooth accordion with scrollHeight animation
+        function toggleFaq(button) {
+            const faqItem = button.closest('.faq-item');
+            const answer = faqItem.querySelector('.faq-answer');
+            const chevron = button.querySelector('.faq-chevron');
+            const isActive = faqItem.classList.contains('active');
+
+            // Close all open items first
+            document.querySelectorAll('.faq-item.active').forEach(item => {
+                item.classList.remove('active');
+                const ans = item.querySelector('.faq-answer');
+                const chev = item.querySelector('.faq-chevron');
+                const btn = item.querySelector('button');
+                ans.style.maxHeight = '0';
+                if (chev) chev.style.transform = 'rotate(0deg)';
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            });
+
+            // Open the clicked item if it was closed
+            if (!isActive) {
+                faqItem.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                if (chevron) chevron.style.transform = 'rotate(180deg)';
+                button.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        // Hero search redirection to jobs page with keywords
+        function handleHeroSearch() {
+            const keyword = document.getElementById('heroSearchKeyword').value;
+            const location = document.getElementById('heroSearchLocation').value;
+            let url = 'jobs.html';
+            if (keyword || location) {
+                url += `?search=${encodeURIComponent(keyword)}&location=${encodeURIComponent(location)}`;
+            }
+            window.location.href = url;
+        }
+
+        // Newsletter subscription redirect to WhatsApp Channel
+        function handleNewsletterSubmit() {
+            const phone = document.getElementById('newsletterPhone').value;
+            if (!phone) {
+                alert('Please enter your WhatsApp mobile number.');
+                return;
+            }
+            // Log/Redirect to channel
+            window.open('https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10', '_blank');
+        }
+
+        // Lightbox Gallery Setup
+        var offerImages = [
+            { src: 'images/offer-letters/offer1.jpeg', alt: 'Offer Letter 1' },
+            { src: 'images/offer-letters/offer2.jpeg', alt: 'Offer Letter 2' },
+            { src: 'images/offer-letters/offer3.jpeg', alt: 'Offer Letter 3' },
+            { src: 'images/offer-letters/offer4.jpeg', alt: 'Offer Letter 4' },
+            { src: 'images/offer-letters/offer5.jpeg', alt: 'Offer Letter 5' },
+            { src: 'images/offer-letters/offer6.jpeg', alt: 'Offer Letter 6' }
+        ];
+        var currentOfferIndex = 0;
+
+        function openLightbox(index) {
+            const lb = document.getElementById('offerLightbox');
+            const img = document.getElementById('offerLightboxImg');
+            const counter = document.getElementById('offerLightboxCounter');
+            
+            currentOfferIndex = index;
+            img.src = offerImages[index].src;
+            img.alt = offerImages[index].alt;
+            counter.textContent = `${index + 1} / ${offerImages.length}`;
+            
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('offerLightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeLightboxOnBg(e) {
+            if (e.target === document.getElementById('offerLightbox')) {
+                closeLightbox();
+            }
+        }
+
+        function changeLightbox(direction) {
+            currentOfferIndex = (currentOfferIndex + direction + offerImages.length) % offerImages.length;
+            openLightbox(currentOfferIndex);
+        }
+
+        // Key listeners for Lightbox
+        document.addEventListener('keydown', (e) => {
+            const lb = document.getElementById('offerLightbox');
+            if (!lb.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeLightbox(-1);
+            if (e.key === 'ArrowRight') changeLightbox(1);
+        });
+    </script>
 </body>
 </html>

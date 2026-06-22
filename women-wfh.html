@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Safe Work From Home Opportunities for Women & Girls - Flexible, budget-friendly, verified roles from Plan-B Consultancy.">
-    <title>Women & Work From Home - Plan-B Consultancy</title>
+    <meta name="description" content="Safe Work From Home Opportunities for Women & Girls - Flexible, budget-friendly, verified roles from Plan-B Consultancy.">
+    <title>Women & Work From Home - PlanB Consultancy</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+<body class="bg-[#090514] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
 
-<body>
+    <!-- Decorative background blobs -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-900/10 blur-[150px]"></div>
+        <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-pink-900/10 blur-[150px]"></div>
+        <div class="absolute top-[40%] left-[30%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[150px]"></div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Plan-B</a>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
+    <nav class="navbar scrolled" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white hover:opacity-95 transition-opacity">
+                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">PlanB</span>
+                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">Consultancy</span>
+            </a>
+
+            <ul class="hidden lg:flex items-center gap-2" id="navMenu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="admissions.html" class="nav-link">Admissions</a></li>
                 <li><a href="fast-track.html" class="nav-link">Fast Track</a></li>
@@ -29,288 +35,302 @@
                 <li><a href="business.html" class="nav-link">Growth</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="nav-social">
-                <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="nav-social-link facebook" id="nav-facebook-link" aria-label="Follow us on Facebook" title="Follow us on Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                
-                <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="nav-social-link instagram" id="nav-instagram-link" aria-label="Follow us on Instagram" title="Follow us on Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                </a></a>
+
+            <div class="hidden lg:flex items-center gap-4">
+                <div class="flex items-center gap-3 mr-2">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://x.com/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
+                <a href="women-wfh-impact.html" class="px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg hover:scale-[1.02] transition-all">View Our Impact</a>
+            </div>
+
+            <!-- Hamburger Toggle -->
+            <div class="lg:hidden flex items-center gap-4">
+                <button class="menu-toggle flex flex-col gap-1.5 p-2 rounded-lg bg-white/5 border border-white/10" id="menuToggle" aria-label="Toggle Menu">
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <p class="hero-tagline">👩‍💻 Empowering Women</p>
-            <h1>Safe Work From Home Opportunities</h1>
-            <p class="hero-subtitle">
-                This page is specially for:<br>
-                Women • Girls • Homemakers • Students
+    <section class="relative pt-32 pb-16 flex items-center justify-center text-center overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/30 text-pink-300 text-xs font-semibold tracking-wider uppercase mb-6 animate-pulse">
+                👩‍💻 Empowering Women
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
+                Safe Work From Home Opportunities
+            </h1>
+            <p class="text-sm md:text-base text-gray-400 max-w-xl mx-auto mb-4 leading-relaxed font-semibold">
+                Designed Specially For: Women • Girls • Homemakers • Students
             </p>
-            <p class="hero-description">
-                <strong>We focus on: Safety • Trust • Flexibility</strong><br><br>
-                No unnecessary travel. No risky setups.
+            <p class="text-xs md:text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                We focus on <strong class="text-purple-300">Safety • Trust • Flexibility</strong>. No unnecessary travel. No risky setups.
             </p>
         </div>
     </section>
 
-    <!-- Why WFH Works Section -->
-    <section class="section" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Why Work From Home Works</h2>
-                <p class="section-subtitle">The perfect solution for modern women balancing multiple responsibilities
-                </p>
+    <!-- Why WFH Works -->
+    <section class="py-16 relative z-10 bg-white/[0.01] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <h2 class="text-xs uppercase tracking-widest text-purple-400 font-bold mb-3">Benefits</h2>
+                <p class="text-2xl md:text-3xl font-extrabold text-white">Why Work From Home Works</p>
             </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">💰</div>
-                    <h3>Low Cost</h3>
-                    <p>No commute expenses, work wardrobe costs, or daily meal expenses. Keep more of what you earn.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-center text-center gap-3">
+                    <span class="text-3xl">💰</span>
+                    <h3 class="font-bold text-white text-base">Low Cost</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">No commute expenses, work wardrobe costs, or daily outside food expenses. Keep more of what you earn.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">⏰</div>
-                    <h3>Flexible Timing</h3>
-                    <p>Work around your family schedule, household responsibilities, and personal commitments.</p>
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-center text-center gap-3">
+                    <span class="text-3xl">⏰</span>
+                    <h3 class="font-bold text-white text-base">Flexible Timing</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Work around your family schedule, household responsibilities, and personal commitments easily.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🏡</div>
-                    <h3>Home Comfort</h3>
-                    <p>Work in a familiar, safe environment while being available for family when needed.</p>
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-center text-center gap-3">
+                    <span class="text-3xl">🏡</span>
+                    <h3 class="font-bold text-white text-base">Home Comfort</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Work in a familiar, secure environment while being fully available for your family whenever they need you.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">📈</div>
-                    <h3>Skill-Based Growth</h3>
-                    <p>Develop valuable skills, build your resume, and grow your career from home.</p>
-                </div>
-            </div>
-            <div class="text-center mt-3">
-                <p style="font-size: var(--font-size-lg); color: var(--text-secondary);">
-                    ✨ <strong>Many women have achieved financial independence</strong> through our guidance.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Types of Opportunities Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Types of Work From Home Opportunities</h2>
-                <p class="section-subtitle">Diverse roles suitable for different skills and interests</p>
-            </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">💻</div>
-                    <h3>Data Entry & Admin</h3>
-                    <p>Computer-based work including data entry, documentation, and administrative support tasks.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">📞</div>
-                    <h3>Customer Support</h3>
-                    <p>Help customers via phone, chat, or email from the comfort of your home.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">✍️</div>
-                    <h3>Content & Writing</h3>
-                    <p>Content creation, copywriting, translation, and editing opportunities for creative minds.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🎨</div>
-                    <h3>Design & Creative</h3>
-                    <p>Graphic design, social media management, and creative work for those with artistic skills.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">📚</div>
-                    <h3>Teaching & Tutoring</h3>
-                    <p>Online teaching, tutoring, and educational content creation for subject matter experts.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🔍</div>
-                    <h3>Research & Analysis</h3>
-                    <p>Market research, data analysis, and information gathering roles for analytical thinkers.</p>
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-center text-center gap-3">
+                    <span class="text-3xl">📈</span>
+                    <h3 class="font-bold text-white text-base">Skill-Based Growth</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Develop valuable modern digital skills, build your professional resume, and grow your career from home.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How Plan-B Supports Section -->
-    <section class="section" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">How Plan-B Supports You</h2>
-                <p class="section-subtitle">You are never left alone after starting</p>
+    <!-- Types of Opportunities -->
+    <section class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-pink-400 font-bold mb-3">Roles Available</h2>
+                <p class="text-3xl md:text-4xl font-extrabold text-white">Types of WFH Opportunities</p>
             </div>
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4>Opportunity Guidance</h4>
-                    <p>We help you understand different work-from-home options and which ones suit your skills best.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-start gap-3">
+                    <span class="text-2xl">💻</span>
+                    <h3 class="font-bold text-white text-base">Data Entry & Admin</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Computer-based work including data entry, documentation, and administrative support tasks.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4>Role Clarity</h4>
-                    <p>Clear explanation of job responsibilities, expectations, and requirements before you commit.</p>
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-start gap-3">
+                    <span class="text-2xl">📞</span>
+                    <h3 class="font-bold text-white text-base">Customer Support</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Help customers via phone, chat, or email from the comfort of your home for leading brands.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4>Application Support</h4>
-                    <p>Help with applications, resumes, and connecting with verified employers.</p>
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-start gap-3">
+                    <span class="text-2xl">✍️</span>
+                    <h3 class="font-bold text-white text-base">Content & Writing</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Content creation, copywriting, translation, and proofreading opportunities for creative minds.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h4>Continuous Help</h4>
-                    <p>Ongoing support even after you start working. We're here whenever you need guidance.</p>
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-start gap-3">
+                    <span class="text-2xl">🎨</span>
+                    <h3 class="font-bold text-white text-base">Design & Creative</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Graphic design, social media asset creation, and creative layouts for those with artistic skills.</p>
+                </div>
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-start gap-3">
+                    <span class="text-2xl">📚</span>
+                    <h3 class="font-bold text-white text-base">Teaching & Tutoring</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Online teaching, subject tutoring, and academic content creation for subject matter experts.</p>
+                </div>
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-start gap-3">
+                    <span class="text-2xl">🔍</span>
+                    <h3 class="font-bold text-white text-base">Research & Analysis</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Market research, data entry analysis, and information gathering roles for analytical thinkers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support steps -->
+    <section class="py-16 relative z-10 bg-white/[0.01] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-teal-400 font-bold mb-3">Our Support</h2>
+                <p class="text-2xl md:text-3xl font-extrabold text-white">How PlanB Supports You</p>
+                <p class="text-gray-400 text-xs md:text-sm mt-3">You are never left alone after starting</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">1</span>
+                    <div class="text-2xl mt-4 mb-2">🧭</div>
+                    <h4 class="font-bold text-white text-base">Opportunity Guidance</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">We help you understand different WFH options and match them to your skills.</p>
+                </div>
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">2</span>
+                    <div class="text-2xl mt-4 mb-2">💡</div>
+                    <h4 class="font-bold text-white text-base">Role Clarity</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">Clear breakdown of day-to-day job expectations and payouts before you commit.</p>
+                </div>
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">3</span>
+                    <div class="text-2xl mt-4 mb-2">⚡</div>
+                    <h4 class="font-bold text-white text-base">Application Support</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">Assistance with profiles, documentation, and coordination with verified employers.</p>
+                </div>
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">4</span>
+                    <div class="text-2xl mt-4 mb-2">🤝</div>
+                    <h4 class="font-bold text-white text-base">Continuous Help</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">Ongoing check-ins and support even after you get placed and start earning.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Safety & Trust Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Safety & Trust First</h2>
-                <p class="section-subtitle">Your security is our top priority</p>
+    <section class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-purple-400 font-bold mb-3">Security</h2>
+                <p class="text-3xl font-extrabold text-white">Safety & Trust First</p>
             </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">✅</div>
-                    <h3>Verified Companies</h3>
-                    <p>All companies and opportunities are thoroughly verified before we recommend them to you.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-center text-center gap-3">
+                    <span class="text-3xl">🛡️</span>
+                    <h3 class="font-bold text-white text-base">Verified Companies</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">All active client opportunities are thoroughly vetted before any recommendation.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🔒</div>
-                    <h3>No Risky Setups</h3>
-                    <p>We avoid suspicious opportunities and only work with legitimate, established organizations.</p>
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-center text-center gap-3">
+                    <span class="text-3xl">🔒</span>
+                    <h3 class="font-bold text-white text-base">No Risky Setups</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">We strictly filter out suspicious schemes and only coordinate with legitimate entities.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">💬</div>
-                    <h3>Clear Communication</h3>
-                    <p>Transparent information about roles, payments, and expectations. No hidden surprises.</p>
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-center text-center gap-3">
+                    <span class="text-3xl">💬</span>
+                    <h3 class="font-bold text-white text-base">Clear Communication</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">100% transparent details regarding work timings, milestones, and pay structures.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🤝</div>
-                    <h3>Personal Support</h3>
-                    <p>Direct access to our team for any concerns, questions, or issues you might face.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Success Stories Section -->
-    <section class="section" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Real Impact, Real Independence</h2>
-                <p class="section-subtitle">Women from diverse backgrounds achieving financial freedom</p>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">👩‍💼</div>
-                    <div class="stat-value">300+</div>
-                    <div class="stat-label">Women Working From Home</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🏠</div>
-                    <div class="stat-value">100%</div>
-                    <div class="stat-label">Verified Safe Opportunities</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">💰</div>
-                    <div class="stat-value">₹0</div>
-                    <div class="stat-label">Commute Costs</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">⭐</div>
-                    <div class="stat-value">High</div>
-                    <div class="stat-label">Satisfaction Rate</div>
+                <div class="p-6 rounded-3xl glass-panel flex flex-col items-center text-center gap-3">
+                    <span class="text-3xl">🤝</span>
+                    <h3 class="font-bold text-white text-base">Personal Support</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Direct WhatsApp coordinates to reach our team for immediate advice at any stage.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="section">
-        <div class="container text-center">
-            <h2 class="section-title">Ready to Start Your Work From Home Journey?</h2>
-            <p class="section-subtitle mb-3">Let's discuss safe, suitable opportunities that fit your life perfectly.
-            </p>
-            <div class="btn-group">
-                <a href="https://wa.me/919420512501" class="btn btn-primary" target="_blank">
-                    📱 WhatsApp Us Now
-                </a>
-                <a href="contact.html" class="btn btn-secondary">
-                    📧 Get in Touch
-                </a>
+    <section class="py-16 relative z-10 bg-white/[0.01] border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3">Ready to Start Your WFH Journey?</h2>
+            <p class="text-gray-400 text-xs md:text-sm mb-8 max-w-lg mx-auto">Let's coordinate suitable safe options that fit your life schedule perfectly.</p>
+            <div class="flex flex-wrap gap-3 justify-center">
+                <a href="https://wa.me/919420512501" target="_blank" class="px-6 py-3 rounded-xl text-sm font-semibold bg-[#25D366] text-white hover:bg-[#20ba5c] transition-all flex items-center gap-2 shadow-lg"><i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Us Now</a>
+                <a href="contact.html" class="px-6 py-3 rounded-xl text-sm font-semibold glass-panel border-white/10 text-white hover:bg-white/5 transition-all">Get In Touch</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Plan-B Consultancy</h4>
-                    <p>Your backup that actually works.</p>
-                    <p>Managed by Asnan</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="admissions.html">Admissions</a>
-                    <a href="jobs.html">Jobs</a>
-                    <a href="women-wfh.html">Women & WFH</a>
-                    <a href="business.html">Growth</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <a href="admissions.html">UG/PG Admissions</a>
-                    <a href="admissions.html">NEET Counselling</a>
-                    <a href="jobs.html">Job Placements</a>
-                    <a href="women-wfh.html">Work From Home</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>📱 9420512501</p>
-                    <p>📧 planb.consultancy.in@gmail.com</p>
-                    <a href="https://wa.me/919420512501" target="_blank">WhatsApp</a>
+    <footer class="bg-[#05030c] border-t border-white/5 py-12 relative z-10 text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            
+            <div class="md:col-span-4 flex flex-col items-start gap-4">
+                <a href="index.html" class="text-2xl font-extrabold tracking-tight text-white">
+                    <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">PlanB</span> Consultancy
+                </a>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">Your trusted partner for jobs, education guidance, and digital solutions across Maharashtra and India. Helping candidates secure stable paths.</p>
+                <p class="text-xs text-gray-500 mt-2">Founded by Asnan • Akola, Maharashtra</p>
+
+                <!-- Social Links -->
+                <div class="flex flex-wrap items-center gap-2 mt-4">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-pink-400 hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://x.com/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-[#25D366] hover:bg-white/10 transition-colors" aria-label="WhatsApp Channel">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    </a>
                 </div>
             </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="footer-social-links">
-                        <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="footer-social-link facebook" id="footer-facebook-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                            planbconsultancy
-                        </a>
-                        <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="footer-social-link instagram" id="footer-instagram-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                            planbconsultancy_india
-                        </a>
-                        <a href="https://chat.whatsapp.com/B5wQu8XxDE14595IWxRSjT" target="_blank" rel="noopener noreferrer" class="footer-social-link whatsapp" id="footer-whatsapp-group-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            WhatsApp Group
-                        </a>
-                    </div>
-                </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Plan-B Consultancy. All rights reserved.</p>
-                <p class="disclaimer">
-                    Disclaimer: Guidance and opportunities are provided as per individual eligibility,
-                    university norms, and company policies.
-                </p>
+
+            <div class="md:col-span-2">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-purple-500 pl-2">Quick Links</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="jobs.html" class="hover:text-white transition-colors">All Jobs</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admissions</a></li>
+                    <li><a href="fast-track.html" class="hover:text-white transition-colors">Fast Track</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                </ul>
             </div>
-            <p class="page-disclaimer">Guidance and opportunities are shared based on eligibility, availability, and
-                applicable norms. No guarantees or affiliations are implied.</p>
+
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-pink-500 pl-2">Our Services</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="index.html#services" class="hover:text-white transition-colors">Job Placements</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admission Support</a></li>
+                    <li><a href="women-wfh.html" class="hover:text-white transition-colors">Work From Home</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Income Growth Guidance</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Digital Solutions</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-blue-500 pl-2">Contact Info</h4>
+                <ul class="space-y-3 text-xs">
+                    <li class="flex items-center gap-2.5"><i data-lucide="phone" class="w-4 h-4 text-purple-400"></i> <a href="tel:+919420512501" class="hover:text-white">9420512501</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-pink-400"></i> <a href="mailto:planb.consultancy.in@gmail.com" class="hover:text-white">planb.consultancy.in@gmail.com</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i> <span>Akola, Maharashtra, India</span></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="message-square" class="w-4 h-4 text-[#25D366]"></i> <a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20guidance" target="_blank" class="text-[#25D366] font-semibold hover:underline">WhatsApp Us</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+            <p>&copy; 2026 PlanB Consultancy. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="legal.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="legal.html" class="hover:text-white transition-colors">Terms and Conditions</a>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 mt-8 text-center text-[10px] text-gray-700 leading-relaxed">
+            <p>Plan B Consultancy provides placement assistance services. We do not guarantee jobs. By using our services, you agree that once registration or workflow has been initiated, charges are non-refundable. We coordinate directly to help candidates throughout the application cycle.</p>
         </div>
     </footer>
 
     <script src="js/main.js" defer></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
 </body>
-
 </html>

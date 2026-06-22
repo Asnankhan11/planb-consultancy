@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Business & Growth Guidance - Income growth, business ideas, and financial understanding from Plan-B Consultancy.">
-    <title>Business & Growth - Plan-B Consultancy</title>
+    <meta name="description" content="Business & Growth Guidance - Income growth, business ideas, and financial understanding from Plan-B Consultancy.">
+    <title>Business & Growth - PlanB Consultancy</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+<body class="bg-[#090514] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
 
-<body>
+    <!-- Decorative background blobs -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-900/10 blur-[150px]"></div>
+        <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-pink-900/10 blur-[150px]"></div>
+        <div class="absolute top-[40%] left-[30%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[150px]"></div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Plan-B</a>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-menu" id="navMenu">
+    <nav class="navbar scrolled" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white hover:opacity-95 transition-opacity">
+                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">PlanB</span>
+                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">Consultancy</span>
+            </a>
+
+            <ul class="hidden lg:flex items-center gap-2" id="navMenu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="admissions.html" class="nav-link">Admissions</a></li>
                 <li><a href="fast-track.html" class="nav-link">Fast Track</a></li>
@@ -29,280 +35,250 @@
                 <li><a href="business.html" class="nav-link active">Growth</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="nav-social">
-                <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="nav-social-link facebook" id="nav-facebook-link" aria-label="Follow us on Facebook" title="Follow us on Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                
-                <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="nav-social-link instagram" id="nav-instagram-link" aria-label="Follow us on Instagram" title="Follow us on Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                </a></a>
+
+            <div class="hidden lg:flex items-center gap-4">
+                <div class="flex items-center gap-3 mr-2">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://x.com/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
+                <a href="students-earning-impact.html" class="px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg hover:scale-[1.02] transition-all">Students Earning</a>
+            </div>
+
+            <!-- Hamburger Toggle -->
+            <div class="lg:hidden flex items-center gap-4">
+                <button class="menu-toggle flex flex-col gap-1.5 p-2 rounded-lg bg-white/5 border border-white/10" id="menuToggle" aria-label="Toggle Menu">
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <p class="hero-tagline">📈 Financial Growth</p>
-            <h1>Growing Income with the Right Guidance</h1>
-            <p class="hero-subtitle">
-                Earning is not only about jobs.<br>
-                It's also about thinking correctly about money and growth.
+    <section class="relative pt-32 pb-16 flex items-center justify-center text-center overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold tracking-wider uppercase mb-6 animate-pulse">
+                📈 Financial Growth
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
+                Growing Income with the Right Guidance
+            </h1>
+            <p class="text-sm md:text-base text-gray-400 max-w-xl mx-auto mb-4 leading-relaxed font-semibold">
+                Earning is not only about jobs. It's about thinking correctly.
             </p>
-            <p class="hero-description">
-                <strong>No unrealistic promises. Only practical thinking.</strong>
+            <p class="text-xs md:text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                No unrealistic promises. <strong class="text-purple-300">Only practical, sustainable frameworks.</strong>
             </p>
         </div>
     </section>
 
-    <!-- What We Help With Section -->
-    <section class="section" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">What We Help With</h2>
-                <p class="section-subtitle">Practical guidance for sustainable income growth</p>
+    <!-- What We Help With -->
+    <section class="py-16 relative z-10 bg-white/[0.01] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <h2 class="text-xs uppercase tracking-widest text-pink-400 font-bold mb-3">Capabilities</h2>
+                <p class="text-2xl md:text-3xl font-extrabold text-white">What We Help With</p>
             </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">💰</div>
-                    <h3>Income Growth Guidance</h3>
-                    <p>Strategic advice on increasing your income through smart career moves and skill development.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3">
+                    <span class="text-3xl">💰</span>
+                    <h3 class="font-bold text-white text-base">Income Growth Guidance</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Strategic advice on increasing your income through smart career moves and skill optimization.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">💡</div>
-                    <h3>Business Idea Clarity</h3>
-                    <p>Help you evaluate business ideas realistically and understand what it takes to succeed.</p>
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3">
+                    <span class="text-3xl">💡</span>
+                    <h3 class="font-bold text-white text-base">Business Idea Clarity</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Help you evaluate business models realistically and understand resources needed to succeed.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">📊</div>
-                    <h3>Financial Understanding</h3>
-                    <p>Develop better financial literacy and make informed decisions about money and investments.</p>
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3">
+                    <span class="text-3xl">📊</span>
+                    <h3 class="font-bold text-white text-base">Financial Understanding</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Develop better financial literacy and make smart, calculated decisions about money.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🎯</div>
-                    <h3>Practical Earning Models</h3>
-                    <p>Explore realistic ways to earn - from side hustles to sustainable business models.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Approach Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Approach</h2>
-                <p class="section-subtitle">Honest, practical, and focused on sustainability</p>
-            </div>
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4>We Listen First</h4>
-                    <p>Understand your current situation, goals, constraints, and what you're trying to achieve.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4>Situation-Based Guidance</h4>
-                    <p>Provide advice tailored to your specific circumstances, not generic one-size-fits-all solutions.
-                    </p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4>Focus on Sustainability</h4>
-                    <p>Build long-term, sustainable income sources rather than quick fixes or shortcuts.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h4>Continuous Support</h4>
-                    <p>Ongoing guidance as you implement ideas and navigate challenges along the way.</p>
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3">
+                    <span class="text-3xl">🎯</span>
+                    <h3 class="font-bold text-white text-base">Practical Earning Models</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Explore realistic side opportunities and scalable business approaches that fit your workload.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Who This Is For Section -->
-    <section class="section" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Who This Is For</h2>
-                <p class="section-subtitle">Anyone looking to grow their income intelligently</p>
+    <!-- Our Approach -->
+    <section class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-purple-400 font-bold mb-3">Our Core Methods</h2>
+                <p class="text-3xl font-extrabold text-white">Our Strategic Approach</p>
             </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">🎓</div>
-                    <h3>Students Wanting Extra Income</h3>
-                    <p>Students looking to earn money alongside studies through smart, manageable opportunities.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">💼</div>
-                    <h3>Side Business Planners</h3>
-                    <p>Individuals planning side businesses while maintaining their current job or commitments.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🔄</div>
-                    <h3>Career Transitioners</h3>
-                    <p>People looking to transition careers or explore new income streams strategically.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🆘</div>
-                    <h3>Financially Stuck Individuals</h3>
-                    <p>Anyone stuck financially and needing clear direction to move forward.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Growth Areas Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Areas We Guide On</h2>
-                <p class="section-subtitle">Practical paths to income growth</p>
-            </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">📚</div>
-                    <h3>Skill Development</h3>
-                    <p>Identify valuable skills to learn that can increase your earning potential in the market.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">1</span>
+                    <div class="text-2xl mt-4 mb-2">👂</div>
+                    <h4 class="font-bold text-white text-base">We Listen First</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">Understand your current coordinates, constraints, and aspirations clearly.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🏪</div>
-                    <h3>Small Business Ideas</h3>
-                    <p>Evaluate and plan small business ventures that match your resources and capabilities.</p>
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">2</span>
+                    <div class="text-2xl mt-4 mb-2">🧭</div>
+                    <h4 class="font-bold text-white text-base">Personalized Guidance</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">Provide actionable plans tailored to your specific region and schedule constraints.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">💻</div>
-                    <h3>Freelancing & Consulting</h3>
-                    <p>Leverage your expertise to offer freelance services or consulting in your field.</p>
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">3</span>
+                    <div class="text-2xl mt-4 mb-2">🌿</div>
+                    <h4 class="font-bold text-white text-base">Focus on Sustainability</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">Build long-term cashflows instead of recommending high-risk setups or shortcuts.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🌐</div>
-                    <h3>Online Income Streams</h3>
-                    <p>Explore legitimate online earning opportunities that fit your skills and schedule.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🤝</div>
-                    <h3>Partnership Opportunities</h3>
-                    <p>Understand how to evaluate and approach business partnerships safely and effectively.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">📈</div>
-                    <h3>Scaling Existing Income</h3>
-                    <p>Strategies to grow and scale your current income sources for better returns.</p>
+                <div class="p-6 rounded-3xl glass-panel relative flex flex-col items-center text-center">
+                    <span class="absolute top-4 left-4 text-xs font-bold text-gray-600 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">4</span>
+                    <div class="text-2xl mt-4 mb-2">🤝</div>
+                    <h4 class="font-bold text-white text-base">Continuous Support</h4>
+                    <p class="text-gray-400 text-xs mt-2 leading-relaxed">Stay connected with check-ins as you begin building your income workflows.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Reality Check Section -->
-    <section class="section" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">What We Don't Do</h2>
-                <p class="section-subtitle">Setting realistic expectations</p>
+    <section class="py-16 relative z-10 bg-white/[0.01] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <h2 class="text-xs uppercase tracking-widest text-red-400 font-bold mb-3">Transparency</h2>
+                <p class="text-2xl md:text-3xl font-extrabold text-white">What We Don't Do</p>
             </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">❌</div>
-                    <h3>No Get-Rich-Quick Schemes</h3>
-                    <p>We don't promote unrealistic promises or overnight success stories. Real growth takes time.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3 border-red-500/10">
+                    <span class="text-3xl text-red-500">❌</span>
+                    <h3 class="font-bold text-white text-base">No Get-Rich Schemes</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">We don't offer unrealistic hype or push fast shortcuts. Real growth takes work and consistency.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">❌</div>
-                    <h3>No Investment Advice</h3>
-                    <p>We don't provide stock market tips or investment schemes. We focus on earning guidance.</p>
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3 border-red-500/10">
+                    <span class="text-3xl text-red-500">❌</span>
+                    <h3 class="font-bold text-white text-base">No Investment Tips</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">We focus on income generation consulting. We never provide stock tips or advisory services.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">❌</div>
-                    <h3>No MLM or Pyramid Schemes</h3>
-                    <p>We stay away from multi-level marketing and similar questionable business models.</p>
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3 border-red-500/10">
+                    <span class="text-3xl text-red-500">❌</span>
+                    <h3 class="font-bold text-white text-base">No MLM Networks</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">We strictly avoid multi-level marketing setups or pyramid referral models.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">✅</div>
-                    <h3>Only Practical Guidance</h3>
-                    <p>We provide honest, practical advice based on your real situation and capabilities.</p>
+                <div class="p-6 rounded-3xl glass-panel text-center flex flex-col items-center gap-3 border-green-500/10">
+                    <span class="text-3xl text-green-400">✅</span>
+                    <h3 class="font-bold text-white text-base">Only Practical Growth</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">We provide honest evaluations based on candidate availability, skill level, and location.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="section">
-        <div class="container text-center">
-            <h2 class="section-title">Ready to Grow Your Income Smartly?</h2>
-            <p class="section-subtitle mb-3">Let's have an honest conversation about your financial goals and create a
-                practical path forward.</p>
-            <div class="btn-group">
-                <a href="https://wa.me/919420512501" class="btn btn-primary" target="_blank">
-                    📱 WhatsApp Us Now
-                </a>
-                <a href="contact.html" class="btn btn-secondary">
-                    📧 Share Your Goals
-                </a>
+    <section class="py-20 relative z-10">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3">Ready to Grow Your Income?</h2>
+            <p class="text-gray-400 text-xs md:text-sm mb-8 max-w-lg mx-auto">Let's discuss realistic career adjustments and structural cashflow additions built for your specific constraints.</p>
+            <div class="flex flex-wrap gap-3 justify-center">
+                <a href="https://wa.me/919420512501" target="_blank" class="px-6 py-3 rounded-xl text-sm font-semibold bg-[#25D366] text-white hover:bg-[#20ba5c] transition-all flex items-center gap-2 shadow-lg"><i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Us Now</a>
+                <a href="contact.html" class="px-6 py-3 rounded-xl text-sm font-semibold glass-panel border-white/10 text-white hover:bg-white/5 transition-all">Share Your Goals</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Plan-B Consultancy</h4>
-                    <p>Your backup that actually works.</p>
-                    <p>Managed by Asnan</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="admissions.html">Admissions</a>
-                    <a href="jobs.html">Jobs</a>
-                    <a href="women-wfh.html">Women & WFH</a>
-                    <a href="business.html">Growth</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <a href="admissions.html">UG/PG Admissions</a>
-                    <a href="admissions.html">NEET Counselling</a>
-                    <a href="jobs.html">Job Placements</a>
-                    <a href="women-wfh.html">Work From Home</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>📱 9420512501</p>
-                    <p>📧 planb.consultancy.in@gmail.com</p>
-                    <a href="https://wa.me/919420512501" target="_blank">WhatsApp</a>
+    <footer class="bg-[#05030c] border-t border-white/5 py-12 relative z-10 text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            
+            <div class="md:col-span-4 flex flex-col items-start gap-4">
+                <a href="index.html" class="text-2xl font-extrabold tracking-tight text-white">
+                    <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">PlanB</span> Consultancy
+                </a>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">Your trusted partner for jobs, education guidance, and digital solutions across Maharashtra and India. Helping candidates secure stable paths.</p>
+                <p class="text-xs text-gray-500 mt-2">Founded by Asnan • Akola, Maharashtra</p>
+
+                <!-- Social Links -->
+                <div class="flex flex-wrap items-center gap-2 mt-4">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-pink-400 hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://x.com/planbconsultancy" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-[#25D366] hover:bg-white/10 transition-colors" aria-label="WhatsApp Channel">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    </a>
                 </div>
             </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="footer-social-links">
-                        <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="footer-social-link facebook" id="footer-facebook-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                            planbconsultancy
-                        </a>
-                        <a href="https://www.instagram.com/planbconsultancy_india/" target="_blank" rel="noopener noreferrer" class="footer-social-link instagram" id="footer-instagram-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                            planbconsultancy_india
-                        </a>
-                        <a href="https://chat.whatsapp.com/B5wQu8XxDE14595IWxRSjT" target="_blank" rel="noopener noreferrer" class="footer-social-link whatsapp" id="footer-whatsapp-group-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            WhatsApp Group
-                        </a>
-                    </div>
-                </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Plan-B Consultancy. All rights reserved.</p>
-                <p class="disclaimer">
-                    Disclaimer: Guidance and opportunities are provided as per individual eligibility,
-                    university norms, and company policies.
-                </p>
+
+            <div class="md:col-span-2">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-purple-500 pl-2">Quick Links</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="jobs.html" class="hover:text-white transition-colors">All Jobs</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admissions</a></li>
+                    <li><a href="fast-track.html" class="hover:text-white transition-colors">Fast Track</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                </ul>
             </div>
+
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-pink-500 pl-2">Our Services</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="index.html#services" class="hover:text-white transition-colors">Job Placements</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admission Support</a></li>
+                    <li><a href="women-wfh.html" class="hover:text-white transition-colors">Work From Home</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Income Growth Guidance</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Digital Solutions</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-blue-500 pl-2">Contact Info</h4>
+                <ul class="space-y-3 text-xs">
+                    <li class="flex items-center gap-2.5"><i data-lucide="phone" class="w-4 h-4 text-purple-400"></i> <a href="tel:+919420512501" class="hover:text-white">9420512501</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-pink-400"></i> <a href="mailto:planb.consultancy.in@gmail.com" class="hover:text-white">planb.consultancy.in@gmail.com</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i> <span>Akola, Maharashtra, India</span></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="message-square" class="w-4 h-4 text-[#25D366]"></i> <a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20guidance" target="_blank" class="text-[#25D366] font-semibold hover:underline">WhatsApp Us</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+            <p>&copy; 2026 PlanB Consultancy. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="js/main.js" defer></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
 </body>
-
 </html>
