@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan B Careers | Admissions, Jobs & Career Guidance</title>
+    <meta name="description" content="Connect with Plan B Careers for admission guidance, job opportunities, recruitment assistance and career guidance.">
+    <meta property="og:title" content="Plan B Careers | Admissions, Jobs & Career Guidance">
+    <meta property="og:description" content="Connect with Plan B Careers for admission guidance, job opportunities, recruitment assistance and career guidance.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://planbcareers.in/connect">
+    <meta property="og:image" content="https://planbcareers.in/images/logos/Plan-B-Careers-logo.png">
+    <meta property="og:locale" content="en_IN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Plan B Careers | Admissions, Jobs & Career Guidance">
+    <meta name="twitter:description" content="Connect with Plan B Careers for admission guidance, job opportunities, recruitment assistance and career guidance.">
+
+    <!-- Reuse existing project fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons (same as existing site) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* ===================================
+           Connect Page — Digital Business Card
+           Uses existing Plan B design tokens
+           =================================== */
+
+        :root {
+            --pbc-navy: #0A2E6B;
+            --pbc-navy-deep: #061D45;
+            --pbc-blue: #3B82F6;
+            --pbc-purple: #7C3AED;
+            --pbc-gold: #F4C430;
+            --pbc-gold-dark: #D4A017;
+            --pbc-green: #25D366;
+            --pbc-white: #FFFFFF;
+            --pbc-bg: #F4F7FB;
+            --pbc-bg-card: #FFFFFF;
+            --pbc-text-primary: #1A1A2E;
+            --pbc-text-secondary: #4A5568;
+            --pbc-text-muted: #64748B;
+            --pbc-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --pbc-radius: 1rem;
+            --pbc-radius-sm: 0.75rem;
+            --pbc-shadow: 0 4px 16px rgba(10, 46, 107, 0.08);
+            --pbc-shadow-lg: 0 8px 32px rgba(10, 46, 107, 0.1);
+            --pbc-transition: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--pbc-font);
+            background: var(--pbc-bg);
+            color: var(--pbc-text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* Subtle background decoration */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(10, 46, 107, 0.04) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ===================================
+           Layout
+           =================================== */
+        .connect-wrapper {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+        }
+
+        /* ===================================
+           Header / Brand
+           =================================== */
+        .connect-header {
+            text-align: center;
+            padding: 1.5rem 1rem 1.25rem;
+            background: linear-gradient(135deg, var(--pbc-navy-deep) 0%, var(--pbc-navy) 60%, var(--pbc-blue) 100%);
+            border-radius: 0 0 1.75rem 1.75rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .connect-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .connect-header::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -20%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .connect-logo {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 0.65rem;
+            background: white;
+        }
+
+        .connect-brand-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--pbc-white);
+            margin-bottom: 0.15rem;
+            letter-spacing: -0.02em;
+        }
+
+        .connect-tagline {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.03em;
+        }
+
+        .connect-supporting {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 400;
+        }
+
+        /* ===================================
+           Quick Action Buttons (Top)
+           =================================== */
+        .quick-actions-wrap {
+            margin-bottom: 1.75rem;
+        }
+
+        .qa-save-primary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border-radius: var(--pbc-radius);
+            background: linear-gradient(135deg, var(--pbc-gold) 0%, var(--pbc-gold-dark) 100%);
+            color: var(--pbc-navy-deep);
+            font-family: var(--pbc-font);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 18px rgba(212, 160, 23, 0.3);
+            transition: var(--pbc-transition);
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.01em;
+        }
+
+        .qa-save-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(212, 160, 23, 0.45);
+        }
+
+        .qa-save-primary:active {
+            transform: scale(0.98);
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .quick-action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.7rem 0.5rem;
+            border-radius: var(--pbc-radius-sm);
+            font-family: var(--pbc-font);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: var(--pbc-transition);
+        }
+
+        .quick-action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .quick-action-btn:active {
+            transform: scale(0.97);
+        }
+
+        .qa-call {
+            background: linear-gradient(135deg, var(--pbc-navy-deep) 0%, var(--pbc-blue) 100%);
+            color: white;
+            box-shadow: 0 3px 12px rgba(10, 46, 107, 0.2);
+        }
+
+        .qa-call:hover {
+            box-shadow: 0 5px 20px rgba(10, 46, 107, 0.3);
+            color: white;
+        }
+
+        .qa-whatsapp {
+            background: var(--pbc-green);
+            color: white;
+            box-shadow: 0 3px 12px rgba(37, 211, 102, 0.25);
+        }
+
+        .qa-whatsapp:hover {
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.35);
+            color: white;
+        }
+
+        .qa-website {
+            background: var(--pbc-bg-card);
+            color: var(--pbc-navy);
+            border: 1px solid rgba(10, 46, 107, 0.15);
+            box-shadow: 0 2px 8px rgba(10, 46, 107, 0.06);
+        }
+
+        .qa-website:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.12);
+            color: var(--pbc-navy);
+        }
+
+        .qa-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .qa-save-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ===================================
+           Section Styles
+           =================================== */
+        .connect-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--pbc-navy);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--pbc-blue);
+        }
+
+        /* ===================================
+           Team Cards
+           =================================== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .team-card {
+            background: var(--pbc-bg-card);
+            border: 1px solid rgba(10, 46, 107, 0.08);
+            border-radius: var(--pbc-radius);
+            padding: 1.25rem 1rem;
+            text-align: center;
+            transition: var(--pbc-transition);
+            box-shadow: var(--pbc-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pbc-navy-deep), var(--pbc-blue));
+            opacity: 0.7;
+            transition: var(--pbc-transition);
+        }
+
+        .team-card:hover {
+            border-color: rgba(59, 130, 246, 0.18);
+            box-shadow: 0 8px 28px rgba(10, 46, 107, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .team-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pbc-navy-deep), var(--pbc-blue));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 0.25rem auto 0.65rem;
+            box-shadow: 0 3px 12px rgba(10, 46, 107, 0.15);
+        }
+
+        .team-card-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--pbc-text-primary);
+            margin-bottom: 0.15rem;
+        }
+
+        .team-card-designation {
+            font-size: 0.7rem;
+            color: var(--pbc-text-muted);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .team-card-phone {
+            font-size: 0.72rem;
+            color: var(--pbc-text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .team-card-phone a {
+            color: var(--pbc-text-secondary);
+            text-decoration: none;
+        }
+
+        .team-card-phone a:hover {
+            color: var(--pbc-blue);
+        }
+
+        .team-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .team-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            padding: 0.45rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--pbc-transition);
+            font-family: var(--pbc-font);
+        }
+
+        .team-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .team-btn:active {
+            transform: scale(0.96);
+        }
+
+        .team-btn-call {
+            background: rgba(10, 46, 107, 0.08);
+            color: var(--pbc-navy);
+            border: 1px solid rgba(10, 46, 107, 0.12);
+        }
+
+        .team-btn-call:hover {
+            background: var(--pbc-navy);
+            color: white;
+        }
+
+        .team-btn-wa {
+            background: rgba(37, 211, 102, 0.1);
+            color: #1a8d47;
+            border: 1px solid rgba(37, 211, 102, 0.2);
+        }
+
+        .team-btn-wa:hover {
+            background: var(--pbc-green);
+            color: white;
+        }
+
+        .team-btn-icon {
+            width: 13px;
+            height: 13px;
+        }
+
+        /* ===================================
+           Services Cards
+           =================================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .service-card {
+            background: var(--pbc-bg-card);
+            border: 1px solid rgba(10, 46, 107, 0.08);
+            border-radius: var(--pbc-radius-sm);
+            padding: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            transition: var(--pbc-transition);
+            box-shadow: var(--pbc-shadow);
+        }
+
+        .service-card:hover {
+            border-color: rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+            box-shadow: var(--pbc-shadow-lg);
+        }
+
+        .service-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .service-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--pbc-text-primary);
+            line-height: 1.35;
+        }
+
+        /* ===================================
+           Contact Info Section
+           =================================== */
+        .contact-info-card {
+            background: var(--pbc-bg-card);
+            border: 1px solid rgba(10, 46, 107, 0.08);
+            border-radius: var(--pbc-radius);
+            padding: 1.5rem;
+            box-shadow: var(--pbc-shadow);
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(10, 46, 107, 0.06);
+        }
+
+        .contact-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .contact-row:first-child {
+            padding-top: 0;
+        }
+
+        .contact-row-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-row-icon.email-icon {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--pbc-blue);
+        }
+
+        .contact-row-icon.web-icon {
+            background: rgba(10, 46, 107, 0.08);
+            color: var(--pbc-navy);
+        }
+
+        .contact-row-icon.loc-icon {
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--pbc-purple);
+        }
+
+        .contact-row-icon svg,
+        .contact-row-icon i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .contact-row-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .contact-row-label {
+            font-size: 0.7rem;
+            color: var(--pbc-text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.15rem;
+        }
+
+        .contact-row-value {
+            font-size: 0.85rem;
+            color: var(--pbc-text-primary);
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        .contact-row-value a {
+            color: var(--pbc-blue);
+            text-decoration: none;
+        }
+
+        .contact-row-value a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .contact-action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            padding: 0.65rem 0.5rem;
+            border-radius: var(--pbc-radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--pbc-transition);
+            font-family: var(--pbc-font);
+        }
+
+        .contact-action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-action-btn:active {
+            transform: scale(0.97);
+        }
+
+        .ca-email {
+            background: rgba(59, 130, 246, 0.08);
+            color: var(--pbc-blue);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .ca-email:hover {
+            background: var(--pbc-blue);
+            color: white;
+        }
+
+        .ca-web {
+            background: rgba(10, 46, 107, 0.06);
+            color: var(--pbc-navy);
+            border: 1px solid rgba(10, 46, 107, 0.12);
+        }
+
+        .ca-web:hover {
+            background: var(--pbc-navy);
+            color: white;
+        }
+
+        .ca-map {
+            background: rgba(124, 58, 237, 0.06);
+            color: var(--pbc-purple);
+            border: 1px solid rgba(124, 58, 237, 0.12);
+        }
+
+        .ca-map:hover {
+            background: var(--pbc-purple);
+            color: white;
+        }
+
+        .ca-icon {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ===================================
+           WhatsApp Section
+           =================================== */
+        .whatsapp-main-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            width: 100%;
+            padding: 1rem;
+            border-radius: var(--pbc-radius);
+            background: var(--pbc-green);
+            color: white;
+            font-family: var(--pbc-font);
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.3);
+            transition: var(--pbc-transition);
+            margin-bottom: 1rem;
+        }
+
+        .whatsapp-main-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
+            color: white;
+        }
+
+        .whatsapp-main-btn:active {
+            transform: scale(0.98);
+        }
+
+        .wa-individual-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .wa-individual-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 0.75rem;
+            background: var(--pbc-bg-card);
+            border: 1px solid rgba(37, 211, 102, 0.15);
+            border-radius: var(--pbc-radius-sm);
+            text-decoration: none;
+            transition: var(--pbc-transition);
+            box-shadow: var(--pbc-shadow);
+        }
+
+        .wa-individual-btn:hover {
+            border-color: rgba(37, 211, 102, 0.4);
+            transform: translateY(-1px);
+            box-shadow: var(--pbc-shadow-lg);
+        }
+
+        .wa-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--pbc-green);
+            flex-shrink: 0;
+        }
+
+        .wa-name {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--pbc-text-primary);
+            flex: 1;
+        }
+
+        .wa-arrow {
+            width: 14px;
+            height: 14px;
+            color: var(--pbc-green);
+        }
+
+        /* ===================================
+           Social Media
+           =================================== */
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--pbc-bg-card);
+            border: 1px solid rgba(10, 46, 107, 0.1);
+            color: var(--pbc-text-muted);
+            transition: var(--pbc-transition);
+            box-shadow: var(--pbc-shadow);
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--pbc-shadow-lg);
+        }
+
+        .social-link.facebook:hover {
+            background: #1877F2;
+            color: white;
+            border-color: #1877F2;
+        }
+
+        .social-link.instagram:hover {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+            border-color: transparent;
+        }
+
+        .social-link.youtube:hover {
+            background: #FF0000;
+            color: white;
+            border-color: #FF0000;
+        }
+
+        .social-link.linkedin:hover {
+            background: #0A66C2;
+            color: white;
+            border-color: #0A66C2;
+        }
+
+        .social-link.twitter:hover {
+            background: #1A1A2E;
+            color: white;
+            border-color: #1A1A2E;
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ===================================
+           Footer
+           =================================== */
+        .connect-footer {
+            text-align: center;
+            padding: 1.5rem 0 1rem;
+            border-top: 1px solid rgba(10, 46, 107, 0.08);
+        }
+
+        .connect-footer p {
+            font-size: 0.72rem;
+            color: var(--pbc-text-muted);
+            margin: 0;
+        }
+
+        .connect-footer a {
+            color: var(--pbc-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .connect-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===================================
+           Animations
+           =================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .animate-in-delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .animate-in-delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .animate-in-delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .animate-in-delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .animate-in-delay-5 { animation-delay: 0.5s; opacity: 0; }
+        .animate-in-delay-6 { animation-delay: 0.6s; opacity: 0; }
+
+        /* ===================================
+           Responsive — Mobile First
+           =================================== */
+        @media (max-width: 480px) {
+            .connect-wrapper {
+                padding: 0 0.75rem 2rem;
+            }
+
+            .connect-header {
+                padding: 1.25rem 0.75rem 1rem;
+                border-radius: 0 0 1.5rem 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .connect-logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .connect-brand-name {
+                font-size: 1.35rem;
+            }
+
+            .qa-save-primary {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .quick-actions {
+                gap: 0.45rem;
+            }
+
+            .quick-action-btn {
+                padding: 0.65rem 0.4rem;
+                font-size: 0.75rem;
+                gap: 0.3rem;
+            }
+
+            .qa-icon {
+                width: 14px;
+                height: 14px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .team-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 1.25rem 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-actions {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .wa-individual-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 640px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Desktop enhancement */
+        @media (min-width: 641px) {
+            .connect-wrapper {
+                padding: 0 1.5rem 4rem;
+            }
+
+            .connect-header {
+                border-radius: 0 0 2rem 2rem;
+                padding: 2rem 2rem 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .connect-logo {
+                width: 84px;
+                height: 84px;
+            }
+
+            .connect-brand-name {
+                font-size: 1.75rem;
+            }
+
+            .qa-save-primary {
+                padding: 1rem 1.25rem;
+                font-size: 1rem;
+            }
+
+            .quick-actions {
+                gap: 0.75rem;
+            }
+
+            .quick-action-btn {
+                padding: 0.85rem 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .quick-actions-wrap {
+                margin-bottom: 2.25rem;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Plan B Careers",
+      "url": "https://planbcareers.in",
+      "telephone": "+919420512501",
+      "email": "contact.planbcareers@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Opposite Nagar Parishad Girls Urdu School, Old City",
+        "addressLocality": "Akola",
+        "postalCode": "444002",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <!-- ===================================
+         HEADER / BRAND
+         =================================== -->
+    <header class="connect-header animate-in">
+        <div class="header-content">
+            <img
+                src="images/logos/Plan-B-Careers-logo.png"
+                alt="Plan B Careers Logo"
+                class="connect-logo"
+                id="connect-logo"
+            >
+            <h1 class="connect-brand-name">PLAN B CAREERS</h1>
+            <p class="connect-tagline">Admissions • Jobs • Career Guidance</p>
+            <p class="connect-supporting">Your Partner for Admissions, Jobs & Career Growth</p>
+        </div>
+    </header>
+
+    <main class="connect-wrapper">
+
+        <!-- ===================================
+             QUICK ACTION BUTTONS
+             =================================== -->
+        <section class="quick-actions-wrap animate-in animate-in-delay-1" id="quick-actions">
+            <button type="button" class="qa-save-primary" id="qa-save-btn" onclick="downloadVCard()">
+                <i data-lucide="user-plus" class="qa-save-icon"></i>
+                Save Contact
+            </button>
+            <div class="quick-actions">
+                <a href="tel:+919420512501" class="quick-action-btn qa-call" id="qa-call-btn">
+                    <i data-lucide="phone" class="qa-icon"></i>
+                    Call Us
+                </a>
+                <a href="https://wa.me/919420512501" target="_blank" rel="noopener noreferrer" class="quick-action-btn qa-whatsapp" id="qa-whatsapp-btn">
+                    <i data-lucide="message-circle" class="qa-icon"></i>
+                    WhatsApp
+                </a>
+                <a href="https://planbcareers.in" target="_blank" rel="noopener noreferrer" class="quick-action-btn qa-website" id="qa-website-btn">
+                    <i data-lucide="globe" class="qa-icon"></i>
+                    Website
+                </a>
+            </div>
+        </section>
+
+        <!-- ===================================
+             MEET OUR TEAM
+             =================================== -->
+        <section class="connect-section animate-in animate-in-delay-2" id="team-section">
+            <h2 class="section-title">
+                <i data-lucide="users" class="section-title-icon"></i>
+                Meet Our Team
+            </h2>
+            <div class="team-grid">
+
+                <!-- 1. Asnan -->
+                <div class="team-card" id="team-asnan">
+                    <div class="team-avatar">A</div>
+                    <div class="team-card-name">Asnan Khan</div>
+                    <div class="team-card-designation">Founder & Career Consultant</div>
+                    <div class="team-card-phone"><a href="tel:+919420512501">+91 94205 12501</a></div>
+                    <div class="team-actions">
+                        <a href="tel:+919420512501" class="team-btn team-btn-call" aria-label="Call Asnan Khan">
+                            <i data-lucide="phone" class="team-btn-icon"></i> Call
+                        </a>
+                        <a href="https://wa.me/919420512501" target="_blank" rel="noopener noreferrer" class="team-btn team-btn-wa" aria-label="WhatsApp Asnan Khan">
+                            <i data-lucide="message-circle" class="team-btn-icon"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. Zeba -->
+                <div class="team-card" id="team-zeba">
+                    <div class="team-avatar">Z</div>
+                    <div class="team-card-name">Zeba Khan</div>
+                    <div class="team-card-designation">HR</div>
+                    <div class="team-card-phone"><a href="tel:+917038007716">+91 70380 07716</a></div>
+                    <div class="team-actions">
+                        <a href="tel:+917038007716" class="team-btn team-btn-call" aria-label="Call Zeba Khan">
+                            <i data-lucide="phone" class="team-btn-icon"></i> Call
+                        </a>
+                        <a href="https://wa.me/917038007716" target="_blank" rel="noopener noreferrer" class="team-btn team-btn-wa" aria-label="WhatsApp Zeba Khan">
+                            <i data-lucide="message-circle" class="team-btn-icon"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. Arshiya -->
+                <div class="team-card" id="team-arshiya">
+                    <div class="team-avatar">A</div>
+                    <div class="team-card-name">Arshiya Shaikh</div>
+                    <div class="team-card-designation">Talent Acquisition Executive</div>
+                    <div class="team-card-phone"><a href="tel:+917972731811">+91 79727 31811</a></div>
+                    <div class="team-actions">
+                        <a href="tel:+917972731811" class="team-btn team-btn-call" aria-label="Call Arshiya Shaikh">
+                            <i data-lucide="phone" class="team-btn-icon"></i> Call
+                        </a>
+                        <a href="https://wa.me/917972731811" target="_blank" rel="noopener noreferrer" class="team-btn team-btn-wa" aria-label="WhatsApp Arshiya Shaikh">
+                            <i data-lucide="message-circle" class="team-btn-icon"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. Mustaqueem Saad -->
+                <div class="team-card" id="team-mustaqueem">
+                    <div class="team-avatar">M</div>
+                    <div class="team-card-name">Mustaqueem Saad</div>
+                    <div class="team-card-designation">Recruitment Consultant</div>
+                    <div class="team-card-phone"><a href="tel:+919112049524">+91 91120 49524</a></div>
+                    <div class="team-actions">
+                        <a href="tel:+919112049524" class="team-btn team-btn-call" aria-label="Call Mustaqueem Saad">
+                            <i data-lucide="phone" class="team-btn-icon"></i> Call
+                        </a>
+                        <a href="https://wa.me/919112049524" target="_blank" rel="noopener noreferrer" class="team-btn team-btn-wa" aria-label="WhatsApp Mustaqueem Saad">
+                            <i data-lucide="message-circle" class="team-btn-icon"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===================================
+             OUR SERVICES
+             =================================== -->
+        <section class="connect-section animate-in animate-in-delay-3" id="services-section">
+            <h2 class="section-title">
+                <i data-lucide="briefcase" class="section-title-icon"></i>
+                Our Services
+            </h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">🎓</span>
+                    <span class="service-label">Admission Guidance</span>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">💼</span>
+                    <span class="service-label">Job & Recruitment Assistance</span>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🧭</span>
+                    <span class="service-label">Career Guidance & Counselling</span>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🏫</span>
+                    <span class="service-label">College & University Admission Assistance</span>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🌎</span>
+                    <span class="service-label">National & International Admission Guidance</span>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">📈</span>
+                    <span class="service-label">Career & Career-Growth Support</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             CONTACT US
+             =================================== -->
+        <section class="connect-section animate-in animate-in-delay-4" id="contact-section">
+            <h2 class="section-title">
+                <i data-lucide="mail" class="section-title-icon"></i>
+                Contact Us
+            </h2>
+            <div class="contact-info-card">
+                <div class="contact-row">
+                    <div class="contact-row-icon email-icon">
+                        <i data-lucide="mail"></i>
+                    </div>
+                    <div class="contact-row-content">
+                        <div class="contact-row-label">Email</div>
+                        <div class="contact-row-value">
+                            <a href="mailto:contact.planbcareers@gmail.com">contact.planbcareers@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-row-icon web-icon">
+                        <i data-lucide="globe"></i>
+                    </div>
+                    <div class="contact-row-content">
+                        <div class="contact-row-label">Website</div>
+                        <div class="contact-row-value">
+                            <a href="https://planbcareers.in" target="_blank" rel="noopener noreferrer">planbcareers.in</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-row-icon loc-icon">
+                        <i data-lucide="map-pin"></i>
+                    </div>
+                    <div class="contact-row-content">
+                        <div class="contact-row-label">Office Address</div>
+                        <div class="contact-row-value">
+                            Opposite Nagar Parishad Girls Urdu School,<br>
+                            Old City, Akola – 444002,<br>
+                            Maharashtra, India
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-actions">
+                    <a href="mailto:contact.planbcareers@gmail.com" class="contact-action-btn ca-email" id="ca-email-btn">
+                        <i data-lucide="mail" class="ca-icon"></i> Email Us
+                    </a>
+                    <a href="https://planbcareers.in" target="_blank" rel="noopener noreferrer" class="contact-action-btn ca-web" id="ca-web-btn">
+                        <i data-lucide="globe" class="ca-icon"></i> Visit Website
+                    </a>
+                    <a href="https://www.google.com/maps/search/Opposite+Nagar+Parishad+Girls+Urdu+School+Old+City+Akola+444002+Maharashtra+India" target="_blank" rel="noopener noreferrer" class="contact-action-btn ca-map" id="ca-map-btn">
+                        <i data-lucide="map-pin" class="ca-icon"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             WHATSAPP SECTION
+             =================================== -->
+        <section class="connect-section animate-in animate-in-delay-5" id="whatsapp-section">
+            <h2 class="section-title">
+                <i data-lucide="message-circle" class="section-title-icon" style="color: #25D366;"></i>
+                WhatsApp Us
+            </h2>
+            <a href="https://wa.me/919420512501" target="_blank" rel="noopener noreferrer" class="whatsapp-main-btn" id="wa-main-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp Us — +91 94205 12501
+            </a>
+            <div class="wa-individual-grid">
+                <a href="https://wa.me/919420512501" target="_blank" rel="noopener noreferrer" class="wa-individual-btn" id="wa-asnan">
+                    <span class="wa-dot"></span>
+                    <span class="wa-name">Asnan Khan</span>
+                    <i data-lucide="external-link" class="wa-arrow"></i>
+                </a>
+                <a href="https://wa.me/917038007716" target="_blank" rel="noopener noreferrer" class="wa-individual-btn" id="wa-zeba">
+                    <span class="wa-dot"></span>
+                    <span class="wa-name">Zeba Khan</span>
+                    <i data-lucide="external-link" class="wa-arrow"></i>
+                </a>
+                <a href="https://wa.me/917972731811" target="_blank" rel="noopener noreferrer" class="wa-individual-btn" id="wa-arshiya">
+                    <span class="wa-dot"></span>
+                    <span class="wa-name">Arshiya Shaikh</span>
+                    <i data-lucide="external-link" class="wa-arrow"></i>
+                </a>
+                <a href="https://wa.me/919112049524" target="_blank" rel="noopener noreferrer" class="wa-individual-btn" id="wa-mustaqueem">
+                    <span class="wa-dot"></span>
+                    <span class="wa-name">Mustaqueem Saad</span>
+                    <i data-lucide="external-link" class="wa-arrow"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- ===================================
+             SOCIAL MEDIA
+             =================================== -->
+        <section class="connect-section animate-in animate-in-delay-6" id="social-section">
+            <h2 class="section-title">
+                <i data-lucide="share-2" class="section-title-icon"></i>
+                Follow Us
+            </h2>
+            <div class="social-grid">
+                <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Facebook" id="social-facebook">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/planbcareers_india/" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram" id="social-instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </a>
+                <a href="https://www.youtube.com/@planbcareers" target="_blank" rel="noopener noreferrer" class="social-link youtube" aria-label="YouTube" id="social-youtube">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/planbcareers" target="_blank" rel="noopener noreferrer" class="social-link linkedin" aria-label="LinkedIn" id="social-linkedin">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+                <a href="https://x.com/planbcareers" target="_blank" rel="noopener noreferrer" class="social-link twitter" aria-label="X (Twitter)" id="social-twitter">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- ===================================
+             FOOTER
+             =================================== -->
+        <footer class="connect-footer">
+            <p>&copy; 2025 <a href="https://planbcareers.in" target="_blank" rel="noopener noreferrer">Plan B Careers</a>. All rights reserved.</p>
+        </footer>
+
+    </main>
+
+    <!-- ===================================
+         SCRIPTS
+         =================================== -->
+    <script>
+        // Initialize Lucide Icons
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+
+        /**
+         * Generate and download a multi-contact vCard (.vcf) file.
+         * Creates separate vCards for each team member + the organization.
+         */
+        function downloadVCard() {
+            const vcards = [];
+
+            // Organization vCard
+            vcards.push([
+                'BEGIN:VCARD',
+                'VERSION:3.0',
+                'FN:Plan B Careers',
+                'ORG:Plan B Careers',
+                'TEL;TYPE=WORK,VOICE:+919420512501',
+                'EMAIL;TYPE=WORK:contact.planbcareers@gmail.com',
+                'URL:https://planbcareers.in',
+                'ADR;TYPE=WORK:;;Opposite Nagar Parishad Girls Urdu School, Old City;Akola;Maharashtra;444002;India',
+                'NOTE:Your Partner for Admissions, Jobs & Career Growth',
+                'END:VCARD'
+            ].join('\r\n'));
+
+            // Asnan
+            vcards.push([
+                'BEGIN:VCARD',
+                'VERSION:3.0',
+                'FN:Asnan Khan - Plan B Careers',
+                'N:Khan;Asnan;;;',
+                'ORG:Plan B Careers',
+                'TITLE:Founder & Career Consultant',
+                'TEL;TYPE=CELL,VOICE:+919420512501',
+                'EMAIL;TYPE=WORK:contact.planbcareers@gmail.com',
+                'URL:https://planbcareers.in',
+                'ADR;TYPE=WORK:;;Opposite Nagar Parishad Girls Urdu School, Old City;Akola;Maharashtra;444002;India',
+                'END:VCARD'
+            ].join('\r\n'));
+
+            // Zeba
+            vcards.push([
+                'BEGIN:VCARD',
+                'VERSION:3.0',
+                'FN:Zeba Khan - Plan B Careers',
+                'N:Khan;Zeba;;;',
+                'ORG:Plan B Careers',
+                'TITLE:HR',
+                'TEL;TYPE=CELL,VOICE:+917038007716',
+                'EMAIL;TYPE=WORK:contact.planbcareers@gmail.com',
+                'URL:https://planbcareers.in',
+                'ADR;TYPE=WORK:;;Opposite Nagar Parishad Girls Urdu School, Old City;Akola;Maharashtra;444002;India',
+                'END:VCARD'
+            ].join('\r\n'));
+
+            // Arshiya
+            vcards.push([
+                'BEGIN:VCARD',
+                'VERSION:3.0',
+                'FN:Arshiya Shaikh - Plan B Careers',
+                'N:Shaikh;Arshiya;;;',
+                'ORG:Plan B Careers',
+                'TITLE:Talent Acquisition Executive',
+                'TEL;TYPE=CELL,VOICE:+917972731811',
+                'EMAIL;TYPE=WORK:contact.planbcareers@gmail.com',
+                'URL:https://planbcareers.in',
+                'ADR;TYPE=WORK:;;Opposite Nagar Parishad Girls Urdu School, Old City;Akola;Maharashtra;444002;India',
+                'END:VCARD'
+            ].join('\r\n'));
+
+            // Mustaqueem Saad
+            vcards.push([
+                'BEGIN:VCARD',
+                'VERSION:3.0',
+                'FN:Mustaqueem Saad - Plan B Careers',
+                'N:Saad;Mustaqueem;;;',
+                'ORG:Plan B Careers',
+                'TITLE:Recruitment Consultant',
+                'TEL;TYPE=CELL,VOICE:+919112049524',
+                'EMAIL;TYPE=WORK:contact.planbcareers@gmail.com',
+                'URL:https://planbcareers.in',
+                'ADR;TYPE=WORK:;;Opposite Nagar Parishad Girls Urdu School, Old City;Akola;Maharashtra;444002;India',
+                'END:VCARD'
+            ].join('\r\n'));
+
+            const vcfContent = vcards.join('\r\n');
+            const blob = new Blob([vcfContent], { type: 'text/vcard;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Plan-B-Careers-Contacts.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
