@@ -1,7 +1,7 @@
 {
   "name": "planb-remotion",
   "version": "1.0.0",
-  "description": "Remotion video project for PlanB Consultancy",
+  "description": "Remotion video project for PlanB Careers",
   "scripts": {
     "start": "remotion studio",
     "build": "remotion render",

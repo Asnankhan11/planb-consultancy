@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan B Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com">
+</script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .hidden-view { display: none; }
+        .active-view { display: block; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans h-screen flex overflow-hidden">
+
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="fixed inset-0 z-50 bg-gray-900 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
+            <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Admin Login</h2>
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="username" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-purple-500 focus:border-purple-500" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-purple-500 focus:border-purple-500" required>
+                </div>
+                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-2 rounded-lg hover:bg-purple-700 transition">Login</button>
+                <p id="loginError" class="text-red-500 text-sm text-center hidden"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- MAIN DASHBOARD -->
+    <div id="mainDashboard" class="hidden-view flex w-full h-full">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-900 text-white flex flex-col h-full">
+            <div class="p-6 text-xl font-extrabold border-b border-gray-800">Plan B Admin</div>
+            <nav class="flex-1 p-4 space-y-2">
+                <button onclick="switchView('dashboardView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard</button>
+                <button onclick="switchView('jobsView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="briefcase" class="w-5 h-5"></i> Manage Jobs</button>
+                <button onclick="switchView('appsView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="users" class="w-5 h-5"></i> Applications</button>
+                <button onclick="switchView('settingsView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="settings" class="w-5 h-5"></i> Settings</button>
+            
+                <button onclick="switchView('mediaView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="image" class="w-5 h-5"></i> Media Library</button>
+                <button onclick="switchView('teamView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="users" class="w-5 h-5"></i> Team</button>
+                <button onclick="switchView('successView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="award" class="w-5 h-5"></i> Success Stories</button>
+            </nav>
+            <div class="p-4 border-t border-gray-800">
+                <button onclick="logout()" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left text-red-400 hover:bg-gray-800 transition"><i data-lucide="log-out" class="w-5 h-5"></i> Logout</button>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="flex-1 overflow-y-auto bg-gray-50 p-8">
+            
+            <!-- Dashboard View -->
+            <div id="dashboardView" class="view-section active-view">
+                <h1 class="text-3xl font-bold mb-6">Overview</h1>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
+                        <h3 class="text-gray-500 text-sm font-medium uppercase tracking-wider mb-2">Total Applications</h3>
+                        <p class="text-4xl font-bold text-gray-800" id="statApps">0</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
+                        <h3 class="text-gray-500 text-sm font-medium uppercase tracking-wider mb-2">Open Jobs</h3>
+                        <p class="text-4xl font-bold text-blue-600" id="statJobs">0</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
+                        <h3 class="text-gray-500 text-sm font-medium uppercase tracking-wider mb-2">Website Hits (Today)</h3>
+                        <p class="text-4xl font-bold text-green-600" id="statHits">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs View -->
+            <div id="jobsView" class="view-section hidden-view">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-3xl font-bold">Manage Jobs</h1>
+                    <button onclick="openJobModal()" class="bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700">Add New Job</button>
+                </div>
+                <div class="bg-white rounded-xl shadow overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100 border-b border-gray-200">
+                                <th class="p-4 font-semibold text-gray-600">ID</th>
+                                <th class="p-4 font-semibold text-gray-600">Title</th>
+                                <th class="p-4 font-semibold text-gray-600">Company</th>
+                                <th class="p-4 font-semibold text-gray-600">Status</th>
+                                <th class="p-4 font-semibold text-gray-600 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jobsTableBody" class="divide-y divide-gray-200">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Applications View -->
+            <div id="appsView" class="view-section hidden-view">
+                <h1 class="text-3xl font-bold mb-6">Candidate Applications</h1>
+                <div class="bg-white rounded-xl shadow overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100 border-b border-gray-200">
+                                <th class="p-4 font-semibold text-gray-600">Candidate</th>
+                                <th class="p-4 font-semibold text-gray-600">Job Applied</th>
+                                <th class="p-4 font-semibold text-gray-600">Status</th>
+                                <th class="p-4 font-semibold text-gray-600 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appsTableBody" class="divide-y divide-gray-200">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            
+            <!-- Media Library View -->
+            <div id="mediaView" class="view-section hidden-view">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-3xl font-bold">Media Library</h1>
+                    <select id="mediaCategoryFilter" class="border p-2 rounded" onchange="loadMedia()">
+                        <option value="">All Categories</option>
+                        <option value="Office Photos">Office Photos</option>
+                        <option value="HR Team">HR Team</option>
+                        <option value="Success Stories">Success Stories</option>
+                        <option value="Candidate Reviews">Candidate Reviews</option>
+                        <option value="Offer Letters">Offer Letters</option>
+                        <option value="Payment Proofs">Payment Proofs</option>
+                        <option value="Interview Grooming">Interview Grooming</option>
+                        <option value="Certificates">Certificates</option>
+                        <option value="Gallery">Gallery</option>
+                        <option value="Documents">Documents</option>
+                        <option value="Company Logos">Company Logos</option>
+                        <option value="Videos">Videos</option>
+                    </select>
+                </div>
+
+                <!-- Drag & Drop Upload Area -->
+                <div id="dropZone" class="bg-white border-2 border-dashed border-gray-300 rounded-xl p-10 text-center mb-8 hover:bg-gray-50 transition cursor-pointer" onclick="document.getElementById('mediaInput').click()">
+                    <i data-lucide="upload-cloud" class="w-12 h-12 text-gray-400 mx-auto mb-3"></i>
+                    <p class="text-gray-600 font-medium">Drag & drop files here or click to upload</p>
+                    <p class="text-gray-400 text-sm mt-1">Supports JPG, PNG, WEBP, SVG, PDF, MP4</p>
+                    <input type="file" id="mediaInput" multiple class="hidden" onchange="handleFileUpload(event)">
+                    
+                    <div class="mt-4 flex items-center justify-center gap-4">
+                        <select id="uploadCategory" class="border p-2 rounded text-sm w-48" onclick="event.stopPropagation()">
+                            <option value="Office Photos">Office Photos</option>
+                            <option value="HR Team">HR Team</option>
+                            <option value="Success Stories">Success Stories</option>
+                            <option value="Candidate Reviews">Candidate Reviews</option>
+                            <option value="Offer Letters">Offer Letters</option>
+                            <option value="Payment Proofs">Payment Proofs</option>
+                            <option value="Interview Grooming">Interview Grooming</option>
+                            <option value="Certificates">Certificates</option>
+                            <option value="Gallery">Gallery</option>
+                            <option value="Documents">Documents</option>
+                            <option value="Company Logos">Company Logos</option>
+                            <option value="Videos">Videos</option>
+                        </select>
+                    </div>
+
+                    <!-- Upload Progress -->
+                    <div id="uploadProgressContainer" class="hidden mt-6 max-w-md mx-auto">
+                        <div class="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+                            <div id="uploadProgressBar" class="h-full bg-purple-600 w-0 transition-all"></div>
+                        </div>
+                        <p id="uploadProgressText" class="text-xs text-gray-500 mt-2">Uploading...</p>
+                    </div>
+                </div>
+
+                <!-- Media Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="mediaGrid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Team View -->
+            <div id="teamView" class="view-section hidden-view">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-3xl font-bold">Team Management</h1>
+                    <button onclick="openTeamModal()" class="bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700">Add Team Member</button>
+                </div>
+                <div class="bg-white rounded-xl shadow overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100 border-b border-gray-200">
+                                <th class="p-4 font-semibold text-gray-600">Photo</th>
+                                <th class="p-4 font-semibold text-gray-600">Name</th>
+                                <th class="p-4 font-semibold text-gray-600">Designation</th>
+                                <th class="p-4 font-semibold text-gray-600">Status</th>
+                                <th class="p-4 font-semibold text-gray-600 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teamTableBody" class="divide-y divide-gray-200">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Success Stories View -->
+            <div id="successView" class="view-section hidden-view">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-3xl font-bold">Success Stories</h1>
+                    <button onclick="openSuccessModal()" class="bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700">Add Success Story</button>
+                </div>
+                <div class="bg-white rounded-xl shadow overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100 border-b border-gray-200">
+                                <th class="p-4 font-semibold text-gray-600">Candidate</th>
+                                <th class="p-4 font-semibold text-gray-600">Company Logo</th>
+                                <th class="p-4 font-semibold text-gray-600">Testimonial</th>
+                                <th class="p-4 font-semibold text-gray-600 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="successTableBody" class="divide-y divide-gray-200">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div id="settingsView" class="view-section hidden-view">
+                <h1 class="text-3xl font-bold mb-6">Global Settings</h1>
+                <div class="bg-white rounded-xl shadow p-6 max-w-2xl">
+                    <form id="settingsForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Candidates Placed Counter</label>
+                            <input type="number" id="setPlaced" class="mt-1 w-full border border-gray-300 rounded p-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Companies Hiring Counter</label>
+                            <input type="number" id="setCompanies" class="mt-1 w-full border border-gray-300 rounded p-2">
+                        </div>
+                        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Save Settings</button>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Job Modal -->
+    <div id="jobModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center">
+        <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-lg">
+            <h2 class="text-2xl font-bold mb-4" id="jobModalTitle">Add Job</h2>
+            <form id="jobForm" class="space-y-3">
+                <input type="hidden" id="jobId">
+                <input type="text" id="jobTitle" placeholder="Job Title" class="w-full border p-2 rounded" required>
+                <input type="text" id="jobCompany" placeholder="Company Name" class="w-full border p-2 rounded" required>
+                <input type="text" id="jobLocation" placeholder="Location" class="w-full border p-2 rounded" required>
+                <input type="text" id="jobSalary" placeholder="Salary (e.g. 3.5 LPA)" class="w-full border p-2 rounded">
+                <select id="jobType" class="w-full border p-2 rounded">
+                    <option value="Full Time">Full Time</option>
+                    <option value="Part Time">Part Time</option>
+                    <option value="Work From Home">Work From Home</option>
+                </select>
+                <textarea id="jobDesc" placeholder="Description" class="w-full border p-2 rounded" rows="3"></textarea>
+                <select id="jobStatus" class="w-full border p-2 rounded hidden">
+                    <option value="Open">Open</option>
+                    <option value="Closed">Closed</option>
+                </select>
+                <div class="flex justify-end gap-2 pt-4">
+                    <button type="button" onclick="closeModal('jobModal')" class="px-4 py-2 border rounded">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Application Modal -->
+    <div id="appModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center">
+        <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-lg">
+            <h2 class="text-2xl font-bold mb-4">Update Application</h2>
+            <form id="appForm" class="space-y-3">
+                <input type="hidden" id="appId">
+                <div>
+                    <label class="block text-xs text-gray-500">Status</label>
+                    <select id="appStatus" class="w-full border p-2 rounded">
+                        <option value="Pending">Pending</option>
+                        <option value="Reviewed">Reviewed</option>
+                        <option value="Interviewing">Interviewing</option>
+                        <option value="Hired">Hired</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-500">Notes (Private)</label>
+                    <textarea id="appNotes" class="w-full border p-2 rounded" rows="3"></textarea>
+                </div>
+                <div class="flex justify-end gap-2 pt-4">
+                    <button type="button" onclick="closeModal('appModal')" class="px-4 py-2 border rounded">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+    <!-- Team Modal -->
+    <div id="teamModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center">
+        <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-bold mb-4" id="teamModalTitle">Add Team Member</h2>
+            <form id="teamForm" class="space-y-3">
+                <input type="hidden" id="teamId">
+                <input type="text" id="teamName" placeholder="Name" class="w-full border p-2 rounded" required>
+                <input type="text" id="teamDesignation" placeholder="Designation" class="w-full border p-2 rounded" required>
+                <input type="text" id="teamMobile" placeholder="Mobile" class="w-full border p-2 rounded">
+                <input type="email" id="teamEmail" placeholder="Email" class="w-full border p-2 rounded">
+                <input type="text" id="teamLinkedin" placeholder="LinkedIn URL" class="w-full border p-2 rounded">
+                <input type="text" id="teamInstagram" placeholder="Instagram URL" class="w-full border p-2 rounded">
+                <input type="text" id="teamPhotoUrl" placeholder="Photo URL (From Media Library)" class="w-full border p-2 rounded">
+                <textarea id="teamBio" placeholder="Bio" class="w-full border p-2 rounded" rows="3"></textarea>
+                <input type="number" id="teamOrder" placeholder="Display Order (e.g. 1)" class="w-full border p-2 rounded">
+                <select id="teamStatus" class="w-full border p-2 rounded">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+                <div class="flex justify-end gap-2 pt-4">
+                    <button type="button" onclick="closeModal('teamModal')" class="px-4 py-2 border rounded">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center">
+        <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-bold mb-4" id="successModalTitle">Add Success Story</h2>
+            <form id="successForm" class="space-y-3">
+                <input type="hidden" id="successId">
+                <input type="text" id="successName" placeholder="Candidate Name" class="w-full border p-2 rounded" required>
+                <input type="text" id="successPhotoUrl" placeholder="Candidate Photo URL" class="w-full border p-2 rounded">
+                <input type="text" id="successLogoUrl" placeholder="Company Logo URL" class="w-full border p-2 rounded">
+                <input type="text" id="successOfferUrl" placeholder="Offer Letter URL" class="w-full border p-2 rounded">
+                <input type="text" id="successSalaryUrl" placeholder="Salary Slip URL (Optional)" class="w-full border p-2 rounded">
+                <input type="text" id="successVideoUrl" placeholder="Video Review URL (Optional MP4)" class="w-full border p-2 rounded">
+                <textarea id="successTestimonial" placeholder="Testimonial Text" class="w-full border p-2 rounded" rows="3" required></textarea>
+                <div class="flex justify-end gap-2 pt-4">
+                    <button type="button" onclick="closeModal('successModal')" class="px-4 py-2 border rounded">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        const API_URL = '/api';
+        let token = localStorage.getItem('adminToken');
+
+        // Check Auth on Load
+        if (token) {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainDashboard').classList.remove('hidden-view');
+            loadDashboard();
+        }
+
+        // Login Handler
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            try {
+                const res = await fetch(`${API_URL}/admin/login`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({username: u, password: p})
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    token = data.token;
+                    localStorage.setItem('adminToken', token);
+                    document.getElementById('loginScreen').classList.add('hidden');
+                    document.getElementById('mainDashboard').classList.remove('hidden-view');
+                    loadDashboard();
+                } else {
+                    document.getElementById('loginError').textContent = data.error;
+                    document.getElementById('loginError').classList.remove('hidden');
+                }
+            } catch(e) { console.error(e); }
+        });
+
+        function logout() {
+            localStorage.removeItem('adminToken');
+            location.reload();
+        }
+
+        function switchView(id) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active-view'));
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden-view'));
+            document.getElementById(id).classList.remove('hidden-view');
+            document.getElementById(id).classList.add('active-view');
+            
+            if(id === 'jobsView') loadJobs();
+            if(id === 'appsView') loadApps();
+            if(id === 'dashboardView') loadDashboard();
+            if(id === 'settingsView') loadSettings();
+        }
+
+        // Fetch wrapper to handle auth
+        async function fetchAPI(endpoint, options = {}) {
+            if(!options.headers) options.headers = {};
+            options.headers['Authorization'] = `Bearer ${token}`;
+            const res = await fetch(`${API_URL}${endpoint}`, options);
+            if(res.status === 401 || res.status === 403) logout();
+            return res.json();
+        }
+
+        async function loadDashboard() {
+            const stats = await fetchAPI('/stats'); // No auth required for stats, but we use wrapper
+            document.getElementById('statApps').textContent = stats.applicationsReceived || 0;
+            document.getElementById('statJobs').textContent = stats.jobsAvailable || 0;
+            
+            const analytics = await fetchAPI('/analytics');
+            if(analytics.traffic && analytics.traffic.length > 0) {
+                document.getElementById('statHits').textContent = analytics.traffic[0].views;
+            }
+        }
+
+        // JOBS
+        async function loadJobs() {
+            const jobs = await fetchAPI('/jobs');
+            const tbody = document.getElementById('jobsTableBody');
+            tbody.innerHTML = jobs.map(j => `
+                <tr>
+                    <td class="p-4">#${j.id}</td>
+                    <td class="p-4 font-bold">${j.title}</td>
+                    <td class="p-4">${j.company}</td>
+                    <td class="p-4"><span class="px-2 py-1 text-xs rounded-full ${j.status==='Open'?'bg-green-100 text-green-800':'bg-red-100 text-red-800'}">${j.status}</span></td>
+                    <td class="p-4 text-right">
+                        <button onclick="editJob(${j.id})" class="text-blue-500 hover:underline mr-3">Edit</button>
+                        <button onclick="deleteJob(${j.id})" class="text-red-500 hover:underline">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openJobModal(job = null) {
+            document.getElementById('jobModal').classList.remove('hidden');
+            document.getElementById('jobModal').classList.add('flex');
+            const form = document.getElementById('jobForm');
+            if(job) {
+                document.getElementById('jobModalTitle').textContent = 'Edit Job';
+                document.getElementById('jobId').value = job.id;
+                document.getElementById('jobTitle').value = job.title;
+                document.getElementById('jobCompany').value = job.company;
+                document.getElementById('jobLocation').value = job.location;
+                document.getElementById('jobSalary').value = job.salary;
+                document.getElementById('jobType').value = job.type;
+                document.getElementById('jobDesc').value = job.description;
+                document.getElementById('jobStatus').value = job.status;
+                document.getElementById('jobStatus').classList.remove('hidden');
+            } else {
+                document.getElementById('jobModalTitle').textContent = 'Add Job';
+                form.reset();
+                document.getElementById('jobId').value = '';
+                document.getElementById('jobStatus').classList.add('hidden');
+            }
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.getElementById(id).classList.remove('flex');
+        }
+
+        document.getElementById('jobForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('jobId').value;
+            const data = {
+                title: document.getElementById('jobTitle').value,
+                company: document.getElementById('jobCompany').value,
+                location: document.getElementById('jobLocation').value,
+                salary: document.getElementById('jobSalary').value,
+                type: document.getElementById('jobType').value,
+                description: document.getElementById('jobDesc').value,
+                status: document.getElementById('jobStatus').value || 'Open'
+            };
+
+            if (id) {
+                await fetchAPI(`/jobs/${id}`, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+            } else {
+                await fetchAPI(`/jobs`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+            }
+            closeModal('jobModal');
+            loadJobs();
+        });
+
+        async function editJob(id) {
+            const jobs = await fetchAPI('/jobs');
+            const job = jobs.find(j => j.id === id);
+            if(job) openJobModal(job);
+        }
+
+        async function deleteJob(id) {
+            if(confirm('Delete this job?')) {
+                await fetchAPI(`/jobs/${id}`, { method: 'DELETE' });
+                loadJobs();
+            }
+        }
+
+        // APPLICATIONS
+        async function loadApps() {
+            const apps = await fetchAPI('/applications');
+            const tbody = document.getElementById('appsTableBody');
+            tbody.innerHTML = apps.map(a => `
+                <tr>
+                    <td class="p-4">
+                        <p class="font-bold">${a.name}</p>
+                        <p class="text-xs text-gray-500">${a.mobile} • ${a.email}</p>
+                        ${a.resume_url ? `<a href="${a.resume_url}" target="_blank" class="text-xs text-blue-500 hover:underline">View Resume</a>` : ''}
+                    </td>
+                    <td class="p-4 text-sm">${a.job_title || 'N/A'}<br><span class="text-xs text-gray-500">${a.job_company || ''}</span></td>
+                    <td class="p-4"><span class="px-2 py-1 text-xs rounded-full bg-gray-200">${a.status}</span></td>
+                    <td class="p-4 text-right">
+                        <button onclick="editApp(${a.id}, '${a.status}', '${a.notes || ''}')" class="text-blue-500 hover:underline">Update</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function editApp(id, status, notes) {
+            document.getElementById('appId').value = id;
+            document.getElementById('appStatus').value = status;
+            document.getElementById('appNotes').value = notes;
+            document.getElementById('appModal').classList.remove('hidden');
+            document.getElementById('appModal').classList.add('flex');
+        }
+
+        document.getElementById('appForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('appId').value;
+            const status = document.getElementById('appStatus').value;
+            const notes = document.getElementById('appNotes').value;
+            await fetchAPI(`/applications/${id}/status`, { 
+                method: 'PUT', 
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify({status, notes}) 
+            });
+            closeModal('appModal');
+            loadApps();
+        });
+
+        // SETTINGS
+        async function loadSettings() {
+            const s = await fetchAPI('/settings'); // Actually settings is public currently, but this is fine
+            document.getElementById('setPlaced').value = s.candidates_placed || 0;
+            document.getElementById('setCompanies').value = s.companies_hiring || 0;
+        }
+
+        document.getElementById('settingsForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await fetchAPI('/settings', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({key: 'candidates_placed', value: document.getElementById('setPlaced').value}) });
+            await fetchAPI('/settings', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({key: 'companies_hiring', value: document.getElementById('setCompanies').value}) });
+            alert('Settings Saved');
+        });
+    
+        // Media Library Logic
+        const dropZone = document.getElementById('dropZone');
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-gray-100'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('bg-gray-100'));
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('bg-gray-100');
+            document.getElementById('mediaInput').files = e.dataTransfer.files;
+            handleFileUpload({target: document.getElementById('mediaInput')});
+        });
+
+        async function handleFileUpload(e) {
+            const files = e.target.files;
+            if(!files.length) return;
+            
+            const category = document.getElementById('uploadCategory').value;
+            const formData = new FormData();
+            formData.append('category', category);
+            for(let i=0; i<files.length; i++) formData.append('files', files[i]);
+
+            document.getElementById('uploadProgressContainer').classList.remove('hidden');
+            const bar = document.getElementById('uploadProgressBar');
+            bar.style.width = '30%';
+
+            try {
+                const res = await fetch(API_URL + '/admin/media', {
+                    method: 'POST',
+                    headers: {'Authorization': 'Bearer ' + token},
+                    body: formData
+                });
+                bar.style.width = '100%';
+                if(res.ok) {
+                    setTimeout(() => {
+                        document.getElementById('uploadProgressContainer').classList.add('hidden');
+                        bar.style.width = '0%';
+                        loadMedia();
+                    }, 500);
+                } else {
+                    alert('Upload failed');
+                }
+            } catch(e) {
+                alert('Error uploading');
+            }
+        }
+
+        async function loadMedia() {
+            const cat = document.getElementById('mediaCategoryFilter').value;
+            const res = await fetch(API_URL + '/admin/media' + (cat ? '?category='+cat : ''), {
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            const data = await res.json();
+            const grid = document.getElementById('mediaGrid');
+            grid.innerHTML = data.map(m => {
+                let preview = '';
+                if(m.mime_type?.startsWith('image/')) preview = `<img src="${m.url}" class="w-full h-32 object-cover rounded-t-lg">`;
+                else if(m.mime_type?.startsWith('video/')) preview = `<video src="${m.url}" class="w-full h-32 object-cover rounded-t-lg"></video>`;
+                else preview = `<div class="w-full h-32 bg-gray-100 flex items-center justify-center rounded-t-lg"><i data-lucide="file" class="w-10 h-10 text-gray-400"></i></div>`;
+
+                return `
+                <div class="bg-white rounded-lg shadow border relative group">
+                    ${preview}
+                    <div class="p-3">
+                        <p class="text-xs text-gray-500 truncate" title="${m.original_name}">${m.original_name}</p>
+                        <p class="text-[10px] text-gray-400 mt-1">${m.category} &bull; ${(m.size/1024).toFixed(1)} KB</p>
+                    </div>
+                    <div class="absolute inset-0 bg-black/60 rounded-lg flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity gap-2">
+                        <button onclick="copyToClipboard('${m.url}')" class="text-xs bg-white text-black px-3 py-1 rounded">Copy URL</button>
+                        <button onclick="deleteMedia(${m.id})" class="text-xs bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+                    </div>
+                </div>`;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        async function deleteMedia(id) {
+            if(!confirm('Delete this file permanently?')) return;
+            await fetch(API_URL + '/admin/media/' + id, {
+                method: 'DELETE',
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            loadMedia();
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert('Copied URL: ' + text);
+        }
+
+        // Team Logic
+        async function loadTeam() {
+            const res = await fetch(API_URL + '/public/team');
+            const data = await res.json();
+            document.getElementById('teamTableBody').innerHTML = data.map(t => `
+                <tr>
+                    <td class="p-4"><img src="${t.photo_url || ''}" class="w-10 h-10 rounded-full object-cover bg-gray-200"></td>
+                    <td class="p-4">${t.name}</td>
+                    <td class="p-4">${t.designation}</td>
+                    <td class="p-4"><span class="px-2 py-1 rounded text-xs ${t.status==='Active'?'bg-green-100 text-green-700':'bg-red-100 text-red-700'}">${t.status}</span></td>
+                    <td class="p-4 text-right">
+                        <button onclick="deleteTeam(${t.id})" class="text-red-500 hover:text-red-700"><i data-lucide="trash-2" class="w-5 h-5"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function openTeamModal() {
+            document.getElementById('teamForm').reset();
+            document.getElementById('teamModal').classList.remove('hidden');
+            document.getElementById('teamModal').classList.add('flex');
+        }
+
+        document.getElementById('teamForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById('teamName').value,
+                designation: document.getElementById('teamDesignation').value,
+                mobile: document.getElementById('teamMobile').value,
+                email: document.getElementById('teamEmail').value,
+                linkedin: document.getElementById('teamLinkedin').value,
+                instagram: document.getElementById('teamInstagram').value,
+                photo_url: document.getElementById('teamPhotoUrl').value,
+                bio: document.getElementById('teamBio').value,
+                display_order: document.getElementById('teamOrder').value || 0,
+                status: document.getElementById('teamStatus').value
+            };
+            await fetch(API_URL + '/admin/team', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token},
+                body: JSON.stringify(data)
+            });
+            closeModal('teamModal');
+            loadTeam();
+        });
+
+        async function deleteTeam(id) {
+            if(!confirm('Delete this team member?')) return;
+            await fetch(API_URL + '/admin/team/' + id, {
+                method: 'DELETE',
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            loadTeam();
+        }
+
+        // Success Stories Logic
+        async function loadSuccess() {
+            const res = await fetch(API_URL + '/public/success-stories');
+            const data = await res.json();
+            document.getElementById('successTableBody').innerHTML = data.map(s => `
+                <tr>
+                    <td class="p-4 flex items-center gap-3">
+                        <img src="${s.photo_url || ''}" class="w-10 h-10 rounded-full object-cover bg-gray-200">
+                        ${s.candidate_name}
+                    </td>
+                    <td class="p-4"><img src="${s.company_logo_url || ''}" class="h-8 object-contain bg-gray-100 p-1 rounded"></td>
+                    <td class="p-4 text-sm text-gray-500 truncate max-w-xs">${s.testimonial}</td>
+                    <td class="p-4 text-right">
+                        <button onclick="deleteSuccess(${s.id})" class="text-red-500 hover:text-red-700"><i data-lucide="trash-2" class="w-5 h-5"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function openSuccessModal() {
+            document.getElementById('successForm').reset();
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('successModal').classList.add('flex');
+        }
+
+        document.getElementById('successForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                candidate_name: document.getElementById('successName').value,
+                testimonial: document.getElementById('successTestimonial').value,
+                photo_url: document.getElementById('successPhotoUrl').value,
+                company_logo_url: document.getElementById('successLogoUrl').value,
+                offer_letter_url: document.getElementById('successOfferUrl').value,
+                salary_slip_url: document.getElementById('successSalaryUrl').value,
+                video_url: document.getElementById('successVideoUrl').value
+            };
+            await fetch(API_URL + '/admin/success-stories', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token},
+                body: JSON.stringify(data)
+            });
+            closeModal('successModal');
+            loadSuccess();
+        });
+
+        async function deleteSuccess(id) {
+            if(!confirm('Delete this success story?')) return;
+            await fetch(API_URL + '/admin/success-stories/' + id, {
+                method: 'DELETE',
+                headers: {'Authorization': 'Bearer ' + token}
+            });
+            loadSuccess();
+        }
+
+        // Hook into switchView to lazy load data
+        const originalSwitchView = window.switchView;
+        window.switchView = function(viewId) {
+            if (originalSwitchView) originalSwitchView(viewId);
+            if(viewId === 'mediaView') loadMedia();
+            if(viewId === 'teamView') loadTeam();
+            if(viewId === 'successView') loadSuccess();
+        };
+
+    
+</script>
+</body>
+</html>

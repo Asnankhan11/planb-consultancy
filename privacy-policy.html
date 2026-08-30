@@ -3,10 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Privacy Policy of Plan B Consultancy - How we collect, use, and protect your personal information.">
-    <title>Privacy Policy - PlanB Consultancy</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <meta name="description" content="Privacy Policy of Plan B Careers - How we collect, use, and protect your personal information.">
+    <title>Privacy Policy - PlanB Careers</title>
+    <link rel="stylesheet" href="css/styles.css?v=4.0">
+    <script src="https://unpkg.com/lucide@latest"></script>    <style id="trust-nav-styles">
+        /* ── Trust Center Nav Button ── */
+        .trust-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: #0A2E6B;
+            background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%);
+            border: 1px solid rgba(244,196,48,0.5);
+            box-shadow: 0 0 14px rgba(212,160,23,0.25), inset 0 1px 0 rgba(255,255,255,0.25);
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, brightness 0.2s ease;
+            white-space: nowrap;
+        }
+        .trust-nav-btn:hover {
+            transform: translateY(-1px) scale(1.03);
+            box-shadow: 0 0 22px rgba(212,160,23,0.45), inset 0 1px 0 rgba(255,255,255,0.3);
+            filter: brightness(1.08);
+        }
+        .trust-nav-btn:active { transform: scale(0.97); }
+        .trust-nav-btn--active {
+            box-shadow: 0 0 20px rgba(212,160,23,0.5), 0 0 40px rgba(212,160,23,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+
+        /* ── Trust Center Mobile Button ── */
+        .trust-mobile-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0A2E6B;
+            background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%);
+            border: 1px solid rgba(244,196,48,0.4);
+            box-shadow: 0 4px 20px rgba(212,160,23,0.25);
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 4px;
+        }
+        .trust-mobile-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 28px rgba(212,160,23,0.4);
+        }
+        .trust-mobile-btn:active { transform: scale(0.97); }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Plan B Careers",
+      "image": "https://planbcareers.in/assets/images/hero/hero-banner.svg",
+      "url": "https://planbcareers.in",
+      "telephone": "+919420512501",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Akola",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    }
+    </script>
 </head>
 <body class="bg-[#090514] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
 
@@ -22,13 +90,14 @@
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
             <a href="index.html" class="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white hover:opacity-95 transition-opacity">
                 <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">PlanB</span>
-                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">Consultancy</span>
+                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">CAREERS</span>
             </a>
-            <ul class="hidden lg:flex items-center gap-2">
+            <ul class="hidden lg:flex items-center gap-4 whitespace-nowrap">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="jobs.html" class="nav-link">Jobs</a></li>
                 <li><a href="admissions.html" class="nav-link">Services</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                <li><a href="trust.html" class="trust-nav-btn" aria-label="Trust Center">&#x1F6E1;&#xFE0F; Trust Center</a></li>
             </ul>
             <div class="lg:hidden flex items-center gap-4">
                 <button class="menu-toggle flex flex-col gap-1.5 p-2 rounded-lg bg-white/5 border border-white/10" id="menuToggle" aria-label="Toggle Menu">
@@ -41,9 +110,10 @@
         <div class="hidden lg:hidden absolute top-[73px] left-0 w-full bg-[#0d0720]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6" id="mobileMenu">
             <ul class="flex flex-col gap-4 mb-6">
                 <li><a href="index.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Home</a></li>
+                <li><a href="trust.html" class="trust-mobile-btn">&#x1F6E1;&#xFE0F; Trust Center</a></li>
                 <li><a href="jobs.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Jobs</a></li>
                 <li><a href="admissions.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Services</a></li>
-                <li><a href="contact.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold">Contact</a></li>
+                <li><a href="contact.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold">Contact Us</a></li>
             </ul>
         </div>
     </nav>
@@ -72,8 +142,8 @@
                     <h2 class="text-xl font-bold text-white mb-4 border-b border-white/10 pb-3 flex items-center gap-2.5">
                         <i data-lucide="info" class="text-purple-400 w-5 h-5"></i> 1. Who We Are
                     </h2>
-                    <p class="text-gray-300 text-sm leading-relaxed">Plan B Consultancy is an independent career support and consultancy platform based in Akola, Maharashtra, India. We provide career guidance, interview preparation, resume assistance, job search support, application assistance, and placement assistance services. We are not affiliated with, endorsed by, or acting on behalf of any employer unless explicitly stated.</p>
-                    <p class="text-gray-300 text-sm leading-relaxed mt-3"><strong class="text-white">Contact:</strong> planb.consultancy.in@gmail.com | 070483 03847</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">Plan B Careers is an independent career support and CAREERS platform based in Akola, Maharashtra, India. We provide career guidance, interview preparation, resume assistance, job search support, application assistance, and placement assistance services. We are not affiliated with, endorsed by, or acting on behalf of any employer unless explicitly stated.</p>
+                    <p class="text-gray-300 text-sm leading-relaxed mt-3"><strong class="text-white">Contact:</strong> contact.planbcareers@gmail.com | +91 94205 12501</p>
                 </div>
 
                 <div>
@@ -118,7 +188,7 @@
                     <h2 class="text-xl font-bold text-white mb-4 border-b border-white/10 pb-3 flex items-center gap-2.5">
                         <i data-lucide="clock" class="text-yellow-400 w-5 h-5"></i> 5. Data Retention
                     </h2>
-                    <p class="text-gray-300 text-sm leading-relaxed">We retain your personal information for as long as necessary to provide our services or as required by law. You may request deletion of your data at any time by contacting us at planb.consultancy.in@gmail.com.</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">We retain your personal information for as long as necessary to provide our services or as required by law. You may request deletion of your data at any time by contacting us at contact.planbcareers@gmail.com.</p>
                 </div>
 
                 <div>
@@ -153,9 +223,9 @@
                     <h2 class="text-lg font-bold text-white mb-3">Contact Us About Privacy</h2>
                     <p class="text-gray-300 text-sm leading-relaxed">If you have any questions about this Privacy Policy or how we handle your data, please contact us:</p>
                     <ul class="mt-3 space-y-2 text-sm text-gray-400">
-                        <li>📧 <a href="mailto:planb.consultancy.in@gmail.com" class="text-purple-400 hover:underline">planb.consultancy.in@gmail.com</a></li>
-                        <li>📞 <a href="tel:+917048303847" class="text-purple-400 hover:underline">070483 03847</a></li>
-                        <li>📍 Akola, Maharashtra, India</li>
+                        <li>?? <a href="mailto:contact.planbcareers@gmail.com" class="text-purple-400 hover:underline">contact.planbcareers@gmail.com</a></li>
+                        <li>?? <a href="tel:+919420512501" class="text-purple-400 hover:underline">+91 94205 12501</a></li>
+                        <li>?? Akola, Maharashtra, India</li>
                     </ul>
                 </div>
 
@@ -166,7 +236,7 @@
     <!-- Footer -->
     <footer class="bg-[#05030c] border-t border-white/5 py-12 relative z-10 text-gray-400">
         <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
-            <p>&copy; 2026 PlanB Consultancy. All rights reserved.</p>
+            <p>&copy; 2026 PlanB Careers. All rights reserved.</p>
             <div class="flex flex-wrap gap-4">
                 <a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a>
                 <a href="terms.html" class="hover:text-white transition-colors">Terms &amp; Conditions</a>
@@ -176,7 +246,7 @@
             </div>
         </div>
         <div class="max-w-5xl mx-auto px-6 mt-8 text-center text-[10px] text-gray-700 leading-relaxed">
-            <p>Plan B Consultancy is an independent consultancy and career support platform. We are not affiliated with, endorsed by, or acting on behalf of any employer unless explicitly stated. We do not guarantee employment, job offers, interview selection, or hiring outcomes.</p>
+            <p>Plan B Careers is an independent CAREERS and career support platform. We are not affiliated with, endorsed by, or acting on behalf of any employer unless explicitly stated. We do not guarantee employment, job offers, interview selection, or hiring outcomes.</p>
         </div>
     </footer>
 
@@ -194,3 +264,5 @@
     </script>
 </body>
 </html>
+
+

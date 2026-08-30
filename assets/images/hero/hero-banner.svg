@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="heroBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#061D45;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#0A2E6B;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1a4a9e;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#D4A017;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#F4C430;stop-opacity:1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#0A2E6B;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#heroBg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Decorative grid lines -->
+  <g opacity="0.06" stroke="#FFFFFF" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Top gold accent line -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#gold)"/>
+
+  <!-- Centre text block -->
+  <text x="600" y="240" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="800" fill="#FFFFFF" letter-spacing="-1">Plan B Consultancy</text>
+  <text x="600" y="300" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="400" fill="#93C5FD">Trust Center — Hero Banner</text>
+
+  <!-- Gold divider -->
+  <rect x="480" y="325" width="240" height="3" rx="2" fill="url(#gold)"/>
+
+  <!-- Upload hint -->
+  <text x="600" y="375" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#64748B">Replace this file with hero-banner.jpg / .png / .webp (1200 × 630 px)</text>
+  <text x="600" y="398" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#64748B">Same filename → website auto-updates with no code changes</text>
+
+  <!-- Image icon -->
+  <rect x="545" y="430" width="110" height="80" rx="10" fill="none" stroke="#3B82F6" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="600" y="480" text-anchor="middle" font-family="Arial" font-size="28" fill="#3B82F6">🖼</text>
+  <text x="600" y="505" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#3B82F6">1200 × 630</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="614" width="1200" height="16" fill="rgba(0,0,0,0.3)"/>
+  <text x="600" y="626" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="#64748B">assets/images/hero/hero-banner.svg — PLACEHOLDER</text>
+</svg>

@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Center | Plan B Careers — Transparent Recruitment</title>
+    <meta name="description" content="Explore Plan B Careers's Trust Center — payment transparency, offer letters, interview grooming resources and more. Build your career with confidence.">
+    <meta property="og:title" content="Trust Center | Plan B Careers">
+    <meta property="og:description" content="Transparent recruitment process, verified documents, candidate reviews, and payment proof at Plan B Careers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://planbcareers.in/trust">
+    <meta property="og:image" content="https://placehold.co/1200x630/0A2E6B/FFFFFF?text=Trust+Center+-+Plan+B+Careers">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="css/styles.css?v=4.0">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* =============================================
+           Trust Center — Page-Specific Styles
+           ============================================= */
+
+        .tc-stat-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .tc-stat-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(139,92,246,0.07) 0%, rgba(236,72,153,0.07) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .tc-stat-card:hover { transform: translateY(-6px); border-color: rgba(139,92,246,0.35); box-shadow: 0 20px 50px rgba(139,92,246,0.15); }
+        .tc-stat-card:hover::before { opacity: 1; }
+
+        .tc-stat-number {
+            font-size: clamp(2.4rem, 5vw, 3.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+            display: inline-block;
+        }
+        .tc-stat-suffix {
+            font-size: 1.6rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tc-stat-label { font-size: 0.85rem; color: #9ca3af; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+
+        .tc-feature-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 20px;
+            padding: 2rem 1.75rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .tc-feature-card::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899, #3b82f6);
+            transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
+        }
+        .tc-feature-card:hover { transform: translateY(-7px); border-color: rgba(139,92,246,0.3); box-shadow: 0 24px 60px rgba(139,92,246,0.12); }
+        .tc-feature-card:hover::after { transform: scaleX(1); }
+        .tc-feature-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.6rem; }
+
+        .tc-review-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 1.75rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex; flex-direction: column;
+        }
+        .tc-review-card:hover { transform: translateY(-5px); border-color: rgba(139,92,246,0.3); box-shadow: 0 20px 50px rgba(139,92,246,0.12); }
+        .tc-review-quote { position: absolute; top: 14px; right: 20px; font-size: 4rem; line-height: 1; color: rgba(139,92,246,0.12); font-family: Georgia, serif; }
+        .tc-review-stars { color: #fbbf24; font-size: 0.9rem; letter-spacing: 1px; }
+        .tc-review-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1.1rem; color: white; flex-shrink: 0;
+        }
+
+        .tc-doc-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px; padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem;
+        }
+        .tc-doc-card:hover { transform: translateY(-5px); border-color: rgba(59,130,246,0.35); box-shadow: 0 20px 50px rgba(59,130,246,0.1); }
+        .tc-doc-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; }
+        .tc-doc-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 20px; background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
+        .tc-doc-badge.available { background: rgba(16,185,129,0.12); color: #34d399; border-color: rgba(16,185,129,0.2); }
+        .tc-doc-badge.coming-soon { background: rgba(251,191,36,0.1); color: #fbbf24; border-color: rgba(251,191,36,0.2); }
+
+        .tc-payment-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; overflow: hidden; transition: all 0.3s ease; }
+        .tc-payment-card:hover { transform: translateY(-5px); border-color: rgba(16,185,129,0.3); box-shadow: 0 20px 50px rgba(16,185,129,0.1); }
+        .tc-payment-thumb { width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(59,130,246,0.06) 100%); border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.75rem; }
+        .tc-payment-info { padding: 1.25rem; }
+
+        .tc-qr-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 1.75rem 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; transition: all 0.3s ease; }
+        .tc-qr-card:hover { transform: translateY(-5px); border-color: rgba(139,92,246,0.3); box-shadow: 0 20px 50px rgba(139,92,246,0.12); }
+        .tc-qr-placeholder { width: 120px; height: 120px; border-radius: 12px; background: rgba(255,255,255,0.05); border: 2px dashed rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; }
+
+        .tc-groom-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 2rem; transition: all 0.3s ease; display: flex; gap: 1.5rem; align-items: flex-start; }
+        .tc-groom-card:hover { transform: translateY(-4px); border-color: rgba(139,92,246,0.3); box-shadow: 0 20px 50px rgba(139,92,246,0.12); }
+        .tc-groom-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+        .tc-section-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 50px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
+
+        .tc-cta-banner { background: linear-gradient(135deg, rgba(139,92,246,0.12) 0%, rgba(236,72,153,0.12) 50%, rgba(59,130,246,0.12) 100%); border: 1px solid rgba(139,92,246,0.2); border-radius: 28px; padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden; }
+        .tc-cta-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(139,92,246,0.05) 0%, transparent 60%); animation: tcPulse 6s ease-in-out infinite; }
+        @keyframes tcPulse { 0%,100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 1; } }
+
+        @keyframes tcFloat { 0%,100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
+        .tc-float-1 { animation: tcFloat 4s ease-in-out infinite; }
+        .tc-float-2 { animation: tcFloat 5s ease-in-out 1s infinite; }
+        .tc-float-3 { animation: tcFloat 6s ease-in-out 2s infinite; }
+
+        .tc-reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .tc-reveal.visible { opacity: 1; transform: translateY(0); }
+        .tc-reveal-delay-1 { transition-delay: 0.1s; }
+        .tc-reveal-delay-2 { transition-delay: 0.2s; }
+        .tc-reveal-delay-3 { transition-delay: 0.3s; }
+        .tc-reveal-delay-4 { transition-delay: 0.4s; }
+        .tc-reveal-delay-5 { transition-delay: 0.5s; }
+        .tc-reveal-delay-6 { transition-delay: 0.6s; }
+
+        .tc-skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.09) 50%, rgba(255,255,255,0.04) 100%); background-size: 200% 100%; animation: tcSkeleton 1.5s ease-in-out infinite; border-radius: 8px; }
+        @keyframes tcSkeleton { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        .tc-divider { height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.2) 30%, rgba(236,72,153,0.2) 70%, transparent 100%); margin: 0; }
+        .tc-tick { color: #34d399; }
+
+        @media (max-width: 768px) {
+            .tc-groom-card { flex-direction: column; }
+            .tc-cta-banner { padding: 2.5rem 1.25rem; }
+        }
+
+        /* ---- Responsive lazy image ---- */
+        .tc-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease, opacity 0.3s ease;
+            background: rgba(255,255,255,0.03);
+        }
+        .tc-img.loaded { opacity: 1; }
+        .tc-img:not(.loaded) { opacity: 0.4; }
+        .tc-img-wrap {
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+        }
+        .tc-img-wrap:hover .tc-img { transform: scale(1.04); }
+
+        /* ---- Avatar image ---- */
+        .tc-avatar-img {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg,#8b5cf6,#ec4899);
+        }
+
+        /* ---- QR image ---- */
+        .tc-qr-img {
+            width: 120px; height: 120px;
+            border-radius: 12px;
+            object-fit: contain;
+            background: rgba(255,255,255,0.05);
+            display: block;
+        }
+
+        /* ---- Lightbox ---- */
+        #tc-lightbox {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(16px);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.25s ease;
+            padding: 1rem;
+        }
+        #tc-lightbox.open { opacity: 1; pointer-events: all; }
+        #tc-lightbox img {
+            max-width: 90vw; max-height: 85vh;
+            border-radius: 16px;
+            box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        #tc-lightbox-close {
+            position: absolute; top: 1.25rem; right: 1.25rem;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white; font-size: 1.25rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s ease;
+        }
+        #tc-lightbox-close:hover { background: rgba(255,255,255,0.2); }
+        #tc-lightbox-caption {
+            position: absolute; bottom: 1.5rem; left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #e2e8f0; font-size: 0.8rem;
+            padding: 6px 18px; border-radius: 50px;
+            white-space: nowrap;
+        }
+    
+        @keyframes scrollFeed {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+        .animate-scrolling-feed {
+            animation: scrollFeed 20s linear infinite;
+        }
+        .animate-scrolling-feed:hover {
+            animation-play-state: paused;
+        }
+        .gallery-tab.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+    </style>    <style id="trust-nav-styles">
+        /* â”€â”€ Trust Center Nav Button â”€â”€ */
+        .trust-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: #0A2E6B;
+            background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%);
+            border: 1px solid rgba(244,196,48,0.5);
+            box-shadow: 0 0 14px rgba(212,160,23,0.25), inset 0 1px 0 rgba(255,255,255,0.25);
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, brightness 0.2s ease;
+            white-space: nowrap;
+        }
+        .trust-nav-btn:hover {
+            transform: translateY(-1px) scale(1.03);
+            box-shadow: 0 0 22px rgba(212,160,23,0.45), inset 0 1px 0 rgba(255,255,255,0.3);
+            filter: brightness(1.08);
+        }
+        .trust-nav-btn:active { transform: scale(0.97); }
+        .trust-nav-btn--active {
+            box-shadow: 0 0 20px rgba(212,160,23,0.5), 0 0 40px rgba(212,160,23,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+
+        /* â”€â”€ Trust Center Mobile Button â”€â”€ */
+        .trust-mobile-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0A2E6B;
+            background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%);
+            border: 1px solid rgba(244,196,48,0.4);
+            box-shadow: 0 4px 20px rgba(212,160,23,0.25);
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 4px;
+        }
+        .trust-mobile-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 28px rgba(212,160,23,0.4);
+        }
+        .trust-mobile-btn:active { transform: scale(0.97); }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Plan B Careers",
+      "image": "https://planbcareers.in/assets/images/hero/hero-banner.svg",
+      "url": "https://planbcareers.in",
+      "telephone": "+919420512501",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Akola",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    }
+    </script>
+</head>
+<body class="bg-[#090514] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
+
+    <!-- Decorative background blobs -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-900/10 blur-[150px]"></div>
+        <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-pink-900/10 blur-[150px]"></div>
+        <div class="absolute top-[40%] left-[30%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[150px]"></div>
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white hover:opacity-95 transition-opacity">
+                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">PlanB</span>
+                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">CAREERS</span>
+            </a>
+
+            <ul class="hidden lg:flex items-center gap-4 whitespace-nowrap">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="admissions.html" class="nav-link">Services</a></li>
+                <li><a href="index.html#partners" class="nav-link">Companies</a></li>
+                <li><a href="index.html#about" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                <li><a href="trust.html" class="trust-nav-btn trust-nav-btn--active" aria-label="Trust Center">&#x1F6E1;&#xFE0F; Trust Center</a></li>
+            </ul>
+
+            <div class="hidden lg:flex items-center gap-4">
+                <div class="flex items-center gap-3 mr-2">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/planbcareers_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/planbcareers" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                </div>
+                <a href="apply-job.html" class="px-5 py-2 rounded-full text-sm font-semibold glass-panel border-white/20 text-white hover:bg-white/10 transition-all">Login</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all">Register</a>
+            </div>
+
+            <div class="lg:hidden flex items-center gap-4">
+                <button class="menu-toggle flex flex-col gap-1.5 p-2 rounded-lg bg-white/5 border border-white/10" id="menuToggle" aria-label="Toggle Menu">
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="hidden lg:hidden absolute top-[73px] left-0 w-full bg-[#0d0720]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6" id="mobileMenu">
+            <ul class="flex flex-col gap-4 mb-6">
+                <li><a href="index.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Home</a></li>
+                <li><a href="trust.html" class="trust-mobile-btn">&#x1F6E1;&#xFE0F; Trust Center</a></li>
+                <li><a href="jobs.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Jobs</a></li>
+                <li><a href="admissions.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Services</a></li>
+                <li><a href="index.html#partners" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Companies</a></li>
+                <li><a href="index.html#about" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">About Us</a></li>
+                <li><a href="contact.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Contact Us</a></li>
+                
+            </ul>
+            <div class="flex flex-col gap-3">
+                <a href="apply-job.html" class="w-full text-center py-3 rounded-xl font-semibold glass-panel border-white/20 text-white hover:bg-white/10 transition-all">Login</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform" target="_blank" rel="noopener noreferrer" class="w-full text-center py-3 rounded-xl font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 transition-all">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== SECTION 1: HERO ===================== -->
+    <section class="relative min-h-[90vh] flex items-center justify-center pt-28 pb-20 overflow-hidden" id="trust-hero">
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-purple-500/5 rounded-full animate-spin" style="animation-duration:40s;"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-pink-500/5 rounded-full animate-spin" style="animation-duration:30s;animation-direction:reverse;"></div>
+        </div>
+
+        <div class="absolute top-36 left-[8%] hidden xl:block tc-float-1">
+            <div class="glass-panel border border-white/10 rounded-2xl px-4 py-3 flex items-center gap-2 text-xs text-gray-300">
+                <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span> 500+ Offers Facilitated
+            </div>
+        </div>
+        <div class="absolute top-48 right-[6%] hidden xl:block tc-float-2">
+            <div class="glass-panel border border-white/10 rounded-2xl px-4 py-3 flex items-center gap-2 text-xs text-gray-300">
+                <i data-lucide="star" class="w-3.5 h-3.5 text-yellow-400"></i> 4.9/5 Rating
+            </div>
+        </div>
+        <div class="absolute bottom-32 left-[12%] hidden xl:block tc-float-3">
+            <div class="glass-panel border border-white/10 rounded-2xl px-4 py-3 flex items-center gap-2 text-xs text-gray-300">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-purple-400"></i> 100% Transparent
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold tracking-wider uppercase mb-8 animate-pulse">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Trust Center
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1] tc-reveal">
+                Why Trust <br>
+                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Plan B Careers?</span>
+            </h1>
+
+            <p class="text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-10 tc-reveal tc-reveal-delay-1">
+                Explore our transparent recruitment process, verified documentation, customer reviews and candidate success stories. Everything you need to make an informed, confident decision.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center tc-reveal tc-reveal-delay-2">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform" target="_blank" rel="noopener noreferrer" id="hero-apply-now" class="px-8 py-3.5 rounded-full font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="rocket" class="w-4 h-4"></i> Apply Now
+                </a>
+                <a href="contact.html" id="hero-contact-us" class="px-8 py-3.5 rounded-full font-semibold glass-panel border border-white/15 text-white hover:bg-white/10 hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> Contact Us
+                </a>
+            </div>
+
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 tc-reveal tc-reveal-delay-3" id="trust-hero-stats">
+                <div class="tc-stat-card">
+                    <div><span class="tc-stat-number" data-target="1250" id="hstat-1">0</span><span class="tc-stat-suffix">+</span></div>
+                    <div class="tc-stat-label">Candidates Assisted</div>
+                </div>
+                <div class="tc-stat-card">
+                    <div><span class="tc-stat-number" data-target="1100" id="hstat-2">0</span><span class="tc-stat-suffix">+</span></div>
+                    <div class="tc-stat-label">Offers Facilitated</div>
+                </div>
+                <div class="tc-stat-card">
+                    <div><span class="tc-stat-number" data-target="150" id="hstat-3">0</span><span class="tc-stat-suffix">+</span></div>
+                    <div class="tc-stat-label">Cities Served</div>
+                </div>
+                <div class="tc-stat-card">
+                    <div><span class="tc-stat-number" data-target="99" id="hstat-4">0</span><span class="tc-stat-suffix">%</span></div>
+                    <div class="tc-stat-label">Candidate Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 1.5: VISITOR VERIFICATION ===================== -->
+    <section class="py-12 relative z-10 mt-[-40px]" id="visitor-verification">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="glass-panel border border-white/10 rounded-3xl p-8 shadow-2xl relative overflow-hidden flex flex-col md:flex-row gap-8 items-center justify-between">
+                <!-- BG Glow -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-[80px]"></div>
+                
+                <div class="flex-1 w-full relative z-10">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="relative flex h-3 w-3">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                        </span>
+                        <h3 class="text-green-400 font-bold uppercase tracking-widest text-xs">Verified Secure Session</h3>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-2 gap-4 lg:gap-6">
+                        <div>
+                            <p class="text-gray-500 text-xs uppercase mb-1">Visitor ID</p>
+                            <p class="text-white font-mono font-bold text-sm break-all" id="vv-id">PB-VIS-Generating...</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-xs uppercase mb-1">Visit Time</p>
+                            <p class="text-white font-semibold text-sm" id="vv-time">--</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-xs uppercase mb-1">Country</p>
+                            <p class="text-white font-semibold text-sm flex items-center gap-2" id="vv-country">--</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-xs uppercase mb-1">Status</p>
+                            <p class="text-green-400 font-semibold text-sm">Encrypted</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Score Circular Progress -->
+                <div class="w-full md:w-auto flex flex-col items-center justify-center relative z-10 border-t md:border-t-0 md:border-l border-white/10 pt-6 md:pt-0 md:pl-8">
+                    <div class="relative w-32 h-32">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="8"></circle>
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#gradient)" stroke-width="8" stroke-dasharray="283" stroke-dashoffset="283" id="trust-circle" class="transition-all duration-1500 ease-out"></circle>
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#3b82f6" />
+                                    <stop offset="100%" stop-color="#10b981" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span class="text-3xl font-extrabold text-white" id="trust-score">0</span>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest">%</span>
+                        </div>
+                    </div>
+                    <p class="text-green-400 font-bold text-xs mt-3 text-center uppercase tracking-wider">Verified CAREERS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===================== SECTION: CANDIDATE VERIFICATION & LIVE FEED ===================== -->
+    <section class="py-24 relative z-10" id="candidate-verification">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 max-w-3xl mx-auto gap-12">
+                
+                <!-- Live Activity Feed -->
+                <div class="tc-reveal tc-reveal-delay-2">
+                    <div class="tc-section-badge bg-pink-500/10 border border-pink-500/20 text-pink-300">
+                        <i data-lucide="activity" class="w-3.5 h-3.5"></i> Live Updates
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Activity Feed</h2>
+                    
+                    <div class="glass-panel border border-white/10 rounded-3xl p-6 h-[400px] overflow-hidden relative">
+                        <div class="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-[#0d0720] to-transparent z-10 pointer-events-none rounded-t-3xl"></div>
+                        <div class="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#0d0720] to-transparent z-10 pointer-events-none rounded-b-3xl"></div>
+                        
+                        <div class="flex flex-col gap-4 animate-scrolling-feed" id="activity-feed-container">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div class="tc-divider"></div>
+<!-- ===================== SECTION 2: WHY CHOOSE PLAN B ===================== -->
+    <section class="py-24 relative z-10" id="why-choose">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 tc-reveal">
+                <div class="tc-section-badge bg-blue-500/10 border border-blue-500/20 text-blue-300">
+                    <i data-lucide="award" class="w-3.5 h-3.5"></i> Our Promise
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">Why Choose Plan B?</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Six pillars that make us the most trusted career CAREERS in Maharashtra.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="tc-feature-card tc-reveal tc-reveal-delay-1">
+                    <div class="tc-feature-icon bg-purple-500/15"><span style="font-size:1.6rem;">&#128269;</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Transparent Process</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Every step of your journey is clearly communicated — no hidden fees, no surprises. You see exactly how we work.</p>
+                    <ul class="mt-4 space-y-1.5">
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Clear fee structure</li>
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Step-by-step updates</li>
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Written agreements</li>
+                    </ul>
+                </div>
+                
+                <div class="tc-feature-card tc-reveal tc-reveal-delay-3">
+                    <div class="tc-feature-icon bg-pink-500/15"><span style="font-size:1.6rem;">&#127908;</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Interview Grooming</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Industry-specific preparation sessions, mock interviews and downloadable guides ensure you walk in confident and prepared.</p>
+                    <ul class="mt-4 space-y-1.5">
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Mock interview sessions</li>
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> PDF guides &amp; tips</li>
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Industry-specific prep</li>
+                    </ul>
+                </div>
+                <div class="tc-feature-card tc-reveal tc-reveal-delay-1">
+                    <div class="tc-feature-icon bg-green-500/15"><span style="font-size:1.6rem;">&#129517;</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Career Guidance</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Personalised career path mapping, role matching, resume building and long-term career strategy tailored for you.</p>
+                    <ul class="mt-4 space-y-1.5">
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Personalised counselling</li>
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Resume optimisation</li>
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Career path mapping</li>
+                    </ul>
+                </div>
+                <div class="tc-feature-card tc-reveal tc-reveal-delay-2">
+                    <div class="tc-feature-icon bg-yellow-500/15"><span style="font-size:1.6rem;">&#129309;</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Dedicated Support</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">A dedicated consultant assigned to your profile from day one — available on WhatsApp, phone and email throughout the process.</p>
+                    <ul class="mt-4 space-y-1.5">
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Personal consultant</li>
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> WhatsApp availability</li>
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Quick response times</li>
+                    </ul>
+                </div>
+                <div class="tc-feature-card tc-reveal tc-reveal-delay-3">
+                    <div class="tc-feature-icon bg-indigo-500/15"><span style="font-size:1.6rem;">&#127970;</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Post Joining Assistance</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Our support doesn't end at joining. We follow up on salary credits, onboarding documents and your first 90 days on the job.</p>
+                    <ul class="mt-4 space-y-1.5">
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Salary credit follow-up</li>
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> Onboarding support</li>
+                        <li class="flex items-center gap-2 text-xs text-gray-400"><span class="tc-tick">&#10003;</span> 90-day check-in</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="tc-divider"></div>
+
+    <!-- ===================== SECTION 3: TRUST STATISTICS ===================== -->
+    <section class="py-24 relative z-10" id="trust-stats">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 tc-reveal">
+                <div class="tc-section-badge bg-purple-500/10 border border-purple-500/20 text-purple-300">
+                    <i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i> Our Numbers
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">Trust Statistics</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Real impact, real numbers. Updated periodically to reflect our growth.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="stats-section">
+                <div class="tc-stat-card tc-reveal tc-reveal-delay-1">
+                    <div class="mb-3 text-2xl">&#128101;</div>
+                    <div><span class="tc-stat-number" data-target="1200" id="stat-candidates">0</span><span class="tc-stat-suffix">+</span></div>
+                    <div class="tc-stat-label">Candidates Assisted</div>
+                </div>
+                <div class="tc-stat-card tc-reveal tc-reveal-delay-2">
+                    <div class="mb-3 text-2xl">&#128196;</div>
+                    <div><span class="tc-stat-number" data-target="500" id="stat-offers">0</span><span class="tc-stat-suffix">+</span></div>
+                    <div class="tc-stat-label">Offers Facilitated</div>
+                </div>
+                <div class="tc-stat-card tc-reveal tc-reveal-delay-3">
+                    <div class="mb-3 text-2xl">&#127757;</div>
+                    <div><span class="tc-stat-number" data-target="50" id="stat-cities">0</span><span class="tc-stat-suffix">+</span></div>
+                    <div class="tc-stat-label">Cities Served</div>
+                </div>
+                <div class="tc-stat-card tc-reveal tc-reveal-delay-4">
+                    <div class="mb-3 text-2xl">&#11088;</div>
+                    <div><span class="tc-stat-number" data-target="97" id="stat-satisfaction">0</span><span class="tc-stat-suffix">%</span></div>
+                    <div class="tc-stat-label">Candidate Satisfaction</div>
+                </div>
+            </div>
+            <p class="text-center text-xs text-gray-600 mt-6">* Statistics are representative and updated periodically. Contact us for the latest verified data.</p>
+        </div>
+    </section>
+
+    <div class="tc-divider"></div>
+
+    <!-- ===================== SECTION: GALLERIES ===================== -->
+    <section class="py-24 relative z-10" id="galleries">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 tc-reveal">
+                <div class="tc-section-badge bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">
+                    <i data-lucide="image" class="w-3.5 h-3.5"></i> Visual Proof
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">Official Galleries</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Explore our office, team, verified offer letters, and payment proofs.</p>
+            </div>
+
+            <!-- Gallery Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10 tc-reveal">
+                <button class="gallery-tab active px-6 py-2 rounded-full text-sm font-semibold bg-white/10 text-white" data-cat="office">Office Gallery</button>
+                <button class="gallery-tab px-6 py-2 rounded-full text-sm font-semibold bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all" data-cat="team">Team Section</button>
+                <button class="gallery-tab px-6 py-2 rounded-full text-sm font-semibold bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all" data-cat="reviews">Candidate Reviews</button>
+                <button class="gallery-tab px-6 py-2 rounded-full text-sm font-semibold bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all" data-cat="offer-letters">Offer Letter Gallery</button>
+                <button class="gallery-tab px-6 py-2 rounded-full text-sm font-semibold bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all" data-cat="salary">Salary Gallery</button>
+                <button class="gallery-tab px-6 py-2 rounded-full text-sm font-semibold bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all" data-cat="payment-proofs">Payment Proof Gallery</button>
+                <button class="gallery-tab px-6 py-2 rounded-full text-sm font-semibold bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all" data-cat="receipts">Receipts Gallery</button>
+                <button class="gallery-tab px-6 py-2 rounded-full text-sm font-semibold bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all" data-cat="certificates">Certificates Gallery</button>
+                <button class="gallery-tab px-6 py-2 rounded-full text-sm font-semibold bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all" data-cat="logos">Company Logos</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-container">
+                <!-- Images injected here -->
+            </div>
+            
+            <div id="gallery-empty" class="text-center text-gray-500 py-12 hidden">No images uploaded to this category yet.</div>
+        </div>
+    </section>
+    <div class="tc-divider"></div>
+
+    <!-- ===================== SECTION 8: QR CODES ===================== -->
+    <section class="py-24 relative z-10" id="qr-codes">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 tc-reveal">
+                <div class="tc-section-badge bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">
+                    <i data-lucide="qr-code" class="w-3.5 h-3.5"></i> Scan &amp; Connect
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">QR Code Center</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Scan any QR below to quickly access our platforms, forms and social media channels.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+
+                <!-- Website QR -->
+                <div class="tc-qr-card tc-reveal tc-reveal-delay-1" id="qr-website">
+                    <div class="tc-img-wrap" style="width:120px;height:120px;border-radius:12px;" onclick="openLightbox('assets/images/qr-codes/qr-website.svg','QR — Website')">
+                        <img src="assets/images/qr-codes/qr-website.svg"
+                             alt="QR Code for Plan B Careers Website"
+                             class="tc-qr-img" loading="lazy" width="120" height="120"
+                             onload="this.classList.add('loaded')">
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-1">Website</h4>
+                        <p class="text-[11px] text-gray-500">Scan to visit planbcareers.in</p>
+                    </div>
+                    <a href="https://planbcareers.in" target="_blank" class="text-[11px] text-purple-400 hover:text-purple-300 underline transition-colors">Visit Site &rarr;</a>
+                </div>
+
+                <!-- Registration Form QR -->
+                <div class="tc-qr-card tc-reveal tc-reveal-delay-2" id="qr-registration">
+                    <div class="tc-img-wrap" style="width:120px;height:120px;border-radius:12px;" onclick="openLightbox('assets/images/qr-codes/qr-registration-form.svg','QR — Registration Form')">
+                        <img src="assets/images/qr-codes/qr-registration-form.svg"
+                             alt="QR Code for Plan B Registration Form"
+                             class="tc-qr-img" loading="lazy" width="120" height="120"
+                             onload="this.classList.add('loaded')">
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-1">Registration Form</h4>
+                        <p class="text-[11px] text-gray-500">Scan to apply and register with us</p>
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform" target="_blank" class="text-[11px] text-blue-400 hover:text-blue-300 underline transition-colors">Open Form &rarr;</a>
+                </div>
+
+                <!-- WhatsApp QR -->
+                <div class="tc-qr-card tc-reveal tc-reveal-delay-3" id="qr-whatsapp">
+                    <div class="tc-img-wrap" style="width:120px;height:120px;border-radius:12px;" onclick="openLightbox('assets/images/qr-codes/qr-whatsapp.svg','QR — WhatsApp')">
+                        <img src="assets/images/qr-codes/qr-whatsapp.svg"
+                             alt="QR Code for Plan B WhatsApp"
+                             class="tc-qr-img" loading="lazy" width="120" height="120"
+                             onload="this.classList.add('loaded')">
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-1">WhatsApp</h4>
+                        <p class="text-[11px] text-gray-500">Scan to chat with our team directly</p>
+                    </div>
+                    <a href="https://wa.me/919420512501" target="_blank" class="text-[11px] text-[#25D366] hover:text-green-400 underline transition-colors">Chat Now &rarr;</a>
+                </div>
+
+                <!-- Instagram QR -->
+                <div class="tc-qr-card tc-reveal tc-reveal-delay-4" id="qr-instagram">
+                    <div class="tc-img-wrap" style="width:120px;height:120px;border-radius:12px;" onclick="openLightbox('assets/images/qr-codes/qr-instagram.svg','QR — Instagram')">
+                        <img src="assets/images/qr-codes/qr-instagram.svg"
+                             alt="QR Code for Plan B Instagram"
+                             class="tc-qr-img" loading="lazy" width="120" height="120"
+                             onload="this.classList.add('loaded')">
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-1">Instagram</h4>
+                        <p class="text-[11px] text-gray-500">Scan to follow us on Instagram</p>
+                    </div>
+                    <a href="https://www.instagram.com/planbcareers_india/" target="_blank" class="text-[11px] text-pink-400 hover:text-pink-300 underline transition-colors">Follow &rarr;</a>
+                </div>
+
+                <!-- LinkedIn QR -->
+                <div class="tc-qr-card tc-reveal tc-reveal-delay-5" id="qr-linkedin">
+                    <div class="tc-img-wrap" style="width:120px;height:120px;border-radius:12px;" onclick="openLightbox('assets/images/qr-codes/qr-linkedin.svg','QR — LinkedIn')">
+                        <img src="assets/images/qr-codes/qr-linkedin.svg"
+                             alt="QR Code for Plan B LinkedIn"
+                             class="tc-qr-img" loading="lazy" width="120" height="120"
+                             onload="this.classList.add('loaded')">
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-1">LinkedIn</h4>
+                        <p class="text-[11px] text-gray-500">Scan to connect with us on LinkedIn</p>
+                    </div>
+                    <a href="https://www.linkedin.com/in/planbcareers" target="_blank" class="text-[11px] text-blue-400 hover:text-blue-300 underline transition-colors">Connect &rarr;</a>
+                </div>
+
+            </div>
+            <p class="text-center text-xs text-gray-600 mt-8">QR codes will be generated and uploaded soon. Use the links below each card in the meantime.</p>
+        </div>
+    </section>
+
+    <div class="tc-divider"></div>
+
+    <!-- ===================== SECTION 9: CONTACT CTA ===================== -->
+    <section class="py-24 relative z-10" id="trust-cta">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="tc-cta-banner tc-reveal">
+                <div class="relative z-10">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30 mb-6 mx-auto">
+                        <i data-lucide="rocket" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">Ready to Start<br><span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Your Career?</span></h2>
+                    <p class="text-gray-400 max-w-xl mx-auto mb-10 text-base leading-relaxed">Join 1000+ candidates who trusted Plan B Careers. We'll guide you every step of the way — from application to salary credit.</p>
+                    <div class="flex flex-wrap gap-4 justify-center mb-10 text-xs text-gray-400">
+                        <span class="flex items-center gap-1.5"><span class="tc-tick text-base">&#10003;</span> No hidden charges</span>
+                        <span class="flex items-center gap-1.5"><span class="tc-tick text-base">&#10003;</span> Verified employers</span>
+                        <span class="flex items-center gap-1.5"><span class="tc-tick text-base">&#10003;</span> Post-joining support</span>
+                        <span class="flex items-center gap-1.5"><span class="tc-tick text-base">&#10003;</span> GST invoice provided</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform" target="_blank" rel="noopener noreferrer" id="cta-apply-now" class="px-9 py-4 rounded-full font-bold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="user-plus" class="w-5 h-5"></i> Apply Now &mdash; It's Free
+                        </a>
+                        <a href="https://wa.me/919420512501?text=Hi%20I%20want%20to%20join%20Plan%20B%20CAREERS" target="_blank" id="cta-contact-team" class="px-9 py-4 rounded-full font-bold bg-[#25D366] text-white shadow-lg shadow-green-500/25 hover:shadow-green-500/40 hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i> Contact Team
+                        </a>
+                    </div>
+                    <div class="mt-8 flex flex-wrap gap-6 justify-center text-xs text-gray-500">
+                        <a href="tel:+917972731811" class="hover:text-white transition-colors flex items-center gap-1.5"><i data-lucide="phone" class="w-3.5 h-3.5"></i> 079727 31811</a>
+                        <a href="mailto:contact.planbcareers@gmail.com" class="hover:text-white transition-colors flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5"></i> contact.planbcareers@gmail.com</a>
+                        <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Akola, Maharashtra</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INDEPENDENCE DISCLAIMER -->
+    <section class="py-10 relative z-10 bg-yellow-500/5 border-y border-yellow-500/20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-3">
+                <i data-lucide="shield-alert" class="w-5 h-5 text-yellow-400"></i>
+                <h2 class="text-sm font-bold text-yellow-300 uppercase tracking-widest">Important Disclaimer</h2>
+            </div>
+            <p class="text-xs md:text-sm text-gray-400 leading-relaxed max-w-3xl mx-auto">
+                <strong class="text-white">Plan B Careers is an independent CAREERS and career support platform.</strong> We are not affiliated with, endorsed by, or acting on behalf of any employer unless explicitly stated. We do not guarantee employment, job offers, interview selection, or hiring outcomes. All job listings are provided for informational and application assistance purposes only. Career guidance, interview preparation, resume assistance, and placement assistance services are provided as professional consulting services subject to our <a href="refund-policy.html" class="text-purple-400 hover:underline">Refund Policy</a>.
+            </p>
+            <div class="flex flex-wrap gap-3 justify-center mt-4">
+                <a href="disclaimer.html" class="text-xs text-yellow-400 hover:text-yellow-300 underline">Full Disclaimer</a>
+                <span class="text-gray-600">&bull;</span>
+                <a href="privacy-policy.html" class="text-xs text-purple-400 hover:text-purple-300 underline">Privacy Policy</a>
+                <span class="text-gray-600">&bull;</span>
+                <a href="terms.html" class="text-xs text-purple-400 hover:text-purple-300 underline">Terms &amp; Conditions</a>
+                <span class="text-gray-600">&bull;</span>
+                <a href="refund-policy.html" class="text-xs text-purple-400 hover:text-purple-300 underline">Refund Policy</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#05030c] border-t border-white/5 py-12 relative z-10 text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            <div class="md:col-span-4 flex flex-col items-start gap-4">
+                <a href="index.html" class="text-2xl font-extrabold tracking-tight text-white">
+                    <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">PlanB</span> CAREERS
+                </a>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">An independent career support platform providing career guidance, interview preparation, resume assistance, and job search support across Maharashtra and India.</p>
+                <p class="text-xs text-gray-500 mt-2">Founded by Asnan &bull; Akola, Maharashtra</p>
+                <div class="flex flex-wrap items-center gap-2 mt-4">
+                    <a href="https://www.facebook.com/share/18KLz5Ci69/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="Facebook"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                    <a href="https://www.instagram.com/planbcareers_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-pink-400 hover:bg-white/10 transition-colors" aria-label="Instagram"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    <a href="https://www.youtube.com/@planbcareers" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+                    <a href="https://www.linkedin.com/in/planbcareers" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                    <a href="https://wa.me/919420512501" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-[#25D366] hover:bg-white/10 transition-colors" aria-label="WhatsApp"><i data-lucide="message-circle" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+            <div class="md:col-span-2">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-purple-500 pl-2">Quick Links</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="jobs.html" class="hover:text-white transition-colors">All Jobs</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admissions</a></li>
+                    <li><a href="fast-track.html" class="hover:text-white transition-colors">Fast Track</a></li>
+                    <li><a href="trust.html" class="text-purple-400 font-semibold">Trust Center</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-pink-500 pl-2">Our Services</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><a href="index.html#services" class="hover:text-white transition-colors">Job Placements</a></li>
+                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admission Support</a></li>
+                    <li><a href="women-wfh.html" class="hover:text-white transition-colors">Work From Home</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Income Growth Guidance</a></li>
+                    <li><a href="business.html" class="hover:text-white transition-colors">Digital Solutions</a></li>
+                </ul>
+            </div>
+            <div class="md:col-span-3">
+                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-blue-500 pl-2">Contact Info</h4>
+                <ul class="space-y-3 text-xs">
+                    <li class="flex flex-col gap-1.5 pb-1">
+                            <span class="text-[10px] uppercase tracking-widest text-purple-400 font-semibold mb-0.5">HR Team</span>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i>
+                                <span class="text-white font-medium">HR Asnan</span>
+                            </div>
+                            <div class="flex items-center gap-2 pl-0.5">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i>
+                                <a href="tel:+919420512501" class="hover:text-white">+91 94205 12501</a>
+                            </div>
+                            <div class="flex items-center gap-2 mt-1">
+                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-pink-400 flex-shrink-0"></i>
+                                <span class="text-white font-medium">HR Arshiya</span>
+                            </div>
+                            <div class="flex items-center gap-2 pl-0.5">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-pink-400 flex-shrink-0"></i>
+                                <a href="tel:+917972731811" class="hover:text-white">+91 79727 31811</a>
+                            </div>
+                        </li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-pink-400"></i> <a href="mailto:contact.planbcareers@gmail.com" class="hover:text-white">contact.planbcareers@gmail.com</a></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i> <span>Akola, Maharashtra, India</span></li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="message-square" class="w-4 h-4 text-[#25D366]"></i> <a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20guidance" target="_blank" class="text-[#25D366] font-semibold hover:underline">WhatsApp Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+            <p>&copy; 2026 PlanB Careers. All rights reserved.</p>
+            <div class="flex flex-wrap gap-4">
+                <a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white transition-colors">Terms &amp; Conditions</a>
+                <a href="refund-policy.html" class="hover:text-white transition-colors">Refund Policy</a>
+                <a href="disclaimer.html" class="hover:text-white transition-colors">Disclaimer</a>
+                <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
+            </div>
+        </div>
+        <div class="max-w-5xl mx-auto px-6 mt-8 text-center text-[10px] text-gray-700 leading-relaxed">
+            <p>Plan B Careers is an independent CAREERS and career support platform. We are not affiliated with, endorsed by, or acting on behalf of any employer unless explicitly stated. CAREERS and guidance fees are charged for professional services rendered and are subject to our published Refund Policy.</p>
+        </div>
+    
+    <!-- Visitor Analytics Bar -->
+    <div class="border-t border-white/5 bg-[#090514]/90 backdrop-blur-md py-4 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-8 md:gap-16 text-center">
+            <div>
+                <p class="text-gray-500 text-[10px] uppercase tracking-widest mb-1">Visitors Today</p>
+                <p class="text-white font-bold text-lg" id="analytics-today">0</p>
+            </div>
+            <div>
+                <p class="text-gray-500 text-[10px] uppercase tracking-widest mb-1">Online Now</p>
+                <p class="text-green-400 font-bold text-lg flex items-center justify-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> <span id="analytics-online">0</span></p>
+            </div>
+            <div>
+                <p class="text-gray-500 text-[10px] uppercase tracking-widest mb-1">Total Page Views</p>
+                <p class="text-white font-bold text-lg" id="analytics-total">0</p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+        <!-- FLOATING CONTACT WIDGET -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end group" id="contactWidget">
+        <div class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-[#090514] border border-white/10 text-white px-4 py-2.5 rounded-2xl text-xs font-semibold shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Need Help? Chat with HR
+        </div>
+        <a href="https://wa.me/919420512501?text=Hi%20I%20need%20help" target="_blank" class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white flex items-center justify-center shadow-lg shadow-green-500/30 hover:scale-[1.08] hover:-translate-y-0.5 active:scale-[0.98] transition-all" aria-label="WhatsApp Chat">
+            <i data-lucide="message-circle" class="w-7 h-7 fill-current"></i>
+        </a>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/trust.js"></script>
+</body>
+</html>
+

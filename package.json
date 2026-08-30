@@ -1,27 +1,40 @@
 {
-  "name": "planb-consultancy",
+  "name": "planbcareers",
   "version": "1.0.0",
   "description": "**Tagline:** Backup jo kaam kare",
   "main": "main.js",
   "scripts": {
+    "start": "node server.js",
     "build": "npx tailwindcss -i ./css/input.css -o ./css/styles.css --minify",
     "watch": "npx tailwindcss -i ./css/input.css -o ./css/styles.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Asnankhan11/planb-consultancy.git"
+    "url": "git+https://github.com/Asnankhan11/planbcareers.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/Asnankhan11/planb-consultancy/issues"
+    "url": "https://github.com/Asnankhan11/planbcareers/issues"
   },
-  "homepage": "https://github.com/Asnankhan11/planb-consultancy#readme",
+  "homepage": "https://github.com/Asnankhan11/planbcareers#readme",
   "dependencies": {
-    "@tailwindcss/cli": "^4.3.0",
-    "tailwindcss": "^4.3.0"
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^4.22.2",
+    "express-rate-limit": "^8.6.1",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.2.0",
+    "nodemailer": "^9.0.3",
+    "sharp": "^0.35.3",
+    "sqlite3": "^6.0.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
   }
 }

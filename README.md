@@ -1,8 +1,8 @@
-# Plan-B Consultancy Website
+# Plan-B CAREERS Website
 
 **Tagline:** Backup jo kaam kare
 
-A modern, professional website for Plan-B Consultancy - providing guidance for admissions, jobs, work-from-home opportunities, and business growth.
+A modern, professional website for Plan-B CAREERS - providing guidance for admissions, jobs, work-from-home opportunities, and business growth.
 
 ## 🌟 Features
 
@@ -22,7 +22,7 @@ A modern, professional website for Plan-B Consultancy - providing guidance for a
 
 1. **Using Python (Recommended)**:
    ```bash
-   cd planb-consultancy
+   cd planbcareers
    python -m http.server 8000
    ```
    Then open your browser and visit: `http://localhost:8000`
@@ -33,7 +33,7 @@ A modern, professional website for Plan-B Consultancy - providing guidance for a
 ## 📁 File Structure
 
 ```
-planb-consultancy/
+planbcareers/
 ├── index.html          # Home page
 ├── admissions.html     # Admissions guidance page
 ├── jobs.html           # Jobs and placements page
@@ -56,7 +56,7 @@ planb-consultancy/
 ## 📱 Contact Information
 
 - **Phone/WhatsApp**: 9420512501
-- **Email**: planb.consultancy.in@gmail.com
+- **Email**: contact.planbcareers@gmail.com
 - **Managed By**: Asnan
 
 ## 🛠️ Technologies Used
@@ -97,7 +97,7 @@ Simply upload all files to your hosting provider.
 
 ## 📄 License
 
-© 2026 Plan-B Consultancy. All rights reserved.
+© 2026 Plan-B CAREERS. All rights reserved.
 
 ---
 

@@ -1,5 +1,5 @@
 // ===================================
-// PlanB Consultancy — Hero Background Animation
+// PlanB Careers — Hero Background Animation
 // Deep blue gradient with floating particles & geometric shapes
 // ===================================
 

@@ -1,0 +1,57 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="794" height="1123" viewBox="0 0 794 1123">
+  <defs>
+    <linearGradient id="docBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF"/>
+      <stop offset="100%" style="stop-color:#F8FAFC"/>
+    </linearGradient>
+    <linearGradient id="header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#061D45"/>
+      <stop offset="100%" style="stop-color:#0A2E6B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Page background -->
+  <rect width="794" height="1123" fill="url(#docBg)" rx="4"/>
+  <rect width="794" height="1123" fill="none" stroke="#E2E8F0" stroke-width="2" rx="4"/>
+
+  <!-- Document header bar -->
+  <rect x="0" y="0" width="794" height="120" rx="4" fill="url(#header)"/>
+  <rect x="0" y="116" width="794" height="4" fill="#64748B"/>
+
+  <!-- Logo area -->
+  <text x="40" y="55" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">PlanB</text>
+  <text x="40" y="80" font-family="Inter, Arial, sans-serif" font-size="11" fill="#93C5FD" letter-spacing="2">CONSULTANCY</text>
+  <text x="40" y="105" font-family="Inter, Arial, sans-serif" font-size="9" fill="#64748B">Akola, Maharashtra — planb-consultancy.in</text>
+
+  <!-- Top-right accent -->
+  <rect x="650" y="20" width="120" height="80" rx="8" fill="rgba(255,255,255,0.06)"/>
+  <text x="710" y="50" text-anchor="middle" font-size="28" font-family="Arial">💼</text>
+  <text x="710" y="82" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#93C5FD">OFFICIAL</text>
+  <text x="710" y="94" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="9" fill="#93C5FD">DOCUMENT</text>
+
+  <!-- Document title -->
+  <text x="397" y="220" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="800" fill="#0A2E6B">Business Documents</text>
+  <rect x="297" y="232" width="200" height="3" rx="1.5" fill="#64748B"/>
+  <text x="397" y="265" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#64748B">Identity & Business Verification</text>
+
+  <!-- Dashed placeholder content area -->
+  <rect x="60" y="300" width="674" height="600" rx="12" fill="rgba(10,46,107,0.03)" stroke="rgba(10,46,107,0.12)" stroke-width="1.5" stroke-dasharray="8,5"/>
+
+  <!-- Centre placeholder icon -->
+  <text x="397" y="560" text-anchor="middle" font-size="56" font-family="Arial">💼</text>
+  <text x="397" y="620" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#94A3B8">Business Documents</text>
+  <text x="397" y="650" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#CBD5E1">Replace file: business-documents.svg</text>
+  <text x="397" y="675" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#CBD5E1">with JPG, PNG or PDF of same name</text>
+
+  <!-- Line rules (document lines) -->
+  <line x1="60" y1="940" x2="734" y2="940" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="60" y1="960" x2="600" y2="960" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="60" y1="980" x2="400" y2="980" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- Signature area -->
+  <rect x="500" y="1010" width="234" height="60" rx="4" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="617" y="1047" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="11" fill="#94A3B8">Authorised Signature</text>
+
+  <!-- Page number -->
+  <text x="397" y="1108" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#94A3B8">Page 1 of 1 — PLACEHOLDER — business-documents.svg</text>
+</svg>

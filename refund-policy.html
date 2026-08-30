@@ -3,10 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Refund Policy of Plan B Consultancy - Our policy on fees, refunds, and cancellations for career guidance and placement assistance services.">
-    <title>Refund Policy - PlanB Consultancy</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <meta name="description" content="Refund Policy of Plan B Careers - Our policy on fees, refunds, and cancellations for career guidance and placement assistance services.">
+    <title>Refund Policy - PlanB Careers</title>
+    <link rel="stylesheet" href="css/styles.css?v=4.0">
+    <script src="https://unpkg.com/lucide@latest"></script>    <style id="trust-nav-styles">
+        /* ── Trust Center Nav Button ── */
+        .trust-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: #0A2E6B;
+            background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%);
+            border: 1px solid rgba(244,196,48,0.5);
+            box-shadow: 0 0 14px rgba(212,160,23,0.25), inset 0 1px 0 rgba(255,255,255,0.25);
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, brightness 0.2s ease;
+            white-space: nowrap;
+        }
+        .trust-nav-btn:hover {
+            transform: translateY(-1px) scale(1.03);
+            box-shadow: 0 0 22px rgba(212,160,23,0.45), inset 0 1px 0 rgba(255,255,255,0.3);
+            filter: brightness(1.08);
+        }
+        .trust-nav-btn:active { transform: scale(0.97); }
+        .trust-nav-btn--active {
+            box-shadow: 0 0 20px rgba(212,160,23,0.5), 0 0 40px rgba(212,160,23,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+
+        /* ── Trust Center Mobile Button ── */
+        .trust-mobile-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0A2E6B;
+            background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%);
+            border: 1px solid rgba(244,196,48,0.4);
+            box-shadow: 0 4px 20px rgba(212,160,23,0.25);
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 4px;
+        }
+        .trust-mobile-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 28px rgba(212,160,23,0.4);
+        }
+        .trust-mobile-btn:active { transform: scale(0.97); }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Plan B Careers",
+      "image": "https://planbcareers.in/assets/images/hero/hero-banner.svg",
+      "url": "https://planbcareers.in",
+      "telephone": "+919420512501",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Akola",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    }
+    </script>
 </head>
 <body class="bg-[#090514] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
 
@@ -19,13 +87,14 @@
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
             <a href="index.html" class="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white hover:opacity-95 transition-opacity">
                 <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">PlanB</span>
-                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">Consultancy</span>
+                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">CAREERS</span>
             </a>
-            <ul class="hidden lg:flex items-center gap-2">
+            <ul class="hidden lg:flex items-center gap-4 whitespace-nowrap">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="jobs.html" class="nav-link">Jobs</a></li>
                 <li><a href="admissions.html" class="nav-link">Services</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                <li><a href="trust.html" class="trust-nav-btn" aria-label="Trust Center">&#x1F6E1;&#xFE0F; Trust Center</a></li>
             </ul>
             <div class="lg:hidden">
                 <button class="flex flex-col gap-1.5 p-2 rounded-lg bg-white/5 border border-white/10" id="menuToggle">
@@ -40,7 +109,7 @@
                 <li><a href="index.html" class="block text-gray-300 hover:text-white py-2 font-semibold border-b border-white/5">Home</a></li>
                 <li><a href="jobs.html" class="block text-gray-300 hover:text-white py-2 font-semibold border-b border-white/5">Jobs</a></li>
                 <li><a href="admissions.html" class="block text-gray-300 hover:text-white py-2 font-semibold border-b border-white/5">Services</a></li>
-                <li><a href="contact.html" class="block text-gray-300 hover:text-white py-2 font-semibold">Contact</a></li>
+                <li><a href="contact.html" class="block text-gray-300 hover:text-white py-2 font-semibold">Contact Us</a></li>
             </ul>
         </div>
     </nav>
@@ -64,15 +133,15 @@
             <div class="glass-panel rounded-3xl p-8 md:p-12 space-y-10">
 
                 <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-2xl p-5">
-                    <p class="text-yellow-300 text-sm font-semibold">⚠ Important Notice</p>
-                    <p class="text-gray-300 text-sm mt-2 leading-relaxed">Consultancy and guidance fees are charged for <strong class="text-white">professional services rendered</strong> — not as a guarantee of any specific employment outcome, job offer, interview selection, or hiring result. Please read this policy fully before making any payment.</p>
+                    <p class="text-yellow-300 text-sm font-semibold">? Important Notice</p>
+                    <p class="text-gray-300 text-sm mt-2 leading-relaxed">CAREERS and guidance fees are charged for <strong class="text-white">professional services rendered</strong> � not as a guarantee of any specific employment outcome, job offer, interview selection, or hiring result. Please read this policy fully before making any payment.</p>
                 </div>
 
                 <div>
                     <h2 class="text-xl font-bold text-white mb-4 border-b border-white/10 pb-3 flex items-center gap-2">
                         <i data-lucide="briefcase" class="text-purple-400 w-5 h-5"></i> 1. Nature of Our Services
                     </h2>
-                    <p class="text-gray-300 text-sm leading-relaxed">Plan B Consultancy provides professional career support services including:</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">Plan B Careers provides professional career support services including:</p>
                     <ul class="list-disc pl-6 space-y-2 text-gray-400 text-sm mt-3">
                         <li>Career counselling and guidance</li>
                         <li>Resume building and optimization</li>
@@ -81,7 +150,7 @@
                         <li>Placement assistance and candidate coordination</li>
                         <li>Admission guidance and process support</li>
                     </ul>
-                    <p class="text-gray-300 text-sm leading-relaxed mt-3">These are professional consulting services. Fees, where applicable, are for the service itself — not for guaranteeing any specific outcome.</p>
+                    <p class="text-gray-300 text-sm leading-relaxed mt-3">These are professional consulting services. Fees, where applicable, are for the service itself � not for guaranteeing any specific outcome.</p>
                 </div>
 
                 <div>
@@ -90,7 +159,7 @@
                     </h2>
                     <ul class="list-disc pl-6 space-y-2 text-gray-400 text-sm">
                         <li>Some of our services are provided at no charge (basic job listings, initial guidance)</li>
-                        <li>Certain premium services — such as resume building, intensive interview coaching, or fast-track placement assistance — may involve a service fee</li>
+                        <li>Certain premium services � such as resume building, intensive interview coaching, or fast-track placement assistance � may involve a service fee</li>
                         <li>All applicable fees will be clearly communicated before any payment is requested</li>
                         <li>We do not take any fees on behalf of employers or institutions</li>
                     </ul>
@@ -102,7 +171,7 @@
                     </h2>
                     <div class="space-y-4">
                         <div class="bg-green-500/5 border border-green-500/20 rounded-xl p-4">
-                            <p class="text-green-300 font-semibold text-sm mb-2">✓ Eligible for Refund</p>
+                            <p class="text-green-300 font-semibold text-sm mb-2">? Eligible for Refund</p>
                             <ul class="list-disc pl-5 space-y-1 text-gray-400 text-xs">
                                 <li>Service not yet initiated/commenced within 48 hours of payment</li>
                                 <li>Duplicate payment made by error</li>
@@ -111,7 +180,7 @@
                             </ul>
                         </div>
                         <div class="bg-red-500/5 border border-red-500/20 rounded-xl p-4">
-                            <p class="text-red-300 font-semibold text-sm mb-2">✗ Not Eligible for Refund</p>
+                            <p class="text-red-300 font-semibold text-sm mb-2">? Not Eligible for Refund</p>
                             <ul class="list-disc pl-5 space-y-1 text-gray-400 text-xs">
                                 <li>Service has already been initiated or partially delivered</li>
                                 <li>Candidate was not selected by an employer (selection is the employer's independent decision)</li>
@@ -129,7 +198,7 @@
                         <i data-lucide="clock" class="text-blue-400 w-5 h-5"></i> 4. Refund Process
                     </h2>
                     <ol class="list-decimal pl-6 space-y-2 text-gray-400 text-sm">
-                        <li>Submit a refund request to planb.consultancy.in@gmail.com with your payment details and reason</li>
+                        <li>Submit a refund request to contact.planbcareers@gmail.com with your payment details and reason</li>
                         <li>We will acknowledge your request within 2 business days</li>
                         <li>Eligible refunds will be processed within 7-10 business days</li>
                         <li>Refunds will be made to the original payment method where possible</li>
@@ -140,15 +209,15 @@
                     <h2 class="text-xl font-bold text-white mb-4 border-b border-white/10 pb-3 flex items-center gap-2">
                         <i data-lucide="alert-circle" class="text-yellow-400 w-5 h-5"></i> 5. Disputes
                     </h2>
-                    <p class="text-gray-300 text-sm leading-relaxed">If you have any concerns about a payment or service, please contact us first at planb.consultancy.in@gmail.com. We are committed to resolving all concerns fairly and transparently. Chargebacks or payment disputes should only be initiated after attempting to resolve the matter with us directly.</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">If you have any concerns about a payment or service, please contact us first at contact.planbcareers@gmail.com. We are committed to resolving all concerns fairly and transparently. Chargebacks or payment disputes should only be initiated after attempting to resolve the matter with us directly.</p>
                 </div>
 
                 <div class="bg-green-500/5 border border-green-500/20 rounded-2xl p-6">
                     <h2 class="text-lg font-bold text-white mb-3">Contact for Refund Queries</h2>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li>📧 <a href="mailto:planb.consultancy.in@gmail.com" class="text-purple-400 hover:underline">planb.consultancy.in@gmail.com</a></li>
-                        <li>📞 <a href="tel:+917048303847" class="text-purple-400 hover:underline">070483 03847</a></li>
-                        <li>📍 Akola, Maharashtra, India</li>
+                        <li>?? <a href="mailto:contact.planbcareers@gmail.com" class="text-purple-400 hover:underline">contact.planbcareers@gmail.com</a></li>
+                        <li>?? <a href="tel:+919420512501" class="text-purple-400 hover:underline">+91 94205 12501</a></li>
+                        <li>?? Akola, Maharashtra, India</li>
                     </ul>
                 </div>
 
@@ -158,7 +227,7 @@
 
     <footer class="bg-[#05030c] border-t border-white/5 py-12 relative z-10 text-gray-400">
         <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
-            <p>&copy; 2026 PlanB Consultancy. All rights reserved.</p>
+            <p>&copy; 2026 PlanB Careers. All rights reserved.</p>
             <div class="flex flex-wrap gap-4">
                 <a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a>
                 <a href="terms.html" class="hover:text-white transition-colors">Terms &amp; Conditions</a>
@@ -168,7 +237,7 @@
             </div>
         </div>
         <div class="max-w-5xl mx-auto px-6 mt-8 text-center text-[10px] text-gray-700 leading-relaxed">
-            <p>Plan B Consultancy is an independent consultancy and career support platform. We are not affiliated with, endorsed by, or acting on behalf of any employer unless explicitly stated. We do not guarantee employment, job offers, interview selection, or hiring outcomes.</p>
+            <p>Plan B Careers is an independent CAREERS and career support platform. We are not affiliated with, endorsed by, or acting on behalf of any employer unless explicitly stated. We do not guarantee employment, job offers, interview selection, or hiring outcomes.</p>
         </div>
     </footer>
 
@@ -184,3 +253,5 @@
     </script>
 </body>
 </html>
+
+

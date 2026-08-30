@@ -1,0 +1,70 @@
+# /connect Page — Refined Visual Review
+
+## Desktop View (1280×900)
+
+### Header + Save Contact CTA + Quick Actions
+![Desktop top — compact header, prominent gold Save Contact button, 3-column quick actions row](C:/Users/asd/.gemini/antigravity-ide/brain/6af9f891-88aa-4424-a643-47eb6f9e5ad9/desktop_top_reload_1787924737978.png)
+
+### Meet Our Team (2×2 Grid with Premium Accent)
+![Desktop team cards — 2x2 grid with blue top accent borders: Asnan, Zeba, Arshiya, Mustaqueem Saad](C:/Users/asd/.gemini/antigravity-ide/brain/6af9f891-88aa-4424-a643-47eb6f9e5ad9/desktop_team_1787924747893.png)
+
+### Services + Contact Info
+![Desktop services grid and contact section](C:/Users/asd/.gemini/antigravity-ide/brain/6af9f891-88aa-4424-a643-47eb6f9e5ad9/desktop_services_contact_1787924757836.png)
+
+### WhatsApp + Social + Footer
+![Desktop WhatsApp section, social icons, and footer](C:/Users/asd/.gemini/antigravity-ide/brain/6af9f891-88aa-4424-a643-47eb6f9e5ad9/desktop_bottom_1787924769476.png)
+
+---
+
+## Mobile View (~390×844)
+
+### Header + Save Contact + Quick Actions
+![Mobile top — compact header with smaller logo, gold Save Contact CTA, 3-column buttons](C:/Users/asd/.gemini/antigravity-ide/brain/6af9f891-88aa-4424-a643-47eb6f9e5ad9/mobile_top_1787924798629.png)
+
+### Team Cards (Single Column Stack)
+![Mobile team cards — single column: Asnan, Zeba visible with Call/WhatsApp buttons](C:/Users/asd/.gemini/antigravity-ide/brain/6af9f891-88aa-4424-a643-47eb6f9e5ad9/mobile_team_fixed_1787924883952.png)
+
+### Services Section
+![Mobile services and remaining team cards](C:/Users/asd/.gemini/antigravity-ide/brain/6af9f891-88aa-4424-a643-47eb6f9e5ad9/mobile_services_1787924899223.png)
+
+### Contact + WhatsApp + Footer
+![Mobile contact info, WhatsApp buttons, social links, and footer](C:/Users/asd/.gemini/antigravity-ide/brain/6af9f891-88aa-4424-a643-47eb6f9e5ad9/mobile_bottom_1787924915612.png)
+
+---
+
+## Full Inspection Recording
+
+![Browser recording showing desktop and mobile scroll-through of the refined page](C:/Users/asd/.gemini/antigravity-ide/brain/6af9f891-88aa-4424-a643-47eb6f9e5ad9/refined_desktop_check_1787924690565.webp)
+
+---
+
+## Refinement Summary
+
+| Change | Before | After |
+|--------|--------|-------|
+| **Header** | Taller, 90px logo, more padding | Compact — 72px logo (60px mobile), tighter padding |
+| **Save Contact** | Same size as other 3 buttons in 2×2 grid | **Full-width gold primary CTA** above the other buttons |
+| **Action buttons** | 2×2 grid (Call, WhatsApp, Save, Website) | Save Contact (full row) + 3-column row (Call, WhatsApp, Website) |
+| **Team cards** | Flat cards, blue-bordered avatar | Premium cards with **navy→blue top accent line**, shadow-enhanced avatars |
+| **Desktop logo** | 100px | 84px |
+| **Mobile logo** | 72px | 60px |
+
+## Verification Checklist
+
+| # | Item | Status |
+|---|------|--------|
+| 1 | Header is more compact | ✅ |
+| 2 | Save Contact is the dominant primary CTA | ✅ |
+| 3 | Call, WhatsApp, Website remain as quick actions | ✅ |
+| 4 | Team order: Asnan → Zeba → Arshiya → Mustaqueem Saad | ✅ |
+| 5 | Designations exactly correct | ✅ |
+| 6 | Team cards have premium top accent | ✅ |
+| 7 | 2×2 grid on desktop, single column on mobile | ✅ |
+| 8 | All phone numbers unchanged | ✅ |
+| 9 | All WhatsApp links unchanged | ✅ |
+| 10 | Email, Website, Maps links unchanged | ✅ |
+| 11 | Social media links unchanged | ✅ |
+| 12 | Save Contact vCard download works | ✅ |
+| 13 | Mobile layout — no horizontal scroll, good tap targets | ✅ |
+| 14 | Desktop layout — clean centered design | ✅ |
+| 15 | No existing pages modified | ✅ |
