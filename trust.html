@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -32,17 +32,17 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(139,92,246,0.07) 0%, rgba(236,72,153,0.07) 100%);
+            background: linear-gradient(135deg, rgba(27,58,125,0.07) 0%, rgba(212,146,10,0.07) 100%);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        .tc-stat-card:hover { transform: translateY(-6px); border-color: rgba(139,92,246,0.35); box-shadow: 0 20px 50px rgba(139,92,246,0.15); }
+        .tc-stat-card:hover { transform: translateY(-6px); border-color: rgba(27,58,125,0.35); box-shadow: 0 20px 50px rgba(27,58,125,0.15); }
         .tc-stat-card:hover::before { opacity: 1; }
 
         .tc-stat-number {
             font-size: clamp(2.4rem, 5vw, 3.5rem);
             font-weight: 900;
-            background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #60a5fa 100%);
+            background: linear-gradient(135deg, #4A6FBF 0%, #EFB347 50%, #60a5fa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -53,7 +53,7 @@
         .tc-stat-suffix {
             font-size: 1.6rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #60a5fa 100%);
+            background: linear-gradient(135deg, #4A6FBF 0%, #EFB347 50%, #60a5fa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -71,10 +71,10 @@
         }
         .tc-feature-card::after {
             content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, #8b5cf6, #ec4899, #3b82f6);
+            background: linear-gradient(90deg, #1B3A7D, #D4920A, #3b82f6);
             transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
         }
-        .tc-feature-card:hover { transform: translateY(-7px); border-color: rgba(139,92,246,0.3); box-shadow: 0 24px 60px rgba(139,92,246,0.12); }
+        .tc-feature-card:hover { transform: translateY(-7px); border-color: rgba(27,58,125,0.3); box-shadow: 0 24px 60px rgba(27,58,125,0.12); }
         .tc-feature-card:hover::after { transform: scaleX(1); }
         .tc-feature-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.6rem; }
 
@@ -87,12 +87,12 @@
             position: relative;
             display: flex; flex-direction: column;
         }
-        .tc-review-card:hover { transform: translateY(-5px); border-color: rgba(139,92,246,0.3); box-shadow: 0 20px 50px rgba(139,92,246,0.12); }
-        .tc-review-quote { position: absolute; top: 14px; right: 20px; font-size: 4rem; line-height: 1; color: rgba(139,92,246,0.12); font-family: Georgia, serif; }
+        .tc-review-card:hover { transform: translateY(-5px); border-color: rgba(27,58,125,0.3); box-shadow: 0 20px 50px rgba(27,58,125,0.12); }
+        .tc-review-quote { position: absolute; top: 14px; right: 20px; font-size: 4rem; line-height: 1; color: rgba(27,58,125,0.12); font-family: Georgia, serif; }
         .tc-review-stars { color: #fbbf24; font-size: 0.9rem; letter-spacing: 1px; }
         .tc-review-avatar {
             width: 44px; height: 44px; border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            background: linear-gradient(135deg, #1B3A7D, #D4920A);
             display: flex; align-items: center; justify-content: center;
             font-weight: 800; font-size: 1.1rem; color: white; flex-shrink: 0;
         }
@@ -106,7 +106,7 @@
         }
         .tc-doc-card:hover { transform: translateY(-5px); border-color: rgba(59,130,246,0.35); box-shadow: 0 20px 50px rgba(59,130,246,0.1); }
         .tc-doc-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; }
-        .tc-doc-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 20px; background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
+        .tc-doc-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 20px; background: rgba(27,58,125,0.15); color: #4A6FBF; border: 1px solid rgba(27,58,125,0.2); }
         .tc-doc-badge.available { background: rgba(16,185,129,0.12); color: #34d399; border-color: rgba(16,185,129,0.2); }
         .tc-doc-badge.coming-soon { background: rgba(251,191,36,0.1); color: #fbbf24; border-color: rgba(251,191,36,0.2); }
 
@@ -116,17 +116,17 @@
         .tc-payment-info { padding: 1.25rem; }
 
         .tc-qr-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 1.75rem 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; transition: all 0.3s ease; }
-        .tc-qr-card:hover { transform: translateY(-5px); border-color: rgba(139,92,246,0.3); box-shadow: 0 20px 50px rgba(139,92,246,0.12); }
+        .tc-qr-card:hover { transform: translateY(-5px); border-color: rgba(27,58,125,0.3); box-shadow: 0 20px 50px rgba(27,58,125,0.12); }
         .tc-qr-placeholder { width: 120px; height: 120px; border-radius: 12px; background: rgba(255,255,255,0.05); border: 2px dashed rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; }
 
         .tc-groom-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 2rem; transition: all 0.3s ease; display: flex; gap: 1.5rem; align-items: flex-start; }
-        .tc-groom-card:hover { transform: translateY(-4px); border-color: rgba(139,92,246,0.3); box-shadow: 0 20px 50px rgba(139,92,246,0.12); }
+        .tc-groom-card:hover { transform: translateY(-4px); border-color: rgba(27,58,125,0.3); box-shadow: 0 20px 50px rgba(27,58,125,0.12); }
         .tc-groom-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
         .tc-section-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 50px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
 
-        .tc-cta-banner { background: linear-gradient(135deg, rgba(139,92,246,0.12) 0%, rgba(236,72,153,0.12) 50%, rgba(59,130,246,0.12) 100%); border: 1px solid rgba(139,92,246,0.2); border-radius: 28px; padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden; }
-        .tc-cta-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(139,92,246,0.05) 0%, transparent 60%); animation: tcPulse 6s ease-in-out infinite; }
+        .tc-cta-banner { background: linear-gradient(135deg, rgba(27,58,125,0.12) 0%, rgba(212,146,10,0.12) 50%, rgba(59,130,246,0.12) 100%); border: 1px solid rgba(27,58,125,0.2); border-radius: 28px; padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden; }
+        .tc-cta-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(27,58,125,0.05) 0%, transparent 60%); animation: tcPulse 6s ease-in-out infinite; }
         @keyframes tcPulse { 0%,100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 1; } }
 
         @keyframes tcFloat { 0%,100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
@@ -146,7 +146,7 @@
         .tc-skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.09) 50%, rgba(255,255,255,0.04) 100%); background-size: 200% 100%; animation: tcSkeleton 1.5s ease-in-out infinite; border-radius: 8px; }
         @keyframes tcSkeleton { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-        .tc-divider { height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.2) 30%, rgba(236,72,153,0.2) 70%, transparent 100%); margin: 0; }
+        .tc-divider { height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(27,58,125,0.2) 30%, rgba(212,146,10,0.2) 70%, transparent 100%); margin: 0; }
         .tc-tick { color: #34d399; }
 
         @media (max-width: 768px) {
@@ -177,7 +177,7 @@
             border-radius: 50%;
             object-fit: cover;
             display: block;
-            background: linear-gradient(135deg,#8b5cf6,#ec4899);
+            background: linear-gradient(135deg,#1B3A7D,#D4920A);
         }
 
         /* ---- QR image ---- */
@@ -313,7 +313,7 @@
     }
     </script>
 </head>
-<body class="bg-[#090514] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
+<body class="bg-[#061D45] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
 
     <!-- Decorative background blobs -->
     <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
@@ -825,6 +825,22 @@
                 <span class="text-gray-600">&bull;</span>
                 <a href="refund-policy.html" class="text-xs text-purple-400 hover:text-purple-300 underline">Refund Policy</a>
             </div>
+                            <div class="flex items-center gap-2 mt-1">
+                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
+                                <span class="text-white font-medium">HR Zeba</span>
+                            </div>
+                            <div class="flex items-center gap-2 pl-0.5">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
+                                <a href="tel:+917038007716" class="hover:text-white">+91 70380 07716</a>
+                            </div>
+                            <div class="flex items-center gap-2 mt-1">
+                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i>
+                                <span class="text-white font-medium">Consultant Mustakeem</span>
+                            </div>
+                            <div class="flex items-center gap-2 pl-0.5">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i>
+                                <a href="tel:+919112049524" class="hover:text-white">+91 91120 49524</a>
+                            </div>
         </div>
     </section>
 
@@ -887,6 +903,22 @@
                                 <i data-lucide="phone" class="w-3.5 h-3.5 text-pink-400 flex-shrink-0"></i>
                                 <a href="tel:+917972731811" class="hover:text-white">+91 79727 31811</a>
                             </div>
+                            <div class="flex items-center gap-2 mt-1">
+                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
+                                <span class="text-white font-medium">HR Zeba</span>
+                            </div>
+                            <div class="flex items-center gap-2 pl-0.5">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
+                                <a href="tel:+917038007716" class="hover:text-white">+91 70380 07716</a>
+                            </div>
+                            <div class="flex items-center gap-2 mt-1">
+                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i>
+                                <span class="text-white font-medium">Consultant Mustakeem</span>
+                            </div>
+                            <div class="flex items-center gap-2 pl-0.5">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i>
+                                <a href="tel:+919112049524" class="hover:text-white">+91 91120 49524</a>
+                            </div>
                         </li>
                     <li class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-pink-400"></i> <a href="mailto:contact.planbcareers@gmail.com" class="hover:text-white">contact.planbcareers@gmail.com</a></li>
                     <li class="flex items-center gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i> <span>Akola, Maharashtra, India</span></li>
@@ -909,7 +941,7 @@
         </div>
     
     <!-- Visitor Analytics Bar -->
-    <div class="border-t border-white/5 bg-[#090514]/90 backdrop-blur-md py-4 mt-auto">
+    <div class="border-t border-white/5 bg-[#061D45]/90 backdrop-blur-md py-4 mt-auto">
         <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-8 md:gap-16 text-center">
             <div>
                 <p class="text-gray-500 text-[10px] uppercase tracking-widest mb-1">Visitors Today</p>
@@ -930,7 +962,7 @@
 
         <!-- FLOATING CONTACT WIDGET -->
     <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end group" id="contactWidget">
-        <div class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-[#090514] border border-white/10 text-white px-4 py-2.5 rounded-2xl text-xs font-semibold shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap flex items-center gap-2">
+        <div class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-[#061D45] border border-white/10 text-white px-4 py-2.5 rounded-2xl text-xs font-semibold shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap flex items-center gap-2">
             <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Need Help? Chat with HR
         </div>
         <a href="https://wa.me/919420512501?text=Hi%20I%20need%20help" target="_blank" class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white flex items-center justify-center shadow-lg shadow-green-500/30 hover:scale-[1.08] hover:-translate-y-0.5 active:scale-[0.98] transition-all" aria-label="WhatsApp Chat">

@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <span class="text-gray-400 text-xs">Recently Added</span>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-2">${job.title}</h3>
-                        <p class="text-gray-400 text-sm mb-4"><i data-lucide="building-2" class="inline w-4 h-4 mr-1"></i> ${job.company}</p>
+                        <p class="text-gray-400 text-sm mb-2"><i data-lucide="building-2" class="inline w-4 h-4 mr-1"></i> ${job.company}</p>
                         <p class="text-gray-400 text-sm mb-4"><i data-lucide="map-pin" class="inline w-4 h-4 mr-1"></i> ${job.location}</p>
-                        <p class="text-gray-300 text-sm mb-6 line-clamp-3">${job.description || 'Verified job opportunity via Plan B Careers.'}</p>
+                        <div class="text-gray-300 text-sm mb-6 line-clamp-5 whitespace-pre-line">${job.description || 'Verified job opportunity via Plan B Careers.'}</div>
                     </div>
                     <div class="flex items-center justify-between pt-4 border-t border-white/10">
                         <span class="text-green-400 font-bold">${job.salary || 'Salary Negotiable'}</span>
@@ -73,8 +73,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         const activeFilter = activeBtn ? activeBtn.dataset.filter : 'all';
 
         const filteredJobs = allJobs.filter(job => {
-            const matchesFilter = activeFilter === 'all' || job.type.includes(activeFilter);
-            const matchesSearch = job.title.toLowerCase().includes(searchText) || job.company.toLowerCase().includes(searchText);
+            const typeStr = (job.type || '').toLowerCase();
+            const titleStr = (job.title || '').toLowerCase();
+            const descStr = (job.description || '').toLowerCase();
+            const filterStr = activeFilter.toLowerCase();
+            
+            const matchesFilter = activeFilter === 'all' || 
+                                  typeStr.includes(filterStr) || 
+                                  titleStr.includes(filterStr) || 
+                                  descStr.includes(filterStr);
+                                  
+            const matchesSearch = titleStr.includes(searchText) || (job.company || '').toLowerCase().includes(searchText) || descStr.includes(searchText) || (job.location || '').toLowerCase().includes(searchText);
             return matchesFilter && matchesSearch;
         });
 

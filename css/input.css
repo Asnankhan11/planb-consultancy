@@ -6,10 +6,10 @@
 
 /* Custom CSS variables for compatibility */
 :root {
-  --primary-color: #8b5cf6;
-  --secondary-color: #ec4899;
-  --accent-color: #3b82f6;
-  --bg-primary: #090514;
+  --primary-color: #1B3A7D;
+  --secondary-color: #D4920A;
+  --accent-color: #0C2D6B;
+  --bg-primary: #061D45;
   --text-primary: #f3f4f6;
   --text-secondary: #9ca3af;
   --text-muted: #6b7280;
@@ -18,12 +18,12 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #090514;
+  background-color: #061D45;
   color: #f3f4f6;
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 10% 20%, rgba(27, 58, 125, 0.2) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(212, 146, 10, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(12, 45, 107, 0.15) 0%, transparent 50%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
@@ -44,7 +44,7 @@ body {
 .glass-panel-hover:hover {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 12px 40px 0 rgba(139, 92, 246, 0.15);
+  box-shadow: 0 12px 40px 0 rgba(27, 58, 125, 0.2);
   transform: translateY(-4px);
 }
 
@@ -53,28 +53,28 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #090514;
+  background: #061D45;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.3);
+  background: rgba(27, 58, 125, 0.5);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.5);
+  background: rgba(212, 146, 10, 0.6);
 }
 
 /* Nav & Header Adapter styles */
 .navbar {
   @apply fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300;
-  background: rgba(9, 5, 20, 0.7);
+  background: rgba(6, 29, 69, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar.scrolled {
-  background: rgba(9, 5, 20, 0.9);
-  border-bottom-color: rgba(139, 92, 246, 0.2);
+  background: rgba(6, 29, 69, 0.9);
+  border-bottom-color: rgba(27, 58, 125, 0.3);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
@@ -84,7 +84,8 @@ body {
 
 .nav-link::after {
   content: '';
-  @apply absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 -translate-x-1/2;
+  @apply absolute bottom-0 left-1/2 w-0 h-0.5 transition-all duration-300 -translate-x-1/2;
+  background: linear-gradient(90deg, #1B3A7D, #D4920A);
 }
 
 .nav-link:hover::after, .nav-link.active::after {
@@ -173,7 +174,14 @@ body {
 
 /* Standard legacy forms custom inputs */
 .form-input-dark {
-  @apply w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white outline-none transition-all duration-200 focus:border-purple-500 focus:bg-white/10 focus:ring-2 focus:ring-purple-500/20;
+  @apply w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white outline-none transition-all duration-200;
+  --tw-ring-color: rgba(27, 58, 125, 0.3);
+}
+
+.form-input-dark:focus {
+  border-color: #1B3A7D;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 2px rgba(27, 58, 125, 0.2);
 }
 
 /* Scroll Animation Transitions */
@@ -208,4 +216,5 @@ body {
   opacity: 1;
   transform: none;
 }
+
 

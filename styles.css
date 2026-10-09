@@ -8,20 +8,21 @@
 
 /* CSS Variables - Design Tokens */
 :root {
-    /* Colors - White Corporate with Blue Accents */
-    --primary-gradient: linear-gradient(135deg, #061D45 0%, #3B82F6 100%);
-    --secondary-gradient: linear-gradient(135deg, #3B82F6 0%, #0A2E6B 100%);
+    /* Colors - Navy Blue & Golden Amber Brand Theme */
+    --primary-gradient: linear-gradient(135deg, #061D45 0%, #1B3A7D 100%);
+    --secondary-gradient: linear-gradient(135deg, #D4920A 0%, #E8A317 100%);
     --success-gradient: linear-gradient(135deg, #10B981 0%, #34D399 100%);
-    --warm-gradient: linear-gradient(135deg, #3B82F6 0%, #0A2E6B 100%);
-    --accent-gradient: linear-gradient(135deg, #061D45 0%, #3B82F6 100%);
-    --premium-gradient: linear-gradient(135deg, #061D45 0%, #3B82F6 100%);
+    --warm-gradient: linear-gradient(135deg, #D4920A 0%, #E8A317 100%);
+    --accent-gradient: linear-gradient(135deg, #061D45 0%, #D4920A 100%);
+    --premium-gradient: linear-gradient(135deg, #0A2E6B 0%, #D4920A 100%);
 
-    --primary-color: #3B82F6;
+    --primary-color: #1B3A7D;
     --primary-dark: #0A2E6B;
-    --secondary-color: #3B82F6;
-    --accent-color: #0A2E6B;
-    --premium-gold: #3B82F6;
+    --secondary-color: #D4920A;
+    --accent-color: #E8A317;
+    --premium-gold: #D4920A;
     --success-color: #10B981;
+
 
     /* Neutrals - Light Theme */
     --bg-primary: #FFFFFF;
@@ -65,7 +66,7 @@
     --shadow-sm: 0 2px 8px rgba(10, 46, 107, 0.06);
     --shadow-md: 0 4px 16px rgba(10, 46, 107, 0.08);
     --shadow-lg: 0 8px 32px rgba(10, 46, 107, 0.1);
-    --shadow-glow: 0 0 30px rgba(59, 130, 246, 0.12);
+    --shadow-glow: 0 0 30px rgba(27, 58, 125, 0.12);
 
     --transition-fast: 0.2s ease;
     --transition-base: 0.3s ease;
@@ -104,9 +105,9 @@ body::before {
     width: 100%;
     height: 100%;
     background:
-        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 20% 50%, rgba(27, 58, 125, 0.04) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(10, 46, 107, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
+        radial-gradient(circle at 40% 20%, rgba(27, 58, 125, 0.03) 0%, transparent 50%);
     z-index: -1;
     pointer-events: none;
 }
@@ -200,7 +201,7 @@ a:hover {
 }
 
 .logo:hover {
-    color: #3B82F6;
+    color: #D4920A;
 }
 
 .nav-menu {
@@ -227,7 +228,7 @@ a:hover {
     left: 50%;
     width: 0;
     height: 2px;
-    background: #3B82F6;
+    background: #D4920A;
     transform: translateX(-50%);
     transition: var(--transition-base);
 }
@@ -297,7 +298,7 @@ a:hover {
     transform: translate(-50%, -50%);
     width: 800px;
     height: 800px;
-    background: radial-gradient(circle, rgba(30, 144, 255, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(27, 58, 125, 0.1) 0%, transparent 70%);
     border-radius: 50%;
     animation: heroPulse 8s ease-in-out infinite;
 }
@@ -336,7 +337,7 @@ a:hover {
 .hero h1 {
     font-size: clamp(2.2rem, 5.5vw, 4rem);
     margin-bottom: var(--spacing-md);
-    background: linear-gradient(135deg, #ffffff 0%, #B0C4DE 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #E8D5A3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -407,18 +408,18 @@ a:hover {
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 8px 30px rgba(27, 58, 125, 0.4);
     color: white;
 }
 
 .btn-secondary {
     background: transparent;
     color: var(--text-primary);
-    border: 1px solid rgba(30, 144, 255, 0.4);
+    border: 1px solid rgba(27, 58, 125, 0.4);
 }
 
 .btn-secondary:hover {
-    background: rgba(30, 144, 255, 0.1);
+    background: rgba(27, 58, 125, 0.1);
     border-color: var(--primary-color);
     transform: translateY(-3px);
     color: white;
@@ -485,7 +486,7 @@ a:hover {
 
 .path-card {
     background: var(--bg-card);
-    border: 1px solid rgba(30, 144, 255, 0.15);
+    border: 1px solid rgba(27, 58, 125, 0.15);
     border-radius: var(--border-radius-xl);
     padding: var(--spacing-2xl);
     text-align: center;
@@ -512,8 +513,8 @@ a:hover {
 .path-card:hover {
     transform: translateY(-8px);
     background: var(--bg-card-hover);
-    border-color: rgba(30, 144, 255, 0.4);
-    box-shadow: 0 20px 60px rgba(30, 144, 255, 0.15);
+    border-color: rgba(27, 58, 125, 0.4);
+    box-shadow: 0 20px 60px rgba(27, 58, 125, 0.15);
     color: inherit;
 }
 
@@ -629,7 +630,7 @@ a:hover {
 
 .service-stat-card {
     background: var(--bg-card);
-    border: 1px solid rgba(30, 144, 255, 0.1);
+    border: 1px solid rgba(27, 58, 125, 0.1);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-lg);
     text-align: center;
@@ -639,7 +640,7 @@ a:hover {
 .service-stat-card:hover {
     transform: translateY(-4px);
     background: var(--bg-card-hover);
-    border-color: rgba(30, 144, 255, 0.3);
+    border-color: rgba(27, 58, 125, 0.3);
 }
 
 .service-stat-card .stat-icon {
@@ -704,13 +705,13 @@ a:hover {
     transform: translate(-50%, -50%);
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(30, 144, 255, 0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(27, 58, 125, 0.06) 0%, transparent 70%);
     border-radius: 50%;
 }
 
 .final-cta h2 {
     font-size: var(--font-size-4xl);
-    background: linear-gradient(135deg, #ffffff 0%, #B0C4DE 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #E8D5A3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -739,7 +740,7 @@ a:hover {
 
 .workflow-column {
     background: var(--bg-card);
-    border: 1px solid rgba(30, 144, 255, 0.1);
+    border: 1px solid rgba(27, 58, 125, 0.1);
     border-radius: var(--border-radius-xl);
     padding: var(--spacing-xl);
     position: relative;
@@ -783,7 +784,7 @@ a:hover {
 }
 
 .workflow-step:hover {
-    background: rgba(30, 144, 255, 0.08);
+    background: rgba(27, 58, 125, 0.08);
     transform: translateX(5px);
 }
 
@@ -830,7 +831,7 @@ a:hover {
     text-align: center;
     padding: var(--spacing-xl);
     background: var(--bg-card);
-    border: 1px solid rgba(30, 144, 255, 0.08);
+    border: 1px solid rgba(27, 58, 125, 0.08);
     border-radius: var(--border-radius-lg);
     transition: var(--transition-base);
 }
@@ -838,7 +839,7 @@ a:hover {
 .value-prop-card:hover {
     transform: translateY(-6px);
     background: var(--bg-card-hover);
-    border-color: rgba(30, 144, 255, 0.3);
+    border-color: rgba(27, 58, 125, 0.3);
     box-shadow: var(--shadow-lg), var(--shadow-glow);
 }
 
@@ -889,7 +890,7 @@ a:hover {
     top: 15px;
     right: 25px;
     font-size: 4rem;
-    color: rgba(30, 144, 255, 0.1);
+    color: rgba(27, 58, 125, 0.1);
     font-family: Georgia, serif;
     line-height: 1;
 }
@@ -897,7 +898,7 @@ a:hover {
 .review-card:hover {
     background: var(--bg-card-hover);
     transform: translateY(-5px);
-    border-color: rgba(30, 144, 255, 0.3);
+    border-color: rgba(27, 58, 125, 0.3);
 }
 
 .review-header {
@@ -933,7 +934,7 @@ a:hover {
 .testimonial-tag {
     display: inline-block;
     padding: 3px 10px;
-    background: rgba(30, 144, 255, 0.1);
+    background: rgba(27, 58, 125, 0.1);
     color: var(--primary-color);
     border-radius: 4px;
     font-size: 10px;
@@ -956,18 +957,18 @@ a:hover {
 
 .faq-item {
     background: var(--bg-card);
-    border: 1px solid rgba(30, 144, 255, 0.1);
+    border: 1px solid rgba(27, 58, 125, 0.1);
     border-radius: var(--border-radius-md);
     overflow: hidden;
     transition: var(--transition-base);
 }
 
 .faq-item:hover {
-    border-color: rgba(30, 144, 255, 0.3);
+    border-color: rgba(27, 58, 125, 0.3);
 }
 
 .faq-item.active {
-    border-color: rgba(30, 144, 255, 0.4);
+    border-color: rgba(27, 58, 125, 0.4);
     background: var(--bg-card-hover);
 }
 
@@ -982,7 +983,7 @@ a:hover {
 }
 
 .faq-question:hover {
-    background: rgba(30, 144, 255, 0.05);
+    background: rgba(27, 58, 125, 0.05);
 }
 
 .faq-question h4 {
@@ -998,7 +999,7 @@ a:hover {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: rgba(30, 144, 255, 0.1);
+    background: rgba(27, 58, 125, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1127,7 +1128,7 @@ a:hover {
 
 .contact-card {
     background: var(--bg-card);
-    border: 1px solid rgba(30, 144, 255, 0.1);
+    border: 1px solid rgba(27, 58, 125, 0.1);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-lg);
     text-align: center;
@@ -1140,7 +1141,7 @@ a:hover {
 .contact-card:hover {
     transform: translateY(-4px);
     background: var(--bg-card-hover);
-    border-color: rgba(30, 144, 255, 0.3);
+    border-color: rgba(27, 58, 125, 0.3);
     color: inherit;
 }
 
@@ -1166,7 +1167,7 @@ a:hover {
 /* Lead Form (legacy) */
 .lead-form {
     background: var(--bg-card);
-    border: 1px solid rgba(30, 144, 255, 0.15);
+    border: 1px solid rgba(27, 58, 125, 0.15);
     border-radius: var(--border-radius-xl);
     padding: var(--spacing-xl);
 }
@@ -1196,7 +1197,7 @@ a:hover {
     width: 100%;
     padding: 12px 16px;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(30, 144, 255, 0.15);
+    border: 1px solid rgba(27, 58, 125, 0.15);
     border-radius: var(--border-radius-sm);
     color: var(--text-primary);
     font-size: var(--font-size-base);
@@ -1209,8 +1210,8 @@ a:hover {
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--primary-color);
-    background: rgba(30, 144, 255, 0.05);
-    box-shadow: 0 0 15px rgba(30, 144, 255, 0.15);
+    background: rgba(27, 58, 125, 0.05);
+    box-shadow: 0 0 15px rgba(27, 58, 125, 0.15);
 }
 
 .form-group input::placeholder {
@@ -1229,7 +1230,7 @@ a:hover {
 
 .card {
     background: var(--bg-card);
-    border: 1px solid rgba(30, 144, 255, 0.1);
+    border: 1px solid rgba(27, 58, 125, 0.1);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-xl);
     transition: var(--transition-base);
@@ -1253,7 +1254,7 @@ a:hover {
     background: var(--bg-card-hover);
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
-    border-color: rgba(30, 144, 255, 0.3);
+    border-color: rgba(27, 58, 125, 0.3);
 }
 
 .card:hover::before {
@@ -1291,14 +1292,14 @@ a:hover {
     padding: var(--spacing-xl);
     background: var(--bg-card);
     border-radius: var(--border-radius-lg);
-    border: 1px solid rgba(30, 144, 255, 0.1);
+    border: 1px solid rgba(27, 58, 125, 0.1);
     transition: var(--transition-base);
 }
 
 .stat-card:hover {
     transform: translateY(-8px);
     background: var(--bg-card-hover);
-    border-color: rgba(30, 144, 255, 0.4);
+    border-color: rgba(27, 58, 125, 0.4);
     box-shadow: var(--shadow-lg), var(--shadow-glow);
 }
 
@@ -1397,7 +1398,7 @@ a:hover {
 }
 
 .footer-section a:hover {
-    color: #93C5FD;
+    color: #D4920A;
     padding-left: 5px;
 }
 
@@ -1539,14 +1540,14 @@ a:hover {
 }
 
 .contact-widget-call {
-    background: linear-gradient(135deg, #3B82F6, #1D4ED8);
-    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+    background: linear-gradient(135deg, #1B3A7D, #0A2E6B);
+    box-shadow: 0 4px 20px rgba(27, 58, 125, 0.4);
     animation: widgetPulseBlue 2.5s ease-in-out infinite 0.3s;
 }
 
 .contact-widget-call:hover {
     transform: scale(1.08) translateY(-2px);
-    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.55);
+    box-shadow: 0 8px 30px rgba(27, 58, 125, 0.55);
     color: white;
 }
 
@@ -1556,8 +1557,8 @@ a:hover {
 }
 
 @keyframes widgetPulseBlue {
-    0%, 100% { box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4); }
-    50% { box-shadow: 0 4px 30px rgba(59, 130, 246, 0.6), 0 0 0 8px rgba(59, 130, 246, 0.1); }
+    0%, 100% { box-shadow: 0 4px 20px rgba(27, 58, 125, 0.4); }
+    50% { box-shadow: 0 4px 30px rgba(27, 58, 125, 0.6), 0 0 0 8px rgba(27, 58, 125, 0.1); }
 }
 
 /* ===================================
@@ -1586,7 +1587,7 @@ a:hover {
 .filter-btn:hover {
     background: var(--bg-card-hover);
     color: var(--text-primary);
-    border-color: rgba(30, 144, 255, 0.4);
+    border-color: rgba(27, 58, 125, 0.4);
 }
 
 .filter-btn.active {
@@ -1626,7 +1627,7 @@ a:hover {
     width: 100%;
     padding: var(--spacing-md) var(--spacing-lg);
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(30, 144, 255, 0.2);
+    border: 1px solid rgba(27, 58, 125, 0.2);
     border-radius: 50px;
     color: var(--text-primary);
     font-size: var(--font-size-base);
@@ -1638,7 +1639,7 @@ a:hover {
 .job-search-input:focus {
     background: rgba(255, 255, 255, 0.15);
     border-color: var(--primary-color);
-    box-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
+    box-shadow: 0 0 20px rgba(27, 58, 125, 0.3);
 }
 
 .job-search-input::placeholder {
@@ -1649,7 +1650,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     background: var(--bg-card);
-    border: 1px solid rgba(30, 144, 255, 0.1);
+    border: 1px solid rgba(27, 58, 125, 0.1);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-lg);
     transition: var(--transition-base);
@@ -1660,7 +1661,7 @@ a:hover {
 .job-card:hover {
     transform: translateY(-5px);
     background: var(--bg-card-hover);
-    border-color: rgba(30, 144, 255, 0.4);
+    border-color: rgba(27, 58, 125, 0.4);
     box-shadow: var(--shadow-lg);
 }
 
@@ -1688,7 +1689,7 @@ a:hover {
     display: inline-block;
     font-size: 0.75rem;
     padding: 2px 8px;
-    background: rgba(30, 144, 255, 0.2);
+    background: rgba(27, 58, 125, 0.2);
     color: var(--primary-color);
     border-radius: 4px;
     font-weight: 600;
@@ -1782,7 +1783,7 @@ a:hover {
     width: 100%;
     max-width: 500px;
     position: relative;
-    border: 1px solid rgba(30, 144, 255, 0.15);
+    border: 1px solid rgba(27, 58, 125, 0.15);
     box-shadow: var(--shadow-lg);
     max-height: 90vh;
     overflow-y: auto;
@@ -1924,7 +1925,7 @@ a:hover {
    =================================== */
 .site-footer {
     background: #0B1120;
-    color: #C8D1E0;
+    color: #D4C8A0;
     padding-top: 4rem;
     margin-top: 0;
     font-family: var(--font-family);
@@ -2353,6 +2354,6 @@ select option {
 }
 
 select option:hover {
-    background-color: #1E90FF;
+    background-color: #1B3A7D;
     color: #ffffff;
 }

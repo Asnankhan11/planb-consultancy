@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -77,7 +77,7 @@
     }
     </script>
 </head>
-<body class="bg-[#090514] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
+<body class="bg-[#061D45] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
 
     <!-- Decorative background blobs -->
     <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
@@ -190,12 +190,20 @@
         <div class="max-w-7xl mx-auto px-6">
             
             <!-- Filter Bar -->
-            <div class="flex flex-wrap gap-2.5 justify-center mb-12 filter-bar">
-                <button class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-purple-500 [&.active]:to-pink-500 [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg active" data-filter="all">All Jobs</button>
-                <button class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-purple-500 [&.active]:to-pink-500 [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="wfh">Work From Home</button>
-                <button class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-purple-500 [&.active]:to-pink-500 [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="wfo">Work From Office</button>
-                <button class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-purple-500 [&.active]:to-pink-500 [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="chat">Chat Process</button>
-                <button class="filter-btn px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-purple-500 [&.active]:to-pink-500 [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="voice">Voice Process</button>
+                        <div class="flex flex-wrap gap-2.5 justify-center mb-12 filter-bar">
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer active [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="all">All Jobs</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="work from home">Work From Home</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="work from office">Work From Office</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="chat">Chat Support</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="voice">Voice Support</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="blended">Blended Process</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="non-voice">Non-Voice</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="sales">Sales</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="telecall">Telecalling</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="tech">Technical</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="data entry">Data Entry</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="fresher">Fresher</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold glass-panel border-white/5 text-gray-400 hover:text-white transition-all cursor-pointer [&.active]:bg-gradient-to-r [&.active]:from-[#1B3A7D] [&.active]:to-[#D4920A] [&.active]:text-white [&.active]:border-transparent [&.active]:shadow-lg" data-filter="experience">Experienced</button>
             </div>
 
             <!-- Job Cards Grid -->
@@ -503,6 +511,22 @@
                             <div class="flex items-center gap-2 pl-0.5">
                                 <i data-lucide="phone" class="w-3.5 h-3.5 text-pink-400 flex-shrink-0"></i>
                                 <a href="tel:+917972731811" class="hover:text-white">+91 79727 31811</a>
+                            </div>
+                            <div class="flex items-center gap-2 mt-1">
+                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
+                                <span class="text-white font-medium">HR Zeba</span>
+                            </div>
+                            <div class="flex items-center gap-2 pl-0.5">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
+                                <a href="tel:+917038007716" class="hover:text-white">+91 70380 07716</a>
+                            </div>
+                            <div class="flex items-center gap-2 mt-1">
+                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i>
+                                <span class="text-white font-medium">Consultant Mustakeem</span>
+                            </div>
+                            <div class="flex items-center gap-2 pl-0.5">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-purple-400 flex-shrink-0"></i>
+                                <a href="tel:+919112049524" class="hover:text-white">+91 91120 49524</a>
                             </div>
                         </li>
                     <li class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-pink-400"></i> <a href="mailto:contact.planbcareers@gmail.com" class="hover:text-white">contact.planbcareers@gmail.com</a></li>
