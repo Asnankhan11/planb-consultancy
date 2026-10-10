@@ -8,6 +8,11 @@
       "destination": "/api"
     }
   ],
+  "functions": {
+    "api/**/*": {
+      "includeFiles": "../planb.sqlite"
+    }
+  },
   "headers": [
     {
       "source": "/css/(.*)",
