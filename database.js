@@ -7,13 +7,11 @@ let dbPath = path.join(process.cwd(), 'planb.sqlite');
 if (process.env.VERCEL) {
     const fs = require('fs');
     const tmpPath = '/tmp/planb.sqlite';
-    if (!fs.existsSync(tmpPath)) {
-        try {
-            fs.copyFileSync(dbPath, tmpPath);
-            console.log('Copied database to /tmp');
-        } catch(e) {
-            console.error('Failed to copy db to /tmp', e);
-        }
+    try {
+        fs.copyFileSync(dbPath, tmpPath);
+        console.log('Copied database to /tmp');
+    } catch(e) {
+        console.error('Failed to copy db to /tmp', e);
     }
     dbPath = tmpPath;
 }
