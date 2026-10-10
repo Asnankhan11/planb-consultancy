@@ -121,7 +121,10 @@ app.get('/api/analytics', verifyToken, (req, res) => {
 // ----------------------------------------------------
 app.get('/api/jobs', (req, res) => {
     db.all("SELECT * FROM jobs ORDER BY id DESC", (err, rows) => {
-        if(err) return res.status(500).json({error: err.message});
+        if(err) return res.status(500).json({error: err.message, dbPath: require('path').resolve(process.cwd(), 'planb.sqlite')});
+        if (rows && rows.length === 0) {
+            return res.json({ message: "0 rows", dbPath: require('path').join(process.cwd(), 'planb.sqlite'), cwd: process.cwd(), dirname: __dirname });
+        }
         res.json(rows);
     });
 });
