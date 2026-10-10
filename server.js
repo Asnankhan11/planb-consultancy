@@ -122,6 +122,14 @@ app.get('/api/analytics', verifyToken, (req, res) => {
 app.get('/api/jobs', (req, res) => {
     db.all("SELECT * FROM jobs ORDER BY id DESC", (err, rows) => {
         if(err) return res.status(500).json({error: err.message});
+        if (!rows || rows.length === 0) {
+            try {
+                const fallbackJobs = require('./jobs.json');
+                return res.json(fallbackJobs);
+            } catch(e) {
+                // Ignore fallback error
+            }
+        }
         res.json(rows);
     });
 });
