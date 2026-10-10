@@ -2,7 +2,21 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const bcrypt = require('bcryptjs');
 
-const dbPath = path.join(process.cwd(), 'planb.sqlite');
+let dbPath = path.join(process.cwd(), 'planb.sqlite');
+
+if (process.env.VERCEL) {
+    const fs = require('fs');
+    const tmpPath = '/tmp/planb.sqlite';
+    if (!fs.existsSync(tmpPath)) {
+        try {
+            fs.copyFileSync(dbPath, tmpPath);
+            console.log('Copied database to /tmp');
+        } catch(e) {
+            console.error('Failed to copy db to /tmp', e);
+        }
+    }
+    dbPath = tmpPath;
+}
 
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
