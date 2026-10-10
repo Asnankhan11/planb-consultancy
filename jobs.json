@@ -60,21 +60,10 @@
     "company": "Yes Spin",
     "location": "Confirm with recruiter",
     "salary": "₹16,000 in-hand (Up to ₹35k with incentives)",
-    "type": "Work From Office",
+    "type": "Work From Home",
     "status": "Open",
     "description": "Process: Outbound Calling\nWorking Days: 6 days per week\nWeekly Off: Sunday\nShift: 10:00 AM–10:00 PM\nBreak: 2 hours\nQualification: 12th Pass / Graduate, any stream\nExperience: Freshers and experienced candidates\nLanguages: Hindi and English\n\nResponsibilities:\n- Make outbound calls to potential users\n- Follow the provided script\n- Explain the gaming platform\n- Answer customer queries\n- Maintain accurate call logs\n- Achieve calling and quality targets\n- Coordinate with the team\n\nRequirements:\n- Good communication skills\n- Basic computer knowledge\n- Ability to follow scripts and company guidelines",
     "created_at": "2026-10-09 23:48:20"
-  },
-  {
-    "id": 7,
-    "title": "Business Development Executive (BDE) Intern",
-    "company": "RunElix Technologies",
-    "location": "Madhapur, Hyderabad",
-    "salary": "₹8,000–₹12,000 / month Stipend",
-    "type": "Work From Office",
-    "status": "Open",
-    "description": "Duration: 3–6 months\nPost-Internship Salary: ₹2–4 LPA, based on performance\nQualification: Any UG/PG degree or equivalent\nExperience: Freshers can apply\n\nResponsibilities:\n- Identify potential clients\n- Generate and qualify leads\n- Conduct market research\n- Understand customer requirements\n- Follow up with prospects\n- Prepare proposals and presentations\n- Maintain lead information in CRM systems\n- Support business development activities\n\nRequirements:\n- Good verbal and written communication\n- Relationship-building skills\n- Basic sales and business development knowledge\n- Follow-up and negotiation skills\n- Basic MS Office or Google Workspace knowledge\n- Willingness to learn\n\nContact: Phone: +91 73969 960987 | Email: hr@runelix.com",
-    "created_at": "2026-10-09 23:48:21"
   },
   {
     "id": 8,
@@ -85,17 +74,6 @@
     "type": "Work From Home",
     "status": "Open",
     "description": "Process: Chat Support / Voice Support\nAge Limit: 18–40 years\nWorking Hours: 9 hours working + 1 hour break\nWorking Days: 6 days per week\nWeekly Off: 1 rotational day\nShifts: Rotational\n\nRequirements:\n- Laptop\n- Wi-Fi / stable internet\n- Power backup\n- Good communication skills\n- Good interpersonal skills",
-    "created_at": "2026-10-09 23:48:21"
-  },
-  {
-    "id": 9,
-    "title": "Junior Python / Data Analytics Trainer",
-    "company": "VRS Universal",
-    "location": "Indore",
-    "salary": "₹12,000–₹15,000 / month",
-    "type": "Work From Office",
-    "status": "Open",
-    "description": "Experience: 0–2 years; freshers can apply\nQualification: Any graduate\nCommitment: 1-year bond, as advertised\n\nResponsibilities:\n- Assist learners with Python, SQL, Excel and Power BI\n- Support trainers during practical sessions\n- Help learners with assignments\n- Answer technical queries\n- Conduct basic practical sessions\n- Assist with data analytics and ML-related projects\n\nRequirements:\n- Good knowledge of Python and SQL\n- Basic Excel, Power BI and data analytics knowledge\n- Communication and problem-solving skills\n- Interest in teaching and training\n- Teaching experience preferred, not mandatory\n- Willingness to commit for at least one year\n\nContact: Phone: 9993921103 | Email: hrintervrs@gmail.com | Website: www.vrsuniversal.com",
     "created_at": "2026-10-09 23:48:21"
   },
   {
@@ -129,50 +107,6 @@
     "type": "Flexible",
     "status": "Open",
     "description": "Device: Mobile or laptop\nWorking Cycle: 25 days per month\nTimings: Flexible, advertised as 24/7\nPayment: Within 10 days after cycle completion, as advertised\n\nAdvertised Compensation:\n- 2,000 barcodes × ₹5 = ₹10,000\n- 2,500 barcodes × ₹6 = ₹15,000\n- 3,000 barcodes × ₹7 = ₹21,000\n- 3,500 barcodes × ₹8 = ₹28,000\n\nResponsibilities:\n- Generate barcodes\n- Complete assigned data processing\n- Maintain accurate work records\n- Follow company guidelines\n\nRequirements:\n- Smartphone or laptop\n- Attention to detail\n- Ability to complete assigned work accurately",
-    "created_at": "2026-10-09 23:48:21"
-  },
-  {
-    "id": 13,
-    "title": "AI Engineer",
-    "company": "Atmiya Infosoft",
-    "location": "Uttran, Surat",
-    "salary": "Not specified",
-    "type": "Work From Office",
-    "status": "Open",
-    "description": "Experience: 6 months–2 years\n\nContact: Phone: +91 97278 79012 | Email: hr@atmiyainfosoft.com",
-    "created_at": "2026-10-09 23:48:21"
-  },
-  {
-    "id": 14,
-    "title": "iOS Developer",
-    "company": "Atmiya Infosoft",
-    "location": "Uttran, Surat",
-    "salary": "Not specified",
-    "type": "Work From Office",
-    "status": "Open",
-    "description": "Experience: 6 months–1 year\n\nContact: Phone: +91 97278 79012 | Email: hr@atmiyainfosoft.com",
-    "created_at": "2026-10-09 23:48:21"
-  },
-  {
-    "id": 15,
-    "title": "Android Developer",
-    "company": "Atmiya Infosoft",
-    "location": "Uttran, Surat",
-    "salary": "Not specified",
-    "type": "Work From Office",
-    "status": "Open",
-    "description": "Experience: 3–5 years\n\nContact: Phone: +91 97278 79012 | Email: hr@atmiyainfosoft.com",
-    "created_at": "2026-10-09 23:48:21"
-  },
-  {
-    "id": 16,
-    "title": "Telecaller – Sales",
-    "company": "Atmiya Infosoft",
-    "location": "Uttran, Surat",
-    "salary": "Not specified",
-    "type": "Work From Office",
-    "status": "Open",
-    "description": "Number of Openings: 2\nExperience: 6 months–1 year\n\nContact: Phone: +91 97278 79012 | Email: hr@atmiyainfosoft.com",
     "created_at": "2026-10-09 23:48:21"
   },
   {
