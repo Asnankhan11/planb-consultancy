@@ -173,9 +173,17 @@ db.serialize(() => {
     // Seed dummy jobs if empty
     db.get("SELECT COUNT(*) as count FROM jobs", (err, row) => {
         if (row && row.count === 0) {
-            db.run("INSERT INTO jobs (title, company, location, salary, type, status) VALUES ('Customer Support Executive', 'Tech Mahindra', 'Pune, MH', '3.5 LPA', 'Full Time', 'Open')");
-            db.run("INSERT INTO jobs (title, company, location, salary, type, status) VALUES ('HR Recruiter', 'Plan B Careers', 'Akola, MH', '2.4 LPA', 'Full Time', 'Open')");
-            db.run("INSERT INTO jobs (title, company, location, salary, type, status) VALUES ('Data Entry Operator', 'Infosys BPM', 'Work From Home', '2.0 LPA', 'Part Time', 'Closed')");
+            try {
+                const jobsData = require('./jobs.json');
+                jobsData.forEach(job => {
+                    db.run("INSERT INTO jobs (title, company, location, salary, type, status, description, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                        [job.title, job.company, job.location, job.salary, job.type, job.status, job.description, job.created_at]
+                    );
+                });
+                console.log("Seeded " + jobsData.length + " jobs from jobs.json");
+            } catch(e) {
+                console.error("Failed to seed jobs.json", e);
+            }
         }
     });
 });
