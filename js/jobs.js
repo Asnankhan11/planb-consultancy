@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                     <div class="flex items-center justify-between pt-4 border-t border-white/10">
                         <span class="text-green-400 font-bold">${job.salary || 'Salary Negotiable'}</span>
-                        <button onclick="openApplyModal('${job.title}', ${job.id})" class="text-sm font-semibold text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg transition-colors">
+                        <button onclick="openApplyModal('${(job.title || '').replace(/'/g, "\\'")}', ${job.id || 'null'})" class="text-sm font-semibold text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg transition-colors cursor-pointer">
                             Apply Now
                         </button>
                     </div>
@@ -119,16 +119,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.openApplyModal = function (jobTitle, jobId) {
         if (!modal) return;
         currentJobId = jobId || null;
+        modal.classList.remove('hidden');
         modal.style.display = 'flex';
-        if (modalJobTitle) modalJobTitle.innerText = jobTitle;
-        if (jobAppliedInput) jobAppliedInput.value = jobTitle;
+        if (modalJobTitle) modalJobTitle.innerText = jobTitle || 'Job Role';
+        if (jobAppliedInput) jobAppliedInput.value = jobTitle || '';
         if (form) form.style.display = 'block';
-        if (successMessage) successMessage.style.display = 'none';
+        if (successMessage) {
+            successMessage.classList.add('hidden');
+            successMessage.style.display = 'none';
+        }
     };
 
     // Close modal
     window.closeApplyModal = function () {
-        if (modal) modal.style.display = 'none';
+        if (modal) {
+            modal.style.display = 'none';
+            modal.classList.add('hidden');
+        }
     };
 
     if (closeBtn) {
@@ -184,13 +191,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (resp.ok) {
                     form.reset();
                     form.style.display = 'none';
-                    if (successMessage) successMessage.style.display = 'block';
+                    if (successMessage) {
+                        successMessage.classList.remove('hidden');
+                        successMessage.style.display = 'block';
+                    }
                 } else {
-                    alert('Error submitting application. Please try again.');
+                    alert('Error submitting application. Please contact HR on WhatsApp: 7038007716 / 9112049524');
                 }
             } catch (err) {
                 console.error('API save error:', err);
-                alert('Server connection error. Please try again later.');
+                alert('Connection issue. Please contact HR on WhatsApp: 7038007716 / 9112049524');
             }
 
             if (submitBtn) {
