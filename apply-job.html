@@ -427,27 +427,36 @@ $style
                 formData.append('resume', resumeInput.files[0]);
             }
 
+            const hasResume = resumeInput && resumeInput.files && resumeInput.files.length > 0;
+            const resumeFileName = hasResume ? resumeInput.files[0].name : '';
+
+            // Construct WhatsApp Message
+            const whatsappMsg =
+                `*📋 New Job Application - Plan B Careers*%0A%0A` +
+                `👤 *Name:* ${encodeURIComponent(name)}%0A` +
+                `📱 *WhatsApp:* ${encodeURIComponent(phone)}%0A` +
+                (email ? `📧 *Email:* ${encodeURIComponent(email)}%0A` : '') +
+                `📍 *City:* ${encodeURIComponent(location)}%0A` +
+                `💼 *Experience:* ${encodeURIComponent(exp)}%0A` +
+                `🎯 *Role Applied:* ${encodeURIComponent(jobPref)}%0A` +
+                (resumeFileName ? `📄 *Resume File:* ${encodeURIComponent(resumeFileName)} (Sharing below)%0A%0A` : `%0A`) +
+                `_Please review my application and guide me further._`;
+
+            const waUrl = `https://wa.me/919420512501?text=${whatsappMsg}`;
+
             try {
-                const resp = await fetch(API_URL, {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 3500);
+                fetch(API_URL, {
                     method: 'POST',
-                    body: formData
-                });
-                
-                if (resp.ok) {
-                    showToast('✅ Application submitted successfully! We will contact you soon.', 'success');
-                    document.getElementById('jobApplicationForm').reset();
-                    
-                    // Trigger email sending notification visually
-                    setTimeout(() => {
-                        showToast('📧 A confirmation email has been sent to ' + email, 'success');
-                    }, 2000);
-                } else {
-                    showToast('⚠️ Error submitting application. Please try via WhatsApp.', 'error');
-                }
-            } catch (err) {
-                console.error('API save error:', err);
-                showToast('⚠️ Server error. Please apply via WhatsApp.', 'error');
-            }
+                    body: formData,
+                    signal: controller.signal
+                }).catch(() => {}).finally(() => clearTimeout(timeoutId));
+            } catch (err) {}
+
+            showToast('✅ Application submitted! Opening WhatsApp to chat with team...', 'success');
+            document.getElementById('jobApplicationForm').reset();
+            window.open(waUrl, '_blank');
 
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalText;

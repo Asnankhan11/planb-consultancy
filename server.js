@@ -247,8 +247,10 @@ app.post('/api/settings', verifyToken, (req, res) => {
 // EMAIL UTILITY
 // ----------------------------------------------------
 function sendConfirmationEmail(toEmail, name) {
-    // Note: Since this is local dev, we mock the real SMTP logic or use a dummy
-    // In production, user will supply real SMTP credentials in .env
+    if (!process.env.SMTP_USER || process.env.SMTP_USER === 'ethereal_user') {
+        console.log('Skipping email send: SMTP credentials not configured.');
+        return;
+    }
     const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST || 'smtp.ethereal.email',
         port: process.env.SMTP_PORT || 587,

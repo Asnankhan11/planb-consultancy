@@ -10,7 +10,7 @@
   ],
   "functions": {
     "api/**/*": {
-      "includeFiles": "{planb.sqlite,jobs.json}"
+      "includeFiles": "{planb.sqlite,jobs.json,images/**}"
     }
   },
   "headers": [
