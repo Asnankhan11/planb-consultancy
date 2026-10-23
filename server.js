@@ -217,35 +217,107 @@ async function uploadResumeToCloud(file) {
 // ----------------------------------------------------
 // ADMIN NOTIFICATION EMAIL WITH ATTACHED RESUME
 // ----------------------------------------------------
-function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
+async function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
+    const adminRecipient = process.env.ADMIN_EMAIL || 'contact.planbcareers@gmail.com';
     const smtpUser = process.env.GMAIL_USER || process.env.SMTP_USER || 'contact.planbcareers@gmail.com';
     const smtpPass = process.env.GMAIL_PASS || process.env.SMTP_PASS;
+
     if (!smtpPass) {
-        console.log('Admin email skipped: GMAIL_PASS / SMTP_PASS app password not configured.');
-        return;
+        console.warn('⚠️ Admin email not dispatched: GMAIL_PASS / SMTP_PASS app password not set in environment variables.');
+        return { success: false, reason: 'GMAIL_PASS / SMTP_PASS not set' };
     }
 
     try {
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            host: process.env.SMTP_HOST || 'smtp.gmail.com',
+            port: parseInt(process.env.SMTP_PORT || '465', 10),
+            secure: true,
             auth: {
                 user: smtpUser,
                 pass: smtpPass
-            }
+            },
+            connectionTimeout: 10000,
+            greetingTimeout: 10000,
+            socketTimeout: 10000
         });
 
-        const adminRecipient = process.env.ADMIN_EMAIL || 'contact.planbcareers@gmail.com';
-        const role = candidateData.preferred_company || candidateData.job_title || 'General Application';
+        const role = candidateData.preferred_company || candidateData.job_title || 'General Job Application';
+        const rawMobile = (candidateData.mobile || '').replace(/\D/g, '');
+        const cleanMobile = rawMobile.length >= 10 ? rawMobile.slice(-10) : rawMobile;
+        const waLink = `https://wa.me/91${cleanMobile}`;
+
+        const htmlContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f3f4f6; margin: 0; padding: 20px; color: #1f2937; }
+            .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+            .header { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); color: #ffffff; padding: 24px 30px; text-align: left; }
+            .header h1 { margin: 0 0 6px; font-size: 22px; font-weight: 700; color: #ffffff; }
+            .header p { margin: 0; color: #c7d2fe; font-size: 13px; }
+            .content { padding: 30px; }
+            .badge { display: inline-block; background: #ecfdf5; color: #047857; font-weight: 600; font-size: 12px; padding: 4px 12px; border-radius: 9999px; border: 1px solid #a7f3d0; margin-bottom: 20px; }
+            .table-details { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
+            .table-details td { padding: 10px 12px; border-bottom: 1px solid #f3f4f6; font-size: 14px; }
+            .table-details td.label { font-weight: 600; color: #6b7280; width: 38%; }
+            .table-details td.value { color: #111827; font-weight: 500; }
+            .actions { margin: 25px 0; }
+            .btn { display: inline-block; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; text-align: center; margin-right: 10px; margin-bottom: 10px; }
+            .footer { background: #f9fafb; padding: 20px 30px; text-align: center; font-size: 12px; color: #9ca3af; border-top: 1px solid #f3f4f6; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>📄 New Job Application & Resume</h1>
+              <p>Plan B Careers Application Portal (planbcareers.in)</p>
+            </div>
+            <div class="content">
+              <span class="badge">Candidate Applied via Website</span>
+              <table class="table-details">
+                <tr><td class="label">👤 Candidate Name</td><td class="value"><strong>${candidateData.name || 'Not provided'}</strong></td></tr>
+                <tr><td class="label">📱 WhatsApp / Mobile</td><td class="value"><a href="${waLink}" style="color:#2563eb;font-weight:bold;text-decoration:none;">+91 ${cleanMobile}</a></td></tr>
+                <tr><td class="label">📧 Email</td><td class="value">${candidateData.email ? `<a href="mailto:${candidateData.email}">${candidateData.email}</a>` : 'Not provided'}</td></tr>
+                <tr><td class="label">📍 City / Location</td><td class="value">${candidateData.city || 'Not provided'}</td></tr>
+                <tr><td class="label">🎓 Qualification</td><td class="value">${candidateData.qualification || 'Not provided'}</td></tr>
+                <tr><td class="label">💼 Experience</td><td class="value">${candidateData.experience || 'Not provided'}</td></tr>
+                <tr><td class="label">🎯 Role Applied</td><td class="value"><strong>${role}</strong></td></tr>
+                <tr><td class="label">📄 Resume Document</td><td class="value">${resumeFile ? `Attached (${resumeFile.originalname})` : (resumeUrl ? 'Uploaded to Cloud' : 'No document attached')}</td></tr>
+              </table>
+
+              <div class="actions">
+                <a href="${waLink}" class="btn" style="background:#25D366;color:#ffffff;display:inline-block;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold;margin-right:10px;">
+                  💬 Chat on WhatsApp (+91 ${cleanMobile})
+                </a>
+                ${resumeUrl ? `
+                <a href="${resumeUrl}" class="btn" style="background:#4f46e5;color:#ffffff;display:inline-block;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold;">
+                  📥 View / Download Resume
+                </a>` : ''}
+              </div>
+
+              ${resumeUrl ? `<p style="font-size:12px;color:#6b7280;margin-top:15px;word-break:break-all;">Direct Resume Link: <a href="${resumeUrl}">${resumeUrl}</a></p>` : ''}
+              ${resumeFile ? `<p style="font-size:12px;color:#059669;margin-top:10px;">📎 <strong>The original candidate resume is attached directly to this email.</strong></p>` : ''}
+            </div>
+            <div class="footer">
+              Plan B Careers • Akola, Maharashtra • <a href="https://planbcareers.in" style="color:#6b7280;">planbcareers.in</a><br>
+              Delivered to: ${adminRecipient}
+            </div>
+          </div>
+        </body>
+        </html>
+        `;
 
         const mailOptions = {
             from: `"Plan B Careers Applications" <${smtpUser}>`,
             to: adminRecipient,
-            subject: `📄 New Job Application: ${candidateData.name} - ${role}`,
+            subject: `📄 New Job Application: ${candidateData.name || 'Candidate'} - ${role}`,
             text: [
                 `New Job Application received via planbcareers.in:`,
                 ``,
                 `👤 Name: ${candidateData.name}`,
-                `📱 WhatsApp / Mobile: ${candidateData.mobile}`,
+                `📱 WhatsApp / Mobile: +91 ${cleanMobile}`,
                 `📧 Email: ${candidateData.email || 'Not provided'}`,
                 `📍 City: ${candidateData.city || 'Not provided'}`,
                 `🎓 Qualification: ${candidateData.qualification || 'Not provided'}`,
@@ -253,10 +325,11 @@ function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
                 `🎯 Applied For: ${role}`,
                 resumeUrl ? `🔗 Direct Resume Link: ${resumeUrl}` : '',
                 ``,
-                `WhatsApp candidate directly: https://wa.me/91${(candidateData.mobile || '').replace(/\D/g, '').slice(-10)}`,
+                `Direct WhatsApp Chat: ${waLink}`,
                 ``,
-                `Resume document attached below (if provided).`
+                resumeFile ? `Resume document (${resumeFile.originalname}) is attached directly to this email.` : ''
             ].filter(Boolean).join('\n'),
+            html: htmlContent,
             attachments: []
         };
 
@@ -267,17 +340,52 @@ function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
             });
         }
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.error('Admin application email error:', error.message);
-            } else {
-                console.log('Admin application email sent to:', adminRecipient, info.messageId);
-            }
-        });
+        const info = await transporter.sendMail(mailOptions);
+        console.log('✅ Admin application email sent successfully to:', adminRecipient, 'MessageId:', info.messageId);
+        return { success: true, messageId: info.messageId };
     } catch (err) {
-        console.error('Email setup error:', err.message);
+        console.error('❌ Admin application email error:', err.message);
+        return { success: false, error: err.message };
     }
 }
+
+app.get('/api/admin/test-email', async (req, res) => {
+    const smtpUser = process.env.GMAIL_USER || process.env.SMTP_USER || 'contact.planbcareers@gmail.com';
+    const smtpPass = process.env.GMAIL_PASS || process.env.SMTP_PASS;
+    const adminRecipient = process.env.ADMIN_EMAIL || 'contact.planbcareers@gmail.com';
+
+    if (!smtpPass) {
+        return res.json({
+            status: 'unconfigured',
+            recipient: adminRecipient,
+            sender: smtpUser,
+            message: 'GMAIL_PASS / SMTP_PASS is not configured in Vercel environment variables yet.',
+            help: 'Generate a 16-character Google App Password at https://myaccount.google.com/apppasswords and add GMAIL_PASS (and GMAIL_USER) in Vercel settings.'
+        });
+    }
+
+    try {
+        const result = await sendAdminApplicationEmail(
+            {
+                name: 'Test Candidate (Plan B Verification)',
+                mobile: '9420512501',
+                email: 'test@planbcareers.in',
+                city: 'Akola',
+                qualification: 'Graduate',
+                experience: 'Fresher',
+                preferred_company: 'Software Test Role'
+            },
+            {
+                originalname: 'sample-test-resume.pdf',
+                buffer: Buffer.from('%PDF-1.4 Sample Test Resume from Plan B Careers')
+            },
+            'https://planbcareers.in'
+        );
+        return res.json({ status: result.success ? 'sent' : 'failed', result });
+    } catch (e) {
+        return res.status(500).json({ status: 'error', error: e.message });
+    }
+});
 
 app.post('/api/applications', (req, res) => {
     upload.single('resume')(req, res, async (uploadErr) => {
@@ -301,15 +409,20 @@ app.post('/api/applications', (req, res) => {
         const applicantEmail = email || '';
         const applicantMobile = mobile || '';
 
-        // 2. Send Admin Notification Email with actual resume attached
-        sendAdminApplicationEmail(
-            { name: applicantName, mobile: applicantMobile, email: applicantEmail, city, qualification, experience, preferred_company },
-            req.file,
-            cloud_resume_url
-        );
+        // 2. Send Admin Notification Email to contact.planbcareers@gmail.com with actual resume attached (Awaited)
+        let emailResult = null;
+        try {
+            emailResult = await sendAdminApplicationEmail(
+                { name: applicantName, mobile: applicantMobile, email: applicantEmail, city, qualification, experience, preferred_company },
+                req.file,
+                cloud_resume_url
+            );
+        } catch (mailErr) {
+            console.warn('Admin email dispatch error:', mailErr.message);
+        }
 
         // 3. Send Candidate confirmation email (if SMTP configured)
-        if (applicantEmail) {
+        if (applicantEmail && process.env.SMTP_PASS) {
             try {
                 sendConfirmationEmail(applicantEmail, applicantName);
             } catch (mailErr) {
@@ -326,7 +439,8 @@ app.post('/api/applications', (req, res) => {
                 return res.json({
                     id: returnId,
                     message: 'Application submitted successfully',
-                    resume_url: cloud_resume_url
+                    resume_url: cloud_resume_url,
+                    email_sent: emailResult ? emailResult.success : false
                 });
         });
     });
