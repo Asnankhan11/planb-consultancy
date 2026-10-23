@@ -152,9 +152,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             e.preventDefault();
 
             const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn ? submitBtn.innerText : 'Submit Application';
             if (submitBtn) {
                 submitBtn.disabled = true;
-                submitBtn.innerText = 'Connecting to WhatsApp...';
+                submitBtn.innerText = 'Uploading Resume & Connecting...';
             }
 
             const name = document.getElementById('fullName')?.value || '';
@@ -169,28 +170,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const hasResume = resumeInput && resumeInput.files && resumeInput.files.length > 0;
             const resumeFileName = hasResume ? resumeInput.files[0].name : '';
 
-            // Construct WhatsApp Message
-            const whatsappMsg =
-                `*📋 New Job Application - Plan B Careers*%0A%0A` +
-                `👤 *Name:* ${encodeURIComponent(name)}%0A` +
-                `📱 *WhatsApp:* ${encodeURIComponent(mobile)}%0A` +
-                (email ? `📧 *Email:* ${encodeURIComponent(email)}%0A` : '') +
-                `📍 *City:* ${encodeURIComponent(city)}%0A` +
-                `🎓 *Qualification:* ${encodeURIComponent(qualification)}%0A` +
-                `💼 *Experience:* ${encodeURIComponent(experience)}%0A` +
-                `🎯 *Role Applied:* ${encodeURIComponent(jobTitle)}%0A` +
-                (resumeFileName ? `📄 *Resume File:* ${encodeURIComponent(resumeFileName)} (Sharing below)%0A%0A` : `%0A`) +
-                `_Please review my application and guide me further._`;
-
-            const waUrl = `https://wa.me/919420512501?text=${whatsappMsg}`;
-
-            // Update main WhatsApp button link on success screen
-            const mainWaBtn = document.getElementById('mainWhatsAppBtn');
-            if (mainWaBtn) {
-                mainWaBtn.href = waUrl;
-            }
-
-            // Asynchronously log to API in background without blocking UI
+            // Prepare multipart form data
             const formData = new FormData();
             if (currentJobId) formData.append('job_id', currentJobId);
             formData.append('name', name);
@@ -204,15 +184,66 @@ document.addEventListener('DOMContentLoaded', async () => {
                 formData.append('resume', resumeInput.files[0]);
             }
 
+            // Sync with backend API (upload resume to cloud & email admin)
+            let cloudResumeUrl = null;
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 3500);
-                fetch('/api/applications', {
+                const timeoutId = setTimeout(() => controller.abort(), 6500);
+                const resp = await fetch('/api/applications', {
                     method: 'POST',
                     body: formData,
                     signal: controller.signal
-                }).catch(() => {}).finally(() => clearTimeout(timeoutId));
-            } catch (err) {}
+                });
+                clearTimeout(timeoutId);
+                if (resp.ok) {
+                    const data = await resp.json();
+                    if (data && data.resume_url) {
+                        cloudResumeUrl = data.resume_url;
+                    }
+                }
+            } catch (err) {
+                console.warn('API sync warning:', err);
+            }
+
+            // Construct WhatsApp Message with direct clickable resume link
+            let resumeLine = '';
+            if (cloudResumeUrl) {
+                resumeLine = `📄 *Resume Link:* ${cloudResumeUrl} (👈 Click to View/Download)%0A%0A`;
+            } else if (resumeFileName) {
+                resumeLine = `📄 *Resume File:* ${encodeURIComponent(resumeFileName)} (Sharing below)%0A%0A`;
+            }
+
+            const whatsappMsg =
+                `*📋 New Job Application - Plan B Careers*%0A%0A` +
+                `👤 *Name:* ${encodeURIComponent(name)}%0A` +
+                `📱 *WhatsApp:* ${encodeURIComponent(mobile)}%0A` +
+                (email ? `📧 *Email:* ${encodeURIComponent(email)}%0A` : '') +
+                `📍 *City:* ${encodeURIComponent(city)}%0A` +
+                `🎓 *Qualification:* ${encodeURIComponent(qualification)}%0A` +
+                `💼 *Experience:* ${encodeURIComponent(experience)}%0A` +
+                `🎯 *Role Applied:* ${encodeURIComponent(jobTitle)}%0A` +
+                resumeLine +
+                `_Please review my application and guide me further._`;
+
+            const waUrl = `https://wa.me/919420512501?text=${whatsappMsg}`;
+
+            // Update main WhatsApp button link on success screen
+            const mainWaBtn = document.getElementById('mainWhatsAppBtn');
+            if (mainWaBtn) {
+                mainWaBtn.href = waUrl;
+            }
+
+            const resumePreviewLink = document.getElementById('uploadedResumeLink');
+            if (resumePreviewLink) {
+                if (cloudResumeUrl) {
+                    resumePreviewLink.href = cloudResumeUrl;
+                    resumePreviewLink.classList.remove('hidden');
+                    resumePreviewLink.style.display = 'inline-flex';
+                } else {
+                    resumePreviewLink.classList.add('hidden');
+                    resumePreviewLink.style.display = 'none';
+                }
+            }
 
             // Switch to success view immediately
             form.reset();
@@ -225,7 +256,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (submitBtn) {
                 submitBtn.disabled = false;
-                submitBtn.innerText = 'Submit Application';
+                submitBtn.innerText = originalBtnText;
             }
 
             // Automatically open WhatsApp in new tab

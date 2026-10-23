@@ -430,7 +430,34 @@ $style
             const hasResume = resumeInput && resumeInput.files && resumeInput.files.length > 0;
             const resumeFileName = hasResume ? resumeInput.files[0].name : '';
 
-            // Construct WhatsApp Message
+            let cloudResumeUrl = null;
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 6500);
+                const resp = await fetch(API_URL, {
+                    method: 'POST',
+                    body: formData,
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+                if (resp.ok) {
+                    const data = await resp.json();
+                    if (data && data.resume_url) {
+                        cloudResumeUrl = data.resume_url;
+                    }
+                }
+            } catch (err) {
+                console.warn('API sync warning:', err);
+            }
+
+            // Construct WhatsApp Message with clickable resume link
+            let resumeLine = '';
+            if (cloudResumeUrl) {
+                resumeLine = `📄 *Resume Link:* ${cloudResumeUrl} (👈 Click to View/Download)%0A%0A`;
+            } else if (resumeFileName) {
+                resumeLine = `📄 *Resume File:* ${encodeURIComponent(resumeFileName)} (Sharing below)%0A%0A`;
+            }
+
             const whatsappMsg =
                 `*📋 New Job Application - Plan B Careers*%0A%0A` +
                 `👤 *Name:* ${encodeURIComponent(name)}%0A` +
@@ -439,20 +466,10 @@ $style
                 `📍 *City:* ${encodeURIComponent(location)}%0A` +
                 `💼 *Experience:* ${encodeURIComponent(exp)}%0A` +
                 `🎯 *Role Applied:* ${encodeURIComponent(jobPref)}%0A` +
-                (resumeFileName ? `📄 *Resume File:* ${encodeURIComponent(resumeFileName)} (Sharing below)%0A%0A` : `%0A`) +
+                resumeLine +
                 `_Please review my application and guide me further._`;
 
             const waUrl = `https://wa.me/919420512501?text=${whatsappMsg}`;
-
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 3500);
-                fetch(API_URL, {
-                    method: 'POST',
-                    body: formData,
-                    signal: controller.signal
-                }).catch(() => {}).finally(() => clearTimeout(timeoutId));
-            } catch (err) {}
 
             showToast('✅ Application submitted! Opening WhatsApp to chat with team...', 'success');
             document.getElementById('jobApplicationForm').reset();

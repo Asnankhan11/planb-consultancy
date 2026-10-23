@@ -164,27 +164,136 @@ app.get('/api/applications', verifyToken, (req, res) => {
     });
 });
 
+// ----------------------------------------------------
+// RESUME CLOUD STORAGE HELPER (Permanent public view/download link)
+// ----------------------------------------------------
+async function uploadResumeToCloud(file) {
+    if (!file || !file.buffer) return null;
+    const originalName = (file.originalname || 'resume.pdf').replace(/[^a-zA-Z0-9._-]/g, '_');
+    const isPdf = /\.pdf$/i.test(originalName);
+
+    // 1. If PDF, try Catbox for direct raw PDF URL
+    if (isPdf) {
+        try {
+            const fd = new FormData();
+            fd.append('reqtype', 'fileupload');
+            fd.append('fileToUpload', new Blob([file.buffer], { type: 'application/pdf' }), originalName);
+            const res = await fetch('https://catbox.moe/user/api.php', {
+                method: 'POST',
+                body: fd,
+                signal: AbortSignal.timeout(5000)
+            }).then(r => r.text());
+            if (res && res.startsWith('http')) {
+                return res.trim();
+            }
+        } catch (e) {
+            console.warn('Catbox upload fallback:', e.message);
+        }
+    }
+
+    // 2. Gofile (supports all formats: PDF, DOC, DOCX)
+    try {
+        const serversRes = await fetch('https://api.gofile.io/servers', { signal: AbortSignal.timeout(4000) }).then(r => r.json());
+        const server = serversRes?.data?.servers?.[0]?.name;
+        if (server) {
+            const fd = new FormData();
+            fd.append('file', new Blob([file.buffer], { type: file.mimetype || 'application/octet-stream' }), originalName);
+            const res = await fetch(`https://${server}.gofile.io/contents/uploadfile`, {
+                method: 'POST',
+                body: fd,
+                signal: AbortSignal.timeout(6000)
+            }).then(r => r.json());
+            if (res?.data?.downloadPage) {
+                return res.data.downloadPage;
+            }
+        }
+    } catch (e) {
+        console.warn('Gofile upload fallback:', e.message);
+    }
+
+    return null;
+}
+
+// ----------------------------------------------------
+// ADMIN NOTIFICATION EMAIL WITH ATTACHED RESUME
+// ----------------------------------------------------
+function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
+    const smtpUser = process.env.GMAIL_USER || process.env.SMTP_USER;
+    const smtpPass = process.env.GMAIL_PASS || process.env.SMTP_PASS;
+    if (!smtpUser || smtpUser === 'ethereal_user') {
+        console.log('Admin email skipped: GMAIL_USER / SMTP_USER not configured.');
+        return;
+    }
+
+    try {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: smtpUser,
+                pass: smtpPass
+            }
+        });
+
+        const adminRecipient = process.env.ADMIN_EMAIL || 'asnankhan111@gmail.com, contact.planbcareers@gmail.com';
+        const role = candidateData.preferred_company || candidateData.job_title || 'General Application';
+
+        const mailOptions = {
+            from: `"Plan B Careers Applications" <${smtpUser}>`,
+            to: adminRecipient,
+            subject: `📄 New Job Application: ${candidateData.name} - ${role}`,
+            text: [
+                `New Job Application received via planbcareers.in:`,
+                ``,
+                `👤 Name: ${candidateData.name}`,
+                `📱 WhatsApp / Mobile: ${candidateData.mobile}`,
+                `📧 Email: ${candidateData.email || 'Not provided'}`,
+                `📍 City: ${candidateData.city || 'Not provided'}`,
+                `🎓 Qualification: ${candidateData.qualification || 'Not provided'}`,
+                `💼 Experience: ${candidateData.experience || 'Not provided'}`,
+                `🎯 Applied For: ${role}`,
+                resumeUrl ? `🔗 Direct Resume Link: ${resumeUrl}` : '',
+                ``,
+                `WhatsApp candidate directly: https://wa.me/91${(candidateData.mobile || '').replace(/\D/g, '').slice(-10)}`,
+                ``,
+                `Resume document attached below (if provided).`
+            ].filter(Boolean).join('\n'),
+            attachments: []
+        };
+
+        if (resumeFile && resumeFile.buffer) {
+            mailOptions.attachments.push({
+                filename: resumeFile.originalname || 'candidate-resume.pdf',
+                content: resumeFile.buffer
+            });
+        }
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error('Admin application email error:', error.message);
+            } else {
+                console.log('Admin application email sent to:', adminRecipient, info.messageId);
+            }
+        });
+    } catch (err) {
+        console.error('Email setup error:', err.message);
+    }
+}
+
 app.post('/api/applications', (req, res) => {
-    upload.single('resume')(req, res, (uploadErr) => {
+    upload.single('resume')(req, res, async (uploadErr) => {
         if (uploadErr) {
             console.warn('Multer upload warning:', uploadErr.message);
         }
 
         const { job_id, name, mobile, email, city, qualification, experience, preferred_company } = req.body || {};
         
-        let resume_url = null;
+        // 1. Upload resume to Cloud for permanent public access URL
+        let cloud_resume_url = null;
         if (req.file) {
             try {
-                const uploadDir = process.env.VERCEL ? '/tmp' : path.join(__dirname, 'assets', 'images', 'uploads');
-                if (!fs.existsSync(uploadDir)) {
-                    fs.mkdirSync(uploadDir, { recursive: true });
-                }
-                const safeName = Date.now() + '-' + (req.file.originalname || 'resume.pdf').replace(/[^a-zA-Z0-9.-]/g, '_');
-                fs.writeFileSync(path.join(uploadDir, safeName), req.file.buffer);
-                resume_url = '/assets/images/uploads/' + safeName;
-            } catch (fsErr) {
-                console.warn('File write error (read-only filesystem):', fsErr.message);
-                resume_url = 'uploaded:' + (req.file.originalname || 'resume');
+                cloud_resume_url = await uploadResumeToCloud(req.file);
+            } catch (err) {
+                console.warn('Resume cloud upload failed:', err.message);
             }
         }
 
@@ -192,27 +301,33 @@ app.post('/api/applications', (req, res) => {
         const applicantEmail = email || '';
         const applicantMobile = mobile || '';
 
+        // 2. Send Admin Notification Email with actual resume attached
+        sendAdminApplicationEmail(
+            { name: applicantName, mobile: applicantMobile, email: applicantEmail, city, qualification, experience, preferred_company },
+            req.file,
+            cloud_resume_url
+        );
+
+        // 3. Send Candidate confirmation email (if SMTP configured)
+        if (applicantEmail) {
+            try {
+                sendConfirmationEmail(applicantEmail, applicantName);
+            } catch (mailErr) {
+                console.warn('Confirmation email error:', mailErr.message);
+            }
+        }
+
+        // 4. Save to DB if available
         db.run(`INSERT INTO applications (job_id, name, mobile, email, city, qualification, experience, resume_url) 
                 VALUES (?,?,?,?,?,?,?,?)`, 
-            [job_id || null, applicantName, applicantMobile, applicantEmail, city || '', qualification || '', experience || '', resume_url], 
+            [job_id || null, applicantName, applicantMobile, applicantEmail, city || '', qualification || '', experience || '', cloud_resume_url || (req.file ? req.file.originalname : null)], 
             function(err) {
-                if (err) {
-                    console.warn('DB application insert error:', err.message);
-                    // On serverless read-only SQLite, still return success so candidate application is accepted
-                    return res.json({ id: Date.now(), message: 'Application submitted successfully' });
-                }
-                
-                // Send confirmation email if email provided
-                if (applicantEmail) {
-                    try {
-                        sendConfirmationEmail(applicantEmail, applicantName);
-                    } catch (mailErr) {
-                        console.warn('Email send error:', mailErr.message);
-                    }
-                }
-                
                 const returnId = (this && this.lastID) ? this.lastID : Date.now();
-                return res.json({ id: returnId, message: 'Application submitted successfully' });
+                return res.json({
+                    id: returnId,
+                    message: 'Application submitted successfully',
+                    resume_url: cloud_resume_url
+                });
         });
     });
 });
