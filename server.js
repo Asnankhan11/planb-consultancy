@@ -218,10 +218,10 @@ async function uploadResumeToCloud(file) {
 // ADMIN NOTIFICATION EMAIL WITH ATTACHED RESUME
 // ----------------------------------------------------
 function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
-    const smtpUser = process.env.GMAIL_USER || process.env.SMTP_USER;
+    const smtpUser = process.env.GMAIL_USER || process.env.SMTP_USER || 'contact.planbcareers@gmail.com';
     const smtpPass = process.env.GMAIL_PASS || process.env.SMTP_PASS;
-    if (!smtpUser || smtpUser === 'ethereal_user') {
-        console.log('Admin email skipped: GMAIL_USER / SMTP_USER not configured.');
+    if (!smtpPass) {
+        console.log('Admin email skipped: GMAIL_PASS / SMTP_PASS app password not configured.');
         return;
     }
 
@@ -234,7 +234,7 @@ function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
             }
         });
 
-        const adminRecipient = process.env.ADMIN_EMAIL || 'asnankhan111@gmail.com, contact.planbcareers@gmail.com';
+        const adminRecipient = process.env.ADMIN_EMAIL || 'contact.planbcareers@gmail.com';
         const role = candidateData.preferred_company || candidateData.job_title || 'General Application';
 
         const mailOptions = {
