@@ -519,18 +519,22 @@ app.get('/api/images/:folder', (req, res) => {
             return res.status(400).json({ error: 'Invalid folder name' });
         }
         
-        const folderPath = path.join(__dirname, 'images', folder);
+        let folderPath = path.join(__dirname, 'images', folder);
+        if (!fs.existsSync(folderPath)) {
+            folderPath = path.join(__dirname, 'images', folder.toLowerCase());
+        }
         
         if (!fs.existsSync(folderPath)) {
             return res.json([]); 
         }
         
+        const actualFolder = path.basename(folderPath);
         const files = fs.readdirSync(folderPath);
         
         const imageFiles = files
             .filter(f => /\.(jpg|jpeg|png|webp|gif|svg)$/i.test(f))
             .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
-            .map(f => `/images/${folder}/${f}`);
+            .map(f => `/images/${actualFolder}/${f}`);
             
         res.json(imageFiles);
     } catch (err) {

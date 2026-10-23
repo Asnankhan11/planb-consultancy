@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    if (tabs.length > 0) loadGallery('Office'); // Init
+    if (tabs.length > 0) loadGallery('office'); // Init
 
     // E. Dynamic Reviews
     const reviewsContainer = document.getElementById('reviews-container');
