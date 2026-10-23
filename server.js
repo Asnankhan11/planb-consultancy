@@ -218,9 +218,9 @@ async function uploadResumeToCloud(file) {
 // ADMIN NOTIFICATION EMAIL WITH ATTACHED RESUME
 // ----------------------------------------------------
 async function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
-    const adminRecipient = process.env.ADMIN_EMAIL || 'contact.planbcareers@gmail.com';
-    const smtpUser = process.env.GMAIL_USER || process.env.SMTP_USER || 'contact.planbcareers@gmail.com';
-    const smtpPass = process.env.GMAIL_PASS || process.env.SMTP_PASS;
+    const adminRecipient = (process.env.ADMIN_EMAIL || 'contact.planbcareers@gmail.com').trim();
+    const smtpUser = (process.env.GMAIL_USER || process.env.SMTP_USER || 'contact.planbcareers@gmail.com').trim();
+    const smtpPass = (process.env.GMAIL_PASS || process.env.SMTP_PASS || '').trim().replace(/\s+/g, '');
 
     if (!smtpPass) {
         console.warn('⚠️ Admin email not dispatched: GMAIL_PASS / SMTP_PASS app password not set in environment variables.');
@@ -350,9 +350,9 @@ async function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
 }
 
 app.get('/api/admin/test-email', async (req, res) => {
-    const smtpUser = process.env.GMAIL_USER || process.env.SMTP_USER || 'contact.planbcareers@gmail.com';
-    const smtpPass = process.env.GMAIL_PASS || process.env.SMTP_PASS;
-    const adminRecipient = process.env.ADMIN_EMAIL || 'contact.planbcareers@gmail.com';
+    const adminRecipient = (process.env.ADMIN_EMAIL || 'contact.planbcareers@gmail.com').trim();
+    const smtpUser = (process.env.GMAIL_USER || process.env.SMTP_USER || 'contact.planbcareers@gmail.com').trim();
+    const smtpPass = (process.env.GMAIL_PASS || process.env.SMTP_PASS || '').trim().replace(/\s+/g, '');
 
     if (!smtpPass) {
         return res.json({
