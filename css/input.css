@@ -9,32 +9,33 @@
   --primary-color: #1B3A7D;
   --secondary-color: #D4920A;
   --accent-color: #0C2D6B;
-  --bg-primary: #061D45;
-  --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --text-primary: #1A1A2E;
+  --text-secondary: #4A5568;
+  --text-muted: #64748B;
   --font-family: 'Poppins', sans-serif;
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #061D45;
-  color: #f3f4f6;
+  background-color: #FFFFFF;
+  color: #1A1A2E;
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(27, 58, 125, 0.2) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(212, 146, 10, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(12, 45, 107, 0.15) 0%, transparent 50%);
+    radial-gradient(circle at 10% 20%, rgba(27, 58, 125, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(212, 146, 10, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(12, 45, 107, 0.02) 0%, transparent 50%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Glassmorphism utility classes */
+/* Glassmorphism utility classes - Light Theme */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.03);
+  background: #FFFFFF;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(10, 46, 107, 0.08);
+  box-shadow: 0 2px 16px rgba(10, 46, 107, 0.06);
 }
 
 .glass-panel-hover {
@@ -42,44 +43,49 @@ body {
 }
 
 .glass-panel-hover:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 12px 40px 0 rgba(27, 58, 125, 0.2);
+  background: #FFFFFF;
+  border-color: rgba(27, 58, 125, 0.15);
+  box-shadow: 0 8px 32px rgba(10, 46, 107, 0.1);
   transform: translateY(-4px);
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Light Theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #061D45;
+  background: #F8FAFC;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(27, 58, 125, 0.5);
+  background: rgba(27, 58, 125, 0.25);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 146, 10, 0.6);
+  background: rgba(27, 58, 125, 0.45);
 }
 
-/* Nav & Header Adapter styles */
+/* Nav & Header Adapter styles - White Theme */
 .navbar {
   @apply fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300;
-  background: rgba(6, 29, 69, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(10, 46, 107, 0.06);
 }
 
 .navbar.scrolled {
-  background: rgba(6, 29, 69, 0.9);
-  border-bottom-color: rgba(27, 58, 125, 0.3);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom-color: rgba(10, 46, 107, 0.08);
+  box-shadow: 0 4px 30px rgba(10, 46, 107, 0.06);
 }
 
 .nav-link {
-  @apply text-gray-400 font-medium px-4 py-2 rounded-lg transition-all duration-200 text-sm hover:text-white relative;
+  @apply font-medium px-4 py-2 rounded-lg transition-all duration-200 text-sm relative;
+  color: #64748B;
+}
+
+.nav-link:hover {
+  color: #1B3A7D;
 }
 
 .nav-link::after {
@@ -93,7 +99,8 @@ body {
 }
 
 .nav-link.active {
-  @apply text-white;
+  color: #1B3A7D;
+  font-weight: 600;
 }
 
 /* Animation utilities */
@@ -172,16 +179,22 @@ body {
   @apply opacity-100 pointer-events-auto;
 }
 
-/* Standard legacy forms custom inputs */
+/* Standard legacy forms custom inputs - Light Theme */
 .form-input-dark {
-  @apply w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white outline-none transition-all duration-200;
-  --tw-ring-color: rgba(27, 58, 125, 0.3);
+  @apply w-full px-4 py-3 rounded-xl outline-none transition-all duration-200;
+  background: #F8FAFC;
+  border: 1px solid rgba(10, 46, 107, 0.1);
+  color: #1A1A2E;
 }
 
 .form-input-dark:focus {
   border-color: #1B3A7D;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 0 2px rgba(27, 58, 125, 0.2);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(27, 58, 125, 0.1);
+}
+
+.form-input-dark::placeholder {
+  color: #94A3B8;
 }
 
 /* Scroll Animation Transitions */
@@ -216,5 +229,3 @@ body {
   opacity: 1;
   transform: none;
 }
-
-

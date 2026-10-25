@@ -1,0 +1,634 @@
+/* ===================================
+   Plan B Careers - Clean White Theme Override
+   This file overrides all dark-theme Tailwind inline classes
+   to create a clean, beautiful white corporate design.
+   =================================== */
+
+/* ── GLOBAL OVERRIDES ── */
+
+/* Override dark body backgrounds */
+body,
+.bg-\[\#061D45\],
+.bg-\[\#05030c\],
+.bg-\[\#070310\],
+.bg-\[\#0d0720\],
+.bg-\[\#0f0a21\],
+.bg-\[\#140e24\] {
+    background-color: #FFFFFF !important;
+    background-image: none !important;
+    color: #1A1A2E !important;
+}
+
+/* Subtle page background pattern */
+body {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(27, 58, 125, 0.02) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(212, 146, 10, 0.015) 0%, transparent 40%) !important;
+}
+
+/* Hide dark decorative blobs */
+body > .fixed.pointer-events-none.z-\[-1\],
+.fixed.top-0.left-0.w-full.h-full.pointer-events-none.z-\[-1\] {
+    display: none !important;
+}
+
+/* ── TEXT COLOR OVERRIDES ── */
+
+/* Primary headings & important text */
+.text-white {
+    color: #1A1A2E !important;
+}
+
+.text-gray-100 {
+    color: #1A1A2E !important;
+}
+
+.text-gray-200 {
+    color: #2D3748 !important;
+}
+
+.text-gray-300 {
+    color: #4A5568 !important;
+}
+
+.text-gray-400 {
+    color: #64748B !important;
+}
+
+/* Keep gray-500+ as they work on white */
+.text-gray-600 {
+    color: #4A5568 !important;
+}
+
+.text-gray-700 {
+    color: #374151 !important;
+}
+
+/* Purple brand colors → Navy blue for light theme */
+.text-purple-300 {
+    color: #1B3A7D !important;
+}
+
+.text-purple-400 {
+    color: #1B3A7D !important;
+}
+
+/* Pink/Gold brand colors */
+.text-pink-300 {
+    color: #D4920A !important;
+}
+
+.text-pink-400 {
+    color: #D4920A !important;
+}
+
+/* ── GRADIENT TEXT (Keep vibrant for accents) ── */
+.bg-gradient-to-r.from-purple-400.via-pink-400.to-blue-400 .bg-clip-text,
+.from-purple-400.via-pink-400.to-blue-400 {
+    /* Keep gradient text as brand accent */
+}
+
+/* ── NAVIGATION ── */
+.navbar,
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid rgba(10, 46, 107, 0.06) !important;
+    box-shadow: 0 1px 20px rgba(10, 46, 107, 0.04) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+.navbar.scrolled {
+    box-shadow: 0 4px 30px rgba(10, 46, 107, 0.06) !important;
+}
+
+.nav-link {
+    color: #64748B !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #1B3A7D !important;
+}
+
+/* Nav hamburger lines */
+.menu-toggle span,
+button.menu-toggle span {
+    background: #1B3A7D !important;
+}
+
+/* Mobile menu */
+.bg-\[\#0d0720\]\/95,
+#mobileMenu {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(24px) !important;
+    border-bottom: 1px solid rgba(10, 46, 107, 0.08) !important;
+}
+
+#mobileMenu .text-gray-300,
+#mobileMenu a {
+    color: #4A5568 !important;
+}
+
+#mobileMenu a:hover {
+    color: #1B3A7D !important;
+}
+
+/* ── GLASS PANEL → WHITE CARDS ── */
+.glass-panel {
+    background: #FFFFFF !important;
+    border: 1px solid rgba(10, 46, 107, 0.08) !important;
+    box-shadow: 0 2px 16px rgba(10, 46, 107, 0.05) !important;
+    backdrop-filter: none !important;
+}
+
+.glass-panel:hover,
+.glass-panel-hover:hover {
+    background: #FFFFFF !important;
+    border-color: rgba(27, 58, 125, 0.15) !important;
+    box-shadow: 0 8px 32px rgba(10, 46, 107, 0.08) !important;
+}
+
+/* ── BORDERS ── */
+.border-white\/5,
+.border-white\/10,
+.border-white\/15,
+.border-white\/20,
+.border-white\/30 {
+    border-color: rgba(10, 46, 107, 0.08) !important;
+}
+
+/* ── BACKGROUNDS ── */
+
+/* Semi-transparent white backgrounds → light gray */
+.bg-white\/5,
+.bg-white\/\[0\.01\],
+.bg-white\/\[0\.02\],
+.bg-white\/2 {
+    background-color: rgba(248, 250, 252, 0.5) !important;
+}
+
+.bg-white\/10 {
+    background-color: rgba(241, 245, 249, 0.8) !important;
+}
+
+/* Dark section backgrounds → light */
+.bg-white\/\[0\.01\] {
+    background-color: #F8FAFC !important;
+}
+
+/* Dark purple/pink backgrounds for icons → keep but lighten */
+.bg-purple-500\/10,
+.bg-purple-500\/15,
+.bg-purple-500\/20 {
+    background-color: rgba(27, 58, 125, 0.06) !important;
+}
+
+.bg-pink-500\/10,
+.bg-pink-500\/15,
+.bg-pink-500\/20 {
+    background-color: rgba(212, 146, 10, 0.06) !important;
+}
+
+.bg-blue-500\/10,
+.bg-blue-500\/20 {
+    background-color: rgba(59, 130, 246, 0.06) !important;
+}
+
+.bg-purple-950\/20,
+.bg-purple-950\/5,
+.bg-purple-900\/10 {
+    background-color: rgba(27, 58, 125, 0.03) !important;
+}
+
+/* Keep yellow warning section but adjust */
+.bg-yellow-500\/5 {
+    background-color: rgba(234, 179, 8, 0.04) !important;
+}
+
+.border-yellow-500\/20 {
+    border-color: rgba(234, 179, 8, 0.15) !important;
+}
+
+.text-yellow-300 {
+    color: #B45309 !important;
+}
+
+/* ── SEARCH BAR ── */
+.bg-white\/5.border.border-white\/10.rounded-2xl,
+div[class*="bg-white/5"][class*="border-white/10"][class*="rounded-2xl"] {
+    background: #F1F5F9 !important;
+    border: 1px solid rgba(10, 46, 107, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(10, 46, 107, 0.06) !important;
+}
+
+/* Search inputs */
+input.bg-transparent {
+    color: #1A1A2E !important;
+}
+
+input.bg-transparent::placeholder,
+.placeholder\:text-gray-500::placeholder {
+    color: #94A3B8 !important;
+}
+
+/* ── BUTTONS ── */
+
+/* Primary gradient buttons → Navy to Gold */
+.bg-gradient-to-r.from-purple-500.to-pink-500 {
+    background: linear-gradient(135deg, #1B3A7D 0%, #D4920A 100%) !important;
+}
+
+.bg-gradient-to-r.from-purple-500.to-blue-500 {
+    background: linear-gradient(135deg, #1B3A7D 0%, #2563EB 100%) !important;
+}
+
+/* Apply Now buttons */
+.bg-purple-600 {
+    background-color: #1B3A7D !important;
+}
+
+.bg-purple-600:hover,
+.hover\:bg-purple-500:hover {
+    background-color: #2547A0 !important;
+}
+
+/* Login button */
+a.glass-panel.border-white\/20.text-white {
+    color: #1B3A7D !important;
+    border-color: rgba(27, 58, 125, 0.2) !important;
+}
+
+a.glass-panel.border-white\/20.text-white:hover {
+    background: rgba(27, 58, 125, 0.05) !important;
+}
+
+/* Trust Center button keeps its gold styling */
+.trust-nav-btn {
+    color: #0A2E6B !important;
+}
+
+/* ── LOGO CAROUSEL ── */
+.logo-slider-track .text-gray-400 {
+    color: #4A5568 !important;
+}
+
+.logo-slider-track .text-gray-400:hover {
+    color: #1B3A7D !important;
+}
+
+/* Carousel fade edges → white */
+.bg-gradient-to-r.from-\[\#061D45\].to-transparent {
+    background: linear-gradient(to right, #FFFFFF, transparent) !important;
+}
+
+.bg-gradient-to-l.from-\[\#061D45\].to-transparent {
+    background: linear-gradient(to left, #FFFFFF, transparent) !important;
+}
+
+/* ── HERO SECTION ── */
+
+/* Hero floating elements */
+.animate-float .glass-panel,
+div[class*="animate-float"] {
+    background: #FFFFFF !important;
+    box-shadow: 0 4px 20px rgba(10, 46, 107, 0.08) !important;
+}
+
+/* Hero founder image ring */
+.bg-gradient-to-tr.from-purple-500\/10.via-pink-500\/10.to-blue-500\/10 {
+    background: linear-gradient(to top right, rgba(27, 58, 125, 0.05), rgba(212, 146, 10, 0.05), rgba(59, 130, 246, 0.05)) !important;
+}
+
+.border-dashed.border-white\/10 {
+    border-color: rgba(10, 46, 107, 0.08) !important;
+}
+
+.border-dotted.border-white\/15 {
+    border-color: rgba(10, 46, 107, 0.06) !important;
+}
+
+/* Hiring badge */
+.bg-green-500\/20 {
+    background-color: rgba(34, 197, 94, 0.08) !important;
+}
+
+.text-green-300 {
+    color: #16A34A !important;
+}
+
+.text-green-400 {
+    color: #16A34A !important;
+}
+
+/* ── STATS SECTION ── */
+.border-y.border-white\/5 {
+    border-color: rgba(10, 46, 107, 0.06) !important;
+}
+
+/* ── TESTIMONIALS ── */
+.text-gray-300.italic {
+    color: #4A5568 !important;
+}
+
+/* Testimonial author section border */
+.border-t.border-white\/5 {
+    border-color: rgba(10, 46, 107, 0.06) !important;
+}
+
+/* ── FAQ SECTION ── */
+.faq-item button:hover {
+    background: rgba(27, 58, 125, 0.02) !important;
+}
+
+.faq-answer p {
+    color: #64748B !important;
+}
+
+/* ── NEWSLETTER / CTA SECTION ── */
+.bg-gradient-to-br.from-purple-900\/10.via-pink-900\/10.to-blue-900\/10 {
+    background: linear-gradient(135deg, rgba(27, 58, 125, 0.03), rgba(212, 146, 10, 0.02), rgba(59, 130, 246, 0.03)) !important;
+}
+
+/* Newsletter input */
+input[type="tel"].bg-white\/5,
+.bg-white\/5.border.border-white\/10 {
+    background: #F1F5F9 !important;
+    border-color: rgba(10, 46, 107, 0.1) !important;
+    color: #1A1A2E !important;
+}
+
+input[type="tel"].bg-white\/5:focus {
+    background: #FFFFFF !important;
+    border-color: #1B3A7D !important;
+}
+
+/* ── FOOTER ── */
+footer,
+footer.bg-\[\#05030c\] {
+    background: #0A2E6B !important;
+    color: #CBD5E1 !important;
+}
+
+footer .text-white {
+    color: #FFFFFF !important;
+}
+
+footer .text-gray-400,
+footer .text-gray-500,
+footer .text-gray-600,
+footer .text-gray-700 {
+    color: #94A3B8 !important;
+}
+
+footer .bg-white\/5 {
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+footer .border-white\/10,
+footer .border-white\/5 {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+footer a:hover {
+    color: #FFFFFF !important;
+}
+
+/* ── FLOATING WHATSAPP WIDGET ── */
+#contactWidget .bg-\[\#061D45\] {
+    background: #0A2E6B !important;
+    color: #FFFFFF !important;
+}
+
+#contactWidget .text-white {
+    color: #FFFFFF !important;
+}
+
+/* ── SOCIAL ICONS (in nav) ── */
+.p-2.rounded-full.bg-white\/5.border.border-white\/10 {
+    background: rgba(27, 58, 125, 0.04) !important;
+    border-color: rgba(10, 46, 107, 0.08) !important;
+}
+
+.p-2.rounded-full.bg-white\/5.border.border-white\/10 .text-gray-400 {
+    color: #94A3B8 !important;
+}
+
+.p-2.rounded-full.bg-white\/5.border.border-white\/10:hover {
+    background: rgba(27, 58, 125, 0.08) !important;
+}
+
+/* ── DISCLAIMER SECTION ── */
+.bg-yellow-500\/5.border-y.border-yellow-500\/20 {
+    background: rgba(234, 179, 8, 0.04) !important;
+    border-color: rgba(234, 179, 8, 0.12) !important;
+}
+
+.text-yellow-400 {
+    color: #D97706 !important;
+}
+
+/* ── FORM INPUTS (apply-job, contact etc.) ── */
+.bg-white\/5,
+.form-input-dark {
+    background: #F8FAFC !important;
+    border-color: rgba(10, 46, 107, 0.1) !important;
+    color: #1A1A2E !important;
+}
+
+/* ── BADGE/TAG COLORS ── */
+.bg-purple-500\/10.text-purple-300 {
+    color: #1B3A7D !important;
+    background-color: rgba(27, 58, 125, 0.06) !important;
+}
+
+.bg-pink-500\/10.text-pink-300 {
+    color: #D4920A !important;
+    background-color: rgba(212, 146, 10, 0.06) !important;
+}
+
+.bg-blue-500\/10.text-blue-300 {
+    color: #2563EB !important;
+    background-color: rgba(37, 99, 235, 0.06) !important;
+}
+
+/* ── SELECTION COLOR ── */
+::selection {
+    background: rgba(27, 58, 125, 0.15) !important;
+    color: #1A1A2E !important;
+}
+
+/* ── TRUST PAGE SPECIFIC ── */
+/* Trust center page has its own dark styling that needs override */
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F8FAFC;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(27, 58, 125, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(27, 58, 125, 0.35);
+}
+
+/* ── KEEP CERTAIN ELEMENTS WHITE TEXT ── */
+
+/* Buttons that need white text */
+.bg-purple-600 .text-white,
+.bg-gradient-to-r.from-purple-500.to-pink-500 .text-white,
+.bg-gradient-to-r.from-purple-500.to-blue-500 .text-white,
+a.bg-purple-600,
+a[class*="bg-gradient-to-r"][class*="from-purple-500"],
+button[class*="bg-gradient-to-r"][class*="from-purple-500"] {
+    color: #FFFFFF !important;
+}
+
+/* Apply Now button text must stay white */
+a.bg-purple-600.text-white,
+button.bg-purple-600.text-white,
+a[class*="bg-purple-600"][class*="text-white"],
+button[class*="bg-gradient"][class*="text-white"] {
+    color: #FFFFFF !important;
+}
+
+/* WhatsApp button stays green */
+.bg-\[\#25D366\] .text-white,
+a[class*="from-[#25D366]"] {
+    color: #FFFFFF !important;
+}
+
+/* Avatar initials should stay white on colored bg */
+.bg-purple-500.text-white,
+.bg-pink-500.text-white,
+.bg-blue-500.text-white,
+.bg-green-500.text-white,
+div.rounded-full.bg-purple-500,
+div.rounded-full.bg-pink-500,
+div.rounded-full.bg-blue-500 {
+    color: #FFFFFF !important;
+}
+
+/* Register button stays white text */
+a[class*="bg-gradient-to-r"][class*="from-purple-500"][class*="text-white"] {
+    color: #FFFFFF !important;
+}
+
+/* ── TRUST CENTER BUTTON (override for light nav) ── */
+.trust-nav-btn {
+    background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%) !important;
+    color: #0A2E6B !important;
+}
+
+.trust-mobile-btn {
+    background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%) !important;
+    color: #0A2E6B !important;
+}
+
+/* ── RESPONSIVE FIXES ── */
+@media (max-width: 1024px) {
+    #mobileMenu {
+        background: rgba(255, 255, 255, 0.98) !important;
+    }
+
+    #mobileMenu a {
+        color: #4A5568 !important;
+        border-color: rgba(10, 46, 107, 0.06) !important;
+    }
+
+    #mobileMenu a:hover {
+        color: #1B3A7D !important;
+    }
+}
+
+/* ── KEEP LIGHTBOX DARK (it's an overlay) ── */
+.offer-lightbox,
+#tc-lightbox,
+.fixed.inset-0.z-\[9999\],
+[id*="lightbox"] {
+    /* Lightbox overlays should stay dark */
+}
+
+.offer-lightbox .text-white,
+#tc-lightbox .text-white {
+    color: #FFFFFF !important;
+}
+
+/* ── GRADIENT TEXT ACCENTS (preserve on white bg) ── */
+.bg-clip-text.text-transparent {
+    color: transparent !important;
+}
+
+/* Stat numbers gradient */
+.stat-number.bg-clip-text {
+    color: transparent !important;
+}
+
+/* ── HERO GRADIENT TEXT ── */
+h1 .bg-gradient-to-r.from-purple-400.via-pink-400.to-blue-400.bg-clip-text {
+    color: transparent !important;
+}
+
+span.bg-gradient-to-r.bg-clip-text.text-transparent {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* Logo text gradient */
+a span.bg-gradient-to-r.bg-clip-text.text-transparent {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* ── SPECIAL: Keep purple/blue accent icons vivid ── */
+i.text-purple-400,
+i.text-pink-400,
+i.text-blue-400,
+i.text-green-400,
+i.text-red-400,
+i.text-teal-400,
+i.text-yellow-400,
+i.text-yellow-500,
+i.text-orange-400,
+i.text-amber-400,
+i.text-indigo-300 {
+    /* Override the blanket text color changes for icons */
+}
+
+/* Fix: Icons in colored circles keep their color */
+.text-purple-400 svg,
+.text-pink-400 svg,
+.text-blue-400 svg {
+    /* Icons stay colored */
+}
+
+/* ── FIX: Stars in reviews ── */
+.text-yellow-400 {
+    color: #EAB308 !important;
+}
+
+/* ── FIX: WhatsApp specific ── */
+.text-\[\#25D366\] {
+    color: #25D366 !important;
+}
+
+.bg-\[\#25D366\]\/10 {
+    background-color: rgba(37, 211, 102, 0.06) !important;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SMOOTH PAGE TRANSITIONS ── */
+body {
+    transition: background-color 0.3s ease;
+}
