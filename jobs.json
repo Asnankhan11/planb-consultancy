@@ -1,16 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "Customer Support Executive",
-    "company": "Tech Mahindra",
-    "location": "Pune, MH",
-    "salary": "3.5 LPA",
-    "type": "Full Time",
-    "status": "Open",
-    "description": null,
-    "created_at": "2026-07-27 00:18:28"
-  },
-  {
     "id": 2,
     "title": "Data Entry Operator",
     "company": "Infosys BPM",
@@ -55,28 +44,6 @@
     "created_at": "2026-10-09 23:48:20"
   },
   {
-    "id": 6,
-    "title": "Calling Executive",
-    "company": "Yes Spin",
-    "location": "Confirm with recruiter",
-    "salary": "₹16,000 in-hand (Up to ₹35k with incentives)",
-    "type": "Work From Home",
-    "status": "Open",
-    "description": "Process: Outbound Calling\nWorking Days: 6 days per week\nWeekly Off: Sunday\nShift: 10:00 AM–10:00 PM\nBreak: 2 hours\nQualification: 12th Pass / Graduate, any stream\nExperience: Freshers and experienced candidates\nLanguages: Hindi and English\n\nResponsibilities:\n- Make outbound calls to potential users\n- Follow the provided script\n- Explain the gaming platform\n- Answer customer queries\n- Maintain accurate call logs\n- Achieve calling and quality targets\n- Coordinate with the team\n\nRequirements:\n- Good communication skills\n- Basic computer knowledge\n- Ability to follow scripts and company guidelines",
-    "created_at": "2026-10-09 23:48:20"
-  },
-  {
-    "id": 8,
-    "title": "Customer Support Executive",
-    "company": "Maxicus",
-    "location": "Remote",
-    "salary": "₹13,500 in-hand (₹18,000 CTC)",
-    "type": "Work From Home",
-    "status": "Open",
-    "description": "Process: Chat Support / Voice Support\nAge Limit: 18–40 years\nWorking Hours: 9 hours working + 1 hour break\nWorking Days: 6 days per week\nWeekly Off: 1 rotational day\nShifts: Rotational\n\nRequirements:\n- Laptop\n- Wi-Fi / stable internet\n- Power backup\n- Good communication skills\n- Good interpersonal skills",
-    "created_at": "2026-10-09 23:48:21"
-  },
-  {
     "id": 10,
     "title": "Recharge Assistant",
     "company": "Dish TV",
@@ -85,17 +52,6 @@
     "type": "Freelance",
     "status": "Open",
     "description": "Device: Smartphone; laptop not required\nLanguage: Fluent Hindi\nSelection: Easy selection, as advertised\n\nResponsibilities:\n- Guide customers through Dish TV recharge options\n- Help customers complete recharge payments\n\nNote: Earnings are purely commission-based.",
-    "created_at": "2026-10-09 23:48:21"
-  },
-  {
-    "id": 11,
-    "title": "Telesales Executive",
-    "company": "Yes Spin / iGaming",
-    "location": "Remote",
-    "salary": "₹20,000–₹25,000 fixed / month",
-    "type": "Work From Home",
-    "status": "Open",
-    "description": "Weekly Off: Sunday\nShift: Day shift only\nLanguages: Hindi, Kannada and Telugu\n\nRequirements:\n- Laptop\n- High-speed Wi-Fi\n- Basic computer knowledge\n- Strong communication skills\n\nResponsibilities:\n- Make outbound calls\n- Introduce gaming products\n- Explain offers and features\n- Generate customer interest\n- Follow calling targets\n- Maintain call logs",
     "created_at": "2026-10-09 23:48:21"
   },
   {
@@ -140,17 +96,6 @@
     "type": "Work From Home",
     "status": "Open",
     "description": "Industry: Telecom Collection\nExperience: 1–5 years\nAdditional Incentives: Advertised potential earnings of ₹40,000–₹60,000 per month after achieving targets\nLanguages: Hindi and English\n\nRequirements:\n- Laptop\n- Suitable internet connection\n- Collection and recovery knowledge\n- Communication and negotiation skills\n\nResponsibilities:\n- Contact customers regarding repayment\n- Handle collection calls\n- Maintain customer records\n- Resolve queries\n- Achieve collection targets\n- Follow company collection policies",
-    "created_at": "2026-10-09 23:48:21"
-  },
-  {
-    "id": 20,
-    "title": "Customer Support Executive",
-    "company": "Everika Global BPM Solutions (TGBS)",
-    "location": "Confirm with recruiter",
-    "salary": "₹13,000 / month + incentives",
-    "type": "Work From Home",
-    "status": "Open",
-    "description": "Process: Calling / Voice Support\nWork Mode: Work From Home or Work From Office at Opium B&B, depending on the actual opening\nQualification: Higher Secondary (12th) Pass\nLanguages: Hindi and English\n\nRequirements:\n- Good communication skills\n- Basic computer knowledge\n- Target-oriented approach\n- Survey process experience is an advantage\n\nResponsibilities:\n- Customer calling\n- Handle customer queries\n- Maintain call records\n- Follow process guidelines",
     "created_at": "2026-10-09 23:48:21"
   },
   {
