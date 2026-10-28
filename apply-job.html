@@ -138,9 +138,24 @@ $style
                 <h3 class="text-2xl font-bold text-white mb-2 text-center flex items-center justify-center gap-2">
                     <i data-lucide="clipboard-list" class="text-purple-400"></i> Job Application Form
                 </h3>
-                <p class="text-gray-400 text-xs text-center mb-8">Fill in your details and we'll match you with the right opportunity</p>
+                <p class="text-gray-400 text-xs text-center mb-6">Fill in your details and we'll match you with the right opportunity</p>
+
+                <!-- Selected Job Banner (visible when coming from a job card) -->
+                <div id="selectedJobBanner" class="hidden mb-6 p-4 rounded-2xl bg-gradient-to-r from-purple-500/15 to-pink-500/10 border border-purple-500/30 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-300 shrink-0">
+                            <i data-lucide="briefcase" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-purple-400">Applying for Role</span>
+                            <h4 id="selectedJobTitleText" class="text-sm font-bold text-white leading-tight"></h4>
+                        </div>
+                    </div>
+                    <a href="index.html#jobsSection" class="text-xs text-purple-300 hover:text-white underline ml-3 shrink-0">Change</a>
+                </div>
 
                 <form id="jobApplicationForm" onsubmit="handleJobApplication(event)" class="space-y-6">
+                    <input type="hidden" id="jobId" name="job_id">
                     
                     <!-- Full Name -->
                     <div class="flex flex-col gap-2">
@@ -222,18 +237,62 @@ $style
                     <!-- Resume Upload -->
                     <div class="flex flex-col gap-2">
                         <label for="resume" class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
-                            <i data-lucide="file-up" class="w-3.5 h-3.5 text-blue-400"></i> Upload Resume <span class="text-[10px] text-gray-500 lowercase">(optional)</span>
+                            <i data-lucide="file-up" class="w-3.5 h-3.5 text-blue-400"></i> Upload Resume / CV <span class="text-[10px] text-gray-500 lowercase">(optional)</span>
                         </label>
-                        <div class="w-full px-4 py-3 bg-white/5 border border-dashed border-white/15 rounded-xl text-xs hover:border-purple-500 transition-colors flex items-center justify-between">
-                            <input type="file" id="resume" accept=".pdf,.doc,.docx" class="outline-none text-gray-400 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-purple-500/10 file:text-purple-300 hover:file:bg-purple-500/20 cursor-pointer w-full">
+                        <div class="w-full px-4 py-3 bg-white/5 border border-dashed border-white/15 rounded-xl text-xs hover:border-purple-500 transition-colors flex flex-col gap-2">
+                            <input type="file" id="resume" accept=".pdf,.doc,.docx" class="outline-none text-gray-400 file:mr-4 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-purple-500/20 file:text-purple-300 hover:file:bg-purple-500/30 cursor-pointer w-full">
+                            <p id="resumeFileStatus" class="hidden text-[11px] text-green-400 font-medium"></p>
                         </div>
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold hover:shadow-lg hover:shadow-purple-500/20 hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center gap-2 mt-4">
-                        Submit Job Application <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold hover:shadow-lg hover:shadow-purple-500/20 hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center gap-2 mt-4 cursor-pointer">
+                        <span>Submit Job Application</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </button>
                 </form>
+
+                <!-- Dedicated Success Screen (revealed after submission) -->
+                <div id="applicationSuccessCard" class="hidden text-center py-4 space-y-5">
+                    <div class="w-16 h-16 rounded-full bg-green-500/15 border border-green-500/30 text-[#25D366] flex items-center justify-center mx-auto shadow-lg shadow-green-500/20">
+                        <i data-lucide="check-circle-2" class="w-9 h-9 text-[#25D366]"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-black text-white mb-1">Application Submitted!</h3>
+                        <p class="text-xs text-gray-300 max-w-sm mx-auto leading-relaxed">
+                            Your job application has been recorded. Click below to connect with our official WhatsApp and complete your screening.
+                        </p>
+                    </div>
+                    
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/10 max-w-sm mx-auto text-left text-xs space-y-2">
+                        <div class="flex justify-between text-gray-400">
+                            <span>Candidate:</span>
+                            <span id="successCandidateName" class="font-semibold text-white"></span>
+                        </div>
+                        <div class="flex justify-between text-gray-400">
+                            <span>WhatsApp:</span>
+                            <span id="successCandidatePhone" class="font-semibold text-white"></span>
+                        </div>
+                        <div class="flex justify-between text-gray-400">
+                            <span>Role Applied:</span>
+                            <span id="successCandidateRole" class="font-semibold text-purple-400"></span>
+                        </div>
+                        <div id="successResumeRow" class="flex justify-between text-gray-400 hidden">
+                            <span>Resume:</span>
+                            <span id="successCandidateResume" class="font-semibold text-green-400"></span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 max-w-sm mx-auto space-y-3">
+                        <a id="successWhatsAppBtn" href="https://wa.me/919420512501" target="_blank" class="w-full py-4 px-6 rounded-2xl bg-[#25D366] text-white font-bold text-sm md:text-base hover:bg-[#20ba5c] transition-all flex items-center justify-center gap-2.5 shadow-xl shadow-green-500/30 hover:scale-[1.02] active:scale-[0.98]">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            <span>Chat on WhatsApp (+91 94205 12501)</span>
+                        </a>
+
+                        <button type="button" onclick="resetApplicationForm()" class="text-xs text-gray-400 hover:text-white py-2 underline transition-colors cursor-pointer">
+                            Submit Another Application
+                        </button>
+                    </div>
+                </div>
 
                 <!-- Divider -->
                 <div class="flex items-center gap-4 my-8 text-gray-500 text-xs uppercase tracking-wider">
@@ -375,6 +434,7 @@ $style
         // Show toast notification
         function showToast(message, type = 'success') {
             const toast = document.getElementById('formToast');
+            if (!toast) return;
             toast.textContent = message;
             toast.style.display = 'block';
             toast.style.opacity = '1';
@@ -391,50 +451,133 @@ $style
                 toast.style.opacity = '0';
                 setTimeout(() => { toast.style.display = 'none'; }, 300);
             }, 4000);
-         // Backend API URL for dynamic platform
+        }
+
         const API_URL = '/api/applications';
 
-        // Job Application Form → Dynamic API
+        // URL parameters handler to pre-select job
+        function initJobFromUrl() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const jobTitle = params.get('job_title') || params.get('title') || params.get('job') || '';
+                const jobId = params.get('job_id') || params.get('id') || '';
+
+                if (jobId) {
+                    const idInput = document.getElementById('jobId');
+                    if (idInput) idInput.value = jobId;
+                }
+
+                if (jobTitle) {
+                    const banner = document.getElementById('selectedJobBanner');
+                    const titleText = document.getElementById('selectedJobTitleText');
+                    if (banner && titleText) {
+                        titleText.textContent = jobTitle;
+                        banner.classList.remove('hidden');
+                        banner.style.display = 'flex';
+                    }
+
+                    const select = document.getElementById('jobPreference');
+                    if (select) {
+                        let matched = false;
+                        for (let i = 0; i < select.options.length; i++) {
+                            if (select.options[i].value.toLowerCase() === jobTitle.toLowerCase()) {
+                                select.selectedIndex = i;
+                                matched = true;
+                                break;
+                            }
+                        }
+                        if (!matched) {
+                            const newOpt = new Option(jobTitle, jobTitle, true, true);
+                            select.add(newOpt, select.options[1]);
+                            select.value = jobTitle;
+                        }
+                    }
+                }
+            } catch (err) {
+                console.warn('URL params init error:', err);
+            }
+        }
+
+        // Resume file status indicator
+        document.addEventListener('DOMContentLoaded', () => {
+            initJobFromUrl();
+
+            const resumeInput = document.getElementById('resume');
+            const resumeStatus = document.getElementById('resumeFileStatus');
+            if (resumeInput) {
+                resumeInput.addEventListener('change', function () {
+                    if (this.files && this.files[0]) {
+                        const file = this.files[0];
+                        if (file.size > 15 * 1024 * 1024) {
+                            alert('Resume file size must be under 15MB');
+                            this.value = '';
+                            if (resumeStatus) {
+                                resumeStatus.textContent = '';
+                                resumeStatus.classList.add('hidden');
+                            }
+                            return;
+                        }
+                        if (resumeStatus) {
+                            resumeStatus.textContent = `✓ Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+                            resumeStatus.classList.remove('hidden');
+                            resumeStatus.style.display = 'block';
+                        }
+                    }
+                });
+            }
+        });
+
+        // Job Application Form Submission Handler
         async function handleJobApplication(e) {
-            e.preventDefault();
+            if (e && typeof e.preventDefault === 'function') {
+                e.preventDefault();
+            }
 
-            const submitBtn = document.querySelector('#jobApplicationForm button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px;"><span class="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full" style="animation:spin 0.6s linear infinite;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;display:inline-block;"></span> Submitting...</span>';
+            const form = document.getElementById('jobApplicationForm');
+            if (!form) return false;
 
-            const name = document.getElementById('fullName').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const location = document.getElementById('location').value;
-            const jobPref = document.getElementById('jobPreference').value;
-            const exp = document.getElementById('experience').value || 'Not specified';
-            
-            // If they clicked apply from a specific job in jobs.html, we can catch it from URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const jobId = urlParams.get('job') || null;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn ? submitBtn.innerHTML : 'Submit Job Application';
+
+            const name = (document.getElementById('fullName')?.value || '').trim();
+            const phone = (document.getElementById('phone')?.value || '').trim();
+            const email = (document.getElementById('email')?.value || '').trim();
+            const location = (document.getElementById('location')?.value || '').trim();
+            const jobPref = (document.getElementById('jobPreference')?.value || '').trim();
+            const exp = (document.getElementById('experience')?.value || 'Not specified').trim();
+            const jobId = document.getElementById('jobId')?.value || null;
+
+            if (!name || !phone || !location || !jobPref) {
+                showToast('Please fill in all required fields.', 'error');
+                return false;
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px;"><span class="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full" style="animation:spin 0.6s linear infinite;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;display:inline-block;"></span> Submitting Application...</span>';
+            }
 
             const formData = new FormData();
-            if(jobId) formData.append('job_id', jobId);
+            if (jobId) formData.append('job_id', jobId);
             formData.append('name', name);
             formData.append('mobile', phone);
-            formData.append('email', email);
+            if (email) formData.append('email', email);
             formData.append('city', location);
             formData.append('preferred_company', jobPref);
             formData.append('experience', exp);
 
             const resumeInput = document.getElementById('resume');
-            if (resumeInput && resumeInput.files.length > 0) {
-                formData.append('resume', resumeInput.files[0]);
-            }
-
             const hasResume = resumeInput && resumeInput.files && resumeInput.files.length > 0;
             const resumeFileName = hasResume ? resumeInput.files[0].name : '';
+
+            if (hasResume) {
+                formData.append('resume', resumeInput.files[0]);
+            }
 
             let cloudResumeUrl = null;
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 6500);
+                const timeoutId = setTimeout(() => controller.abort(), 4500);
                 const resp = await fetch(API_URL, {
                     method: 'POST',
                     body: formData,
@@ -472,13 +615,78 @@ $style
 
             const waUrl = `https://wa.me/919420512501?text=${whatsappMsg}`;
 
-            showToast('✅ Application submitted! Opening WhatsApp to chat with team...', 'success');
-            document.getElementById('jobApplicationForm').reset();
-            window.open(waUrl, '_blank');
+            // Populate Success Card
+            const successCard = document.getElementById('applicationSuccessCard');
+            const candidateNameEl = document.getElementById('successCandidateName');
+            const candidatePhoneEl = document.getElementById('successCandidatePhone');
+            const candidateRoleEl = document.getElementById('successCandidateRole');
+            const successWhatsAppBtn = document.getElementById('successWhatsAppBtn');
+            const successResumeRow = document.getElementById('successResumeRow');
+            const successCandidateResume = document.getElementById('successCandidateResume');
 
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalText;
+            if (candidateNameEl) candidateNameEl.textContent = name;
+            if (candidatePhoneEl) candidatePhoneEl.textContent = phone;
+            if (candidateRoleEl) candidateRoleEl.textContent = jobPref;
+            if (successWhatsAppBtn) successWhatsAppBtn.href = waUrl;
+
+            if (hasResume && successResumeRow && successCandidateResume) {
+                successCandidateResume.textContent = resumeFileName;
+                successResumeRow.classList.remove('hidden');
+                successResumeRow.style.display = 'flex';
+            }
+
+            // Switch view from form to success confirmation card
+            form.style.display = 'none';
+            const selectedJobBanner = document.getElementById('selectedJobBanner');
+            if (selectedJobBanner) selectedJobBanner.style.display = 'none';
+
+            if (successCard) {
+                successCard.classList.remove('hidden');
+                successCard.style.display = 'block';
+            }
+
+            showToast('✅ Application submitted successfully!', 'success');
+
+            // Attempt automatic WhatsApp open
+            try {
+                window.open(waUrl, '_blank');
+            } catch (err) {
+                console.warn('Popup blocked:', err);
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+
+            if (window.lucide) lucide.createIcons();
+            return false;
         }
+
+        window.handleJobApplication = handleJobApplication;
+
+        function resetApplicationForm() {
+            const form = document.getElementById('jobApplicationForm');
+            const successCard = document.getElementById('applicationSuccessCard');
+            const selectedJobBanner = document.getElementById('selectedJobBanner');
+            const resumeStatus = document.getElementById('resumeFileStatus');
+            if (form) {
+                form.reset();
+                form.style.display = 'block';
+            }
+            if (resumeStatus) {
+                resumeStatus.textContent = '';
+                resumeStatus.classList.add('hidden');
+            }
+            if (successCard) {
+                successCard.classList.add('hidden');
+                successCard.style.display = 'none';
+            }
+            if (selectedJobBanner && document.getElementById('selectedJobTitleText')?.textContent) {
+                selectedJobBanner.style.display = 'flex';
+            }
+        }
+        window.resetApplicationForm = resetApplicationForm;
     </script>
     <style>
         @keyframes spin { to { transform: rotate(360deg); } }
