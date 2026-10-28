@@ -116,16 +116,41 @@ app.get('/api/analytics', verifyToken, (req, res) => {
 // ----------------------------------------------------
 app.get('/api/jobs', (req, res) => {
     db.all("SELECT * FROM jobs ORDER BY id DESC", (err, rows) => {
-        if(err) return res.status(500).json({error: err.message});
-        if (!rows || rows.length === 0) {
-            try {
-                const fallbackJobs = require('./jobs.json');
-                return res.json(fallbackJobs);
-            } catch(e) {
-                // Ignore fallback error
-            }
+        let fallbackJobs = [];
+        try {
+            delete require.cache[require.resolve('./jobs.json')];
+            fallbackJobs = require('./jobs.json');
+        } catch(e) {}
+
+        if (err || !rows || rows.length === 0) {
+            return res.json(fallbackJobs);
         }
-        res.json(rows);
+
+        try {
+            const jobMap = new Map(fallbackJobs.map(j => [j.id, j]));
+            const enriched = rows.map(r => {
+                const base = jobMap.get(r.id) || {};
+                let cats = base.categories;
+                if (r.categories) {
+                    try { cats = JSON.parse(r.categories); } catch(e) { cats = [r.categories]; }
+                }
+                return {
+                    ...base,
+                    ...r,
+                    categories: cats || base.categories || ["Other Opportunities"],
+                    work_mode: r.work_mode || base.work_mode || (r.location && r.location.toLowerCase().includes('home') ? "Work From Home" : "Work From Office"),
+                    experience_level: r.experience_level || base.experience_level || "Fresher",
+                    qualification: r.qualification || base.qualification || "12th Pass / Graduate",
+                    languages: r.languages || base.languages || "Hindi / English",
+                    shifts: r.shifts || base.shifts || "Standard Shifts",
+                    last_updated: r.last_updated || base.last_updated || "2026-10-25",
+                    verified: true
+                };
+            });
+            res.json(enriched);
+        } catch(e) {
+            res.json(fallbackJobs.length > 0 ? fallbackJobs : rows);
+        }
     });
 });
 

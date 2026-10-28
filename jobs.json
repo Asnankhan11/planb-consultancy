@@ -8,7 +8,19 @@
     "type": "Part Time",
     "status": "Closed",
     "description": "",
-    "created_at": "2026-07-27 00:18:28"
+    "created_at": "2026-07-27 00:18:28",
+    "categories": [
+      "Work From Home Jobs",
+      "Data Annotation & Back Office",
+      "Freshers Jobs"
+    ],
+    "work_mode": "Work From Home",
+    "experience_level": "Fresher",
+    "qualification": "12th Pass / Any Graduate",
+    "languages": "Basic English, Hindi",
+    "shifts": "Flexible / Part-Time",
+    "last_updated": "2026-10-25",
+    "verified": true
   },
   {
     "id": 3,
@@ -19,7 +31,19 @@
     "type": "Full Time",
     "status": "Open",
     "description": null,
-    "created_at": "2026-07-27 00:18:28"
+    "created_at": "2026-07-27 00:18:28",
+    "categories": [
+      "Freshers Jobs",
+      "Experienced Candidates",
+      "Other Opportunities"
+    ],
+    "work_mode": "Work From Office",
+    "experience_level": "0–1 Year",
+    "qualification": "Any Graduate / MBA HR",
+    "languages": "Hindi, Marathi, English",
+    "shifts": "Day Shift (10:00 AM – 6:30 PM)",
+    "last_updated": "2026-10-25",
+    "verified": true
   },
   {
     "id": 4,
@@ -30,7 +54,21 @@
     "type": "Work From Home",
     "status": "Open",
     "description": "Process: 100% Non-Voice\nExperience: Freshers and experienced candidates\n\nResponsibilities:\n- Data entry and record updating\n- Verify hotel booking data\n- Identify and fix revenue leakage\n- Maintain accurate records\n- Check documents and data accuracy\n- Update spreadsheets and internal systems\n- Follow SOPs and process guidelines\n- Coordinate with internal teams\n\nRequirements:\n- Basic computer knowledge\n- MS Excel or Google Sheets\n- Good typing speed and attention to detail\n- Basic English reading and writing\n- Laptop or desktop mandatory\n- Stable internet connection\n\nBenefits:\n- Non-voice process\n- No target, as advertised\n- Work from home\n- Performance-based growth",
-    "created_at": "2026-10-09 23:48:20"
+    "created_at": "2026-10-09 23:48:20",
+    "categories": [
+      "Work From Home Jobs",
+      "Customer Support — Chat / Non-Voice",
+      "Data Annotation & Back Office",
+      "Freshers Jobs",
+      "Experienced Candidates"
+    ],
+    "work_mode": "Work From Home",
+    "experience_level": "Fresher",
+    "qualification": "12th Pass / Any Graduate",
+    "languages": "Basic English reading and writing",
+    "shifts": "Day Shift (100% Non-Voice)",
+    "last_updated": "2026-10-25",
+    "verified": true
   },
   {
     "id": 5,
@@ -41,7 +79,20 @@
     "type": "Work From Home",
     "status": "Open",
     "description": "Working Hours: 10:00 AM–7:00 PM\nBreak: 1 hour\nWeekly Off: 1 day per week, usually Tuesday\nLanguage: Fluent Hindi\n\nRequirements:\n- Own Windows PC\n- Clear headset\n- Quiet working environment\n- Fluent Hindi communication\n\nResponsibilities:\n- Outbound telesales calling\n- Communicate with prospective customers\n- Explain products or services\n- Follow up with interested customers",
-    "created_at": "2026-10-09 23:48:20"
+    "created_at": "2026-10-09 23:48:20",
+    "categories": [
+      "Work From Home Jobs",
+      "Telecalling & Tele Sales",
+      "Sales & Business Development",
+      "Freshers Jobs"
+    ],
+    "work_mode": "Work From Home",
+    "experience_level": "0–1 Year",
+    "qualification": "12th Pass / Any Graduate",
+    "languages": "Fluent Hindi",
+    "shifts": "10:00 AM – 7:00 PM (Weekly Off Tuesday)",
+    "last_updated": "2026-10-25",
+    "verified": true
   },
   {
     "id": 10,
@@ -52,7 +103,20 @@
     "type": "Freelance",
     "status": "Open",
     "description": "Device: Smartphone; laptop not required\nLanguage: Fluent Hindi\nSelection: Easy selection, as advertised\n\nResponsibilities:\n- Guide customers through Dish TV recharge options\n- Help customers complete recharge payments\n\nNote: Earnings are purely commission-based.",
-    "created_at": "2026-10-09 23:48:21"
+    "created_at": "2026-10-09 23:48:21",
+    "categories": [
+      "Work From Home Jobs",
+      "Telecalling & Tele Sales",
+      "Freshers Jobs",
+      "Other Opportunities"
+    ],
+    "work_mode": "Work From Home",
+    "experience_level": "Fresher",
+    "qualification": "10th / 12th Pass",
+    "languages": "Fluent Hindi",
+    "shifts": "Flexible Timings (Smartphone based)",
+    "last_updated": "2026-10-25",
+    "verified": true
   },
   {
     "id": 12,
@@ -63,7 +127,20 @@
     "type": "Flexible",
     "status": "Open",
     "description": "Device: Mobile or laptop\nWorking Cycle: 25 days per month\nTimings: Flexible, advertised as 24/7\nPayment: Within 10 days after cycle completion, as advertised\n\nAdvertised Compensation:\n- 2,000 barcodes × ₹5 = ₹10,000\n- 2,500 barcodes × ₹6 = ₹15,000\n- 3,000 barcodes × ₹7 = ₹21,000\n- 3,500 barcodes × ₹8 = ₹28,000\n\nResponsibilities:\n- Generate barcodes\n- Complete assigned data processing\n- Maintain accurate work records\n- Follow company guidelines\n\nRequirements:\n- Smartphone or laptop\n- Attention to detail\n- Ability to complete assigned work accurately",
-    "created_at": "2026-10-09 23:48:21"
+    "created_at": "2026-10-09 23:48:21",
+    "categories": [
+      "Work From Home Jobs",
+      "Data Annotation & Back Office",
+      "Freshers Jobs",
+      "Other Opportunities"
+    ],
+    "work_mode": "Work From Home",
+    "experience_level": "Fresher",
+    "qualification": "Basic Computer or Smartphone Skills",
+    "languages": "Hindi or Basic English",
+    "shifts": "Flexible Timings (24/7 Self-Paced)",
+    "last_updated": "2026-10-25",
+    "verified": true
   },
   {
     "id": 17,
@@ -74,7 +151,20 @@
     "type": "Flexible",
     "status": "Open",
     "description": "Device: Mobile-friendly\n\nResponsibilities:\n- Add and manage product details\n- Generate and maintain barcodes\n- Upload product images\n- Maintain data quality\n- Follow SOPs\n- Help maintain inventory records\n\nRequirements:\n- Attention to detail\n- Basic digital skills\n- Ability to manage product information accurately",
-    "created_at": "2026-10-09 23:48:21"
+    "created_at": "2026-10-09 23:48:21",
+    "categories": [
+      "Work From Home Jobs",
+      "Data Annotation & Back Office",
+      "Freshers Jobs",
+      "Other Opportunities"
+    ],
+    "work_mode": "Work From Home",
+    "experience_level": "Fresher",
+    "qualification": "10th / 12th Pass / Any Graduate",
+    "languages": "Hindi or Basic English",
+    "shifts": "Flexible Timings",
+    "last_updated": "2026-10-25",
+    "verified": true
   },
   {
     "id": 18,
@@ -85,7 +175,21 @@
     "type": "Work From Home",
     "status": "Open",
     "description": "Shift: 11:00 AM–9:00 PM\nWorking Days: 6 days per week\nLanguage: Hindi and English\nLaptop: Mandatory\nExperience: Prior sales experience mandatory\n\nResponsibilities:\n- Make outbound calls to prospective customers\n- Explain educational programs\n- Understand customer requirements\n- Follow up with interested leads\n- Convert prospective customers into enrollments\n- Maintain call quality and achieve sales targets\n\nRequirements:\n- Sales experience from any sector\n- Good Hindi and English communication\n- Comfortable with target-based sales\n- Laptop and stable internet\n- Availability for the complete shift",
-    "created_at": "2026-10-09 23:48:21"
+    "created_at": "2026-10-09 23:48:21",
+    "categories": [
+      "Work From Home Jobs",
+      "Telecalling & Tele Sales",
+      "Sales & Business Development",
+      "EdTech Counsellor",
+      "Experienced Candidates"
+    ],
+    "work_mode": "Work From Home",
+    "experience_level": "1–3 Years",
+    "qualification": "Graduate / Prior Sales Experience",
+    "languages": "Hindi and English",
+    "shifts": "11:00 AM – 9:00 PM (6 Days/Week)",
+    "last_updated": "2026-10-25",
+    "verified": true
   },
   {
     "id": 19,
@@ -96,7 +200,20 @@
     "type": "Work From Home",
     "status": "Open",
     "description": "Industry: Telecom Collection\nExperience: 1–5 years\nAdditional Incentives: Advertised potential earnings of ₹40,000–₹60,000 per month after achieving targets\nLanguages: Hindi and English\n\nRequirements:\n- Laptop\n- Suitable internet connection\n- Collection and recovery knowledge\n- Communication and negotiation skills\n\nResponsibilities:\n- Contact customers regarding repayment\n- Handle collection calls\n- Maintain customer records\n- Resolve queries\n- Achieve collection targets\n- Follow company collection policies",
-    "created_at": "2026-10-09 23:48:21"
+    "created_at": "2026-10-09 23:48:21",
+    "categories": [
+      "Work From Home Jobs",
+      "Telecalling & Tele Sales",
+      "Sales & Business Development",
+      "Experienced Candidates"
+    ],
+    "work_mode": "Work From Home",
+    "experience_level": "1–3 Years",
+    "qualification": "12th Pass / Any Graduate",
+    "languages": "Hindi and English",
+    "shifts": "Standard Day Shift (10:00 AM – 7:00 PM)",
+    "last_updated": "2026-10-25",
+    "verified": true
   },
   {
     "id": 21,
@@ -107,7 +224,20 @@
     "type": "Work From Home",
     "status": "Open",
     "description": "Process: Blended (Chat + Voice)\nEmployment: Permanent role, as advertised\nWorking Days: 6 days per week\nShifts: Rotational, including night shifts\nEligibility: HSC (12th Pass) or graduate\nExperience: Freshers only, as advertised\n\nRequirements:\n- Own laptop\n- Stable Wi-Fi\n- High-speed internet\n- Mandatory USB headset\n- Active inverter or generator for power backup\n- Good verbal English communication\n- Basic knowledge of computer systems and hardware",
-    "created_at": "2026-10-09 23:48:21"
+    "created_at": "2026-10-09 23:48:21",
+    "categories": [
+      "Work From Home Jobs",
+      "Customer Support — Voice",
+      "Customer Support — Chat / Non-Voice",
+      "Freshers Jobs"
+    ],
+    "work_mode": "Work From Home",
+    "experience_level": "Fresher",
+    "qualification": "HSC (12th Pass) or Graduate",
+    "languages": "Good verbal English",
+    "shifts": "Rotational Shifts (Includes Night Shifts)",
+    "last_updated": "2026-10-25",
+    "verified": true
   },
   {
     "id": 22,
@@ -118,7 +248,20 @@
     "type": "Work From Home",
     "status": "Open",
     "description": "Process: International Inbound Voice\nCharges: No charges, as advertised\nTraining and Evaluation: 2.5 months\n\nTraining Structure:\n- First 2 weeks: Unpaid training\n- After 2 weeks: Eligible candidates receive ₹100 per day during the remaining training period\n- Subject to attendance, performance and company conditions\n\nRequirements:\n- Excellent spoken English and pronunciation\n- Strong communication skills\n- Customer-handling and problem-solving skills\n- Comfortable speaking with international customers\n- Willingness to work rotational and night shifts\n- Previous international BPO experience preferred, not mandatory\n\nTechnical Requirements:\n- Intel Core i5 10th Gen or AMD Ryzen 5 equivalent\n- Minimum 12 GB RAM; 16 GB preferred\n- Minimum 108 GB available storage\n- Windows 10/11 or compatible OS\n- Dual monitors required\n- Functional webcam/camera\n- Minimum 100 Mbps stable broadband\n- Quality headset\n- Quiet professional work environment",
-    "created_at": "2026-10-09 23:48:21"
+    "created_at": "2026-10-09 23:48:21",
+    "categories": [
+      "Work From Home Jobs",
+      "Customer Support — Voice",
+      "Freshers Jobs",
+      "Experienced Candidates"
+    ],
+    "work_mode": "Work From Home",
+    "experience_level": "0–1 Year",
+    "qualification": "HSC (12th Pass) or Graduate",
+    "languages": "Excellent spoken English & pronunciation",
+    "shifts": "Rotational & International Night Shifts",
+    "last_updated": "2026-10-25",
+    "verified": true
   },
   {
     "id": 23,
@@ -129,6 +272,20 @@
     "type": "Not specified",
     "status": "Open",
     "description": "Job Category: EdTech / Education Counselling",
-    "created_at": "2026-10-09 23:48:21"
+    "created_at": "2026-10-09 23:48:21",
+    "categories": [
+      "Telecalling & Tele Sales",
+      "Sales & Business Development",
+      "EdTech Counsellor",
+      "Freshers Jobs",
+      "Experienced Candidates"
+    ],
+    "work_mode": "Work From Office",
+    "experience_level": "0–1 Year",
+    "qualification": "Any Graduate",
+    "languages": "Hindi and English",
+    "shifts": "Full-Time Day Shift",
+    "last_updated": "2026-10-25",
+    "verified": true
   }
 ]

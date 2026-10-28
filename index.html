@@ -284,6 +284,284 @@
         </div>
     </section>
 
+    <!-- ======================================================== -->
+    <!-- EXPLORE JOB OPPORTUNITIES SECTION                        -->
+    <!-- ======================================================== -->
+    <section class="py-20 relative z-10 bg-gradient-to-b from-white via-slate-50/70 to-white border-b border-slate-200/80" id="explore-jobs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section 2: Header & Top Actions -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-[#1B3A7D] text-xs font-bold tracking-wide uppercase mb-4 shadow-sm">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-500"></i>
+                    <span>Verified Openings • Pan India</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-4">
+                    Find Your Next Career Opportunity
+                </h2>
+                <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-8">
+                    Explore work-from-home jobs, customer support roles, sales opportunities and more. Choose your preferred category to discover available openings.
+                </p>
+
+                <!-- Two Prominent Actions -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#jobs-catalog" class="w-full sm:w-auto px-8 py-3.5 rounded-full font-bold text-white bg-gradient-to-r from-[#1B3A7D] via-[#234892] to-[#1B3A7D] hover:shadow-xl hover:shadow-blue-900/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 text-sm">
+                        <i data-lucide="briefcase" class="w-4 h-4"></i>
+                        <span>Explore Available Jobs</span>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 rounded-full font-bold text-[#0D6832] bg-[#E8F8EE] border border-[#25D366]/40 hover:bg-[#DCFCE7] hover:border-[#25D366] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-sm flex items-center justify-center gap-2 text-sm">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.539 1.942.822 2.791.823 3.182 0 5.768-2.587 5.768-5.766.001-3.182-2.585-5.769-5.768-5.769zm3.363 8.163c-.144.405-.837.774-1.17.822-.312.043-.687.069-2.21-.564-1.802-.746-2.951-2.58-3.04-2.699-.089-.12-1.391-1.851-1.391-3.531 0-1.68 0.88-2.506 1.192-2.85.312-.344.687-.43.916-.43.229 0 .458.002.66.012.213.01.498-.081.779.593.287.691.982 2.399 1.068 2.574.086.175.144.379.029.609-.115.229-.172.373-.344.573-.172.2-.362.447-.517.6-.172.172-.351.359-.151.703.2.344.891 1.468 1.91 2.376 1.311 1.168 2.417 1.53 2.76 1.702.344.172.545.144.745-.086.2-.23 1.17-1.365 1.482-1.834.312-.469.624-.39.853-.299.229.091 1.453.686 1.704.811.251.125.419.188.48.291.061.103.061.602-.083 1.007z"/></svg>
+                        <span>Explore More Opportunities on WhatsApp</span>
+                    </a>
+                </div>
+
+                <!-- Trust Strip -->
+                <div class="flex flex-wrap items-center justify-center gap-6 mt-8 text-xs font-semibold text-slate-500">
+                    <span class="inline-flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i> 100% Free Placement Assistance</span>
+                    <span class="inline-flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-[#1B3A7D]"></i> Direct Verified Openings</span>
+                    <span class="inline-flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-amber-500"></i> Tier 2 & Tier 3 City Friendly</span>
+                </div>
+            </div>
+
+            <!-- Section 3: Interactive Job Category Selection -->
+            <div class="mb-14 bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-100">
+                    <div>
+                        <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                            <span>Select Your Preferred Categories</span>
+                            <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-[#1B3A7D]">Multi-Select Enabled</span>
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                            Click on one or more categories below to filter currently available verified jobs
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <button id="selectAllCatsBtn" type="button" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-[#1B3A7D] bg-blue-50 hover:bg-blue-100 transition-colors cursor-pointer">
+                            Select All
+                        </button>
+                        <button id="clearCatsBtn" type="button" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer">
+                            Clear Selection
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 10 Category Cards Grid -->
+                <div id="categoriesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 mb-8">
+                    <!-- Populated dynamically by js/jobs-home.js -->
+                </div>
+
+                <!-- Show Available Jobs Button -->
+                <div class="text-center pt-2">
+                    <button id="showJobsBtn" type="button" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-white bg-gradient-to-r from-[#1B3A7D] via-[#224690] to-[#1B3A7D] hover:shadow-xl hover:shadow-blue-900/20 hover:scale-[1.02] active:scale-[0.98] transition-all text-sm cursor-pointer shadow-md">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-amber-300"></i>
+                        <span>Show Available Jobs (<span id="catMatchedCount">11</span> Openings)</span>
+                        <i data-lucide="arrow-down" class="w-4 h-4 ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Section 3 & 4: Search & Filters Catalog Section -->
+            <div id="jobs-catalog" class="pt-6">
+                <!-- Refinement Controls Bar -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 mb-8 shadow-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3.5 items-center">
+                        <!-- Keyword Search Input (5 cols) -->
+                        <div class="lg:col-span-5 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                                <i data-lucide="search" class="w-4 h-4"></i>
+                            </div>
+                            <input type="text" id="jobSearchInput" placeholder="Search by job title, skill, or keyword..." class="job-filter-control w-full pl-10 pr-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium placeholder-slate-400 focus:outline-none transition-all">
+                        </div>
+
+                        <!-- Work Mode Select (2 cols) -->
+                        <div class="lg:col-span-2">
+                            <select id="workModeFilter" class="job-filter-control w-full px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-700 focus:outline-none transition-all cursor-pointer">
+                                <option value="all">All Work Modes</option>
+                                <option value="Work From Home">Work From Home</option>
+                                <option value="Work From Office">Work From Office</option>
+                                <option value="Hybrid">Hybrid / Flexible</option>
+                            </select>
+                        </div>
+
+                        <!-- Experience Filter (2 cols) -->
+                        <div class="lg:col-span-2">
+                            <select id="expFilter" class="job-filter-control w-full px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-700 focus:outline-none transition-all cursor-pointer">
+                                <option value="all">All Experience Levels</option>
+                                <option value="Fresher">Fresher Only</option>
+                                <option value="0–1 Year">0–1 Year</option>
+                                <option value="1–3 Years">1–3 Years</option>
+                                <option value="3+ Years">3+ Years</option>
+                            </select>
+                        </div>
+
+                        <!-- Location Filter (2 cols) -->
+                        <div class="lg:col-span-2">
+                            <select id="locationFilter" class="job-filter-control w-full px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-700 focus:outline-none transition-all cursor-pointer">
+                                <option value="all">All Locations</option>
+                                <option value="remote">Remote / Pan India</option>
+                                <option value="akola">Akola, MH Office</option>
+                            </select>
+                        </div>
+
+                        <!-- Clear Filters Button (1 col) -->
+                        <div class="lg:col-span-1">
+                            <button id="clearFiltersBtn" type="button" title="Clear all search and filters" class="w-full py-2.5 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors flex items-center justify-center gap-1 cursor-pointer">
+                                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                                <span class="lg:hidden">Reset</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Counter & Trust Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 px-1">
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-bold text-slate-900">
+                            Showing <span id="visibleJobsCount" class="font-extrabold text-[#1B3A7D]">11</span> Available Opportunities
+                        </span>
+                        <span class="text-xs text-slate-400">•</span>
+                        <span class="text-xs text-slate-500 font-medium">Verified by Plan B Careers</span>
+                    </div>
+                    <div class="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-3 py-1 rounded-full inline-flex items-center gap-1.5 self-start sm:self-auto">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                        <span>Zero Registration Fee • Direct Employer Process</span>
+                    </div>
+                </div>
+
+                <!-- Job Cards Grid (Section 4) -->
+                <div id="jobCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                    <!-- Populated dynamically by js/jobs-home.js -->
+                </div>
+            </div>
+
+            <!-- Section 5: WhatsApp Channel Integration Section (Below Job Listings) -->
+            <div class="whatsapp-channel-card rounded-3xl p-8 sm:p-10 border border-[#25D366]/40 shadow-lg relative overflow-hidden mb-6">
+                <!-- Subtle decorative background badge -->
+                <div class="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-[#25D366]/5 pointer-events-none"></div>
+
+                <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#25D366]/15 text-[#0D6832] text-xs font-bold uppercase tracking-wider mb-3">
+                            <span class="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span>
+                            <span>Live Recruitment Channel</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-3">
+                            Looking for More Job Opportunities?
+                        </h3>
+                        <p class="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
+                            Explore additional openings, recruitment updates and newly announced opportunities through our official WhatsApp Channel. Join thousands of candidates from Tier 2 and Tier 3 cities across India discovering verified vacancies daily.
+                        </p>
+
+                        <!-- Key Benefits list -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-semibold text-slate-700">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="bell" class="w-4 h-4 text-[#25D366]"></i>
+                                <span>Instant Opening Alerts</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="laptop" class="w-4 h-4 text-[#25D366]"></i>
+                                <span>Exclusive WFH & Voice Roles</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-[#25D366]"></i>
+                                <span>100% Free & Verified</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct WhatsApp Channel Button -->
+                    <div class="flex-shrink-0 flex flex-col items-start lg:items-end gap-3">
+                        <a href="https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10" target="_blank" rel="noopener noreferrer" class="px-8 py-4 rounded-full font-extrabold text-white bg-[#25D366] hover:bg-[#1EBE5D] hover:shadow-xl hover:shadow-[#25D366]/30 hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center gap-3 text-sm sm:text-base shadow-md">
+                            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.539 1.942.822 2.791.823 3.182 0 5.768-2.587 5.768-5.766.001-3.182-2.585-5.769-5.768-5.769zm3.363 8.163c-.144.405-.837.774-1.17.822-.312.043-.687.069-2.21-.564-1.802-.746-2.951-2.58-3.04-2.699-.089-.12-1.391-1.851-1.391-3.531 0-1.68 0.88-2.506 1.192-2.85.312-.344.687-.43.916-.43.229 0 .458.002.66.012.213.01.498-.081.779.593.287.691.982 2.399 1.068 2.574.086.175.144.379.029.609-.115.229-.172.373-.344.573-.172.2-.362.447-.517.6-.172.172-.351.359-.151.703.2.344.891 1.468 1.91 2.376 1.311 1.168 2.417 1.53 2.76 1.702.344.172.545.144.745-.086.2-.23 1.17-1.365 1.482-1.834.312-.469.624-.39.853-.299.229.091 1.453.686 1.704.811.251.125.419.188.48.291.061.103.061.602-.083 1.007z"/></svg>
+                            <span>Explore More Jobs on WhatsApp</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                        <span class="text-xs text-slate-500 font-medium">Opens official Plan B Careers WhatsApp Channel</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- JOB DETAILS MODAL -->
+    <div id="jobDetailsModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative my-8 max-h-[90vh] overflow-y-auto">
+            <!-- Close Button -->
+            <button onclick="window.closeJobDetailsModal()" type="button" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-900 flex items-center justify-center transition-colors cursor-pointer" aria-label="Close modal">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="pr-10 mb-4">
+                <div class="flex items-center gap-2 mb-2">
+                    <span id="modalStatus" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Open</span>
+                    <span id="modalWorkMode" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-[#1B3A7D]">Work From Home</span>
+                </div>
+                <h3 id="modalTitle" class="text-2xl font-black text-slate-900 mb-1">Job Title</h3>
+                <p id="modalCompany" class="text-sm font-semibold text-slate-600 flex items-center gap-1.5">Company Name</p>
+            </div>
+
+            <!-- Salary & Quick Specs -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 mb-6 text-xs text-slate-700">
+                <div>
+                    <span class="text-slate-400 block text-[11px]">Salary</span>
+                    <span id="modalSalary" class="font-bold text-emerald-700 text-sm">Competitive</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[11px]">Location</span>
+                    <span id="modalLocation" class="font-bold">Pan India</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[11px]">Experience</span>
+                    <span id="modalExperience" class="font-bold">Fresher / Any</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[11px]">Qualification</span>
+                    <span id="modalQualification" class="font-bold">12th Pass / Graduate</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[11px]">Languages</span>
+                    <span id="modalLanguages" class="font-bold">Hindi & English</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[11px]">Shifts</span>
+                    <span id="modalShifts" class="font-bold">Day Shift</span>
+                </div>
+            </div>
+
+            <!-- Job Description / Details -->
+            <div class="mb-6">
+                <h4 class="text-sm font-bold uppercase tracking-wider text-slate-900 mb-2">Job Description & Requirements</h4>
+                <div id="modalFullDescription" class="text-xs sm:text-sm text-slate-600 leading-relaxed bg-slate-50/50 p-4 rounded-2xl border border-slate-100 max-h-60 overflow-y-auto">
+                    <!-- Dynamic description -->
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-6">
+                <span class="flex items-center gap-1">
+                    <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                    <span>Last Updated: <strong id="modalUpdated" class="text-slate-600 font-medium">Recent</strong></span>
+                </span>
+                <span class="text-emerald-700 font-semibold flex items-center gap-1">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> 100% Free Application
+                </span>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button id="modalApplyWaBtn" type="button" class="px-6 py-3 rounded-2xl font-bold text-white bg-gradient-to-r from-[#1B3A7D] to-[#25468E] hover:opacity-95 transition-all shadow-md flex items-center justify-center gap-2 text-sm cursor-pointer">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    <span>Apply via WhatsApp</span>
+                </button>
+                <button id="modalApplyFormBtn" type="button" class="px-6 py-3 rounded-2xl font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 transition-colors flex items-center justify-center gap-2 text-sm cursor-pointer">
+                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                    <span>Apply via Website Form</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- TRUSTED HIRING PARTNERS (Infinite Auto-scroll Logo Carousel) -->
     <section class="py-16 overflow-hidden relative z-10" id="partners">
         <div class="max-w-7xl mx-auto px-6 text-center mb-8">
@@ -1141,6 +1419,8 @@
             }
         })();
     </script>
+    <!-- Explore Jobs Component Logic -->
+    <script src="js/jobs-home.js?v=1.0"></script>
 </body>
 </html>
 
