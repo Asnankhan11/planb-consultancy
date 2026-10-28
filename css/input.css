@@ -229,3 +229,21 @@ body {
   opacity: 1;
   transform: none;
 }
+
+/* Footer Contact Info Icons - High contrast colors against navy background */
+footer .text-blue-400,
+footer svg.text-blue-400,
+footer i.text-blue-400,
+footer [data-lucide].text-blue-400 {
+  color: #60a5fa;
+  stroke: #60a5fa;
+}
+
+footer .text-pink-400,
+footer svg.text-pink-400,
+footer i.text-pink-400,
+footer [data-lucide].text-pink-400 {
+  color: #f472b6;
+  stroke: #f472b6;
+}
+

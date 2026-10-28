@@ -393,6 +393,31 @@ footer a:hover {
     color: #FFFFFF !important;
 }
 
+/* Footer Contact Info Icons & Contrast (High contrast against navy background) */
+footer .text-blue-400,
+footer svg.text-blue-400,
+footer i.text-blue-400,
+footer [data-lucide].text-blue-400 {
+    color: #60A5FA !important;
+    stroke: #60A5FA !important;
+}
+
+footer .text-pink-400,
+footer svg.text-pink-400,
+footer i.text-pink-400,
+footer [data-lucide].text-pink-400 {
+    color: #F472B6 !important;
+    stroke: #F472B6 !important;
+}
+
+footer .text-purple-400,
+footer svg.text-purple-400,
+footer i.text-purple-400,
+footer [data-lucide].text-purple-400 {
+    color: #60A5FA !important;
+    stroke: #60A5FA !important;
+}
+
 /* ── FLOATING WHATSAPP WIDGET ── */
 #contactWidget .bg-\[\#061D45\] {
     background: #0A2E6B !important;
