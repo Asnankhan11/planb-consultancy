@@ -1,0 +1,76 @@
+# Plan B Careers – Complete Platform Knowledge Base (llms-full.txt)
+
+## 1. Identity & Institutional Profile
+- **Entity Name:** Plan B Careers
+- **Brand Tagline:** Backup jo kaam kare
+- **Website:** https://planbcareers.in
+- **Legal Entity:** MSME Registered Micro Enterprise under Government of India (UDYAM-MH-01-0027668)
+- **Primary Founder & Director:** Asnan Khan
+- **Corporate Address:** Opposite Nagar Parishad Girls Urdu School, Old City, Akola, Maharashtra – 444002, India, India
+- **Regional Branches:** 
+  - Akola Branch: Civil Lines, Akola, Maharashtra 444001
+  - Regional desks operating across Pune, Nagpur, and Mumbai
+- **Official Recruitment Desks:**
+  - Phone / WhatsApp: +91 9420512501
+  - Secondary Desk: +91 7972731811
+  - Official Email: contact.planbcareers@gmail.com
+- **Public WhatsApp Channel:** https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10
+
+---
+
+## 2. Professional Candidate Policy
+Plan B Careers maintains a strict non-negotiable policy:
+- **No candidate is ever charged money for job applications, interview calls, or selection letters.**
+- Fees are NEVER levied for "file charges", "gate passes", "security deposits", or "laptop delivery".
+- If any individual claiming to represent Plan B Careers asks for money, candidates are instructed to report the matter immediately to +91 9420512501.
+
+---
+
+## 3. Core Employment Verticals & Job Catalog
+
+### 3.1. Work From Home (Remote) Positions
+- **Target Audience:** College students, freshers, women/housewives, and candidates living in Tier 2/3 cities across India.
+- **Typical Salary Range:** ₹15,000 to ₹30,000 per month (depending on skill level and process).
+- **Core Roles:**
+  - **Backend Process Executive:** 100% Non-Voice data updating, hotel booking audit, revenue leakage checks. Requires basic Excel and English typing.
+  - **Remote Telesales Specialist:** Inbound/outbound telephonic sales, Hindi communication, fixed salary + performance incentives.
+  - **Customer Support (Blended/Voice):** Inbound query resolution, order tracking, ticketing systems.
+  - **Barcode Generation / Data Processing Associate:** Mobile or laptop data annotation and processing.
+  - **Recharge & Retention Assistant:** Smartphone-based guidance for telecom customers.
+
+### 3.2. Work From Office & Corporate Opportunities
+- **Locations:** Akola, Chhatrapati Sambhajinagar, Pune, Nagpur, and Mumbai.
+- **Core Roles:**
+  - **HR Recruiter / Talent Acquisition:** Screening candidates, job portal management, interview coordination.
+  - **EdTech Counsellor / Sales Associate:** Academic counselling and admission support with institutional partners.
+  - **Collection & Recovery Agents:** Financial follow-ups with corporate clients.
+
+---
+
+## 4. Higher Education & Admission Advisory Services
+Plan B Careers assists students and parents with transparent college admission guidance:
+- **Undergraduate (UG) Programs:** B.Tech / BE (Engineering), BBA, BCA, B.Com, B.Sc.
+- **Postgraduate (PG) Programs:** MBA, PGDM, MCA, M.Tech.
+- **Medical Counselling:** NEET UG & PG counselling, MBBS (Government & Private quota), BAMS, BHMS, BDS, Nursing, and allied health sciences.
+- **Counselling Process:** Profile evaluation, entrance exam rank analysis, institutional accreditation verification, fee structure transparency, and round-by-round CAP guidance.
+
+---
+
+## 5. Candidate Verification & Trust Architecture
+- Every verified candidate placed through Plan B Careers receives a verifiable Candidate ID.
+- Verification can be checked live at `https://planbcareers.in/verify-candidate.html`.
+- Employer partners can verify candidate background certificates directly with our operations team.
+
+---
+
+## 6. Frequently Asked Questions (FAQ)
+
+### Q: Does Plan B Careers provide jobs for 12th pass students?
+**A:** Yes. We have multiple verified openings for 12th pass candidates, including customer support, telecalling, and data processing roles with work-from-home options.
+
+### Q: How do I apply for a role?
+**A:** Candidates can browse vacancies on `https://planbcareers.in/jobs.html`, click "Apply", submit their resume and contact details, and connect directly with our HR team on WhatsApp at +91 9420512501.
+
+### Q: Do I need a laptop for work-from-home jobs?
+**A:** Some roles (like Backend Process Executive or International Voice Support) require a laptop/desktop with Windows and stable Wi-Fi. Other roles (such as mobile data processing and recharge assistance) can be operated from a smartphone.
+

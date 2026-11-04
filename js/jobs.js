@@ -1,62 +1,219 @@
-// ===================================
-// Plan B Careers - Dynamic Jobs JS
-// ===================================
+// ==========================================================================
+// Plan B Careers - Dynamic Jobs Listing JS
+// Palette: Deep Midnight Navy (#101A2C) · Rich Teal (#087F8C) · Electric Lime (#C7F36B)
+// ==========================================================================
 
 document.addEventListener('DOMContentLoaded', async () => {
 
     const jobCardsContainer = document.getElementById('jobCards');
     const searchInput = document.getElementById('jobSearch');
     const filterBtns = document.querySelectorAll('.filter-btn');
+    const industryFilter = document.getElementById('industryFilter');
+    const salaryFilter = document.getElementById('salaryFilter');
+    const locationFilter = document.getElementById('locationFilter');
+    const experienceFilter = document.getElementById('experienceFilter');
+    const workModeFilter = document.getElementById('workModeFilter');
+    const sortSelect = document.getElementById('sortSelect');
+    const jobCountDisplay = document.getElementById('jobCountDisplay');
     
     let allJobs = [];
 
-    // --- Fetch Jobs from API ---
+    // Helper: Parse salary range into monthly min/max and LPA
+    function getSalaryMonthlyMinMax(job) {
+        if (job.min_salary && job.max_salary) {
+            const isAnnual = (job.salary_period || '').toLowerCase() === 'annual' || (job.salary_type || '').toLowerCase() === 'ctc';
+            if (isAnnual) {
+                return { min: job.min_salary / 12, max: job.max_salary / 12, lpa: job.max_salary / 100000 };
+            }
+            return { min: job.min_salary, max: job.max_salary, lpa: (job.max_salary * 12) / 100000 };
+        }
+        const salStr = (job.salary || '').toLowerCase();
+        const lpaMatch = salStr.match(/([0-9.]+)\s*lpa/);
+        if (lpaMatch) {
+            const lpa = parseFloat(lpaMatch[1]);
+            return { min: (lpa * 100000) / 12, max: (lpa * 100000) / 12, lpa: lpa };
+        }
+        const rangeMatch = salStr.match(/([0-9,]+)\s*(?:–|-|to)\s*([0-9,]+)/);
+        if (rangeMatch) {
+            const min = parseInt(rangeMatch[1].replace(/,/g, ''), 10);
+            const max = parseInt(rangeMatch[2].replace(/,/g, ''), 10);
+            return { min, max, lpa: (max * 12) / 100000 };
+        }
+        const singleMatch = salStr.match(/([0-9,]+)/);
+        if (singleMatch) {
+            const val = parseInt(singleMatch[1].replace(/,/g, ''), 10);
+            return { min: val, max: val, lpa: (val * 12) / 100000 };
+        }
+        return null;
+    }
+
+    // --- Fetch Jobs from API with fallback ---
     async function loadDynamicJobs() {
         if (!jobCardsContainer) return;
         try {
             const res = await fetch('/api/jobs');
-            if(res.ok) {
+            if (res.ok) {
                 allJobs = await res.json();
-                renderJobs(allJobs);
+            } else {
+                throw new Error('API failed');
             }
         } catch(err) {
-            console.error('Failed to load jobs:', err);
-            jobCardsContainer.innerHTML = '<p class="text-white text-center w-full py-10">Failed to load jobs. Please try again later.</p>';
+            console.warn('Fallback jobs.json triggered:', err);
+            try {
+                const fbRes = await fetch('/jobs.json');
+                if (fbRes.ok) allJobs = await fbRes.json();
+            } catch(e) {
+                allJobs = [];
+            }
         }
+
+        // Check URL params for category or search
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchParam = urlParams.get('search') || urlParams.get('q');
+        const filterParam = urlParams.get('filter') || urlParams.get('category');
+        if (searchParam && searchInput) {
+            searchInput.value = searchParam;
+        }
+        if (filterParam && industryFilter) {
+            const matchOption = Array.from(industryFilter.options).find(opt => 
+                opt.value.toLowerCase().includes(filterParam.toLowerCase()) || 
+                filterParam.toLowerCase().includes(opt.value.toLowerCase())
+            );
+            if (matchOption) {
+                industryFilter.value = matchOption.value;
+            }
+        }
+
+        applyFilters();
     }
 
     function renderJobs(jobs) {
         if (!jobCardsContainer) return;
         jobCardsContainer.innerHTML = '';
         
+        if (jobCountDisplay) {
+            jobCountDisplay.innerText = `${jobs.length} ${jobs.length === 1 ? 'Job' : 'Jobs'} Found`;
+        }
+
         if (jobs.length === 0) {
-            jobCardsContainer.innerHTML = '<p class="text-white text-center w-full py-10">No jobs found matching your criteria.</p>';
+            const activeIndustry = industryFilter && industryFilter.value !== 'all' ? industryFilter.value : 'this sector';
+            jobCardsContainer.innerHTML = `
+                <div class="col-span-full py-16 px-6 text-center bg-white border border-gray-200 rounded-3xl max-w-xl mx-auto shadow-card">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center">
+                        <i data-lucide="briefcase" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-2">No Active Openings in ${activeIndustry} Yet</h3>
+                    <p class="text-sm text-slate mb-6">We are actively onboarding verified employers in this industry. Connect directly on WhatsApp with our recruitment desk to get priority notifications.</p>
+                    <div class="flex flex-wrap items-center justify-center gap-3">
+                        <a href="https://wa.me/919420512501?text=Hello%20Plan%20B%20Careers,%20please%20notify%20me%20for%20openings%20in%20${encodeURIComponent(activeIndustry)}" target="_blank" class="btn-accent text-xs py-2.5 px-4 gap-1.5">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                            <span>Notify Me on WhatsApp</span>
+                        </a>
+                        <button onclick="window.resetJobFilters()" class="btn-outline-navy text-xs py-2.5 px-4">
+                            Reset All Filters
+                        </button>
+                    </div>
+                </div>
+            `;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             return;
         }
 
         jobs.forEach(job => {
-            // Determine badge color
-            const badgeColor = job.type === 'Work From Home' ? 'pink' : (job.type === 'Part Time' ? 'blue' : 'purple');
-            
+            const isWfh = (job.work_mode || job.type || job.location || '').toLowerCase().includes('home');
+            const isClosed = (job.status || '').toLowerCase() === 'closed';
+
+            let cleanSnippet = (job.description || '')
+                .replace(/\n+/g, ' ')
+                .replace(/Responsibilities:|Requirements:|Benefits:/gi, '')
+                .trim();
+            if (cleanSnippet.length > 130) {
+                cleanSnippet = cleanSnippet.substring(0, 127) + '...';
+            }
+            if (!cleanSnippet) {
+                cleanSnippet = 'Verified employment opening via Plan B Careers. Freshers and experienced candidates welcome.';
+            }
+
             const cardHTML = `
-                <div class="job-card bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all duration-300 hover:shadow-lg flex flex-col justify-between h-full" data-category="${job.type}">
+                <div class="card-modern flex flex-col justify-between h-full group" data-category="${job.type || ''}">
                     <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="px-3 py-1 bg-${badgeColor}-500/20 text-${badgeColor}-300 text-xs font-semibold rounded-full border border-${badgeColor}-500/30">
-                                ${job.type}
+                        <!-- Badges Row -->
+                        <div class="flex justify-between items-start mb-3.5 gap-2">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${
+                                isWfh 
+                                    ? 'bg-teal-50 text-teal-800 border border-teal-200' 
+                                    : 'bg-navy-50 text-navy-900 border border-navy-200'
+                            }">
+                                <i data-lucide="${isWfh ? 'laptop' : 'building-2'}" class="w-3.5 h-3.5"></i>
+                                ${job.work_mode || job.type || 'Full Time'}
                             </span>
-                            <span class="text-gray-400 text-xs">Recently Added</span>
+                            <span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full ${
+                                isClosed ? 'bg-gray-100 text-slate' : 'bg-lime-100 text-lime-900 border border-lime-300'
+                            }">
+                                <span class="w-2 h-2 rounded-full ${isClosed ? 'bg-slate' : 'bg-lime-500 animate-pulse'}"></span>
+                                ${isClosed ? 'Closed' : 'Active'}
+                            </span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">${job.title}</h3>
-                        <p class="text-gray-400 text-sm mb-2"><i data-lucide="building-2" class="inline w-4 h-4 mr-1"></i> ${job.company}</p>
-                        <p class="text-gray-400 text-sm mb-4"><i data-lucide="map-pin" class="inline w-4 h-4 mr-1"></i> ${job.location}</p>
-                        <div class="text-gray-300 text-sm mb-6 line-clamp-5 whitespace-pre-line">${job.description || 'Verified job opportunity via Plan B Careers.'}</div>
+
+                        <!-- Job Title -->
+                        <h3 class="text-lg font-bold text-navy-900 group-hover:text-teal-600 transition-colors mb-1 leading-snug">
+                            <a href="/job/${job.id}.html" class="hover:underline">${job.title}</a>
+                        </h3>
+                        
+                        <!-- Company & Verified Tag -->
+                        <div class="flex items-center gap-2 text-xs text-slate mb-3">
+                            <span class="text-charcoal font-semibold">${job.company || 'Plan B Hiring Partner'}</span>
+                            <span>•</span>
+                            <span class="text-teal-600 font-medium inline-flex items-center gap-1">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Verified
+                            </span>
+                        </div>
+
+                        <!-- Salary & Chips -->
+                        <div class="mb-3.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-ivory border border-gray-200 text-navy-900 text-xs font-bold font-outfit">
+                            <i data-lucide="wallet" class="w-3.5 h-3.5 text-teal-600"></i>
+                            <span>${job.salary || 'Salary Negotiable'}</span>
+                        </div>
+
+                        <!-- Metadata Grid -->
+                        <div class="grid grid-cols-2 gap-2 text-xs text-charcoal mb-4 bg-ivory/60 p-2.5 rounded-xl border border-gray-200/60">
+                            <div class="flex items-center gap-1.5 truncate">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-teal-600 shrink-0"></i>
+                                <span class="truncate">${job.location || 'Pan India'}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 truncate">
+                                <i data-lucide="user-check" class="w-3.5 h-3.5 text-teal-600 shrink-0"></i>
+                                <span class="truncate">${job.experience_level || 'Fresher / Any'}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 truncate">
+                                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-teal-600 shrink-0"></i>
+                                <span class="truncate">${job.qualification || '12th Pass / Graduate'}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 truncate">
+                                <i data-lucide="clock" class="w-3.5 h-3.5 text-teal-600 shrink-0"></i>
+                                <span class="truncate">${job.shifts || 'Regular Shift'}</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate leading-relaxed mb-4 line-clamp-2">
+                            ${cleanSnippet}
+                        </p>
                     </div>
-                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
-                        <span class="text-green-400 font-bold">${job.salary || 'Salary Negotiable'}</span>
-                        <button onclick="openApplyModal('${(job.title || '').replace(/'/g, "\\'")}', ${job.id || 'null'})" class="text-sm font-semibold text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg transition-colors cursor-pointer">
-                            Apply Now
-                        </button>
+
+                    <!-- Footer Actions -->
+                    <div class="pt-4 border-t border-gray-100">
+                        <div class="flex items-center justify-between gap-2">
+                            <a href="/job/${job.id}.html" class="btn-outline-navy text-xs py-2 px-3 justify-center gap-1 flex-1">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                                <span>Details</span>
+                            </a>
+                            <button onclick="openApplyModal('${(job.title || '').replace(/'/g, "\\'")}', ${job.id || 'null'})" class="text-xs py-2 px-3 justify-center gap-1 flex-1 ${
+                                isClosed ? 'btn bg-gray-200 text-slate cursor-not-allowed' : 'btn-accent'
+                            }" ${isClosed ? 'disabled' : ''}>
+                                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                                <span>Apply</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -68,39 +225,160 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Filter & Search Logic ---
     function applyFilters() {
-        const searchText = searchInput ? searchInput.value.toLowerCase() : '';
-        const activeBtn = document.querySelector('.filter-btn.active');
-        const activeFilter = activeBtn ? activeBtn.dataset.filter : 'all';
+        const searchText = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        const activeBtn = document.querySelector('#categoryChipsContainer .filter-btn.active');
+        const activeFilter = activeBtn ? (activeBtn.dataset.filter || 'all').toLowerCase() : 'all';
+        const industryVal = industryFilter ? industryFilter.value.toLowerCase() : 'all';
+        const salaryVal = salaryFilter ? salaryFilter.value : 'all';
+        const locFilterVal = locationFilter ? locationFilter.value.toLowerCase() : 'all';
+        const expFilterVal = experienceFilter ? experienceFilter.value.toLowerCase() : 'all';
+        const modeFilterVal = workModeFilter ? workModeFilter.value.toLowerCase() : 'all';
 
-        const filteredJobs = allJobs.filter(job => {
+        let filteredJobs = allJobs.filter(job => {
             const typeStr = (job.type || '').toLowerCase();
             const titleStr = (job.title || '').toLowerCase();
             const descStr = (job.description || '').toLowerCase();
-            const filterStr = activeFilter.toLowerCase();
-            
-            const matchesFilter = activeFilter === 'all' || 
-                                  typeStr.includes(filterStr) || 
-                                  titleStr.includes(filterStr) || 
-                                  descStr.includes(filterStr);
-                                  
-            const matchesSearch = titleStr.includes(searchText) || (job.company || '').toLowerCase().includes(searchText) || descStr.includes(searchText) || (job.location || '').toLowerCase().includes(searchText);
-            return matchesFilter && matchesSearch;
+            const compStr = (job.company || '').toLowerCase();
+            const locStr = (job.location || '').toLowerCase();
+            const modeStr = (job.work_mode || '').toLowerCase();
+            const expStr = (job.experience_level || '').toLowerCase();
+            const jobIndustry = (job.industry || '').toLowerCase();
+            const cats = (job.categories || []).map(c => c.toLowerCase()).join(' ');
+
+            // Category Button Filter
+            const matchesCategoryBtn = activeFilter === 'all' || 
+                                       jobIndustry.includes(activeFilter) || 
+                                       typeStr.includes(activeFilter) || 
+                                       titleStr.includes(activeFilter) || 
+                                       cats.includes(activeFilter) ||
+                                       descStr.includes(activeFilter);
+
+            // Industry Dropdown Filter
+            const matchesIndustry = industryVal === 'all' || 
+                                    jobIndustry.includes(industryVal) || 
+                                    typeStr.includes(industryVal) || 
+                                    cats.includes(industryVal) || 
+                                    titleStr.includes(industryVal);
+
+            // Flexible Salary Range Filter
+            let matchesSalary = true;
+            if (salaryVal !== 'all') {
+                const salObj = getSalaryMonthlyMinMax(job);
+                if (!salObj) {
+                    matchesSalary = false;
+                } else {
+                    if (salaryVal === '0-25000') {
+                        matchesSalary = salObj.min <= 25000;
+                    } else if (salaryVal === '25000-50000') {
+                        matchesSalary = (salObj.min >= 20000 && salObj.min <= 50000) || (salObj.max >= 25000 && salObj.max <= 60000);
+                    } else if (salaryVal === '50000-100000') {
+                        matchesSalary = (salObj.max >= 50000 && salObj.max <= 100000) || (salObj.min >= 45000 && salObj.min <= 100000);
+                    } else if (salaryVal === '100000+') {
+                        matchesSalary = salObj.max >= 100000 || salObj.lpa >= 12;
+                    } else if (salaryVal === '2-5lpa') {
+                        matchesSalary = (salObj.lpa >= 2 && salObj.lpa <= 5.5) || (salObj.max >= 16000 && salObj.max <= 45000);
+                    } else if (salaryVal === '5-10lpa') {
+                        matchesSalary = (salObj.lpa >= 4.5 && salObj.lpa <= 10.5) || (salObj.max >= 40000 && salObj.max <= 90000);
+                    } else if (salaryVal === '10lpa+') {
+                        matchesSalary = salObj.lpa >= 10 || salObj.max >= 85000;
+                    }
+                }
+            }
+
+            // Keyword Search
+            const matchesSearch = !searchText || 
+                                  titleStr.includes(searchText) || 
+                                  compStr.includes(searchText) || 
+                                  descStr.includes(searchText) || 
+                                  locStr.includes(searchText) ||
+                                  jobIndustry.includes(searchText);
+
+            // Location dropdown
+            const matchesLoc = locFilterVal === 'all' || 
+                               locStr.includes(locFilterVal) || 
+                               (locFilterVal === 'remote' && (locStr.includes('home') || modeStr.includes('home')));
+
+            // Work mode dropdown
+            const matchesMode = modeFilterVal === 'all' || 
+                                modeStr.includes(modeFilterVal) || 
+                                locStr.includes(modeFilterVal) ||
+                                typeStr.includes(modeFilterVal);
+
+            // Experience dropdown
+            const matchesExp = expFilterVal === 'all' || 
+                               expStr.includes(expFilterVal) || 
+                               descStr.includes(expFilterVal);
+
+            return matchesCategoryBtn && matchesIndustry && matchesSalary && matchesSearch && matchesLoc && matchesMode && matchesExp;
         });
+
+        // Sorting
+        if (sortSelect) {
+            const sortVal = sortSelect.value;
+            if (sortVal === 'newest') {
+                filteredJobs.sort((a, b) => (b.id || 0) - (a.id || 0));
+            } else if (sortVal === 'oldest') {
+                filteredJobs.sort((a, b) => (a.id || 0) - (b.id || 0));
+            }
+        }
 
         renderJobs(filteredJobs);
     }
 
-    filterBtns.forEach(btn => {
+    // Reset helper
+    window.resetJobFilters = function() {
+        if (searchInput) searchInput.value = '';
+        if (industryFilter) industryFilter.value = 'all';
+        if (salaryFilter) salaryFilter.value = 'all';
+        if (locationFilter) locationFilter.value = 'all';
+        if (experienceFilter) experienceFilter.value = 'all';
+        if (workModeFilter) workModeFilter.value = 'all';
+        document.querySelectorAll('#categoryChipsContainer .filter-btn').forEach((b, idx) => {
+            if (idx === 0) {
+                b.classList.add('active', 'bg-navy-900', 'text-white');
+            } else {
+                b.classList.remove('active', 'bg-navy-900', 'text-white');
+            }
+        });
+        applyFilters();
+    };
+
+    // Attach Event Listeners
+    const categoryChips = document.querySelectorAll('#categoryChipsContainer .filter-btn');
+    categoryChips.forEach(btn => {
         btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            categoryChips.forEach(b => b.classList.remove('active', 'bg-navy-900', 'text-white'));
+            btn.classList.add('active', 'bg-navy-900', 'text-white');
+            const targetFilter = btn.dataset.filter || 'all';
+            if (industryFilter) {
+                const matchOpt = Array.from(industryFilter.options).find(o => o.value.toLowerCase() === targetFilter.toLowerCase());
+                industryFilter.value = matchOpt ? matchOpt.value : 'all';
+            }
             applyFilters();
         });
     });
 
-    if (searchInput) {
-        searchInput.addEventListener('input', applyFilters);
+    if (industryFilter) {
+        industryFilter.addEventListener('change', () => {
+            const selectedVal = industryFilter.value.toLowerCase();
+            categoryChips.forEach(b => {
+                const bFilter = (b.dataset.filter || '').toLowerCase();
+                if (bFilter === selectedVal || (selectedVal === 'all' && bFilter === 'all')) {
+                    b.classList.add('active', 'bg-navy-900', 'text-white');
+                } else {
+                    b.classList.remove('active', 'bg-navy-900', 'text-white');
+                }
+            });
+            applyFilters();
+        });
     }
+
+    if (salaryFilter) salaryFilter.addEventListener('change', applyFilters);
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
+    if (locationFilter) locationFilter.addEventListener('change', applyFilters);
+    if (experienceFilter) experienceFilter.addEventListener('change', applyFilters);
+    if (workModeFilter) workModeFilter.addEventListener('change', applyFilters);
+    if (sortSelect) sortSelect.addEventListener('change', applyFilters);
 
     // Initial Load
     loadDynamicJobs();
@@ -115,12 +393,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     let currentJobId = null;
 
-    // Open modal
     window.openApplyModal = function (jobTitle, jobId) {
         if (!modal) return;
         currentJobId = jobId || null;
         modal.classList.remove('hidden');
-        modal.style.display = 'flex';
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
         if (modalJobTitle) modalJobTitle.innerText = jobTitle || 'Job Role';
         if (jobAppliedInput) jobAppliedInput.value = jobTitle || '';
         if (form) form.style.display = 'block';
@@ -128,25 +406,24 @@ document.addEventListener('DOMContentLoaded', async () => {
             successMessage.classList.add('hidden');
             successMessage.style.display = 'none';
         }
+        if (typeof lucide !== 'undefined') lucide.createIcons();
     };
 
-    // Close modal
     window.closeApplyModal = function () {
         if (modal) {
-            modal.style.display = 'none';
             modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
         }
     };
 
-    if (closeBtn) {
-        closeBtn.addEventListener('click', window.closeApplyModal);
-    }
+    if (closeBtn) closeBtn.addEventListener('click', window.closeApplyModal);
 
     window.addEventListener('click', (e) => {
         if (e.target === modal) window.closeApplyModal();
     });
 
-    // --- Form Submit → WhatsApp + Dynamic API ---
+    // --- Form Submit -> Backend Sync + Instant WhatsApp Redirect ---
     if (form) {
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -170,7 +447,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const hasResume = resumeInput && resumeInput.files && resumeInput.files.length > 0;
             const resumeFileName = hasResume ? resumeInput.files[0].name : '';
 
-            // Prepare multipart form data
+            // Multipart Form Data
             const formData = new FormData();
             if (currentJobId) formData.append('job_id', currentJobId);
             formData.append('name', name);
@@ -184,7 +461,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 formData.append('resume', resumeInput.files[0]);
             }
 
-            // Sync with backend API (upload resume to cloud & email admin)
+            // Sync with backend API
             let cloudResumeUrl = null;
             try {
                 const controller = new AbortController();
@@ -205,12 +482,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 console.warn('API sync warning:', err);
             }
 
-            // Construct WhatsApp Message with direct clickable resume link
+            // Construct WhatsApp Message
             let resumeLine = '';
             if (cloudResumeUrl) {
                 resumeLine = `📄 *Resume Link:* ${cloudResumeUrl} (👈 Click to View/Download)%0A%0A`;
             } else if (resumeFileName) {
-                resumeLine = `📄 *Resume File:* ${encodeURIComponent(resumeFileName)} (Sharing below)%0A%0A`;
+                resumeLine = `📄 *Resume File:* ${encodeURIComponent(resumeFileName)}%0A%0A`;
             }
 
             const whatsappMsg =
@@ -223,35 +500,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `💼 *Experience:* ${encodeURIComponent(experience)}%0A` +
                 `🎯 *Role Applied:* ${encodeURIComponent(jobTitle)}%0A` +
                 resumeLine +
-                `_Please review my application and guide me further._`;
+                `_Please review my application and guide me through the interview._`;
 
             const waUrl = `https://wa.me/919420512501?text=${whatsappMsg}`;
 
-            // Update main WhatsApp button link on success screen
-            const mainWaBtn = document.getElementById('mainWhatsAppBtn');
-            if (mainWaBtn) {
-                mainWaBtn.href = waUrl;
-            }
-
-            const resumePreviewLink = document.getElementById('uploadedResumeLink');
-            if (resumePreviewLink) {
-                if (cloudResumeUrl) {
-                    resumePreviewLink.href = cloudResumeUrl;
-                    resumePreviewLink.classList.remove('hidden');
-                    resumePreviewLink.style.display = 'inline-flex';
-                } else {
-                    resumePreviewLink.classList.add('hidden');
-                    resumePreviewLink.style.display = 'none';
-                }
-            }
-
-            // Switch to success view immediately
+            // Success view
             form.reset();
             form.style.display = 'none';
             if (successMessage) {
                 successMessage.classList.remove('hidden');
                 successMessage.style.display = 'block';
-                if (window.lucide) lucide.createIcons();
+                const mainWaBtn = document.getElementById('mainWhatsAppBtn');
+                if (mainWaBtn) mainWaBtn.href = waUrl;
+                if (typeof lucide !== 'undefined') lucide.createIcons();
             }
 
             if (submitBtn) {
@@ -259,7 +520,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 submitBtn.innerText = originalBtnText;
             }
 
-            // Automatically open WhatsApp in new tab
+            // Auto-open WhatsApp
             window.open(waUrl, '_blank');
         });
     }

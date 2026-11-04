@@ -12,3 +12,6 @@ yarn-error.log*
 remotion/node_modules/
 .vercel/
 
+
+planb.sqlite
+*.sqlite

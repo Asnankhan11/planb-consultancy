@@ -1,0 +1,37 @@
+# Plan B Careers (planbcareers.in)
+
+> Plan B Careers is an MSME-registered Indian recruitment consultancy and career advisory platform based in Maharashtra, specializing in verified Work-From-Home (WFH), BPO, customer support, data entry, telecalling, and fresher job placements, along with UG/PG college admission guidance across India.
+
+## Key Facts
+- **Brand:** Plan B Careers
+- **Official Website:** https://planbcareers.in
+- **Founder:** Asnan Khan
+- **MSME Registration:** UDYAM-MH-01-0027668
+- **Headquarters / Branch:** Opposite Nagar Parishad Girls Urdu School, Old City, Akola, Maharashtra – 444002, India, India
+- **Regional Hubs:** Akola, Pune, Nagpur, Mumbai
+- **Official Contact Numbers:** +91 9420512501, +91 7972731811
+- **Official Email:** contact.planbcareers@gmail.com
+- **Fee Policy:** Dedicated Candidate Guidance. Professional Career Services, zero placement fee, zero training charges.
+
+## Core Services
+- **Job Recruitment:** Work From Home (WFH), Non-Voice Chat Support, Inbound/Outbound Telecalling, Back Office Data Processing, EdTech Sales, BPO Hiring.
+- **Audience Focus:** Freshers (12th Pass, Any Graduate), college students, experienced executives, women seeking safe remote work in Tier 2 and Tier 3 cities across India.
+- **Admission Guidance:** UG/PG College counselling, Engineering (B.Tech), Management (MBA/BBA), and Medical counselling (NEET UG/PG, MBBS, BAMS, BDS).
+- **Candidate Support:** Free resume screening, interview grooming, candidate ID verification lookup.
+
+## Core Navigation & Links
+- [All Job Openings](https://planbcareers.in/jobs.html): Search and filter active job opportunities across India.
+- [Work From Home Opportunities](https://planbcareers.in/jobs/work-from-home.html): Remote roles for freshers and experienced candidates.
+- [Non-Voice & Chat Support Jobs](https://planbcareers.in/jobs/customer-support.html): 100% non-voice backend and chat support vacancies.
+- [Back Office & Data Entry Jobs](https://planbcareers.in/jobs/data-entry.html): Data processing and annotation jobs.
+- [Fresher Job Vacancies](https://planbcareers.in/jobs/freshers.html): Entry-level roles requiring 0 years experience.
+- [Admission Guidance Services](https://planbcareers.in/admissions.html): Expert counselling for UG, PG, MBA, and Medical admissions.
+- [Safe Remote Work for Women](https://planbcareers.in/women-wfh.html): Flexible work-from-home options for housewives and female job seekers.
+- [Trust & Verification Center](https://planbcareers.in/trust.html): MSME registration details, Professional pledge, and scam warning alerts.
+- [Candidate ID Verification](https://planbcareers.in/verify-candidate.html): Instant lookup tool to verify candidate placement status.
+- [About Plan B Careers](https://planbcareers.in/about.html): Our mission, founder story, and operational branches.
+- [Contact & HR Desk](https://planbcareers.in/contact.html): Office address, branch locations, and direct recruitment WhatsApp lines.
+
+## Detailed Machine-Readable Context
+- Complete platform context, job catalog, and admission advisory processes are documented in [llms-full.txt](https://planbcareers.in/llms-full.txt).
+

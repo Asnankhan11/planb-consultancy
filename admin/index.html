@@ -3,32 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan B Admin Dashboard</title>
-    <script src="https://cdn.tailwindcss.com">
-</script>
+    <title>Plan B Careers | Admin Operations Console</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: { 900: '#101A2C', 950: '#0B1220' },
+              teal: { 600: '#087F8C', 700: '#076974', 50: '#F0F9FA' },
+              lime: { 400: '#C7F36B', 500: '#B0E848' },
+              ivory: '#F7F6F0',
+              charcoal: '#202A36',
+              slate: '#8993A2'
+            }
+          }
+        }
+      }
+    </script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        .hidden-view { display: none; }
-        .active-view { display: block; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-display { font-family: 'Outfit', sans-serif; }
+        .hidden-view { display: none !important; }
+        .active-view { display: block !important; }
+        .admin-nav-btn.active {
+            background-color: #087F8C;
+            color: #ffffff;
+            font-weight: 600;
+        }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans h-screen flex overflow-hidden">
+<body class="bg-[#F7F6F0] text-charcoal h-screen flex overflow-hidden">
 
     <!-- LOGIN SCREEN -->
-    <div id="loginScreen" class="fixed inset-0 z-50 bg-gray-900 flex items-center justify-center">
-        <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
-            <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Admin Login</h2>
+    <div id="loginScreen" class="fixed inset-0 z-50 bg-[#101A2C] flex items-center justify-center p-4">
+        <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-2xl w-full max-w-md border border-gray-100">
+            <div class="text-center mb-8">
+                <div class="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-200 text-teal-600 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl font-display font-extrabold text-navy-900">Admin Console</h2>
+                <p class="text-xs text-slate mt-1">Plan B Careers Management System</p>
+            </div>
+            
             <form id="loginForm" class="space-y-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">Username</label>
-                    <input type="text" id="username" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-purple-500 focus:border-purple-500" required>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-navy-900 mb-1">Username</label>
+                    <input type="text" id="username" class="w-full px-4 py-3 bg-[#F7F6F0] border border-gray-200 rounded-xl text-sm text-navy-900 focus:outline-none focus:border-teal-600 focus:bg-white" required placeholder="Enter admin username">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="password" class="mt-1 w-full border border-gray-300 rounded-lg p-2 focus:ring-purple-500 focus:border-purple-500" required>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-navy-900 mb-1">Password</label>
+                    <input type="password" id="password" class="w-full px-4 py-3 bg-[#F7F6F0] border border-gray-200 rounded-xl text-sm text-navy-900 focus:outline-none focus:border-teal-600 focus:bg-white" required placeholder="••••••••">
                 </div>
-                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-2 rounded-lg hover:bg-purple-700 transition">Login</button>
-                <p id="loginError" class="text-red-500 text-sm text-center hidden"></p>
+                <button type="submit" class="w-full bg-[#101A2C] hover:bg-black text-white font-bold py-3.5 rounded-xl transition shadow-lg text-sm flex items-center justify-center gap-2">
+                    <i data-lucide="lock" class="w-4 h-4 text-lime-400"></i>
+                    <span>Authenticate & Access</span>
+                </button>
+                <p id="loginError" class="text-red-500 text-xs text-center font-semibold hidden pt-2"></p>
             </form>
         </div>
     </div>
@@ -36,95 +71,223 @@
     <!-- MAIN DASHBOARD -->
     <div id="mainDashboard" class="hidden-view flex w-full h-full">
         <!-- Sidebar -->
-        <aside class="w-64 bg-gray-900 text-white flex flex-col h-full">
-            <div class="p-6 text-xl font-extrabold border-b border-gray-800">Plan B Admin</div>
-            <nav class="flex-1 p-4 space-y-2">
-                <button onclick="switchView('dashboardView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard</button>
-                <button onclick="switchView('jobsView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="briefcase" class="w-5 h-5"></i> Manage Jobs</button>
-                <button onclick="switchView('appsView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="users" class="w-5 h-5"></i> Applications</button>
-                <button onclick="switchView('settingsView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="settings" class="w-5 h-5"></i> Settings</button>
-            
-                <button onclick="switchView('mediaView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="image" class="w-5 h-5"></i> Media Library</button>
-                <button onclick="switchView('teamView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="users" class="w-5 h-5"></i> Team</button>
-                <button onclick="switchView('successView')" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left hover:bg-gray-800 transition"><i data-lucide="award" class="w-5 h-5"></i> Success Stories</button>
+        <aside class="w-64 bg-[#101A2C] text-white flex flex-col h-full border-r border-[#1B2942]">
+            <div class="p-6 border-b border-[#1B2942] flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-teal-600 text-white flex items-center justify-center font-display font-bold text-lg shadow-sm">
+                    PB
+                </div>
+                <div>
+                    <div class="font-display font-bold text-sm tracking-wide text-white">PLAN B ADMIN</div>
+                    <div class="text-[10px] text-lime-400 font-semibold tracking-wider uppercase">Portal v2.0</div>
+                </div>
+            </div>
+
+            <nav class="flex-1 p-4 space-y-1.5 overflow-y-auto">
+                <button onclick="switchView('dashboardView')" class="admin-nav-btn active w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-xs text-slate hover:text-white hover:bg-white/5 transition">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Overview
+                </button>
+                <button onclick="switchView('jobsView')" class="admin-nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-xs text-slate hover:text-white hover:bg-white/5 transition">
+                    <i data-lucide="briefcase" class="w-4 h-4"></i> Manage Jobs
+                </button>
+                <button onclick="switchView('appsView')" class="admin-nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-xs text-slate hover:text-white hover:bg-white/5 transition">
+                    <i data-lucide="users" class="w-4 h-4"></i> Applications
+                </button>
+                <button onclick="switchView('admissionsView')" class="admin-nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-xs text-slate hover:text-white hover:bg-white/5 transition">
+                    <i data-lucide="graduation-cap" class="w-4 h-4 text-lime-400"></i> Admission Enquiries
+                </button>
+                <button onclick="switchView('mediaView')" class="admin-nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-xs text-slate hover:text-white hover:bg-white/5 transition">
+                    <i data-lucide="image" class="w-4 h-4"></i> Media Library
+                </button>
+                <button onclick="switchView('teamView')" class="admin-nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-xs text-slate hover:text-white hover:bg-white/5 transition">
+                    <i data-lucide="user-check" class="w-4 h-4"></i> Team Roster
+                </button>
+                <button onclick="switchView('successView')" class="admin-nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-xs text-slate hover:text-white hover:bg-white/5 transition">
+                    <i data-lucide="award" class="w-4 h-4"></i> Placements & Proof
+                </button>
+                <button onclick="switchView('settingsView')" class="admin-nav-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-left text-xs text-slate hover:text-white hover:bg-white/5 transition">
+                    <i data-lucide="settings" class="w-4 h-4"></i> System Settings
+                </button>
             </nav>
-            <div class="p-4 border-t border-gray-800">
-                <button onclick="logout()" class="w-full flex items-center gap-3 px-4 py-2 rounded text-left text-red-400 hover:bg-gray-800 transition"><i data-lucide="log-out" class="w-5 h-5"></i> Logout</button>
+
+            <div class="p-4 border-t border-[#1B2942]">
+                <a href="../index.html" target="_blank" class="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-left text-xs text-slate hover:text-white hover:bg-white/5 transition mb-1">
+                    <i data-lucide="external-link" class="w-4 h-4"></i> View Live Site
+                </a>
+                <button onclick="logout()" class="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-left text-xs text-red-400 hover:text-red-300 hover:bg-red-500/10 transition">
+                    <i data-lucide="log-out" class="w-4 h-4"></i> Logout
+                </button>
             </div>
         </aside>
 
         <!-- Content Area -->
-        <main class="flex-1 overflow-y-auto bg-gray-50 p-8">
+        <main class="flex-1 overflow-y-auto bg-[#F7F6F0] p-6 sm:p-10">
             
             <!-- Dashboard View -->
             <div id="dashboardView" class="view-section active-view">
-                <h1 class="text-3xl font-bold mb-6">Overview</h1>
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-display font-bold text-navy-900">Console Overview</h1>
+                        <p class="text-xs text-slate mt-0.5">Real-time candidate registrations, applications, and system metrics.</p>
+                    </div>
+                    <button onclick="loadDashboard()" class="px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-xs font-semibold text-navy-900 hover:bg-gray-50 flex items-center gap-2 shadow-sm">
+                        <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-teal-600"></i> Refresh
+                    </button>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
-                        <h3 class="text-gray-500 text-sm font-medium uppercase tracking-wider mb-2">Total Applications</h3>
-                        <p class="text-4xl font-bold text-gray-800" id="statApps">0</p>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200/80">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-slate uppercase tracking-wider">Candidate Applications</span>
+                            <div class="w-8 h-8 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center"><i data-lucide="inbox" class="w-4 h-4"></i></div>
+                        </div>
+                        <p class="text-3xl font-display font-extrabold text-navy-900" id="statApps">0</p>
+                        <p class="text-[11px] text-teal-700 mt-2 font-medium">Synced with central SQLite database</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
-                        <h3 class="text-gray-500 text-sm font-medium uppercase tracking-wider mb-2">Open Jobs</h3>
-                        <p class="text-4xl font-bold text-blue-600" id="statJobs">0</p>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200/80">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-slate uppercase tracking-wider">Active Job Postings</span>
+                            <div class="w-8 h-8 rounded-lg bg-lime-100 text-navy-950 flex items-center justify-center"><i data-lucide="briefcase" class="w-4 h-4"></i></div>
+                        </div>
+                        <p class="text-3xl font-display font-extrabold text-navy-900" id="statJobs">0</p>
+                        <p class="text-[11px] text-slate mt-2 font-medium">Published live on Plan B Careers</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
-                        <h3 class="text-gray-500 text-sm font-medium uppercase tracking-wider mb-2">Website Hits (Today)</h3>
-                        <p class="text-4xl font-bold text-green-600" id="statHits">0</p>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200/80">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-slate uppercase tracking-wider">Today's Traffic Hits</span>
+                            <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center"><i data-lucide="trending-up" class="w-4 h-4"></i></div>
+                        </div>
+                        <p class="text-3xl font-display font-extrabold text-navy-900" id="statHits">0</p>
+                        <p class="text-[11px] text-slate mt-2 font-medium">Google Analytics G-N8FKFJBJPM active</p>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Panel -->
+                <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm">
+                    <h3 class="text-base font-bold text-navy-900 mb-4">Quick Management Actions</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="switchView('jobsView'); openJobModal();" class="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold flex items-center gap-2 shadow-sm transition">
+                            <i data-lucide="plus-circle" class="w-4 h-4"></i> Post New Job Opening
+                        </button>
+                        <button onclick="switchView('appsView')" class="px-4 py-2.5 rounded-xl bg-navy-900 hover:bg-black text-white text-xs font-semibold flex items-center gap-2 shadow-sm transition">
+                            <i data-lucide="file-check" class="w-4 h-4"></i> Review Submitted Resumes
+                        </button>
+                        <button onclick="switchView('mediaView')" class="px-4 py-2.5 rounded-xl bg-[#F7F6F0] hover:bg-gray-200 text-navy-900 text-xs font-semibold flex items-center gap-2 border border-gray-200 transition">
+                            <i data-lucide="upload" class="w-4 h-4 text-teal-600"></i> Upload Offer Letter / Media
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- Jobs View -->
             <div id="jobsView" class="view-section hidden-view">
-                <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-3xl font-bold">Manage Jobs</h1>
-                    <button onclick="openJobModal()" class="bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700">Add New Job</button>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-display font-bold text-navy-900">Manage Job Vacancies</h1>
+                        <p class="text-xs text-slate mt-0.5">Publish, edit, or close opportunities visible to candidates.</p>
+                    </div>
+                    <button onclick="openJobModal()" class="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold shadow flex items-center gap-2">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Add New Job
+                    </button>
                 </div>
-                <div class="bg-white rounded-xl shadow overflow-hidden">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100 border-b border-gray-200">
-                                <th class="p-4 font-semibold text-gray-600">ID</th>
-                                <th class="p-4 font-semibold text-gray-600">Title</th>
-                                <th class="p-4 font-semibold text-gray-600">Company</th>
-                                <th class="p-4 font-semibold text-gray-600">Status</th>
-                                <th class="p-4 font-semibold text-gray-600 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="jobsTableBody" class="divide-y divide-gray-200">
-                            <!-- Populated via JS -->
-                        </tbody>
-                    </table>
+                
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-[#F7F6F0] border-b border-gray-200 text-slate uppercase tracking-wider font-semibold">
+                                    <th class="p-4">ID</th>
+                                    <th class="p-4">Role Title</th>
+                                    <th class="p-4">Hiring Company</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="jobsTableBody" class="divide-y divide-gray-100">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- Applications View -->
             <div id="appsView" class="view-section hidden-view">
-                <h1 class="text-3xl font-bold mb-6">Candidate Applications</h1>
-                <div class="bg-white rounded-xl shadow overflow-hidden">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100 border-b border-gray-200">
-                                <th class="p-4 font-semibold text-gray-600">Candidate</th>
-                                <th class="p-4 font-semibold text-gray-600">Job Applied</th>
-                                <th class="p-4 font-semibold text-gray-600">Status</th>
-                                <th class="p-4 font-semibold text-gray-600 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="appsTableBody" class="divide-y divide-gray-200">
-                            <!-- Populated via JS -->
-                        </tbody>
-                    </table>
+                <div class="mb-6">
+                    <h1 class="text-2xl sm:text-3xl font-display font-bold text-navy-900">Candidate Applications</h1>
+                    <p class="text-xs text-slate mt-0.5">Manage job applications submitted via the website and portal.</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-[#F7F6F0] border-b border-gray-200 text-slate uppercase tracking-wider font-semibold">
+                                    <th class="p-4">Candidate Details</th>
+                                    <th class="p-4">Role Applied</th>
+                                    <th class="p-4">Current Status</th>
+                                    <th class="p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appsTableBody" class="divide-y divide-gray-100">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-            
+            <!-- Admission Enquiries View -->
+            <div id="admissionsView" class="view-section hidden-view">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-display font-bold text-navy-900">Admission Guidance Enquiries</h1>
+                        <p class="text-xs text-slate mt-0.5">Live leads submitted from the admissions.html native form</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <select id="admissionsStatusFilter" onchange="loadAdmissions()" class="px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs font-semibold text-navy-900 focus:outline-none">
+                            <option value="">All Statuses</option>
+                            <option value="new">New Enquiries</option>
+                            <option value="contacted">Contacted</option>
+                            <option value="in_progress">In Progress</option>
+                            <option value="enrolled">Enrolled</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                        <button onclick="loadAdmissions()" class="p-2 rounded-xl bg-white border border-gray-200 text-slate hover:text-navy-900" title="Refresh">
+                            <i data-lucide="refresh-cw" class="w-4 h-4 text-teal-600"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-[#F7F6F0] border-b border-gray-200 text-slate uppercase tracking-wider font-semibold">
+                                    <th class="p-4">Ref & Student</th>
+                                    <th class="p-4">Contact (Phone/WA)</th>
+                                    <th class="p-4">Target Course & Location</th>
+                                    <th class="p-4">Admission Type</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admissionsTableBody" class="divide-y divide-gray-100">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
             <!-- Media Library View -->
             <div id="mediaView" class="view-section hidden-view">
-                <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-3xl font-bold">Media Library</h1>
-                    <select id="mediaCategoryFilter" class="border p-2 rounded" onchange="loadMedia()">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-display font-bold text-navy-900">Media Library</h1>
+                        <p class="text-xs text-slate mt-0.5">Store office photos, offer letters, team headshots, and certificates.</p>
+                    </div>
+                    <select id="mediaCategoryFilter" class="px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs font-semibold text-navy-900" onchange="loadMedia()">
                         <option value="">All Categories</option>
                         <option value="Office Photos">Office Photos</option>
                         <option value="HR Team">HR Team</option>
@@ -142,14 +305,15 @@
                 </div>
 
                 <!-- Drag & Drop Upload Area -->
-                <div id="dropZone" class="bg-white border-2 border-dashed border-gray-300 rounded-xl p-10 text-center mb-8 hover:bg-gray-50 transition cursor-pointer" onclick="document.getElementById('mediaInput').click()">
-                    <i data-lucide="upload-cloud" class="w-12 h-12 text-gray-400 mx-auto mb-3"></i>
-                    <p class="text-gray-600 font-medium">Drag & drop files here or click to upload</p>
-                    <p class="text-gray-400 text-sm mt-1">Supports JPG, PNG, WEBP, SVG, PDF, MP4</p>
+                <div id="dropZone" class="bg-white border-2 border-dashed border-teal-300 rounded-2xl p-8 text-center mb-8 hover:bg-teal-50/50 transition cursor-pointer" onclick="document.getElementById('mediaInput').click()">
+                    <i data-lucide="upload-cloud" class="w-10 h-10 text-teal-600 mx-auto mb-2"></i>
+                    <p class="text-navy-900 font-bold text-sm">Drag & drop files here or click to browse</p>
+                    <p class="text-slate text-xs mt-1">Supports JPG, PNG, WEBP, SVG, PDF, MP4 up to 25MB</p>
                     <input type="file" id="mediaInput" multiple class="hidden" onchange="handleFileUpload(event)">
                     
-                    <div class="mt-4 flex items-center justify-center gap-4">
-                        <select id="uploadCategory" class="border p-2 rounded text-sm w-48" onclick="event.stopPropagation()">
+                    <div class="mt-4 flex items-center justify-center gap-3">
+                        <span class="text-xs text-slate font-medium">Category:</span>
+                        <select id="uploadCategory" class="px-3 py-1.5 bg-[#F7F6F0] border border-gray-200 rounded-lg text-xs font-semibold text-navy-900" onclick="event.stopPropagation()">
                             <option value="Office Photos">Office Photos</option>
                             <option value="HR Team">HR Team</option>
                             <option value="Success Stories">Success Stories</option>
@@ -168,9 +332,9 @@
                     <!-- Upload Progress -->
                     <div id="uploadProgressContainer" class="hidden mt-6 max-w-md mx-auto">
                         <div class="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                            <div id="uploadProgressBar" class="h-full bg-purple-600 w-0 transition-all"></div>
+                            <div id="uploadProgressBar" class="h-full bg-teal-600 w-0 transition-all"></div>
                         </div>
-                        <p id="uploadProgressText" class="text-xs text-gray-500 mt-2">Uploading...</p>
+                        <p id="uploadProgressText" class="text-xs text-slate mt-2">Uploading file...</p>
                     </div>
                 </div>
 
@@ -182,63 +346,80 @@
 
             <!-- Team View -->
             <div id="teamView" class="view-section hidden-view">
-                <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-3xl font-bold">Team Management</h1>
-                    <button onclick="openTeamModal()" class="bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700">Add Team Member</button>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-display font-bold text-navy-900">Team Management</h1>
+                        <p class="text-xs text-slate mt-0.5">Update team roster displayed on the About and Contact pages.</p>
+                    </div>
+                    <button onclick="openTeamModal()" class="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold shadow flex items-center gap-2">
+                        <i data-lucide="user-plus" class="w-4 h-4"></i> Add Team Member
+                    </button>
                 </div>
-                <div class="bg-white rounded-xl shadow overflow-hidden">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100 border-b border-gray-200">
-                                <th class="p-4 font-semibold text-gray-600">Photo</th>
-                                <th class="p-4 font-semibold text-gray-600">Name</th>
-                                <th class="p-4 font-semibold text-gray-600">Designation</th>
-                                <th class="p-4 font-semibold text-gray-600">Status</th>
-                                <th class="p-4 font-semibold text-gray-600 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="teamTableBody" class="divide-y divide-gray-200">
-                        </tbody>
-                    </table>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-[#F7F6F0] border-b border-gray-200 text-slate uppercase tracking-wider font-semibold">
+                                    <th class="p-4">Photo</th>
+                                    <th class="p-4">Name</th>
+                                    <th class="p-4">Designation</th>
+                                    <th class="p-4">Status</th>
+                                    <th class="p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teamTableBody" class="divide-y divide-gray-100"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- Success Stories View -->
             <div id="successView" class="view-section hidden-view">
-                <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-3xl font-bold">Success Stories</h1>
-                    <button onclick="openSuccessModal()" class="bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700">Add Success Story</button>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-display font-bold text-navy-900">Success Stories & Placements</h1>
+                        <p class="text-xs text-slate mt-0.5">Showcase verified candidate offer letters and reviews.</p>
+                    </div>
+                    <button onclick="openSuccessModal()" class="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold shadow flex items-center gap-2">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Add Placement Story
+                    </button>
                 </div>
-                <div class="bg-white rounded-xl shadow overflow-hidden">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100 border-b border-gray-200">
-                                <th class="p-4 font-semibold text-gray-600">Candidate</th>
-                                <th class="p-4 font-semibold text-gray-600">Company Logo</th>
-                                <th class="p-4 font-semibold text-gray-600">Testimonial</th>
-                                <th class="p-4 font-semibold text-gray-600 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="successTableBody" class="divide-y divide-gray-200">
-                        </tbody>
-                    </table>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-[#F7F6F0] border-b border-gray-200 text-slate uppercase tracking-wider font-semibold">
+                                    <th class="p-4">Candidate</th>
+                                    <th class="p-4">Company Logo</th>
+                                    <th class="p-4">Testimonial</th>
+                                    <th class="p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="successTableBody" class="divide-y divide-gray-100"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- Settings View -->
             <div id="settingsView" class="view-section hidden-view">
-                <h1 class="text-3xl font-bold mb-6">Global Settings</h1>
-                <div class="bg-white rounded-xl shadow p-6 max-w-2xl">
-                    <form id="settingsForm" class="space-y-4">
+                <div class="mb-6">
+                    <h1 class="text-2xl sm:text-3xl font-display font-bold text-navy-900">Platform Settings</h1>
+                    <p class="text-xs text-slate mt-0.5">Control live homepage metrics and global configuration.</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 p-6 max-w-xl">
+                    <form id="settingsForm" class="space-y-4 text-xs">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Candidates Placed Counter</label>
-                            <input type="number" id="setPlaced" class="mt-1 w-full border border-gray-300 rounded p-2">
+                            <label class="block font-semibold text-navy-900 mb-1">Candidates Placed Metric</label>
+                            <input type="number" id="setPlaced" class="w-full px-4 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 focus:outline-none focus:border-teal-600">
+                            <p class="text-[10px] text-slate mt-1">Displayed on the homepage banner (e.g. 1250)</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Companies Hiring Counter</label>
-                            <input type="number" id="setCompanies" class="mt-1 w-full border border-gray-300 rounded p-2">
+                            <label class="block font-semibold text-navy-900 mb-1">Active Hiring Partners Metric</label>
+                            <input type="number" id="setCompanies" class="w-full px-4 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 focus:outline-none focus:border-teal-600">
+                            <p class="text-[10px] text-slate mt-1">Displayed across partner sections (e.g. 45)</p>
                         </div>
-                        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Save Settings</button>
+                        <button type="submit" class="px-5 py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow transition">Save Platform Settings</button>
                     </form>
                 </div>
             </div>
@@ -247,42 +428,116 @@
     </div>
 
     <!-- Job Modal -->
-    <div id="jobModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center">
-        <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-lg">
-            <h2 class="text-2xl font-bold mb-4" id="jobModalTitle">Add Job</h2>
-            <form id="jobForm" class="space-y-3">
+    <div id="jobModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-2xl w-full max-w-lg border border-gray-100">
+            <h2 class="text-xl font-display font-bold text-navy-900 mb-4" id="jobModalTitle">Add Job</h2>
+            <form id="jobForm" class="space-y-3 text-xs">
                 <input type="hidden" id="jobId">
-                <input type="text" id="jobTitle" placeholder="Job Title" class="w-full border p-2 rounded" required>
-                <input type="text" id="jobCompany" placeholder="Company Name" class="w-full border p-2 rounded" required>
-                <input type="text" id="jobLocation" placeholder="Location" class="w-full border p-2 rounded" required>
-                <input type="text" id="jobSalary" placeholder="Salary (e.g. 3.5 LPA)" class="w-full border p-2 rounded">
-                <select id="jobType" class="w-full border p-2 rounded">
-                    <option value="Full Time">Full Time</option>
-                    <option value="Part Time">Part Time</option>
-                    <option value="Work From Home">Work From Home</option>
-                </select>
-                <textarea id="jobDesc" placeholder="Description" class="w-full border p-2 rounded" rows="3"></textarea>
-                <select id="jobStatus" class="w-full border p-2 rounded hidden">
+                <div>
+                    <label class="block font-semibold text-navy-900 mb-1">Job Title *</label>
+                    <input type="text" id="jobTitle" placeholder="e.g. Customer Support Associate" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900" required>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-navy-900 mb-1">Company Name *</label>
+                        <input type="text" id="jobCompany" placeholder="e.g. Amazon, Blinkit" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900" required>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-navy-900 mb-1">Location *</label>
+                        <input type="text" id="jobLocation" placeholder="e.g. Remote, Pune, Akola" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-navy-900 mb-1">Industry Sector *</label>
+                        <select id="jobIndustry" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 cursor-pointer">
+                            <option value="IT & Software">IT & Software</option>
+                            <option value="Banking & Finance">Banking & Finance</option>
+                            <option value="BPO & Customer Support">BPO & Customer Support</option>
+                            <option value="Healthcare & Medical">Healthcare & Medical</option>
+                            <option value="Education & EdTech">Education & EdTech</option>
+                            <option value="Sales & Marketing">Sales & Marketing</option>
+                            <option value="Retail & E-commerce">Retail & E-commerce</option>
+                            <option value="Logistics & Supply Chain">Logistics & Supply Chain</option>
+                            <option value="Insurance">Insurance</option>
+                            <option value="Manufacturing & Industrial">Manufacturing & Industrial</option>
+                            <option value="Hospitality & Tourism">Hospitality & Tourism</option>
+                            <option value="Government & Competitive Exams">Government & Exams</option>
+                            <option value="Data Entry & Back Office">Data Entry & Back Office</option>
+                            <option value="Telecalling & Telesales">Telecalling & Telesales</option>
+                            <option value="Other Services">Other Services</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-navy-900 mb-1">Work Type</label>
+                        <select id="jobType" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                            <option value="Work From Home">Work From Home</option>
+                            <option value="Full Time">Full Time</option>
+                            <option value="Part Time">Part Time</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <div>
+                        <label class="block font-semibold text-navy-900 mb-1">Salary Display *</label>
+                        <input type="text" id="jobSalary" placeholder="e.g. ₹25,000 - ₹35,000 / mo" class="w-full px-3 py-2 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-navy-900 mb-1">Min Salary (₹)</label>
+                        <input type="number" id="jobMinSalary" placeholder="e.g. 25000" class="w-full px-3 py-2 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 text-xs">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-navy-900 mb-1">Max Salary (₹)</label>
+                        <input type="number" id="jobMaxSalary" placeholder="e.g. 35000" class="w-full px-3 py-2 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 text-xs">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-navy-900 mb-1">Salary Frequency</label>
+                        <select id="jobSalaryPeriod" class="w-full px-3 py-2 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 text-xs">
+                            <option value="Monthly">Monthly</option>
+                            <option value="Annual">Annual / CTC (LPA)</option>
+                            <option value="Daily">Daily</option>
+                            <option value="One-time">One-time</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-navy-900 mb-1">Salary Type</label>
+                        <select id="jobSalaryType" class="w-full px-3 py-2 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 text-xs">
+                            <option value="Fixed">Fixed</option>
+                            <option value="Range">Range</option>
+                            <option value="Commission">Commission Based</option>
+                            <option value="Performance">Performance Based</option>
+                            <option value="Negotiable">Negotiable</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-semibold text-navy-900 mb-1">Job Description & Responsibilities</label>
+                    <textarea id="jobDesc" placeholder="Key responsibilities and qualifications..." class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 resize-none" rows="3"></textarea>
+                </div>
+                <select id="jobStatus" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 hidden">
                     <option value="Open">Open</option>
                     <option value="Closed">Closed</option>
                 </select>
                 <div class="flex justify-end gap-2 pt-4">
-                    <button type="button" onclick="closeModal('jobModal')" class="px-4 py-2 border rounded">Cancel</button>
-                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded">Save</button>
+                    <button type="button" onclick="closeModal('jobModal')" class="px-4 py-2 border border-gray-200 text-slate rounded-xl hover:bg-gray-50">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow">Save Job</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Application Modal -->
-    <div id="appModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center">
-        <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-lg">
-            <h2 class="text-2xl font-bold mb-4">Update Application</h2>
-            <form id="appForm" class="space-y-3">
+    <div id="appModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-2xl w-full max-w-lg border border-gray-100">
+            <h2 class="text-xl font-display font-bold text-navy-900 mb-4">Update Application Status</h2>
+            <form id="appForm" class="space-y-3 text-xs">
                 <input type="hidden" id="appId">
                 <div>
-                    <label class="block text-xs text-gray-500">Status</label>
-                    <select id="appStatus" class="w-full border p-2 rounded">
+                    <label class="block font-semibold text-navy-900 mb-1">Candidate Status</label>
+                    <select id="appStatus" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
                         <option value="Pending">Pending</option>
                         <option value="Reviewed">Reviewed</option>
                         <option value="Interviewing">Interviewing</option>
@@ -291,61 +546,66 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs text-gray-500">Notes (Private)</label>
-                    <textarea id="appNotes" class="w-full border p-2 rounded" rows="3"></textarea>
+                    <label class="block font-semibold text-navy-900 mb-1">Internal HR Notes (Private)</label>
+                    <textarea id="appNotes" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 resize-none" rows="3" placeholder="Notes on interview outcome, communication level, etc."></textarea>
                 </div>
                 <div class="flex justify-end gap-2 pt-4">
-                    <button type="button" onclick="closeModal('appModal')" class="px-4 py-2 border rounded">Cancel</button>
-                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">Update</button>
+                    <button type="button" onclick="closeModal('appModal')" class="px-4 py-2 border border-gray-200 text-slate rounded-xl hover:bg-gray-50">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow">Update Record</button>
                 </div>
             </form>
         </div>
     </div>
 
-    
     <!-- Team Modal -->
-    <div id="teamModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center">
-        <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <h2 class="text-2xl font-bold mb-4" id="teamModalTitle">Add Team Member</h2>
-            <form id="teamForm" class="space-y-3">
+    <div id="teamModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto border border-gray-100">
+            <h2 class="text-xl font-display font-bold text-navy-900 mb-4" id="teamModalTitle">Add Team Member</h2>
+            <form id="teamForm" class="space-y-3 text-xs">
                 <input type="hidden" id="teamId">
-                <input type="text" id="teamName" placeholder="Name" class="w-full border p-2 rounded" required>
-                <input type="text" id="teamDesignation" placeholder="Designation" class="w-full border p-2 rounded" required>
-                <input type="text" id="teamMobile" placeholder="Mobile" class="w-full border p-2 rounded">
-                <input type="email" id="teamEmail" placeholder="Email" class="w-full border p-2 rounded">
-                <input type="text" id="teamLinkedin" placeholder="LinkedIn URL" class="w-full border p-2 rounded">
-                <input type="text" id="teamInstagram" placeholder="Instagram URL" class="w-full border p-2 rounded">
-                <input type="text" id="teamPhotoUrl" placeholder="Photo URL (From Media Library)" class="w-full border p-2 rounded">
-                <textarea id="teamBio" placeholder="Bio" class="w-full border p-2 rounded" rows="3"></textarea>
-                <input type="number" id="teamOrder" placeholder="Display Order (e.g. 1)" class="w-full border p-2 rounded">
-                <select id="teamStatus" class="w-full border p-2 rounded">
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
+                <input type="text" id="teamName" placeholder="Full Name" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900" required>
+                <input type="text" id="teamDesignation" placeholder="Designation (e.g. HR Talent Acquisition)" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900" required>
+                <div class="grid grid-cols-2 gap-3">
+                    <input type="text" id="teamMobile" placeholder="WhatsApp Mobile" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                    <input type="email" id="teamEmail" placeholder="Email Address" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <input type="text" id="teamLinkedin" placeholder="LinkedIn URL" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                    <input type="text" id="teamInstagram" placeholder="Instagram URL" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                </div>
+                <input type="text" id="teamPhotoUrl" placeholder="Photo URL (From Media Library)" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                <textarea id="teamBio" placeholder="Short Bio" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 resize-none" rows="2"></textarea>
+                <div class="grid grid-cols-2 gap-3">
+                    <input type="number" id="teamOrder" placeholder="Display Order (e.g. 1)" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                    <select id="teamStatus" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
                 <div class="flex justify-end gap-2 pt-4">
-                    <button type="button" onclick="closeModal('teamModal')" class="px-4 py-2 border rounded">Cancel</button>
-                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded">Save</button>
+                    <button type="button" onclick="closeModal('teamModal')" class="px-4 py-2 border border-gray-200 text-slate rounded-xl">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow">Save Member</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Success Modal -->
-    <div id="successModal" class="fixed inset-0 z-50 bg-black/50 hidden items-center justify-center">
-        <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <h2 class="text-2xl font-bold mb-4" id="successModalTitle">Add Success Story</h2>
-            <form id="successForm" class="space-y-3">
+    <div id="successModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto border border-gray-100">
+            <h2 class="text-xl font-display font-bold text-navy-900 mb-4" id="successModalTitle">Add Placement Story</h2>
+            <form id="successForm" class="space-y-3 text-xs">
                 <input type="hidden" id="successId">
-                <input type="text" id="successName" placeholder="Candidate Name" class="w-full border p-2 rounded" required>
-                <input type="text" id="successPhotoUrl" placeholder="Candidate Photo URL" class="w-full border p-2 rounded">
-                <input type="text" id="successLogoUrl" placeholder="Company Logo URL" class="w-full border p-2 rounded">
-                <input type="text" id="successOfferUrl" placeholder="Offer Letter URL" class="w-full border p-2 rounded">
-                <input type="text" id="successSalaryUrl" placeholder="Salary Slip URL (Optional)" class="w-full border p-2 rounded">
-                <input type="text" id="successVideoUrl" placeholder="Video Review URL (Optional MP4)" class="w-full border p-2 rounded">
-                <textarea id="successTestimonial" placeholder="Testimonial Text" class="w-full border p-2 rounded" rows="3" required></textarea>
+                <input type="text" id="successName" placeholder="Candidate Name" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900" required>
+                <input type="text" id="successPhotoUrl" placeholder="Candidate Photo URL" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                <input type="text" id="successLogoUrl" placeholder="Hiring Company Logo URL" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                <input type="text" id="successOfferUrl" placeholder="Offer Letter URL" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                <input type="text" id="successSalaryUrl" placeholder="Salary Slip URL (Optional)" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                <input type="text" id="successVideoUrl" placeholder="Video Review URL (Optional MP4)" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900">
+                <textarea id="successTestimonial" placeholder="Testimonial Text" class="w-full px-3.5 py-2.5 bg-[#F7F6F0] border border-gray-200 rounded-xl text-navy-900 resize-none" rows="3" required></textarea>
                 <div class="flex justify-end gap-2 pt-4">
-                    <button type="button" onclick="closeModal('successModal')" class="px-4 py-2 border rounded">Cancel</button>
-                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded">Save</button>
+                    <button type="button" onclick="closeModal('successModal')" class="px-4 py-2 border border-gray-200 text-slate rounded-xl">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow">Save Story</button>
                 </div>
             </form>
         </div>
@@ -398,9 +658,14 @@
             document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden-view'));
             document.getElementById(id).classList.remove('hidden-view');
             document.getElementById(id).classList.add('active-view');
+
+            document.querySelectorAll('.admin-nav-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = Array.from(document.querySelectorAll('.admin-nav-btn')).find(b => b.getAttribute('onclick')?.includes(id));
+            if (activeBtn) activeBtn.classList.add('active');
             
             if(id === 'jobsView') loadJobs();
             if(id === 'appsView') loadApps();
+            if(id === 'admissionsView') loadAdmissions();
             if(id === 'dashboardView') loadDashboard();
             if(id === 'settingsView') loadSettings();
         }
@@ -415,32 +680,37 @@
         }
 
         async function loadDashboard() {
-            const stats = await fetchAPI('/stats'); // No auth required for stats, but we use wrapper
-            document.getElementById('statApps').textContent = stats.applicationsReceived || 0;
-            document.getElementById('statJobs').textContent = stats.jobsAvailable || 0;
-            
-            const analytics = await fetchAPI('/analytics');
-            if(analytics.traffic && analytics.traffic.length > 0) {
-                document.getElementById('statHits').textContent = analytics.traffic[0].views;
-            }
+            try {
+                const stats = await fetchAPI('/stats');
+                document.getElementById('statApps').textContent = stats.applicationsReceived || 0;
+                document.getElementById('statJobs').textContent = stats.jobsAvailable || 0;
+                
+                const analytics = await fetchAPI('/analytics');
+                if(analytics && analytics.traffic && analytics.traffic.length > 0) {
+                    document.getElementById('statHits').textContent = analytics.traffic[0].views;
+                }
+            } catch(e) { console.error('Dashboard error', e); }
         }
 
         // JOBS
         async function loadJobs() {
-            const jobs = await fetchAPI('/jobs');
-            const tbody = document.getElementById('jobsTableBody');
-            tbody.innerHTML = jobs.map(j => `
-                <tr>
-                    <td class="p-4">#${j.id}</td>
-                    <td class="p-4 font-bold">${j.title}</td>
-                    <td class="p-4">${j.company}</td>
-                    <td class="p-4"><span class="px-2 py-1 text-xs rounded-full ${j.status==='Open'?'bg-green-100 text-green-800':'bg-red-100 text-red-800'}">${j.status}</span></td>
-                    <td class="p-4 text-right">
-                        <button onclick="editJob(${j.id})" class="text-blue-500 hover:underline mr-3">Edit</button>
-                        <button onclick="deleteJob(${j.id})" class="text-red-500 hover:underline">Delete</button>
-                    </td>
-                </tr>
-            `).join('');
+            try {
+                const jobs = await fetchAPI('/jobs');
+                const tbody = document.getElementById('jobsTableBody');
+                tbody.innerHTML = jobs.map(j => `
+                    <tr class="hover:bg-[#F7F6F0]/60 transition-colors">
+                        <td class="p-4 font-mono text-slate">#${j.id}</td>
+                        <td class="p-4 font-bold text-navy-900">${j.title}</td>
+                        <td class="p-4 text-charcoal">${j.company}</td>
+                        <td class="p-4"><span class="px-2.5 py-0.5 text-[10px] font-bold rounded-full ${j.status==='Open'?'bg-emerald-100 text-emerald-800 border border-emerald-300':'bg-red-100 text-red-800 border border-red-200'}">${j.status}</span></td>
+                        <td class="p-4 text-right">
+                            <button onclick="editJob(${j.id})" class="text-teal-700 font-semibold hover:underline mr-3">Edit</button>
+                            <button onclick="deleteJob(${j.id})" class="text-red-500 font-semibold hover:underline">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+                lucide.createIcons();
+            } catch(e) { console.error('Error loading jobs', e); }
         }
 
         function openJobModal(job = null) {
@@ -448,18 +718,23 @@
             document.getElementById('jobModal').classList.add('flex');
             const form = document.getElementById('jobForm');
             if(job) {
-                document.getElementById('jobModalTitle').textContent = 'Edit Job';
+                document.getElementById('jobModalTitle').textContent = 'Edit Job Opening';
                 document.getElementById('jobId').value = job.id;
                 document.getElementById('jobTitle').value = job.title;
                 document.getElementById('jobCompany').value = job.company;
                 document.getElementById('jobLocation').value = job.location;
-                document.getElementById('jobSalary').value = job.salary;
+                document.getElementById('jobIndustry').value = job.industry || 'Other Services';
+                document.getElementById('jobSalary').value = job.salary || '';
+                document.getElementById('jobMinSalary').value = job.min_salary || '';
+                document.getElementById('jobMaxSalary').value = job.max_salary || '';
+                document.getElementById('jobSalaryPeriod').value = job.salary_period || 'Monthly';
+                document.getElementById('jobSalaryType').value = job.salary_type || 'Fixed';
                 document.getElementById('jobType').value = job.type;
                 document.getElementById('jobDesc').value = job.description;
                 document.getElementById('jobStatus').value = job.status;
                 document.getElementById('jobStatus').classList.remove('hidden');
             } else {
-                document.getElementById('jobModalTitle').textContent = 'Add Job';
+                document.getElementById('jobModalTitle').textContent = 'Add New Job Opening';
                 form.reset();
                 document.getElementById('jobId').value = '';
                 document.getElementById('jobStatus').classList.add('hidden');
@@ -474,11 +749,18 @@
         document.getElementById('jobForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const id = document.getElementById('jobId').value;
+            const minSal = document.getElementById('jobMinSalary').value;
+            const maxSal = document.getElementById('jobMaxSalary').value;
             const data = {
                 title: document.getElementById('jobTitle').value,
                 company: document.getElementById('jobCompany').value,
                 location: document.getElementById('jobLocation').value,
+                industry: document.getElementById('jobIndustry').value,
                 salary: document.getElementById('jobSalary').value,
+                min_salary: minSal ? parseInt(minSal, 10) : null,
+                max_salary: maxSal ? parseInt(maxSal, 10) : null,
+                salary_period: document.getElementById('jobSalaryPeriod').value,
+                salary_type: document.getElementById('jobSalaryType').value,
                 type: document.getElementById('jobType').value,
                 description: document.getElementById('jobDesc').value,
                 status: document.getElementById('jobStatus').value || 'Open'
@@ -493,6 +775,112 @@
             loadJobs();
         });
 
+        // ADMISSION ENQUIRIES
+        async function loadAdmissions() {
+            try {
+                const statusFilter = document.getElementById('admissionsStatusFilter')?.value;
+                const endpoint = statusFilter ? `/admin/admission-enquiries?status=${encodeURIComponent(statusFilter)}` : '/admin/admission-enquiries';
+                const enquiries = await fetchAPI(endpoint);
+                const tbody = document.getElementById('admissionsTableBody');
+                if (!tbody) return;
+
+                if (!enquiries || enquiries.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="p-8 text-center text-slate">
+                                No admission enquiries found.
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tbody.innerHTML = enquiries.map(e => {
+                    const waNum = (e.whatsapp || e.mobile || '').replace(/[^0-9]/g, '');
+                    const waLink = waNum ? `https://wa.me/91${waNum.slice(-10)}?text=${encodeURIComponent(`Hello ${e.student_name}, this is Plan B Careers regarding your admission enquiry #${e.id} for ${e.interested_course}.`)}` : '#';
+                    const dateStr = e.created_at ? new Date(e.created_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recent';
+                    
+                    const statusColors = {
+                        'new': 'bg-blue-100 text-blue-800 border-blue-300',
+                        'contacted': 'bg-amber-100 text-amber-800 border-amber-300',
+                        'in_progress': 'bg-purple-100 text-purple-800 border-purple-300',
+                        'enrolled': 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                        'closed': 'bg-gray-100 text-slate border-gray-300'
+                    };
+                    const colorCls = statusColors[e.status] || 'bg-gray-100 text-slate border-gray-200';
+
+                    return `
+                        <tr class="hover:bg-[#F7F6F0]/60 transition-colors">
+                            <td class="p-4">
+                                <div class="font-mono text-slate text-[10px]">#ADM-${String(e.id).padStart(4, '0')}</div>
+                                <div class="font-bold text-navy-900 text-sm">${e.student_name}</div>
+                                <div class="text-[11px] text-slate">${e.qualification || '12th Pass'}</div>
+                            </td>
+                            <td class="p-4">
+                                <div class="font-mono text-charcoal font-semibold">${e.mobile}</div>
+                                <div class="text-[11px] text-teal-700 font-medium">WA: ${e.whatsapp || e.mobile}</div>
+                                ${e.email ? `<div class="text-[10px] text-slate truncate max-w-xs">${e.email}</div>` : ''}
+                            </td>
+                            <td class="p-4">
+                                <div class="font-bold text-navy-900">${e.interested_course}</div>
+                                <div class="text-[11px] text-slate">${e.preferred_city || 'Maharashtra'} • ${e.preferred_college || 'Any'}</div>
+                            </td>
+                            <td class="p-4">
+                                <span class="px-2 py-0.5 rounded-lg bg-teal-50 text-teal-800 border border-teal-200 text-[10px] font-semibold">${e.admission_type || 'Merit / CAP'}</span>
+                                <div class="text-[10px] text-slate mt-1">${dateStr}</div>
+                            </td>
+                            <td class="p-4">
+                                <select onchange="updateAdmissionStatus(${e.id}, this.value)" class="text-[11px] font-bold px-2 py-1 rounded-lg border cursor-pointer ${colorCls}">
+                                    <option value="new" ${e.status==='new'?'selected':''}>New</option>
+                                    <option value="contacted" ${e.status==='contacted'?'selected':''}>Contacted</option>
+                                    <option value="in_progress" ${e.status==='in_progress'?'selected':''}>In Progress</option>
+                                    <option value="enrolled" ${e.status==='enrolled'?'selected':''}>Enrolled</option>
+                                    <option value="closed" ${e.status==='closed'?'selected':''}>Closed</option>
+                                </select>
+                            </td>
+                            <td class="p-4 text-right">
+                                <div class="flex items-center justify-end gap-2">
+                                    <a href="${waLink}" target="_blank" class="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition" title="Open WhatsApp Chat">
+                                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                    </a>
+                                    <button onclick="deleteAdmission(${e.id})" class="p-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition" title="Delete">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+                if (window.lucide) lucide.createIcons();
+            } catch(e) {
+                console.error('Error loading admissions:', e);
+            }
+        }
+
+        async function updateAdmissionStatus(id, newStatus) {
+            try {
+                await fetchAPI(`/admin/admission-enquiries/${id}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ status: newStatus })
+                });
+                loadAdmissions();
+            } catch(e) {
+                console.error('Error updating admission status:', e);
+            }
+        }
+
+        async function deleteAdmission(id) {
+            if (confirm('Delete this admission enquiry permanently?')) {
+                try {
+                    await fetchAPI(`/admin/admission-enquiries/${id}`, { method: 'DELETE' });
+                    loadAdmissions();
+                } catch(e) {
+                    console.error('Error deleting admission enquiry:', e);
+                }
+            }
+        }
+
         async function editJob(id) {
             const jobs = await fetchAPI('/jobs');
             const job = jobs.find(j => j.id === id);
@@ -500,7 +888,7 @@
         }
 
         async function deleteJob(id) {
-            if(confirm('Delete this job?')) {
+            if(confirm('Delete this job opening permanently?')) {
                 await fetchAPI(`/jobs/${id}`, { method: 'DELETE' });
                 loadJobs();
             }
@@ -508,22 +896,25 @@
 
         // APPLICATIONS
         async function loadApps() {
-            const apps = await fetchAPI('/applications');
-            const tbody = document.getElementById('appsTableBody');
-            tbody.innerHTML = apps.map(a => `
-                <tr>
-                    <td class="p-4">
-                        <p class="font-bold">${a.name}</p>
-                        <p class="text-xs text-gray-500">${a.mobile} • ${a.email}</p>
-                        ${a.resume_url ? `<a href="${a.resume_url}" target="_blank" class="text-xs text-blue-500 hover:underline">View Resume</a>` : ''}
-                    </td>
-                    <td class="p-4 text-sm">${a.job_title || 'N/A'}<br><span class="text-xs text-gray-500">${a.job_company || ''}</span></td>
-                    <td class="p-4"><span class="px-2 py-1 text-xs rounded-full bg-gray-200">${a.status}</span></td>
-                    <td class="p-4 text-right">
-                        <button onclick="editApp(${a.id}, '${a.status}', '${a.notes || ''}')" class="text-blue-500 hover:underline">Update</button>
-                    </td>
-                </tr>
-            `).join('');
+            try {
+                const apps = await fetchAPI('/applications');
+                const tbody = document.getElementById('appsTableBody');
+                tbody.innerHTML = apps.map(a => `
+                    <tr class="hover:bg-[#F7F6F0]/60 transition-colors">
+                        <td class="p-4">
+                            <p class="font-bold text-navy-900">${a.name}</p>
+                            <p class="text-[11px] text-slate">${a.mobile} • ${a.email}</p>
+                            ${a.resume_url ? `<a href="${a.resume_url}" target="_blank" class="text-[11px] text-teal-700 font-semibold hover:underline inline-flex items-center gap-1 mt-1"><i data-lucide="file-text" class="w-3 h-3"></i> View Resume</a>` : ''}
+                        </td>
+                        <td class="p-4 text-xs font-medium text-navy-900">${a.job_title || 'General Placement'}<br><span class="text-[11px] text-slate font-normal">${a.job_company || 'Plan B Pool'}</span></td>
+                        <td class="p-4"><span class="px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-slate-100 text-navy-900 border border-gray-200">${a.status}</span></td>
+                        <td class="p-4 text-right">
+                            <button onclick="editApp(${a.id}, '${a.status}', '${(a.notes || '').replace(/'/g, "\\'")}')" class="text-teal-700 font-bold hover:underline">Update</button>
+                        </td>
+                    </tr>
+                `).join('');
+                lucide.createIcons();
+            } catch(e) { console.error('Error loading applications', e); }
         }
 
         function editApp(id, status, notes) {
@@ -550,28 +941,32 @@
 
         // SETTINGS
         async function loadSettings() {
-            const s = await fetchAPI('/settings'); // Actually settings is public currently, but this is fine
-            document.getElementById('setPlaced').value = s.candidates_placed || 0;
-            document.getElementById('setCompanies').value = s.companies_hiring || 0;
+            try {
+                const s = await fetchAPI('/settings');
+                document.getElementById('setPlaced').value = s.candidates_placed || 1250;
+                document.getElementById('setCompanies').value = s.companies_hiring || 45;
+            } catch(e) { console.error('Settings error', e); }
         }
 
         document.getElementById('settingsForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             await fetchAPI('/settings', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({key: 'candidates_placed', value: document.getElementById('setPlaced').value}) });
             await fetchAPI('/settings', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({key: 'companies_hiring', value: document.getElementById('setCompanies').value}) });
-            alert('Settings Saved');
+            alert('Platform metrics successfully updated.');
         });
     
         // Media Library Logic
         const dropZone = document.getElementById('dropZone');
-        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-gray-100'); });
-        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('bg-gray-100'));
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('bg-gray-100');
-            document.getElementById('mediaInput').files = e.dataTransfer.files;
-            handleFileUpload({target: document.getElementById('mediaInput')});
-        });
+        if (dropZone) {
+            dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('bg-teal-50'); });
+            dropZone.addEventListener('dragleave', () => dropZone.classList.remove('bg-teal-50'));
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('bg-teal-50');
+                document.getElementById('mediaInput').files = e.dataTransfer.files;
+                handleFileUpload({target: document.getElementById('mediaInput')});
+            });
+        }
 
         async function handleFileUpload(e) {
             const files = e.target.files;
@@ -603,37 +998,39 @@
                     alert('Upload failed');
                 }
             } catch(e) {
-                alert('Error uploading');
+                alert('Error uploading files');
             }
         }
 
         async function loadMedia() {
-            const cat = document.getElementById('mediaCategoryFilter').value;
-            const res = await fetch(API_URL + '/admin/media' + (cat ? '?category='+cat : ''), {
-                headers: {'Authorization': 'Bearer ' + token}
-            });
-            const data = await res.json();
-            const grid = document.getElementById('mediaGrid');
-            grid.innerHTML = data.map(m => {
-                let preview = '';
-                if(m.mime_type?.startsWith('image/')) preview = `<img src="${m.url}" class="w-full h-32 object-cover rounded-t-lg">`;
-                else if(m.mime_type?.startsWith('video/')) preview = `<video src="${m.url}" class="w-full h-32 object-cover rounded-t-lg"></video>`;
-                else preview = `<div class="w-full h-32 bg-gray-100 flex items-center justify-center rounded-t-lg"><i data-lucide="file" class="w-10 h-10 text-gray-400"></i></div>`;
+            try {
+                const cat = document.getElementById('mediaCategoryFilter').value;
+                const res = await fetch(API_URL + '/admin/media' + (cat ? '?category='+cat : ''), {
+                    headers: {'Authorization': 'Bearer ' + token}
+                });
+                const data = await res.json();
+                const grid = document.getElementById('mediaGrid');
+                grid.innerHTML = data.map(m => {
+                    let preview = '';
+                    if(m.mime_type?.startsWith('image/')) preview = `<img src="${m.url}" class="w-full h-32 object-cover rounded-t-xl">`;
+                    else if(m.mime_type?.startsWith('video/')) preview = `<video src="${m.url}" class="w-full h-32 object-cover rounded-t-xl"></video>`;
+                    else preview = `<div class="w-full h-32 bg-gray-100 flex items-center justify-center rounded-t-xl"><i data-lucide="file" class="w-10 h-10 text-slate"></i></div>`;
 
-                return `
-                <div class="bg-white rounded-lg shadow border relative group">
-                    ${preview}
-                    <div class="p-3">
-                        <p class="text-xs text-gray-500 truncate" title="${m.original_name}">${m.original_name}</p>
-                        <p class="text-[10px] text-gray-400 mt-1">${m.category} &bull; ${(m.size/1024).toFixed(1)} KB</p>
-                    </div>
-                    <div class="absolute inset-0 bg-black/60 rounded-lg flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity gap-2">
-                        <button onclick="copyToClipboard('${m.url}')" class="text-xs bg-white text-black px-3 py-1 rounded">Copy URL</button>
-                        <button onclick="deleteMedia(${m.id})" class="text-xs bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-                    </div>
-                </div>`;
-            }).join('');
-            lucide.createIcons();
+                    return `
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 relative group overflow-hidden">
+                        ${preview}
+                        <div class="p-3">
+                            <p class="text-xs text-navy-900 font-semibold truncate" title="${m.original_name}">${m.original_name}</p>
+                            <p class="text-[10px] text-slate mt-0.5">${m.category} &bull; ${(m.size/1024).toFixed(1)} KB</p>
+                        </div>
+                        <div class="absolute inset-0 bg-[#101A2C]/80 rounded-xl flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity gap-2 p-2">
+                            <button onclick="copyToClipboard('${m.url}')" class="text-xs bg-white text-navy-900 font-semibold px-3 py-1 rounded-lg">Copy URL</button>
+                            <button onclick="deleteMedia(${m.id})" class="text-xs bg-red-600 text-white px-3 py-1 rounded-lg">Delete</button>
+                        </div>
+                    </div>`;
+                }).join('');
+                lucide.createIcons();
+            } catch(e) { console.error('Media load error', e); }
         }
 
         async function deleteMedia(id) {
@@ -647,25 +1044,27 @@
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text);
-            alert('Copied URL: ' + text);
+            alert('Copied asset URL to clipboard.');
         }
 
         // Team Logic
         async function loadTeam() {
-            const res = await fetch(API_URL + '/public/team');
-            const data = await res.json();
-            document.getElementById('teamTableBody').innerHTML = data.map(t => `
-                <tr>
-                    <td class="p-4"><img src="${t.photo_url || ''}" class="w-10 h-10 rounded-full object-cover bg-gray-200"></td>
-                    <td class="p-4">${t.name}</td>
-                    <td class="p-4">${t.designation}</td>
-                    <td class="p-4"><span class="px-2 py-1 rounded text-xs ${t.status==='Active'?'bg-green-100 text-green-700':'bg-red-100 text-red-700'}">${t.status}</span></td>
-                    <td class="p-4 text-right">
-                        <button onclick="deleteTeam(${t.id})" class="text-red-500 hover:text-red-700"><i data-lucide="trash-2" class="w-5 h-5"></i></button>
-                    </td>
-                </tr>
-            `).join('');
-            lucide.createIcons();
+            try {
+                const res = await fetch(API_URL + '/public/team');
+                const data = await res.json();
+                document.getElementById('teamTableBody').innerHTML = data.map(t => `
+                    <tr class="hover:bg-[#F7F6F0]/60 transition-colors">
+                        <td class="p-4"><img src="${t.photo_url || ''}" class="w-10 h-10 rounded-full object-cover bg-gray-200" onerror="this.src='https://placehold.co/100x100/101A2C/FFFFFF?text=Team'"></td>
+                        <td class="p-4 font-bold text-navy-900">${t.name}</td>
+                        <td class="p-4 text-slate">${t.designation}</td>
+                        <td class="p-4"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${t.status==='Active'?'bg-emerald-100 text-emerald-800 border border-emerald-300':'bg-red-100 text-red-700 border border-red-200'}">${t.status}</span></td>
+                        <td class="p-4 text-right">
+                            <button onclick="deleteTeam(${t.id})" class="text-red-500 hover:text-red-700"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+                lucide.createIcons();
+            } catch(e) { console.error('Team load error', e); }
         }
 
         function openTeamModal() {
@@ -708,22 +1107,24 @@
 
         // Success Stories Logic
         async function loadSuccess() {
-            const res = await fetch(API_URL + '/public/success-stories');
-            const data = await res.json();
-            document.getElementById('successTableBody').innerHTML = data.map(s => `
-                <tr>
-                    <td class="p-4 flex items-center gap-3">
-                        <img src="${s.photo_url || ''}" class="w-10 h-10 rounded-full object-cover bg-gray-200">
-                        ${s.candidate_name}
-                    </td>
-                    <td class="p-4"><img src="${s.company_logo_url || ''}" class="h-8 object-contain bg-gray-100 p-1 rounded"></td>
-                    <td class="p-4 text-sm text-gray-500 truncate max-w-xs">${s.testimonial}</td>
-                    <td class="p-4 text-right">
-                        <button onclick="deleteSuccess(${s.id})" class="text-red-500 hover:text-red-700"><i data-lucide="trash-2" class="w-5 h-5"></i></button>
-                    </td>
-                </tr>
-            `).join('');
-            lucide.createIcons();
+            try {
+                const res = await fetch(API_URL + '/public/success-stories');
+                const data = await res.json();
+                document.getElementById('successTableBody').innerHTML = data.map(s => `
+                    <tr class="hover:bg-[#F7F6F0]/60 transition-colors">
+                        <td class="p-4 flex items-center gap-3">
+                            <img src="${s.photo_url || ''}" class="w-10 h-10 rounded-full object-cover bg-gray-200" onerror="this.src='https://placehold.co/100x100/087F8C/FFFFFF?text=Candidate'">
+                            <span class="font-bold text-navy-900">${s.candidate_name}</span>
+                        </td>
+                        <td class="p-4"><img src="${s.company_logo_url || ''}" class="h-6 object-contain bg-gray-50 p-1 rounded" onerror="this.style.display='none'"></td>
+                        <td class="p-4 text-xs text-slate truncate max-w-xs">${s.testimonial}</td>
+                        <td class="p-4 text-right">
+                            <button onclick="deleteSuccess(${s.id})" class="text-red-500 hover:text-red-700"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+                lucide.createIcons();
+            } catch(e) { console.error('Success stories load error', e); }
         }
 
         function openSuccessModal() {
@@ -769,8 +1170,6 @@
             if(viewId === 'teamView') loadTeam();
             if(viewId === 'successView') loadSuccess();
         };
-
-    
-</script>
+    </script>
 </body>
 </html>

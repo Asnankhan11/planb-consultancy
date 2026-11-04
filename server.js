@@ -53,6 +53,80 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname))); // Serve all HTML/CSS static files from root
 
+// ----------------------------------------------------
+// SEO, LLMS & INDEXNOW CLEAN URL ROUTES
+// ----------------------------------------------------
+app.get('/7f2e1a498b3c419fa82b5e90d12e847c.txt', (req, res) => {
+    res.type('text/plain').send('7f2e1a498b3c419fa82b5e90d12e847c');
+});
+
+app.get('/llms.txt', (req, res) => {
+    const p = path.join(__dirname, 'llms.txt');
+    if (fs.existsSync(p)) res.type('text/plain; charset=UTF-8').sendFile(p);
+    else res.status(404).send('Not found');
+});
+
+app.get('/llms-full.txt', (req, res) => {
+    const p = path.join(__dirname, 'llms-full.txt');
+    if (fs.existsSync(p)) res.type('text/plain; charset=UTF-8').sendFile(p);
+    else res.status(404).send('Not found');
+});
+
+// Clean URLs for leaf jobs: /job/:identifier
+app.get('/job/:identifier', (req, res, next) => {
+    let id = req.params.identifier;
+    if (id.endsWith('.html')) return next();
+    
+    const fileWithHtml = path.join(__dirname, 'job', `${id}.html`);
+    if (fs.existsSync(fileWithHtml)) {
+        return res.sendFile(fileWithHtml);
+    }
+    
+    const numId = parseInt(id, 10);
+    if (!isNaN(numId)) {
+        const directIdFile = path.join(__dirname, 'job', `${numId}.html`);
+        if (fs.existsSync(directIdFile)) {
+            return res.sendFile(directIdFile);
+        }
+    }
+    next();
+});
+
+// Clean URLs for job categories: /jobs/:category
+app.get('/jobs/:cat', (req, res, next) => {
+    let cat = req.params.cat;
+    if (cat.endsWith('.html')) return next();
+
+    const catFile = path.join(__dirname, 'jobs', `${cat}.html`);
+    if (fs.existsSync(catFile)) {
+        return res.sendFile(catFile);
+    }
+    next();
+});
+
+// IndexNow Submission Endpoint
+app.post('/api/indexnow/submit', async (req, res) => {
+    const { urls } = req.body;
+    const host = 'planbcareers.in';
+    const key = '7f2e1a498b3c419fa82b5e90d12e847c';
+    const payload = {
+        host: host,
+        key: key,
+        keyLocation: `https://${host}/${key}.txt`,
+        urlList: Array.isArray(urls) && urls.length > 0 ? urls : [`https://${host}/`]
+    };
+    try {
+        const response = await fetch('https://api.indexnow.org/indexnow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            body: JSON.stringify(payload)
+        });
+        res.json({ success: true, status: response.status, count: payload.urlList.length });
+    } catch(err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // Multer setup for uploads (Memory storage ensures serverless platforms like Vercel never crash on read-only disk)
 const upload = multer({
     storage: multer.memoryStorage(),
@@ -96,8 +170,12 @@ app.get('/api/stats', (req, res) => {
 
     db.get("SELECT (SELECT COUNT(*) FROM jobs WHERE status='Open') as open_jobs, (SELECT COUNT(*) FROM applications) as apps", (err, counts) => {
         db.all("SELECT key, value FROM settings WHERE key IN ('candidates_placed', 'companies_hiring')", (err, settings) => {
-            const data = { jobsAvailable: counts.open_jobs, applicationsReceived: counts.apps };
-            settings.forEach(s => data[s.key] = s.value);
+            const openJobs = counts && counts.open_jobs ? counts.open_jobs : 0;
+            const appsCount = counts && counts.apps ? counts.apps : 0;
+            const data = { jobsAvailable: openJobs, applicationsReceived: appsCount };
+            if (settings && Array.isArray(settings)) {
+                settings.forEach(s => data[s.key] = s.value);
+            }
             res.json(data);
         });
     });
@@ -155,20 +233,56 @@ app.get('/api/jobs', (req, res) => {
 });
 
 app.post('/api/jobs', verifyToken, (req, res) => {
-    const { title, company, location, salary, type, description } = req.body;
-    db.run("INSERT INTO jobs (title, company, location, salary, type, description) VALUES (?,?,?,?,?,?)",
-        [title, company, location, salary, type, description], function(err) {
+    const { 
+        title, company, location, salary, type, description, 
+        industry, min_salary, max_salary, salary_period, salary_type,
+        categories, work_mode, experience_level, qualification, shifts, languages 
+    } = req.body;
+
+    const catsJson = Array.isArray(categories) ? JSON.stringify(categories) : (categories || null);
+
+    db.run(`INSERT INTO jobs (
+        title, company, location, salary, type, description,
+        industry, min_salary, max_salary, salary_period, salary_type,
+        categories, work_mode, experience_level, qualification, shifts, languages
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+        [
+            title, company, location, salary, type, description,
+            industry || 'BPO & Customer Support', 
+            min_salary || null, max_salary || null, 
+            salary_period || 'monthly', salary_type || 'Fixed',
+            catsJson, work_mode || 'Work From Office', 
+            experience_level || 'Fresher', qualification || 'Graduate',
+            shifts || 'Day Shift', languages || 'Hindi / English'
+        ], function(err) {
             if(err) return res.status(500).json({error: err.message});
-            res.json({ id: this.lastID, message: 'Job created' });
+            res.json({ id: this.lastID, message: 'Job created successfully' });
     });
 });
 
 app.put('/api/jobs/:id', verifyToken, (req, res) => {
-    const { title, company, location, salary, type, description, status } = req.body;
-    db.run("UPDATE jobs SET title=?, company=?, location=?, salary=?, type=?, description=?, status=? WHERE id=?",
-        [title, company, location, salary, type, description, status, req.params.id], (err) => {
+    const { 
+        title, company, location, salary, type, description, status,
+        industry, min_salary, max_salary, salary_period, salary_type,
+        categories, work_mode, experience_level, qualification, shifts, languages 
+    } = req.body;
+
+    const catsJson = Array.isArray(categories) ? JSON.stringify(categories) : (categories || null);
+
+    db.run(`UPDATE jobs SET 
+        title=?, company=?, location=?, salary=?, type=?, description=?, status=?,
+        industry=?, min_salary=?, max_salary=?, salary_period=?, salary_type=?,
+        categories=?, work_mode=?, experience_level=?, qualification=?, shifts=?, languages=?
+        WHERE id=?`,
+        [
+            title, company, location, salary, type, description, status,
+            industry, min_salary || null, max_salary || null, 
+            salary_period || 'monthly', salary_type || 'Fixed',
+            catsJson, work_mode, experience_level, qualification, shifts, languages,
+            req.params.id
+        ], (err) => {
             if(err) return res.status(500).json({error: err.message});
-            res.json({ message: 'Job updated' });
+            res.json({ message: 'Job updated successfully' });
     });
 });
 
@@ -176,6 +290,191 @@ app.delete('/api/jobs/:id', verifyToken, (req, res) => {
     db.run("DELETE FROM jobs WHERE id=?", [req.params.id], (err) => {
         if(err) return res.status(500).json({error: err.message});
         res.json({ message: 'Job deleted' });
+    });
+});
+
+// ----------------------------------------------------
+// MULTI-INDUSTRY CATEGORIES API
+// ----------------------------------------------------
+app.get('/api/categories', (req, res) => {
+    db.all("SELECT * FROM categories WHERE status = 'Active' ORDER BY display_order ASC, id ASC", (err, rows) => {
+        const defaultCats = [
+            { id: 1, name: "IT & Software", icon: "code-2", display_order: 1 },
+            { id: 2, name: "Banking & Finance", icon: "landmark", display_order: 2 },
+            { id: 3, name: "BPO & Customer Support", icon: "headset", display_order: 3 },
+            { id: 4, name: "Healthcare & Medical", icon: "stethoscope", display_order: 4 },
+            { id: 5, name: "Education & EdTech", icon: "graduation-cap", display_order: 5 },
+            { id: 6, name: "Sales & Marketing", icon: "trending-up", display_order: 6 },
+            { id: 7, name: "Retail & E-commerce", icon: "shopping-bag", display_order: 7 },
+            { id: 8, name: "Logistics & Supply Chain", icon: "truck", display_order: 8 },
+            { id: 9, name: "Insurance", icon: "shield", display_order: 9 },
+            { id: 10, name: "Manufacturing & Industrial", icon: "factory", display_order: 10 },
+            { id: 11, name: "Hospitality & Tourism", icon: "utensils", display_order: 11 },
+            { id: 12, name: "Government & Competitive Exams", icon: "award", display_order: 12 },
+            { id: 13, name: "Data Entry & Back Office", icon: "file-spreadsheet", display_order: 13 },
+            { id: 14, name: "Telecalling & Telesales", icon: "phone-call", display_order: 14 },
+            { id: 15, name: "Other Services", icon: "layers", display_order: 15 }
+        ];
+
+        if (err || !rows || rows.length === 0) {
+            return res.json(defaultCats);
+        }
+        res.json(rows);
+    });
+});
+
+app.post('/api/admin/categories', verifyToken, (req, res) => {
+    const { name, icon, display_order } = req.body;
+    if (!name) return res.status(400).json({ error: 'Category name is required' });
+
+    db.run("INSERT INTO categories (name, icon, display_order, status) VALUES (?, ?, ?, 'Active')",
+        [name.trim(), icon || 'briefcase', display_order || 0], function(err) {
+            if (err) return res.status(500).json({ error: err.message });
+            res.json({ id: this.lastID, message: 'Category created successfully' });
+    });
+});
+
+// ----------------------------------------------------
+// PAID SERVICES API
+// ----------------------------------------------------
+app.get('/api/paid-services', (req, res) => {
+    db.all("SELECT * FROM paid_services WHERE status = 'Active' ORDER BY display_order ASC", (err, rows) => {
+        const defaultServices = [
+            {
+                id: 1,
+                title: "Professional Resume Creation",
+                price_display: "₹300",
+                price_numeric: 300,
+                short_desc: "Recruiter-approved ATS compliant resume drafted by recruitment specialists.",
+                features: ["ATS-friendly formatting", "Keyword optimization for target industry", "Delivered in PDF & editable Word format", "Turnaround within 24-48 hours"],
+                enquiry_tag: "Resume-Creation-300"
+            },
+            {
+                id: 2,
+                title: "Mock Interview Preparation",
+                price_display: "₹500",
+                price_numeric: 500,
+                short_desc: "1-on-1 personalized interview coaching session with senior HR recruiters.",
+                features: ["30-minute structured mock interview", "Detailed communication & body language feedback", "Industry-specific question & answer drills", "Confidence building & salary negotiation tips"],
+                enquiry_tag: "Mock-Interview-500"
+            },
+            {
+                id: 3,
+                title: "Company Interview Arrangement",
+                price_display: "₹1,500 (2 Interviews)",
+                price_numeric: 1500,
+                short_desc: "Guaranteed interview scheduling with 2 verified corporate hiring clients.",
+                features: ["Direct coordination with employer HR desks", "Confirmed interview slot booking", "Pre-interview company dossier & briefing", "Dedicated post-interview feedback follow-up"],
+                enquiry_tag: "Company-Interviews-1500"
+            },
+            {
+                id: 4,
+                title: "Placement Assistance Package",
+                price_display: "₹6,000 – ₹10,000",
+                price_numeric: 6000,
+                short_desc: "Comprehensive end-to-end placement guidance and dedicated career mentoring.",
+                features: ["Priority profile presentation to client partners", "Unlimited interview coordination until placement", "Personalized career roadmap & grooming", "Offer letter evaluation & joining guidance"],
+                enquiry_tag: "Placement-Assistance-Pkg"
+            }
+        ];
+
+        if (err || !rows || rows.length === 0) {
+            return res.json(defaultServices);
+        }
+
+        const formatted = rows.map(r => {
+            let parsedFeatures = [];
+            try { parsedFeatures = JSON.parse(r.features); } catch(e) { parsedFeatures = [r.features]; }
+            return { ...r, features: parsedFeatures };
+        });
+        res.json(formatted);
+    });
+});
+
+app.put('/api/admin/paid-services/:id', verifyToken, (req, res) => {
+    const { title, price_display, price_numeric, short_desc, features, status } = req.body;
+    const featStr = Array.isArray(features) ? JSON.stringify(features) : features;
+    db.run("UPDATE paid_services SET title=?, price_display=?, price_numeric=?, short_desc=?, features=?, status=? WHERE id=?",
+        [title, price_display, price_numeric, short_desc, featStr, status || 'Active', req.params.id], (err) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.json({ message: 'Service updated successfully' });
+    });
+});
+
+// ----------------------------------------------------
+// NATIVE ADMISSION ENQUIRIES API
+// ----------------------------------------------------
+app.post('/api/admission-enquiries', (req, res) => {
+    const {
+        student_name,
+        mobile,
+        whatsapp_number,
+        email,
+        qualification,
+        interested_course,
+        preferred_college,
+        preferred_city,
+        admission_type,
+        additional_requirements
+    } = req.body;
+
+    if (!student_name || !mobile) {
+        return res.status(400).json({ error: 'Student name and contact mobile are required.' });
+    }
+
+    db.run(`INSERT INTO admission_enquiries (
+        student_name, mobile, whatsapp_number, email, qualification,
+        interested_course, preferred_college, preferred_city, admission_type,
+        additional_requirements, status
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'New')`,
+        [
+            student_name.trim(),
+            mobile.trim(),
+            (whatsapp_number || mobile).trim(),
+            (email || '').trim(),
+            (qualification || '').trim(),
+            (interested_course || '').trim(),
+            (preferred_college || '').trim(),
+            (preferred_city || '').trim(),
+            (admission_type || 'Merit / Counselling').trim(),
+            (additional_requirements || '').trim()
+        ],
+        function(err) {
+            if (err) return res.status(500).json({ error: err.message });
+            
+            // Build WhatsApp confirmation link
+            const waNumber = (whatsapp_number || mobile).replace(/\D/g, '');
+            const adminNotifyText = `*New Admission Enquiry - Plan B Careers*%0A%0A*Student:* ${encodeURIComponent(student_name)}%0A*Mobile:* ${encodeURIComponent(mobile)}%0A*Course:* ${encodeURIComponent(interested_course || 'Not specified')}%0A*City:* ${encodeURIComponent(preferred_city || 'Not specified')}%0A*Type:* ${encodeURIComponent(admission_type || 'General')}`;
+
+            res.json({
+                success: true,
+                id: this.lastID,
+                message: 'Enquiry submitted successfully. Our admission advisor will contact you.',
+                admin_whatsapp_link: `https://wa.me/919420512501?text=${adminNotifyText}`
+            });
+    });
+});
+
+app.get('/api/admin/admission-enquiries', verifyToken, (req, res) => {
+    db.all("SELECT * FROM admission_enquiries ORDER BY id DESC", (err, rows) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json(rows || []);
+    });
+});
+
+app.put('/api/admin/admission-enquiries/:id', verifyToken, (req, res) => {
+    const { status, notes } = req.body;
+    db.run("UPDATE admission_enquiries SET status = ?, notes = ? WHERE id = ?",
+        [status, notes, req.params.id], (err) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.json({ message: 'Enquiry status updated' });
+    });
+});
+
+app.delete('/api/admin/admission-enquiries/:id', verifyToken, (req, res) => {
+    db.run("DELETE FROM admission_enquiries WHERE id = ?", [req.params.id], (err) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ message: 'Enquiry deleted' });
     });
 });
 
@@ -662,8 +961,13 @@ app.get('/api/trust/verify-candidate', (req, res) => {
     if (!query) return res.status(400).json({error: 'Search query required'});
     
     let idSearch = -1;
-    if (query.toUpperCase().startsWith('PB-CAN-')) {
-        idSearch = parseInt(query.toUpperCase().replace('PB-CAN-', ''), 10);
+    const cleanQ = query.toUpperCase().trim();
+    if (cleanQ.startsWith('PB-CAN-')) {
+        idSearch = parseInt(cleanQ.replace('PB-CAN-', ''), 10);
+    } else if (cleanQ.startsWith('PBC-')) {
+        idSearch = parseInt(cleanQ.replace('PBC-', ''), 10);
+    } else if (/^\d+$/.test(cleanQ) && cleanQ.length <= 6) {
+        idSearch = parseInt(cleanQ, 10);
     }
     
     db.all("SELECT a.id, a.name, a.city, a.status, j.title as job_title, j.company as job_company FROM applications a LEFT JOIN jobs j ON a.job_id = j.id WHERE a.id = ? OR a.mobile = ? OR a.email = ?", [idSearch, query, query], (err, rows) => {

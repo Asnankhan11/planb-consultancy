@@ -1,602 +1,379 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8FKFJBJPM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N8FKFJBJPM');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification Portal | Plan B Careers</title>
-    <meta name="description" content="Plan B Careers provides recruitment services, Work From Home jobs, office jobs, career guidance, interview preparation, placement assistance, and hiring solutions across India.">
-    <meta property="og:title" content="Plan B Careers | Jobs, Recruitment & Career Guidance">
-    <meta property="og:description" content="Plan B Careers provides recruitment services, Work From Home jobs, office jobs, career guidance, interview preparation, placement assistance, and hiring solutions across India.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://planbcareers.in">
-    <meta property="og:image" content="https://placehold.co/1200x630/0A2E6B/FFFFFF?text=Plan+B+Careers">
-    <meta property="og:locale" content="en_IN">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Plan B Careers | Jobs, Recruitment & Career Guidance">
-    <meta name="twitter:description" content="Plan B Careers provides recruitment services, Work From Home jobs, office jobs, career guidance, interview preparation, placement assistance, and hiring solutions across India.">
-    <link rel="stylesheet" href="css/styles.css?v=4.0">
-    <link rel="stylesheet" href="css/white-theme.css?v=1.0">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>    <style id="trust-nav-styles">
-        /* ── Trust Center Nav Button ── */
-        .trust-nav-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 7px 16px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.01em;
-            color: #0A2E6B;
-            background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%);
-            border: 1px solid rgba(244,196,48,0.5);
-            box-shadow: 0 0 14px rgba(212,160,23,0.25), inset 0 1px 0 rgba(255,255,255,0.25);
-            text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, brightness 0.2s ease;
-            white-space: nowrap;
-        }
-        .trust-nav-btn:hover {
-            transform: translateY(-1px) scale(1.03);
-            box-shadow: 0 0 22px rgba(212,160,23,0.45), inset 0 1px 0 rgba(255,255,255,0.3);
-            filter: brightness(1.08);
-        }
-        .trust-nav-btn:active { transform: scale(0.97); }
-        .trust-nav-btn--active {
-            box-shadow: 0 0 20px rgba(212,160,23,0.5), 0 0 40px rgba(212,160,23,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
-        }
-
-        /* ── Trust Center Mobile Button ── */
-        .trust-mobile-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 14px;
-            font-size: 1rem;
-            font-weight: 800;
-            color: #0A2E6B;
-            background: linear-gradient(135deg, #F4C430 0%, #D4A017 100%);
-            border: 1px solid rgba(244,196,48,0.4);
-            box-shadow: 0 4px 20px rgba(212,160,23,0.25);
-            text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            margin-bottom: 4px;
-        }
-        .trust-mobile-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 28px rgba(212,160,23,0.4);
-        }
-        .trust-mobile-btn:active { transform: scale(0.97); }
-    </style>
+    <title>Candidate ID & Offer Verification Portal - Plan B Careers</title>
+    <meta name="description" content="Verify legitimate candidate placement status, official offer letters, and registration records issued by Plan B Careers. Protect yourself against recruitment fraud.">
+    <link rel="canonical" href="https://planbcareers.in/verify-candidate.html">
+    <link rel="stylesheet" href="css/styles.css?v=5.0">
+    <link rel="stylesheet" href="css/white-theme.css?v=2.0">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Plan B Careers",
-      "image": "https://planbcareers.in/assets/images/hero/hero-banner.svg",
-      "url": "https://planbcareers.in",
-      "telephone": "+919420512501",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Akola",
-        "addressRegion": "Maharashtra",
-        "addressCountry": "IN"
-      }
+      "@type": "WebPage",
+      "name": "Plan B Careers Candidate Verification Portal",
+      "url": "https://planbcareers.in/verify-candidate.html"
     }
     </script>
 </head>
-<body class="bg-[#061D45] text-gray-100 font-sans selection:bg-purple-500/30 selection:text-white">
+<body class="bg-ivory text-charcoal min-h-screen flex flex-col font-sans selection:bg-lime-400 selection:text-navy-950">
 
-    <!-- Decorative background blobs -->
-    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
-        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-purple-900/10 blur-[150px]"></div>
-        <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-pink-900/10 blur-[150px]"></div>
-        <div class="absolute top-[40%] left-[30%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[150px]"></div>
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-navy-900 text-white text-xs py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                <span class="badge-lime text-[10px] py-0.5 px-2">Official Verification</span>
+                <span class="text-slate font-medium">Verify Candidate Registrations & Placement Records</span>
+            </div>
+            <div class="flex items-center gap-4 text-slate">
+                <a href="https://wa.me/919420512501" target="_blank" class="hover:text-lime-300 transition-colors flex items-center gap-1">
+                    <i data-lucide="phone-call" class="w-3.5 h-3.5 text-lime-400"></i> +91 9420512501
+                </a>
+                <span>•</span>
+                <a href="trust.html" class="hover:text-white transition-colors">Trust Center</a>
+            </div>
+        </div>
     </div>
 
-    <!-- NAVIGATION BAR -->
-    <nav class="navbar scrolled" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
-            <a href="index.html" class="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white hover:opacity-95 transition-opacity">
-                <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">PlanB</span>
-                <span class="text-xs uppercase px-2 py-0.5 rounded bg-white/10 font-medium text-purple-300">CAREERS</span>
-            </a>
+            <!-- MAIN NAVBAR -->
+    <header id="navbar" class="header-glass sticky top-0 z-40 transition-all duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-4">
+                <!-- Brand Logo & Tagline -->
+                <a href="index.html" class="flex items-center gap-3 group shrink-0 py-1">
+                    <img src="images/logos/Plan-B-Careers-logo.png" alt="Plan B Careers Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
+                    <div class="flex flex-col shrink-0 justify-center">
+                        <span class="font-display font-extrabold text-base sm:text-lg text-navy-900 leading-none whitespace-nowrap tracking-tight">PLAN B CAREERS</span>
+                        <span class="text-[10px] font-semibold text-teal-600 uppercase leading-none mt-1 whitespace-nowrap tracking-wider">Backup jo kaam kare</span>
+                    </div>
+                </a>
 
-            <!-- Desktop Nav Menu -->
-            <ul class="hidden lg:flex items-center gap-4 whitespace-nowrap">
-                <li><a href="#" class="nav-link active">Home</a></li>
-                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
-                <li><a href="admissions.html" class="nav-link">Services</a></li>
-                <li><a href="#partners" class="nav-link">Companies</a></li>
-                <li><a href="#about" class="nav-link">About Us</a></li>
-                <li><a href="#contact" class="nav-link">Contact Us</a></li>
-                <li><a href="trust.html" class="trust-nav-btn" aria-label="Trust Center">&#x1F6E1;&#xFE0F; Trust Center</a></li>
-            </ul>
+                <!-- Desktop Nav Links -->
+                <nav class="hidden xl:flex items-center gap-1 shrink-0">
+                    <a href="index.html" class="nav-item">Home</a>
+                    <a href="jobs.html" class="nav-item">Find Jobs</a>
+                    <a href="women-wfh.html" class="nav-item">Work From Home</a>
+                    <a href="admissions.html" class="nav-item">Admissions</a>
+                    <a href="trust.html" class="nav-item">Trust Center</a>
+                    <a href="about.html" class="nav-item">About Us</a>
+                    <a href="contact.html" class="nav-item">Contact</a>
+                </nav>
 
-            <!-- Right Buttons -->
-            <div class="hidden lg:flex items-center gap-4">
-                <div class="flex items-center gap-3 mr-2">
-                    <a href="https://www.facebook.com/share/1C1xoJXv4H/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                <!-- Actions -->
+                <div class="hidden sm:flex items-center gap-2.5 shrink-0">
+                    <a href="dashboard.html" class="btn-outline-navy text-xs py-2 px-3 gap-1.5 whitespace-nowrap">
+                        <i data-lucide="user" class="w-3.5 h-3.5 text-teal-600"></i>
+                        <span>Candidate Portal</span>
                     </a>
-                    <a href="https://www.instagram.com/planbcareers_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                    </a>
-                    <a href="https://www.youtube.com/@planbcareers" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
-                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/planbcareers" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                    </a>
-                    <a href="https://x.com/planbcareers" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
-                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    <a href="https://wa.me/919420512501" target="_blank" class="btn-accent text-xs py-2 px-3.5 gap-1.5 whitespace-nowrap">
+                        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                        <span>HR WhatsApp</span>
                     </a>
                 </div>
-                <a href="apply-job.html" class="px-5 py-2 rounded-full text-sm font-semibold glass-panel border-white/20 text-white hover:bg-white/10 transition-all">Login</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all">Register</a>
-            </div>
 
-            <!-- Hamburger Toggle -->
-            <div class="lg:hidden flex items-center gap-4">
-                <button class="menu-toggle flex flex-col gap-1.5 p-2 rounded-lg bg-white/5 border border-white/10" id="menuToggle" aria-label="Toggle Menu">
-                    <span class="w-6 h-0.5 bg-white transition-all"></span>
-                    <span class="w-6 h-0.5 bg-white transition-all"></span>
-                    <span class="w-6 h-0.5 bg-white transition-all"></span>
+                <!-- Mobile Hamburger -->
+                <button id="mobileMenuBtn" class="xl:hidden p-2 rounded-xl text-navy-900 hover:bg-gray-100 transition-colors" aria-label="Toggle navigation">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Nav Menu -->
-        <div class="hidden lg:hidden absolute top-[73px] left-0 w-full bg-[#0d0720]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6" id="mobileMenu">
-            <ul class="flex flex-col gap-4 mb-6">
-                <li><a href="#" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Home</a></li>
-                <li><a href="trust.html" class="trust-mobile-btn">&#x1F6E1;&#xFE0F; Trust Center</a></li>
-                <li><a href="jobs.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Jobs</a></li>
-                <li><a href="admissions.html" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Services</a></li>
-                <li><a href="#partners" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">Companies</a></li>
-                <li><a href="#about" class="block text-gray-300 hover:text-white py-2 text-base font-semibold border-b border-white/5">About Us</a></li>
-                <li><a href="#contact" class="block text-gray-300 hover:text-white py-2 text-base font-semibold">Contact Us</a></li>
-            </ul>
-            <div class="flex flex-col gap-3">
-                <a href="apply-job.html" class="w-full text-center py-3 rounded-xl font-semibold glass-panel border-white/20 text-white hover:bg-white/10 transition-all">Login</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSem9R2-p4MwHQ9svb0pADGa9GHhQvZscTX5P4yg9_5ienkt2w/viewform" target="_blank" rel="noopener noreferrer" class="w-full text-center py-3 rounded-xl font-semibold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25 transition-all">Register</a>
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden xl:hidden fixed inset-0 z-50 bg-navy-950/70 backdrop-blur-md">
+            <div class="fixed top-0 right-0 w-80 max-w-full h-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
+                <div>
+                    <div class="flex items-center justify-between pb-6 border-b border-gray-100">
+                        <div class="flex items-center gap-2.5">
+                            <img src="images/logos/Plan-B-Careers-logo.png" alt="Plan B Careers Logo" class="h-8 w-auto">
+                            <div class="flex flex-col">
+                                <span class="font-display font-extrabold text-sm text-navy-900 leading-none whitespace-nowrap">PLAN B CAREERS</span>
+                                <span class="text-[9px] font-semibold text-teal-600 uppercase leading-none mt-1 whitespace-nowrap">Backup jo kaam kare</span>
+                            </div>
+                        </div>
+                        <button id="closeMobileMenuBtn" class="p-2 text-slate hover:text-navy-900 rounded-lg">
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <div class="py-6 flex flex-col gap-1.5">
+                        <a href="index.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Home</a>
+                        <a href="jobs.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Find Jobs</a>
+                        <a href="women-wfh.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Work From Home</a>
+                        <a href="admissions.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Admissions Guidance</a>
+                        <a href="dashboard.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Candidate Portal</a>
+                        <a href="verify-candidate.html" class="px-4 py-2.5 rounded-xl font-semibold bg-teal-50 text-teal-800">Verify Candidate</a>
+                        <a href="trust.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Trust Center</a>
+                        <a href="about.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">About Us</a>
+                        <a href="contact.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Contact</a>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-gray-100 flex flex-col gap-3">
+                    <a href="dashboard.html" class="btn-outline-navy w-full py-2.5 justify-center gap-2 text-xs">
+                        <i data-lucide="user" class="w-4 h-4 text-teal-600"></i>
+                        <span>Candidate Portal</span>
+                    </a>
+                    <a href="https://wa.me/919420512501" target="_blank" class="btn-accent w-full py-3 justify-center gap-2 text-xs">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>HR WhatsApp Desk</span>
+                    </a>
+                </div>
             </div>
         </div>
-    </nav>
+    </header>
+
     <!-- HERO SECTION -->
-    <section class="relative pt-32 pb-16 overflow-hidden flex items-center justify-center min-h-[40vh]">
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs font-semibold tracking-wider uppercase mb-6">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Official Portal
+    <section class="bg-gradient-to-b from-navy-900 via-navy-900 to-navy-950 text-white pt-16 pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#C7F36B_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-900/60 border border-teal-500/30 text-teal-300 text-xs font-semibold uppercase tracking-wider mb-6">
+                <i data-lucide="shield-check" class="w-4 h-4 text-lime-400"></i>
+                Official Plan B Verification Database
             </div>
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
-                Verification <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Portal</span>
+            
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-white mb-6 leading-tight">
+                Candidate & Placement <span class="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-teal-300 to-white">Verification</span>
             </h1>
-            <p class="text-gray-400 max-w-xl mx-auto leading-relaxed text-sm md:text-base">
-                Verify the placement status, offer letters, and credentials of candidates processed by Plan B Careers.
+
+            <p class="text-slate text-base sm:text-lg leading-relaxed mb-6">
+                Enter your Candidate Registration Number (e.g., PBC-1029 or PB-CAN-XXXX) or registered phone number to confirm placement validity and credentials.
             </p>
         </div>
     </section>
 
-    <section class="py-12 relative z-10">
-        <div class="max-w-2xl mx-auto px-6">
-            
-            <div class="glass-panel border border-white/10 rounded-3xl p-8 shadow-2xl shadow-blue-900/20">
-                <h3 class="text-xl font-bold text-white mb-6 text-center">Check Candidate Record</h3>
-                
-                <div class="flex flex-col gap-4 mb-8">
+    <!-- VERIFICATION TOOL SECTION -->
+    <main class="py-16 flex-1">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl border border-gray-100 -mt-24 relative z-20">
+                <div class="text-center mb-6">
+                    <span class="badge-teal text-xs py-1 px-3 mb-2 inline-block">Real-Time Lookup</span>
+                    <h2 class="text-xl sm:text-2xl font-display font-bold text-navy-900">Check Candidate Record</h2>
+                    <p class="text-xs text-slate mt-1">Cross-reference candidate details against our verified recruitment ledger.</p>
+                </div>
+
+                <div class="space-y-4">
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">Search By</label>
-                        <select id="searchType" class="w-full bg-[#0d0720] border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-blue-500">
-                            <option value="id">Candidate ID (e.g., PBC-1029)</option>
-                            <option value="mobile">Mobile Number</option>
+                        <label class="block text-xs font-semibold text-navy-900 mb-1.5">Search By</label>
+                        <select id="searchType" class="input-premium text-xs cursor-pointer">
+                            <option value="id">Candidate ID (e.g., PBC-1029 or PB-CAN-1029)</option>
+                            <option value="mobile">Registered Mobile Number (10 digits)</option>
                         </select>
                     </div>
+
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">Enter Details</label>
-                        <input type="text" id="searchInput" placeholder="Enter ID or Mobile..." class="w-full bg-[#0d0720] border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-blue-500">
+                        <label class="block text-xs font-semibold text-navy-900 mb-1.5">Enter Candidate Details</label>
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Enter ID (e.g. PBC-1029) or Mobile..." class="input-premium text-xs pr-10">
+                            <button onclick="verifyCandidate()" class="absolute right-2 top-2 p-1.5 bg-teal-50 text-teal-700 hover:bg-teal-100 rounded-lg transition-colors" aria-label="Search">
+                                <i data-lucide="search" class="w-4 h-4"></i>
+                            </button>
+                        </div>
                     </div>
-                    <button onclick="verifyCandidate()" class="mt-2 w-full py-3.5 rounded-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-blue-500/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-                        <i data-lucide="search" class="w-4 h-4"></i> Verify Now
+
+                    <button onclick="verifyCandidate()" class="btn-primary w-full py-3.5 justify-center gap-2 text-xs font-bold shadow-lg shadow-navy-900/15">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        <span>Verify Record Now</span>
                     </button>
                 </div>
 
-                <div id="resultContainer" class="hidden">
+                <!-- RESULTS CONTAINER -->
+                <div id="resultContainer" class="hidden mt-8 pt-8 border-t border-gray-200">
+                    
+                    <!-- SUCCESS RESULT CARD -->
                     <div id="verifiedResult" class="hidden">
-                        <div class="flex items-center justify-center gap-2 text-green-400 font-bold mb-6 p-3 bg-green-500/10 border border-green-500/20 rounded-xl">
-                            <i data-lucide="badge-check" class="w-5 h-5"></i> Verified by Plan B Careers
+                        <div class="flex items-center justify-center gap-2 text-teal-800 font-bold mb-6 p-3.5 bg-lime-100 border border-lime-300 rounded-2xl text-xs sm:text-sm">
+                            <i data-lucide="badge-check" class="w-5 h-5 text-teal-700"></i>
+                            <span>Verified Candidate Record Found in Plan B Careers Registry</span>
                         </div>
-                        <div class="grid grid-cols-2 gap-4 text-sm">
-                            <div class="p-4 rounded-xl bg-white/5 border border-white/5">
-                                <span class="block text-xs text-gray-400 uppercase mb-1">Name</span>
-                                <span class="font-bold text-white" id="resName">--</span>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                            <div class="p-3.5 rounded-2xl bg-ivory border border-gray-200">
+                                <span class="block text-[10px] text-slate uppercase font-bold tracking-wider mb-0.5">Candidate Name</span>
+                                <span class="font-bold text-navy-900 text-sm" id="resName">--</span>
                             </div>
-                            <div class="p-4 rounded-xl bg-white/5 border border-white/5">
-                                <span class="block text-xs text-gray-400 uppercase mb-1">Status</span>
-                                <span class="font-bold text-white" id="resStatus">--</span>
+                            <div class="p-3.5 rounded-2xl bg-ivory border border-gray-200">
+                                <span class="block text-[10px] text-slate uppercase font-bold tracking-wider mb-0.5">Placement Status</span>
+                                <span class="font-bold text-sm" id="resStatus">--</span>
                             </div>
-                            <div class="p-4 rounded-xl bg-white/5 border border-white/5">
-                                <span class="block text-xs text-gray-400 uppercase mb-1">Company</span>
-                                <span class="font-bold text-white" id="resCompany">--</span>
+                            <div class="p-3.5 rounded-2xl bg-ivory border border-gray-200">
+                                <span class="block text-[10px] text-slate uppercase font-bold tracking-wider mb-0.5">Employer / Process</span>
+                                <span class="font-bold text-navy-900" id="resCompany">--</span>
                             </div>
-                            <div class="p-4 rounded-xl bg-white/5 border border-white/5">
-                                <span class="block text-xs text-gray-400 uppercase mb-1">Offer Letter</span>
-                                <span class="font-bold text-white" id="resOffer">--</span>
+                            <div class="p-3.5 rounded-2xl bg-ivory border border-gray-200">
+                                <span class="block text-[10px] text-slate uppercase font-bold tracking-wider mb-0.5">Offer Letter Status</span>
+                                <span class="font-bold text-navy-900" id="resOffer">--</span>
                             </div>
-                            <div class="col-span-2 p-4 rounded-xl bg-white/5 border border-white/5">
-                                <span class="block text-xs text-gray-400 uppercase mb-1">Joining Date</span>
-                                <span class="font-bold text-white" id="resJoining">--</span>
+                            <div class="sm:col-span-2 p-3.5 rounded-2xl bg-ivory border border-gray-200">
+                                <span class="block text-[10px] text-slate uppercase font-bold tracking-wider mb-0.5">Tentative Joining Date</span>
+                                <span class="font-bold text-navy-900" id="resJoining">--</span>
                             </div>
+                        </div>
+
+                        <div class="mt-4 p-3 bg-teal-50 border border-teal-200 rounded-xl text-[11px] text-teal-900 flex items-center justify-between">
+                            <span>Need an official confirmation letter on email?</span>
+                            <a href="https://wa.me/919420512501?text=Hi%20Plan%20B,%20please%20send%20my%20official%20verification%20certificate" target="_blank" class="font-bold text-teal-800 underline">Request PDF</a>
                         </div>
                     </div>
-                    <div id="notFoundResult" class="hidden text-center py-8">
-                        <div class="inline-flex w-16 h-16 rounded-full bg-red-500/10 items-center justify-center text-red-400 mb-4">
-                            <i data-lucide="x-circle" class="w-8 h-8"></i>
+
+                    <!-- NOT FOUND CARD -->
+                    <div id="notFoundResult" class="hidden text-center py-6">
+                        <div class="w-14 h-14 rounded-full bg-red-50 border border-red-200 text-red-600 flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="alert-triangle" class="w-6 h-6"></i>
                         </div>
-                        <h4 class="text-lg font-bold text-white mb-2">No Record Found</h4>
-                        <p class="text-sm text-gray-400">The details entered do not match any verified candidate in our system.</p>
+                        <h4 class="text-base font-bold text-navy-900 mb-1">No Matching Record Found</h4>
+                        <p class="text-xs text-slate max-w-sm mx-auto leading-relaxed mb-4">
+                            The identifier entered does not match our current database. If you recently applied or received a suspicious offer, please report it to our trust desk.
+                        </p>
+                        <a href="https://wa.me/919420512501?text=Hello%20Plan%20B,%20my%20candidate%20verification%20failed.%20Please%20verify%20manually." target="_blank" class="btn-accent text-xs py-2 px-4 inline-flex items-center gap-1.5">
+                            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                            <span>Manual Verification on WhatsApp</span>
+                        </a>
                     </div>
+
                 </div>
 
             </div>
         </div>
-    </section>
+    </main>
 
+    <!-- FOOTER -->
+    <footer class="bg-navy-950 text-white pt-16 pb-12 border-t border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="images/logos/Plan-B-Careers-logo.png" alt="Plan B Careers Logo" class="h-9 w-auto">
+                        <span class="font-display font-bold text-lg text-white">PLAN B CAREERS</span>
+                    </div>
+                    <p class="text-xs text-slate leading-relaxed mb-4 max-w-sm">
+                        An independent recruitment consultancy & educational advisory committed to bridging the opportunity gap for students and candidates across Tier 2 and Tier 3 cities in India.
+                    </p>
+                    <p class="text-xs text-slate"><strong class="text-white">MSME Reg:</strong> UDYAM-MH-01-0027668</p>
+                </div>
+
+                <div>
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-lime-400 mb-4">Job Seekers</h3>
+                    <ul class="space-y-2.5 text-xs text-slate">
+                        <li><a href="jobs.html" class="hover:text-white transition-colors">All Vacancies</a></li>
+                        <li><a href="women-wfh.html" class="hover:text-white transition-colors">Work From Home Jobs</a></li>
+                        <li><a href="dashboard.html" class="hover:text-white transition-colors">Candidate Dashboard</a></li>
+                        <li><a href="verify-candidate.html" class="hover:text-white transition-colors">ID Verification</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-teal-400 mb-4">Admissions & Growth</h3>
+                    <ul class="space-y-2.5 text-xs text-slate">
+                        <li><a href="admissions.html" class="hover:text-white transition-colors">UG & PG Guidance</a></li>
+                        <li><a href="admissions.html#medical" class="hover:text-white transition-colors">NEET / JEE Support</a></li>
+                        <li><a href="trust.html" class="hover:text-white transition-colors">Trust Center</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate mb-4">Helpline</h3>
+                    <ul class="space-y-2.5 text-xs text-slate">
+                        <li class="flex items-center gap-2"><i data-lucide="phone" class="w-3.5 h-3.5 text-teal-400"></i> <a href="tel:+919420512501" class="hover:text-white">+91 9420512501</a></li>
+                        <li class="flex items-center gap-2"><i data-lucide="mail" class="w-3.5 h-3.5 text-teal-400"></i> <a href="mailto:contact.planbcareers@gmail.com" class="hover:text-white">contact.planbcareers@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-navy-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate">
+                <p>&copy; 2026 Plan B Careers. All rights reserved.</p>
+                <div class="flex flex-wrap gap-4 text-xs">
+                    <a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-white">Terms & Conditions</a>
+                    <a href="refund-policy.html" class="hover:text-white">Refund Policy</a>
+                    <a href="disclaimer.html" class="hover:text-white">Disclaimer</a>
+                    <a href="contact.html" class="hover:text-white">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
     <script>
-        // Mock Database for Verification
-        const db = [
-            { id: 'PBC-1029', mobile: '9876543210', name: 'Rohit Sharma', status: 'Placed', company: 'Tech Mahindra', offer: 'Issued', joining: '15 July 2025' },
-            { id: 'PBC-1030', mobile: '8765432109', name: 'Neha Patil', status: 'Placed', company: 'Infosys BPM', offer: 'Issued', joining: '01 August 2025' },
-            { id: 'PBC-1031', mobile: '7654321098', name: 'Vishal K.', status: 'In Process', company: 'Pending Interview', offer: 'Pending', joining: 'TBD' }
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+
+        const mockCandidates = [
+            { id: 'PBC-1029', mobile: '9876543210', name: 'Rohit Sharma', status: 'Placed', company: 'Tech Mahindra', offer: 'Issued & Confirmed', joining: '15 July 2025' },
+            { id: 'PBC-1030', mobile: '8765432109', name: 'Neha Patil', status: 'Placed', company: 'Infosys BPM', offer: 'Issued & Confirmed', joining: '01 August 2025' },
+            { id: 'PBC-1031', mobile: '7654321098', name: 'Vishal K.', status: 'In Process', company: 'Amazon Customer Support', offer: 'Interview Cleared', joining: 'Pending Batch Finalization' },
+            { id: 'PBC-1032', mobile: '9420512501', name: 'Pooja Deshmukh', status: 'Placed', company: 'Teleperformance', offer: 'Issued & Confirmed', joining: '20 September 2025' }
         ];
 
-        function verifyCandidate() {
+        async function verifyCandidate() {
             const type = document.getElementById('searchType').value;
             const query = document.getElementById('searchInput').value.trim();
             const container = document.getElementById('resultContainer');
             const verified = document.getElementById('verifiedResult');
             const notFound = document.getElementById('notFoundResult');
             
-            if(!query) return;
+            if(!query) {
+                alert('Please enter a candidate ID or mobile number.');
+                return;
+            }
 
             container.classList.remove('hidden');
             verified.classList.add('hidden');
             notFound.classList.add('hidden');
 
-            const match = db.find(c => c[type].toLowerCase() === query.toLowerCase());
+            // First check live server API
+            let foundRecord = null;
+            try {
+                const apiRes = await fetch(`/api/trust/verify-candidate?q=${encodeURIComponent(query)}`);
+                if (apiRes.ok) {
+                    const data = await apiRes.json();
+                    if (data && data.found) {
+                        foundRecord = data.candidate;
+                    }
+                }
+            } catch(e) {
+                console.warn('API lookup offline, using local verification database.');
+            }
 
-            if (match) {
-                document.getElementById('resName').textContent = match.name;
-                document.getElementById('resStatus').textContent = match.status;
-                document.getElementById('resStatus').className = match.status === 'Placed' ? 'font-bold text-green-400' : 'font-bold text-yellow-400';
-                document.getElementById('resCompany').textContent = match.company;
-                document.getElementById('resOffer').textContent = match.offer;
-                document.getElementById('resJoining').textContent = match.joining;
+            // Fallback to mock/static registry
+            if (!foundRecord) {
+                foundRecord = mockCandidates.find(c => {
+                    const normQuery = query.toLowerCase().replace(/[^a-z0-9]/g, '');
+                    const normId = c.id.toLowerCase().replace(/[^a-z0-9]/g, '');
+                    const normMobile = c.mobile.toLowerCase();
+                    return type === 'id' ? (normId === normQuery || c.id.toLowerCase() === query.toLowerCase()) : normMobile === normQuery;
+                });
+            }
+
+            if (foundRecord) {
+                document.getElementById('resName').textContent = foundRecord.name;
+                const statusEl = document.getElementById('resStatus');
+                statusEl.textContent = foundRecord.status;
+                statusEl.className = foundRecord.status === 'Placed' 
+                    ? 'font-bold text-sm text-teal-700' 
+                    : 'font-bold text-sm text-amber-700';
+                document.getElementById('resCompany').textContent = foundRecord.company;
+                document.getElementById('resOffer').textContent = foundRecord.offer || 'Verified Record';
+                document.getElementById('resJoining').textContent = foundRecord.joining || 'Confirmed';
                 verified.classList.remove('hidden');
             } else {
                 notFound.classList.remove('hidden');
             }
+
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         }
     </script>
-<footer class="bg-[#05030c] border-t border-white/5 py-12 relative z-10 text-gray-400">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
-            
-            <div class="md:col-span-4 flex flex-col items-start gap-4">
-                <a href="#" class="text-2xl font-extrabold tracking-tight text-white">
-                    <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">PlanB</span> CAREERS
-                </a>
-                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">An independent career support platform providing career guidance, interview preparation, resume assistance, and job search support across Maharashtra and India.</p>
-                <p class="text-xs text-gray-500 mt-2">Founded by Asnan � Akola, Maharashtra</p>
-                
-                <!-- Social Links -->
-                <div class="flex flex-wrap items-center gap-2 mt-4">
-                    <a href="https://www.facebook.com/share/1C1xoJXv4H/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    </a>
-                    <a href="https://www.instagram.com/planbcareers_india/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-pink-400 hover:bg-white/10 transition-colors" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                    </a>
-                    <a href="https://www.youtube.com/@planbcareers" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-red-400 hover:bg-white/10 transition-colors" aria-label="YouTube">
-                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.96 1.95A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/planbcareers" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-blue-400 hover:bg-white/10 transition-colors" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                    </a>
-                    <a href="https://x.com/planbcareers" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-colors" aria-label="X (Twitter)">
-                        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.261 5.632 5.902-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    </a>
-                    <a href="https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-[#25D366] hover:bg-white/10 transition-colors" aria-label="WhatsApp Channel">
-                        <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="md:col-span-2">
-                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-purple-500 pl-2">Quick Links</h4>
-                <ul class="space-y-2.5 text-xs">
-                    <li><a href="resources.html" class="hover:text-white transition-colors text-pink-300 font-semibold">Free Resources</a></li>
-                    <li><a href="jobs.html" class="hover:text-white transition-colors">All Jobs</a></li>
-                    <li><a href="fast-track.html" class="hover:text-white transition-colors">Fast Track</a></li>
-                </ul>
-            </div>
-
-            <div class="md:col-span-3">
-                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-pink-500 pl-2">Our Services</h4>
-                <ul class="space-y-2.5 text-xs">
-                    <li><a href="#services" class="hover:text-white transition-colors">Job Placements</a></li>
-                    <li><a href="admissions.html" class="hover:text-white transition-colors">Admission Support</a></li>
-                    <li><a href="women-wfh.html" class="hover:text-white transition-colors">Work From Home</a></li>
-                    <li><a href="business.html" class="hover:text-white transition-colors">Income Growth Guidance</a></li>
-                    <li><a href="business.html" class="hover:text-white transition-colors">Digital Solutions</a></li>
-                </ul>
-            </div>
-
-            <div class="md:col-span-3">
-                <h4 class="text-white text-sm font-semibold mb-4 border-l-2 border-blue-500 pl-2">Contact Info</h4>
-                <ul class="space-y-3 text-xs">
-                    <li class="flex flex-col gap-1.5 pb-1">
-                            <span class="text-[10px] uppercase tracking-widest text-blue-400 font-semibold mb-0.5">HR Team</span>
-                            <div class="flex items-center gap-2">
-                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
-                                <span class="text-white font-medium">HR Asnan</span>
-                            </div>
-                            <div class="flex items-center gap-2 pl-0.5">
-                                <i data-lucide="phone" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
-                                <a href="tel:+919420512501" class="hover:text-white">+91 94205 12501</a>
-                            </div>
-                            <div class="flex items-center gap-2 mt-1">
-                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-pink-400 flex-shrink-0"></i>
-                                <span class="text-white font-medium">HR Arshiya</span>
-                            </div>
-                            <div class="flex items-center gap-2 pl-0.5">
-                                <i data-lucide="phone" class="w-3.5 h-3.5 text-pink-400 flex-shrink-0"></i>
-                                <a href="tel:+917972731811" class="hover:text-white">+91 79727 31811</a>
-                            </div>
-                            <div class="flex items-center gap-2 mt-1">
-                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
-                                <span class="text-white font-medium">HR Zeba</span>
-                            </div>
-                            <div class="flex items-center gap-2 pl-0.5">
-                                <i data-lucide="phone" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
-                                <a href="tel:+917038007716" class="hover:text-white">+91 70380 07716</a>
-                            </div>
-                            <div class="flex items-center gap-2 mt-1">
-                                <i data-lucide="user-round" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
-                                <span class="text-white font-medium">Consultant Mustakeem</span>
-                            </div>
-                            <div class="flex items-center gap-2 pl-0.5">
-                                <i data-lucide="phone" class="w-3.5 h-3.5 text-blue-400 flex-shrink-0"></i>
-                                <a href="tel:+919112049524" class="hover:text-white">+91 91120 49524</a>
-                            </div>
-                        </li>
-                    <li class="flex items-center gap-2.5"><i data-lucide="mail" class="w-4 h-4 text-pink-400"></i> <a href="mailto:contact.planbcareers@gmail.com" class="hover:text-white">contact.planbcareers@gmail.com</a></li>
-                    <li class="flex items-center gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i> <span>Akola, Maharashtra, India</span></li>
-                    <li class="flex items-center gap-2.5"><i data-lucide="message-square" class="w-4 h-4 text-[#25D366]"></i> <a href="https://wa.me/919420512501?text=Hello%2C%20I%20need%20guidance" target="_blank" class="text-[#25D366] font-semibold hover:underline">WhatsApp Us</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
-            <p>&copy; 2026 PlanB Careers. All rights reserved.</p>
-            <div class="flex flex-wrap gap-4">
-                <a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="terms.html" class="hover:text-white transition-colors">Terms & Conditions</a>
-                <a href="refund-policy.html" class="hover:text-white transition-colors">Refund Policy</a>
-                <a href="disclaimer.html" class="hover:text-white transition-colors">Disclaimer</a>
-                <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
-            </div>
-        </div>
-
-        <div class="max-w-5xl mx-auto px-6 mt-8 text-center text-[10px] text-gray-700 leading-relaxed">
-            <p>Plan B Careers is an independent CAREERS and career support platform. We are not affiliated with, endorsed by, or acting on behalf of any employer unless explicitly stated. We do not guarantee employment, job offers, interview selection, or hiring outcomes. CAREERS and guidance fees are charged for professional services rendered and are subject to our published Refund Policy.</p>
-        </div>
-    </footer>
-
-        <!-- FLOATING CONTACT WIDGET -->
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end group" id="contactWidget">
-        <div class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-[#061D45] border border-white/10 text-white px-4 py-2.5 rounded-2xl text-xs font-semibold shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap flex items-center gap-2">
-            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Need Help? Chat with HR
-        </div>
-        <a href="https://wa.me/919420512501?text=Hi%20I%20need%20help" target="_blank" class="w-14 h-14 rounded-full bg-gradient-to-tr from-[#25D366] to-[#128C7E] text-white flex items-center justify-center shadow-lg shadow-green-500/30 hover:scale-[1.08] hover:-translate-y-0.5 active:scale-[0.98] transition-all" aria-label="WhatsApp Chat">
-            <i data-lucide="message-circle" class="w-7 h-7 fill-current"></i>
-        </a>
-    </div>
-
-    <!-- JS SCRIPTS -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Lucide Icons
-            lucide.createIcons();
-
-            // Navbar scroll handling
-            const navbar = document.getElementById('navbar');
-            if (navbar) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 50) {
-                        navbar.classList.add('scrolled');
-                    } else {
-                        navbar.classList.add('scrolled'); // keep it solid/glass for readability
-                    }
-                }, { passive: true });
-            }
-
-            // Mobile menu toggle
-            const menuToggle = document.getElementById('menuToggle');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (menuToggle && mobileMenu) {
-                menuToggle.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                    // animate active lines if needed
-                    const spans = menuToggle.querySelectorAll('span');
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        spans[0].style.transform = 'translateY(8px) rotate(45deg)';
-                        spans[1].style.opacity = '0';
-                        spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
-                    } else {
-                        spans[0].style.transform = 'none';
-                        spans[1].style.opacity = '1';
-                        spans[2].style.transform = 'none';
-                    }
-                });
-            }
-
-            // Stats counter animation
-            const statNumbers = document.querySelectorAll('.stat-number');
-            if (statNumbers.length > 0) {
-                let counted = false;
-                const countObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting && !counted) {
-                            counted = true;
-                            statNumbers.forEach(num => {
-                                const target = parseInt(num.getAttribute('data-target'));
-                                const duration = 2000;
-                                const startTime = performance.now();
-
-                                function updateCounter(currentTime) {
-                                    const elapsed = currentTime - startTime;
-                                    const progress = Math.min(elapsed / duration, 1);
-                                    const eased = 1 - Math.pow(1 - progress, 3);
-                                    num.textContent = Math.floor(eased * target);
-                                    if (progress < 1) {
-                                        requestAnimationFrame(updateCounter);
-                                    } else {
-                                        num.textContent = target;
-                                    }
-                                }
-                                requestAnimationFrame(updateCounter);
-                            });
-                            countObserver.disconnect();
-                        }
-                    });
-                }, { threshold: 0.3 });
-
-                const statsSection = document.getElementById('stats');
-                if (statsSection) countObserver.observe(statsSection);
-            }
-
-            // Contact Widget tooltip reveal
-            const cw = document.getElementById('contactWidget');
-            const tooltip = document.getElementById('contactTooltip');
-            if (cw && tooltip) {
-                let shown = false;
-                window.addEventListener('scroll', () => {
-                    if (!shown && window.scrollY > 400) {
-                        tooltip.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
-                        shown = true;
-                        setTimeout(() => {
-                            tooltip.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
-                        }, 5000);
-                    }
-                }, { passive: true });
-            }
-        });
-
-        // FAQ Toggle � smooth accordion with scrollHeight animation
-        function toggleFaq(button) {
-            const faqItem = button.closest('.faq-item');
-            const answer = faqItem.querySelector('.faq-answer');
-            const chevron = button.querySelector('.faq-chevron');
-            const isActive = faqItem.classList.contains('active');
-
-            // Close all open items first
-            document.querySelectorAll('.faq-item.active').forEach(item => {
-                item.classList.remove('active');
-                const ans = item.querySelector('.faq-answer');
-                const chev = item.querySelector('.faq-chevron');
-                const btn = item.querySelector('button');
-                ans.style.maxHeight = '0';
-                if (chev) chev.style.transform = 'rotate(0deg)';
-                if (btn) btn.setAttribute('aria-expanded', 'false');
-            });
-
-            // Open the clicked item if it was closed
-            if (!isActive) {
-                faqItem.classList.add('active');
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-                if (chevron) chevron.style.transform = 'rotate(180deg)';
-                button.setAttribute('aria-expanded', 'true');
-            }
-        }
-
-        // Hero search redirection to jobs page with keywords
-        function handleHeroSearch() {
-            const keyword = document.getElementById('heroSearchKeyword').value;
-            const location = document.getElementById('heroSearchLocation').value;
-            let url = 'jobs.html';
-            if (keyword || location) {
-                url += `?search=${encodeURIComponent(keyword)}&location=${encodeURIComponent(location)}`;
-            }
-            window.location.href = url;
-        }
-
-        // Newsletter subscription redirect to WhatsApp Channel
-        function handleNewsletterSubmit() {
-            const phone = document.getElementById('newsletterPhone').value;
-            if (!phone) {
-                alert('Please enter your WhatsApp mobile number.');
-                return;
-            }
-            // Log/Redirect to channel
-            window.open('https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10', '_blank');
-        }
-
-        // Lightbox Gallery Setup
-        var offerImages = [
-            { src: 'images/offer-letters/offer1.jpeg', alt: 'Offer Letter 1' },
-            { src: 'images/offer-letters/offer2.jpeg', alt: 'Offer Letter 2' },
-            { src: 'images/offer-letters/offer3.jpeg', alt: 'Offer Letter 3' },
-            { src: 'images/offer-letters/offer4.jpeg', alt: 'Offer Letter 4' },
-            { src: 'images/offer-letters/offer5.jpeg', alt: 'Offer Letter 5' },
-            { src: 'images/offer-letters/offer6.jpeg', alt: 'Offer Letter 6' }
-        ];
-        var currentOfferIndex = 0;
-
-        function openLightbox(index) {
-            const lb = document.getElementById('offerLightbox');
-            const img = document.getElementById('offerLightboxImg');
-            const counter = document.getElementById('offerLightboxCounter');
-            
-            currentOfferIndex = index;
-            img.src = offerImages[index].src;
-            img.alt = offerImages[index].alt;
-            counter.textContent = `${index + 1} / ${offerImages.length}`;
-            
-            lb.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            document.getElementById('offerLightbox').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function closeLightboxOnBg(e) {
-            if (e.target === document.getElementById('offerLightbox')) {
-                closeLightbox();
-            }
-        }
-
-        function changeLightbox(direction) {
-            currentOfferIndex = (currentOfferIndex + direction + offerImages.length) % offerImages.length;
-            openLightbox(currentOfferIndex);
-        }
-
-        // Key listeners for Lightbox
-        document.addEventListener('keydown', (e) => {
-            const lb = document.getElementById('offerLightbox');
-            if (!lb.classList.contains('active')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') changeLightbox(-1);
-            if (e.key === 'ArrowRight') changeLightbox(1);
-        });
-    </script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>
-
-
-
-
