@@ -3,8 +3,7 @@
 // Palette: Deep Midnight Navy (#101A2C) · Rich Teal (#087F8C) · Electric Lime (#C7F36B)
 // ==========================================================================
 
-document.addEventListener('DOMContentLoaded', () => {
-
+function initPlanBCareers() {
     // --- 1. Sticky Navigation on Scroll ---
     const navbar = document.getElementById('navbar') || document.querySelector('header');
     if (navbar) {
@@ -50,41 +49,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 3. Interactive FAQ Accordion ---
-    document.querySelectorAll('.accordion-item, .faq-item').forEach(item => {
-        const trigger = item.querySelector('.accordion-trigger, .faq-question, button');
-        const content = item.querySelector('.accordion-content, .faq-answer');
-        const icon = item.querySelector('.accordion-icon, svg, [data-lucide="chevron-down"]');
+    function setupAccordions() {
+        document.querySelectorAll('.accordion-item, .faq-item').forEach(item => {
+            const trigger = item.querySelector('.accordion-trigger, .faq-question, button');
+            const collapse = item.querySelector('.accordion-collapse, .accordion-content, .faq-answer');
 
-        if (trigger && content) {
-            trigger.addEventListener('click', () => {
+            if (!trigger || !collapse) return;
+
+            // Accessibility attributes
+            if (!trigger.hasAttribute('aria-expanded')) {
+                trigger.setAttribute('aria-expanded', item.classList.contains('active') ? 'true' : 'false');
+            }
+
+            // Guard against duplicate listener binding
+            if (trigger.dataset.accordionBound === 'true') return;
+            trigger.dataset.accordionBound = 'true';
+
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
                 const isOpen = item.classList.contains('active');
+                const container = item.closest('.space-y-4, .accordion-container') || item.parentElement;
 
                 // Close other accordion items in the same container
-                const parent = item.parentElement;
-                if (parent) {
-                    parent.querySelectorAll('.accordion-item.active, .faq-item.active').forEach(sibling => {
+                if (container) {
+                    container.querySelectorAll('.accordion-item.active, .faq-item.active').forEach(sibling => {
                         if (sibling !== item) {
                             sibling.classList.remove('active');
-                            const sibContent = sibling.querySelector('.accordion-content, .faq-answer');
-                            const sibIcon = sibling.querySelector('.accordion-icon, [data-lucide="chevron-down"]');
-                            if (sibContent) sibContent.style.maxHeight = null;
-                            if (sibIcon) sibIcon.style.transform = '';
+                            const sibTrigger = sibling.querySelector('.accordion-trigger, .faq-question, button');
+                            const sibCollapse = sibling.querySelector('.accordion-collapse, .accordion-content, .faq-answer');
+                            const sibArrow = sibling.querySelector('.accordion-arrow, .accordion-icon, svg');
+                            if (sibTrigger) sibTrigger.setAttribute('aria-expanded', 'false');
+                            if (sibCollapse) sibCollapse.style.maxHeight = '0px';
+                            if (sibArrow) sibArrow.style.transform = '';
                         }
                     });
                 }
 
+                // Toggle current item
                 if (isOpen) {
                     item.classList.remove('active');
-                    content.style.maxHeight = null;
-                    if (icon) icon.style.transform = '';
+                    trigger.setAttribute('aria-expanded', 'false');
+                    collapse.style.maxHeight = '0px';
+                    const arrow = item.querySelector('.accordion-arrow, .accordion-icon, svg');
+                    if (arrow) arrow.style.transform = '';
                 } else {
                     item.classList.add('active');
-                    content.style.maxHeight = (content.scrollHeight + 30) + 'px';
-                    if (icon) icon.style.transform = 'rotate(180deg)';
+                    trigger.setAttribute('aria-expanded', 'true');
+                    collapse.style.maxHeight = collapse.scrollHeight + 'px';
+                    const arrow = item.querySelector('.accordion-arrow, .accordion-icon, svg');
+                    if (arrow) arrow.style.transform = 'rotate(180deg)';
                 }
             });
-        }
-    });
+        });
+    }
+    setupAccordions();
 
     // --- 4. Live Stats Counter Auto-Fetch ---
     async function refreshPlatformStats() {
@@ -110,4 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPlanBCareers);
+} else {
+    initPlanBCareers();
+}
