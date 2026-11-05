@@ -510,6 +510,10 @@
                         Your application has been logged with Plan B Careers. Connect directly with our HR team on WhatsApp for instant confirmation.
                     </p>
                 </div>
+                <div id="modalAppIdRow" class="p-3 bg-navy-50 rounded-lg text-left text-xs space-y-1 hidden max-w-xs mx-auto">
+                    <div class="flex justify-between"><span class="text-slate font-medium">Application ID:</span><span id="modalAppIdText" class="font-mono font-bold text-amber-700"></span></div>
+                    <div id="modalDriveResumeRow" class="flex justify-between hidden"><span class="text-slate font-medium">Resume:</span><a id="modalDriveResumeLink" href="#" target="_blank" class="text-teal-700 font-bold hover:underline inline-flex items-center gap-1">Google Drive ↗</a></div>
+                </div>
                 <div class="pt-2 max-w-xs mx-auto space-y-2">
                     <a id="mainWhatsAppBtn" href="https://wa.me/919420512501" target="_blank" class="btn-accent w-full py-3 justify-center gap-2">
                         <i data-lucide="message-circle" class="w-4 h-4"></i>
@@ -580,23 +584,60 @@
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             document.body.style.overflow = '';
+            const form = document.getElementById('applyForm');
+            if (form) delete form.dataset.applicationId;
         }
 
         document.getElementById('applyForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
-            btn.disabled = true;
-            btn.innerText = 'Submitting...';
+            const originalBtnText = btn ? btn.innerHTML : 'Submit Application';
 
-            const name = document.getElementById('fullName').value;
-            const mobile = document.getElementById('mobile').value;
-            const email = document.getElementById('email').value;
-            const city = document.getElementById('city').value;
+            const name = document.getElementById('fullName').value.trim();
+            const mobile = document.getElementById('mobile').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const city = document.getElementById('city').value.trim();
             const qualification = document.getElementById('qualification').value;
             const experience = document.getElementById('experience').value;
             const role = 'EdTech Sales Executive';
 
+            const resumeInput = document.getElementById('resume');
+            const hasResume = resumeInput && resumeInput.files && resumeInput.files.length > 0;
+            const resumeFileName = hasResume ? resumeInput.files[0].name : '';
+
+            if (!hasResume || !resumeInput.files[0]) {
+                alert('Resume document is required. Please upload your resume in PDF, DOC, or DOCX format (up to 5MB).');
+                return;
+            }
+
+            const file = resumeInput.files[0];
+            const allowedExts = ['.pdf', '.doc', '.docx'];
+            const ext = file.name.slice(file.name.lastIndexOf('.')).toLowerCase();
+            if (!allowedExts.includes(ext)) {
+                alert('Only PDF, DOC, and DOCX resume formats are supported.');
+                return;
+            }
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Resume file size must be under 5MB.');
+                return;
+            }
+
+            // Reliable Idempotency: assign or reuse application ID for retries / double-clicks
+            let formAppId = this.dataset.applicationId;
+            if (!formAppId) {
+                const datePart = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+                const randPart = Math.floor(1000 + Math.random() * 9000);
+                formAppId = 'PB-' + datePart + '-' + randPart;
+                this.dataset.applicationId = formAppId;
+            }
+
+            if (btn) {
+                btn.disabled = true;
+                btn.innerText = 'Submitting & Backing Up to Cloud...';
+            }
+
             const formData = new FormData();
+            formData.append('application_id', formAppId);
             formData.append('job_id', '18');
             formData.append('name', name);
             formData.append('mobile', mobile);
@@ -605,25 +646,80 @@
             formData.append('qualification', qualification);
             formData.append('experience', experience);
             formData.append('preferred_company', role);
+            formData.append('resume', resumeInput.files[0]);
 
-            const resumeInput = document.getElementById('resume');
-            if (resumeInput && resumeInput.files[0]) {
-                formData.append('resume', resumeInput.files[0]);
+            let cloudResumeUrl = null;
+            let returnedAppId = null;
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 25000);
+                const resp = await fetch('/api/applications', { method: 'POST', body: formData, signal: controller.signal });
+                clearTimeout(timeoutId);
+                const data = await resp.json().catch(() => ({}));
+                if (resp.ok && data && data.success) {
+                    cloudResumeUrl = data.resume_url || null;
+                    returnedAppId = data.application_id || data.applicationId || null;
+                } else {
+                    const errorMsg = data.error || data.message || 'Application submission failed. Please try again.';
+                    alert(errorMsg);
+                    if (btn) {
+                        btn.disabled = false;
+                        btn.innerHTML = originalBtnText;
+                    }
+                    return;
+                }
+            } catch(e) {
+                console.warn('API sync warning:', e);
+                alert('Connection timeout submitting application. Please try again.');
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = originalBtnText;
+                }
+                return;
             }
 
             try {
-                await fetch('/api/applications', { method: 'POST', body: formData });
+                let apps = JSON.parse(localStorage.getItem('pb_applied_jobs') || '[]');
+                apps.unshift({ id: 18, applicationId: returnedAppId || null, title: role, company: 'Plan B Careers', date: new Date().toLocaleDateString(), status: 'Under Review', resumeUrl: cloudResumeUrl });
+                localStorage.setItem('pb_applied_jobs', JSON.stringify(apps));
             } catch(e) {}
 
-            let apps = JSON.parse(localStorage.getItem('pb_applied_jobs') || '[]');
-            apps.unshift({ id: 18, title: role, company: 'Plan B Careers', date: new Date().toLocaleDateString(), status: 'Under Review' });
-            localStorage.setItem('pb_applied_jobs', JSON.stringify(apps));
+            let resumeLine = '';
+            if (cloudResumeUrl) {
+                resumeLine = `📄 *Resume Link (Google Drive):* ${cloudResumeUrl} (👈 Click to View/Download)%0A%0A`;
+            } else if (resumeFileName) {
+                resumeLine = `📄 *Resume Document:* ${encodeURIComponent(resumeFileName)}%0A%0A`;
+            }
 
-            const waMsg = `*Job Application - Plan B Careers*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(mobile)}%0A*Role:* ${encodeURIComponent(role)}%0A*City:* ${encodeURIComponent(city)}%0A*Qualification:* ${encodeURIComponent(qualification)}%0A*Experience:* ${encodeURIComponent(experience)}%0A%0A_Applied via planbcareers.in_`;
+            const appIdText = returnedAppId ? `🆔 *Application ID:* ${encodeURIComponent(returnedAppId)}%0A` : '';
+
+            const waMsg = `*📋 Job Application - Plan B Careers*%0A%0A` +
+                appIdText +
+                `*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(mobile)}%0A*Role:* ${encodeURIComponent(role)}%0A*City:* ${encodeURIComponent(city)}%0A*Qualification:* ${encodeURIComponent(qualification)}%0A*Experience:* ${encodeURIComponent(experience)}%0A` +
+                resumeLine +
+                `_Applied via planbcareers.in_`;
             const waUrl = `https://wa.me/919420512501?text=${waMsg}`;
 
             this.style.display = 'none';
-            document.getElementById('successMessage').classList.remove('hidden');
+            const successEl = document.getElementById('successMessage');
+            if (successEl) successEl.classList.remove('hidden');
+
+            const appIdRow = document.getElementById('modalAppIdRow');
+            const appIdTextEl = document.getElementById('modalAppIdText');
+            const driveRow = document.getElementById('modalDriveResumeRow');
+            const driveLink = document.getElementById('modalDriveResumeLink');
+
+            if (returnedAppId && appIdRow && appIdTextEl) {
+                appIdTextEl.textContent = returnedAppId;
+                appIdRow.classList.remove('hidden');
+                appIdRow.style.display = 'block';
+            }
+            if (cloudResumeUrl && driveRow && driveLink) {
+                driveLink.href = cloudResumeUrl;
+                driveRow.classList.remove('hidden');
+                driveRow.style.display = 'flex';
+            }
+
             document.getElementById('mainWhatsAppBtn').href = waUrl;
             if (typeof lucide !== 'undefined') lucide.createIcons();
 

@@ -130,7 +130,22 @@ app.post('/api/indexnow/submit', async (req, res) => {
 // Multer setup for uploads (Memory storage ensures serverless platforms like Vercel never crash on read-only disk)
 const upload = multer({
     storage: multer.memoryStorage(),
-    limits: { fileSize: 10 * 1024 * 1024 } // 10MB file limit
+    limits: { fileSize: 5 * 1024 * 1024 }, // 5MB resume file limit
+    fileFilter: (req, file, cb) => {
+        const allowedExtensions = ['.pdf', '.doc', '.docx'];
+        const ext = path.extname(file.originalname || '').toLowerCase();
+        const allowedMimeTypes = [
+            'application/pdf',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'application/octet-stream'
+        ];
+        if (allowedExtensions.includes(ext) && (allowedMimeTypes.includes(file.mimetype) || ext === '.docx' || ext === '.doc')) {
+            cb(null, true);
+        } else {
+            cb(new Error('Invalid file format. Only PDF, DOC, and DOCX files up to 5MB are accepted.'));
+        }
+    }
 });
 
 // ----------------------------------------------------
@@ -539,9 +554,88 @@ async function uploadResumeToCloud(file) {
 }
 
 // ----------------------------------------------------
+// GOOGLE APPS SCRIPT / DRIVE / SHEETS INTEGRATION
+// ----------------------------------------------------
+async function submitToGoogleAppsScript(payload) {
+    const scriptUrl = (process.env.GOOGLE_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbyl27R8Lr_T7hqpsX3y2R0KqM7DVFjc5E6kt_lAce5f5vPmXrKCA_UsVpDgCBYr9XndvQ/exec').trim();
+    const scriptSecret = (process.env.GOOGLE_APPS_SCRIPT_SECRET || '').trim();
+
+    if (!scriptSecret) {
+        console.warn('⚠️ GOOGLE_APPS_SCRIPT_SECRET is not configured in environment variables.');
+        return {
+            configured: false,
+            success: false,
+            error: 'GOOGLE_APPS_SCRIPT_SECRET not configured'
+        };
+    }
+
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 20000); // 20s timeout for Drive upload + Sheets append
+
+        // Exact payload schema required by existing Apps Script contract:
+        // { secret, applicationId, name, whatsapp, email, city, state, qualification, experience, experienceYears, role, resumeFileName, resumeBase64 }
+        const requestBody = {
+            secret: scriptSecret,
+            applicationId: payload.applicationId,
+            name: payload.name,
+            whatsapp: payload.whatsapp,
+            email: payload.email,
+            city: payload.city,
+            state: payload.state,
+            qualification: payload.qualification,
+            experience: payload.experience,
+            experienceYears: payload.experienceYears,
+            role: payload.role,
+            resumeFileName: payload.resumeFileName || '',
+            resumeBase64: payload.resumeBase64 || ''
+        };
+
+        const response = await fetch(scriptUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody),
+            signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        if (!response.ok) {
+            const errText = await response.text().catch(() => '');
+            console.error(`Google Apps Script HTTP ${response.status}:`, errText);
+            return {
+                configured: true,
+                success: false,
+                error: `Google Apps Script returned HTTP ${response.status}`
+            };
+        }
+
+        const data = await response.json();
+        return {
+            configured: true,
+            success: Boolean(data && data.success),
+            duplicate: Boolean(data && data.duplicate),
+            applicationId: data?.applicationId || payload.applicationId,
+            resumeName: data?.resumeName || payload.resumeFileName || null,
+            resumeUrl: data?.resumeUrl || null,
+            message: data?.message || (data?.success ? 'Application recorded in Google Sheets & Drive' : 'Unknown error from Apps Script'),
+            rawError: data?.error || null
+        };
+    } catch (err) {
+        console.error('Google Apps Script request error:', err.message);
+        return {
+            configured: true,
+            success: false,
+            error: err.name === 'AbortError' ? 'Google Apps Script connection timed out after 20 seconds.' : err.message
+        };
+    }
+}
+
+// ----------------------------------------------------
 // ADMIN NOTIFICATION EMAIL WITH ATTACHED RESUME
 // ----------------------------------------------------
-async function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
+async function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl, applicationId) {
     const adminRecipient = (process.env.ADMIN_EMAIL || 'contact.planbcareers@gmail.com').trim();
     const smtpUser = (process.env.GMAIL_USER || process.env.SMTP_USER || 'contact.planbcareers@gmail.com').trim();
     const smtpPass = (process.env.GMAIL_PASS || process.env.SMTP_PASS || '').trim().replace(/\s+/g, '');
@@ -569,6 +663,7 @@ async function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
         const rawMobile = (candidateData.mobile || '').replace(/\D/g, '');
         const cleanMobile = rawMobile.length >= 10 ? rawMobile.slice(-10) : rawMobile;
         const waLink = `https://wa.me/91${cleanMobile}`;
+        const appIdDisplay = applicationId || 'NEW';
 
         const htmlContent = `
         <!DOCTYPE html>
@@ -601,6 +696,7 @@ async function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
             <div class="content">
               <span class="badge">Candidate Applied via Website</span>
               <table class="table-details">
+                <tr><td class="label">🆔 Application ID</td><td class="value"><strong style="color:#4f46e5;font-family:monospace;font-size:15px;">${appIdDisplay}</strong></td></tr>
                 <tr><td class="label">👤 Candidate Name</td><td class="value"><strong>${candidateData.name || 'Not provided'}</strong></td></tr>
                 <tr><td class="label">📱 WhatsApp / Mobile</td><td class="value"><a href="${waLink}" style="color:#2563eb;font-weight:bold;text-decoration:none;">+91 ${cleanMobile}</a></td></tr>
                 <tr><td class="label">📧 Email</td><td class="value">${candidateData.email ? `<a href="mailto:${candidateData.email}">${candidateData.email}</a>` : 'Not provided'}</td></tr>
@@ -608,7 +704,7 @@ async function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
                 <tr><td class="label">🎓 Qualification</td><td class="value">${candidateData.qualification || 'Not provided'}</td></tr>
                 <tr><td class="label">💼 Experience</td><td class="value">${candidateData.experience || 'Not provided'}</td></tr>
                 <tr><td class="label">🎯 Role Applied</td><td class="value"><strong>${role}</strong></td></tr>
-                <tr><td class="label">📄 Resume Document</td><td class="value">${resumeFile ? `Attached (${resumeFile.originalname})` : (resumeUrl ? 'Uploaded to Cloud' : 'No document attached')}</td></tr>
+                <tr><td class="label">📄 Resume Document</td><td class="value">${resumeUrl ? `<a href="${resumeUrl}" style="color:#059669;font-weight:700;text-decoration:none;" target="_blank">Google Drive Document ↗</a>` : (resumeFile ? `Attached (${resumeFile.originalname})` : 'No document attached')}</td></tr>
               </table>
 
               <div class="actions">
@@ -616,13 +712,13 @@ async function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
                   💬 Chat on WhatsApp (+91 ${cleanMobile})
                 </a>
                 ${resumeUrl ? `
-                <a href="${resumeUrl}" class="btn" style="background:#4f46e5;color:#ffffff;display:inline-block;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold;">
-                  📥 View / Download Resume
+                <a href="${resumeUrl}" class="btn" style="background:#059669;color:#ffffff;display:inline-block;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold;">
+                  📁 View Resume on Google Drive
                 </a>` : ''}
               </div>
 
-              ${resumeUrl ? `<p style="font-size:12px;color:#6b7280;margin-top:15px;word-break:break-all;">Direct Resume Link: <a href="${resumeUrl}">${resumeUrl}</a></p>` : ''}
-              ${resumeFile ? `<p style="font-size:12px;color:#059669;margin-top:10px;">📎 <strong>The original candidate resume is attached directly to this email.</strong></p>` : ''}
+              ${resumeUrl ? `<p style="font-size:12px;color:#059669;margin-top:15px;word-break:break-all;"><strong>Google Drive Link:</strong> <a href="${resumeUrl}" target="_blank" style="color:#059669;">${resumeUrl}</a></p>` : ''}
+              ${resumeFile ? `<p style="font-size:12px;color:#4f46e5;margin-top:10px;">📎 <strong>The original candidate resume (${resumeFile.originalname}) is also attached directly to this email.</strong></p>` : ''}
             </div>
             <div class="footer">
               Plan B Careers • Akola, Maharashtra • <a href="https://planbcareers.in" style="color:#6b7280;">planbcareers.in</a><br>
@@ -636,10 +732,11 @@ async function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
         const mailOptions = {
             from: `"Plan B Careers Applications" <${smtpUser}>`,
             to: adminRecipient,
-            subject: `📄 New Job Application: ${candidateData.name || 'Candidate'} - ${role}`,
+            subject: `📄 New Job Application [${appIdDisplay}]: ${candidateData.name || 'Candidate'} - ${role}`,
             text: [
                 `New Job Application received via planbcareers.in:`,
                 ``,
+                `🆔 Application ID: ${appIdDisplay}`,
                 `👤 Name: ${candidateData.name}`,
                 `📱 WhatsApp / Mobile: +91 ${cleanMobile}`,
                 `📧 Email: ${candidateData.email || 'Not provided'}`,
@@ -647,7 +744,7 @@ async function sendAdminApplicationEmail(candidateData, resumeFile, resumeUrl) {
                 `🎓 Qualification: ${candidateData.qualification || 'Not provided'}`,
                 `💼 Experience: ${candidateData.experience || 'Not provided'}`,
                 `🎯 Applied For: ${role}`,
-                resumeUrl ? `🔗 Direct Resume Link: ${resumeUrl}` : '',
+                resumeUrl ? `🔗 Google Drive Resume Link: ${resumeUrl}` : '',
                 ``,
                 `Direct WhatsApp Chat: ${waLink}`,
                 ``,
@@ -711,91 +808,237 @@ app.get('/api/admin/test-email', async (req, res) => {
     }
 });
 
+// In-flight application submission map to prevent duplicate executions from fast double clicks
+const inFlightApplications = new Map();
+
 app.post('/api/applications', (req, res) => {
     try {
         upload.single('resume')(req, res, async (uploadErr) => {
             try {
                 if (uploadErr) {
-                    console.warn('Multer upload warning:', uploadErr.message);
+                    if (uploadErr.code === 'LIMIT_FILE_SIZE') {
+                        return res.status(400).json({
+                            success: false,
+                            error: 'Resume file size exceeds the 5MB limit. Please upload a PDF, DOC, or DOCX up to 5MB.'
+                        });
+                    }
+                    return res.status(400).json({
+                        success: false,
+                        error: uploadErr.message || 'File upload error.'
+                    });
                 }
 
-                const { job_id, name, mobile, email, city, qualification, experience, preferred_company } = req.body || {};
-                
-                // 1. Upload resume to Cloud for permanent public access URL (with 3.5s timeout)
-                let cloud_resume_url = null;
-                if (req.file) {
+                // 1. Mandatory Resume Document Validation
+                if (!req.file || !req.file.buffer || req.file.buffer.length === 0) {
+                    return res.status(400).json({
+                        success: false,
+                        error: 'Resume document is required. Please upload your resume in PDF, DOC, or DOCX format (up to 5MB).'
+                    });
+                }
+
+                const { job_id, name, mobile, email, city, state, qualification, experience, preferred_company } = req.body || {};
+
+                const applicantName = (name || '').trim();
+                const rawMobile = (mobile || '').replace(/\D/g, '');
+                const applicantMobile = rawMobile.length >= 10 ? rawMobile.slice(-10) : rawMobile;
+                const applicantEmail = (email || '').trim();
+                const applicantCity = (city || '').trim();
+                const applicantState = (state || 'Maharashtra').trim();
+                const applicantQual = (qualification || 'Graduate').trim();
+                const applicantExp = (experience || 'Fresher').trim();
+                const role = (preferred_company || req.body.role || req.body.job_title || 'General Job Application').trim();
+
+                if (!applicantName || !applicantMobile) {
+                    return res.status(400).json({
+                        success: false,
+                        error: 'Full name and WhatsApp / mobile number are required.'
+                    });
+                }
+
+                // 2. Reliable Idempotency - Reuse client Application ID on retries / double-clicks
+                const clientAppId = (req.body.application_id || req.body.applicationId || req.headers['x-idempotency-key'] || '').trim();
+                let applicationId;
+                if (clientAppId && /^PB-\d{8}-[A-Za-z0-9_-]{4,12}$/i.test(clientAppId)) {
+                    applicationId = clientAppId.toUpperCase();
+                } else {
+                    const datePart = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+                    const randPart = Math.floor(1000 + Math.random() * 9000);
+                    applicationId = `PB-${datePart}-${randPart}`;
+                }
+
+                // 3. Deduplication Check - Handle fast concurrent double-clicks
+                if (inFlightApplications.has(applicationId)) {
+                    console.log('⏳ In-flight submission detected for', applicationId, '- waiting for original execution...');
                     try {
-                        cloud_resume_url = await Promise.race([
-                            uploadResumeToCloud(req.file),
-                            new Promise((resolve) => setTimeout(() => resolve(null), 3500))
-                        ]);
-                    } catch (err) {
-                        console.warn('Resume cloud upload failed:', err.message);
+                        const inFlightResponse = await inFlightApplications.get(applicationId);
+                        return res.json(inFlightResponse);
+                    } catch (waitErr) {
+                        return res.status(500).json({ success: false, error: waitErr.message });
                     }
                 }
 
-                const applicantName = (name || 'Applicant').trim();
-                const applicantEmail = (email || '').trim();
-                const applicantMobile = (mobile || '').trim();
-
-                // 2. Dispatch Admin Notification Email asynchronously (non-blocking)
-                sendAdminApplicationEmail(
-                    { name: applicantName, mobile: applicantMobile, email: applicantEmail, city, qualification, experience, preferred_company },
-                    req.file,
-                    cloud_resume_url
-                ).then(info => {
-                    if (info && info.success) console.log('Admin email notification sent');
-                }).catch(mailErr => {
-                    console.warn('Admin email dispatch warning:', mailErr.message);
+                // 4. Database Check - Check if this Application ID was already successfully recorded
+                const existingApp = await new Promise((resolve) => {
+                    if (db && typeof db.get === 'function') {
+                        db.get("SELECT * FROM applications WHERE application_id = ?", [applicationId], (err, row) => {
+                            if (err) resolve(null);
+                            else resolve(row);
+                        });
+                    } else {
+                        resolve(null);
+                    }
                 });
 
-                // 3. Send Candidate confirmation email asynchronously (if SMTP configured)
-                if (applicantEmail && (process.env.SMTP_PASS || process.env.GMAIL_PASS)) {
-                    try {
-                        sendConfirmationEmail(applicantEmail, applicantName);
-                    } catch (mailErr) {
-                        console.warn('Confirmation email warning:', mailErr.message);
-                    }
-                }
-
-                // 4. Save to DB if available
-                if (db && typeof db.run === 'function') {
-                    db.run(`INSERT INTO applications (job_id, name, mobile, email, city, qualification, experience, resume_url) 
-                            VALUES (?,?,?,?,?,?,?,?)`, 
-                        [job_id || null, applicantName, applicantMobile, applicantEmail, city || '', qualification || '', experience || '', cloud_resume_url || (req.file ? req.file.originalname : null)], 
-                        function(err) {
-                            if (err) console.warn('DB application insert warning:', err.message);
-                            const returnId = (this && this.lastID) ? this.lastID : Date.now();
-                            return res.json({
-                                success: true,
-                                id: returnId,
-                                message: 'Application submitted successfully',
-                                resume_url: cloud_resume_url
-                            });
-                    });
-                } else {
+                if (existingApp && existingApp.resume_url) {
+                    console.log('🔄 Application already processed previously for ID:', applicationId);
                     return res.json({
                         success: true,
-                        id: Date.now(),
-                        message: 'Application submitted successfully',
-                        resume_url: cloud_resume_url
+                        duplicate: true,
+                        applicationId,
+                        application_id: applicationId,
+                        resume_url: existingApp.resume_url,
+                        message: 'Application already received and recorded.'
                     });
                 }
+
+                // 5. Parse experience years
+                let experienceYears = "0";
+                const expMatch = applicantExp.match(/\d+/);
+                if (expMatch) experienceYears = expMatch[0];
+
+                // 6. Resume Base64 and clean filename
+                const ext = path.extname(req.file.originalname || '').toLowerCase() || '.pdf';
+                const safeName = applicantName.replace(/[^a-zA-Z0-9]/g, '_');
+                const resumeFileName = `${safeName}_${applicationId}_Resume${ext}`;
+                const resumeBase64 = req.file.buffer.toString('base64');
+
+                // Helper to perform the actual submission and cache in inFlightApplications
+                const executeSubmission = async () => {
+                    let cloud_resume_url = null;
+                    let isDuplicate = false;
+
+                    const gasResult = await submitToGoogleAppsScript({
+                        applicationId,
+                        name: applicantName,
+                        whatsapp: applicantMobile,
+                        email: applicantEmail,
+                        city: applicantCity,
+                        state: applicantState,
+                        qualification: applicantQual,
+                        experience: applicantExp,
+                        experienceYears: String(experienceYears),
+                        role,
+                        resumeFileName,
+                        resumeBase64
+                    });
+
+                    if (gasResult.configured) {
+                        if (!gasResult.success) {
+                            console.error('❌ Google Apps Script submission failed:', gasResult.error || gasResult.rawError);
+                            throw new Error(gasResult.rawError || gasResult.error || 'Failed to submit application to Google storage. Please try again.');
+                        }
+
+                        cloud_resume_url = gasResult.resumeUrl;
+                        isDuplicate = Boolean(gasResult.duplicate);
+
+                        if (!cloud_resume_url) {
+                            console.error('❌ Google Apps Script did not return a confirmed Google Drive resume URL for', applicationId);
+                            throw new Error('Google storage did not return a confirmed Google Drive resume URL. Please try again.');
+                        }
+
+                        if (isDuplicate) {
+                            console.log('ℹ️ Google Apps Script returned duplicate for', applicationId, 'Returning existing Drive URL:', cloud_resume_url);
+                        } else {
+                            console.log('✅ Application stored in Google Sheets & Drive:', applicationId, 'Resume:', cloud_resume_url);
+                        }
+                    } else {
+                        if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+                            throw new Error('Google Apps Script storage is not configured. Please configure GOOGLE_APPS_SCRIPT_SECRET in Vercel environment variables.');
+                        }
+                        console.warn('⚠️ Google Apps Script secret not configured locally (saving to local database only).');
+                        cloud_resume_url = cloud_resume_url || `https://drive.google.com/file/d/local-mock-${applicationId}/view?usp=drivesdk`;
+                    }
+
+                    // Save to SQLite DB safely - NEVER use INSERT OR REPLACE to protect existing candidate records
+                    if (db && typeof db.run === 'function') {
+                        await new Promise((resolve) => {
+                            if (existingApp) {
+                                // Already in SQLite - preserve without touching
+                                return resolve();
+                            }
+                            db.run(`INSERT OR IGNORE INTO applications (application_id, job_id, name, mobile, email, city, qualification, experience, resume_url)
+                                    VALUES (?,?,?,?,?,?,?,?,?)`,
+                                [applicationId, job_id || null, applicantName, applicantMobile, applicantEmail, applicantCity, applicantQual, applicantExp, cloud_resume_url || req.file.originalname],
+                                (err) => {
+                                    if (err) console.warn('DB application insert warning:', err.message);
+                                    resolve();
+                                }
+                            );
+                        });
+                    }
+
+                    // Only send Admin Notification Email for NEW applications (not duplicates)
+                    if (!isDuplicate) {
+                        sendAdminApplicationEmail(
+                            { name: applicantName, mobile: applicantMobile, email: applicantEmail, city: applicantCity, qualification: applicantQual, experience: applicantExp, preferred_company: role },
+                            req.file,
+                            cloud_resume_url,
+                            applicationId
+                        ).then(info => {
+                            if (info && info.success) console.log('Admin email notification sent for', applicationId);
+                        }).catch(mailErr => {
+                            console.warn('Admin email dispatch warning:', mailErr.message);
+                        });
+
+                        // Candidate confirmation email
+                        if (applicantEmail && (process.env.SMTP_PASS || process.env.GMAIL_PASS)) {
+                            try {
+                                sendConfirmationEmail(applicantEmail, applicantName);
+                            } catch (mailErr) {
+                                console.warn('Confirmation email warning:', mailErr.message);
+                            }
+                        }
+                    }
+
+                    return {
+                        success: true,
+                        duplicate: isDuplicate,
+                        applicationId,
+                        application_id: applicationId,
+                        resume_url: cloud_resume_url,
+                        message: isDuplicate ? (gasResult.message || 'Application already recorded in Google Drive & Sheets.') : (gasResult.message || 'Application submitted successfully')
+                    };
+                };
+
+                // Register in-flight promise
+                const executionPromise = executeSubmission();
+                inFlightApplications.set(applicationId, executionPromise);
+
+                try {
+                    const result = await executionPromise;
+                    return res.json(result);
+                } catch (subErr) {
+                    return res.status(502).json({
+                        success: false,
+                        error: subErr.message || 'Failed to record application'
+                    });
+                } finally {
+                    inFlightApplications.delete(applicationId);
+                }
+
             } catch (innerErr) {
                 console.error('Error handling application submission inner:', innerErr);
-                return res.json({
-                    success: true,
-                    message: 'Application received',
-                    resume_url: null
+                return res.status(500).json({
+                    success: false,
+                    error: innerErr.message || 'Internal server error while processing application'
                 });
             }
         });
     } catch (outerErr) {
         console.error('Error handling application submission outer:', outerErr);
-        return res.json({
-            success: true,
-            message: 'Application received',
-            resume_url: null
+        return res.status(500).json({
+            success: false,
+            error: outerErr.message || 'Error processing request'
         });
     }
 });

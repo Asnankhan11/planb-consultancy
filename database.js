@@ -49,6 +49,7 @@ db.serialize(() => {
     // Applications Table
     db.run(`CREATE TABLE IF NOT EXISTS applications (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        application_id TEXT,
         job_id INTEGER,
         name TEXT NOT NULL,
         mobile TEXT NOT NULL,
@@ -62,6 +63,10 @@ db.serialize(() => {
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY(job_id) REFERENCES jobs(id)
     )`);
+    // Ensure application_id column exists if table was created in an earlier migration
+    db.run("ALTER TABLE applications ADD COLUMN application_id TEXT", () => {});
+    // Create partial unique index on non-null application_id for fast idempotent lookups
+    db.run("CREATE UNIQUE INDEX IF NOT EXISTS idx_applications_app_id ON applications(application_id) WHERE application_id IS NOT NULL", () => {});
 
     // Analytics / Traffic (simple daily hits)
     db.run(`CREATE TABLE IF NOT EXISTS traffic (
