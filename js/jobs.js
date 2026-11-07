@@ -67,20 +67,48 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
-        // Check URL params for category or search
+        // Check URL params for category, filter, search, or mode
         const urlParams = new URLSearchParams(window.location.search);
         const searchParam = urlParams.get('search') || urlParams.get('q');
         const filterParam = urlParams.get('filter') || urlParams.get('category');
+        const modeParam = urlParams.get('mode') || urlParams.get('work_mode');
+
         if (searchParam && searchInput) {
             searchInput.value = searchParam;
         }
-        if (filterParam && industryFilter) {
-            const matchOption = Array.from(industryFilter.options).find(opt => 
-                opt.value.toLowerCase().includes(filterParam.toLowerCase()) || 
-                filterParam.toLowerCase().includes(opt.value.toLowerCase())
-            );
-            if (matchOption) {
-                industryFilter.value = matchOption.value;
+
+        if (modeParam && workModeFilter) {
+            const mOpt = Array.from(workModeFilter.options).find(o => o.value.toLowerCase() === modeParam.toLowerCase());
+            if (mOpt) workModeFilter.value = mOpt.value;
+        }
+
+        if (filterParam) {
+            const fp = filterParam.toLowerCase();
+            if (fp === 'freelance' || fp === 'contract') {
+                if (workModeFilter && Array.from(workModeFilter.options).some(o => o.value === 'freelance')) {
+                    workModeFilter.value = 'freelance';
+                } else if (searchInput && !searchInput.value) {
+                    searchInput.value = 'Freelance';
+                }
+            } else if (fp === 'wfh' || fp === 'remote' || fp === 'home') {
+                if (workModeFilter) workModeFilter.value = 'home';
+            } else if (fp === 'fresher' || fp === 'freshers') {
+                if (experienceFilter) {
+                    const fOpt = Array.from(experienceFilter.options).find(o => o.value.toLowerCase().includes('fresher'));
+                    if (fOpt) experienceFilter.value = fOpt.value;
+                }
+            } else if (fp === 'telecall' || fp === 'telecalling' || fp === 'non-voice' || fp === 'chat') {
+                if (searchInput && !searchInput.value) {
+                    searchInput.value = fp === 'non-voice' ? 'Chat Support' : (fp === 'telecall' ? 'Telecalling' : fp);
+                }
+            } else if (industryFilter) {
+                const matchOption = Array.from(industryFilter.options).find(opt => 
+                    opt.value.toLowerCase().includes(fp) || 
+                    fp.includes(opt.value.toLowerCase())
+                );
+                if (matchOption) {
+                    industryFilter.value = matchOption.value;
+                }
             }
         }
 
@@ -291,6 +319,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                                   compStr.includes(searchText) || 
                                   descStr.includes(searchText) || 
                                   locStr.includes(searchText) ||
+                                  typeStr.includes(searchText) ||
+                                  modeStr.includes(searchText) ||
                                   jobIndustry.includes(searchText);
 
             // Location dropdown
@@ -302,7 +332,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const matchesMode = modeFilterVal === 'all' || 
                                 modeStr.includes(modeFilterVal) || 
                                 locStr.includes(modeFilterVal) ||
-                                typeStr.includes(modeFilterVal);
+                                typeStr.includes(modeFilterVal) ||
+                                (modeFilterVal === 'freelance' && (typeStr.includes('freelance') || modeStr.includes('freelance') || descStr.includes('commission')));
 
             // Experience dropdown
             const matchesExp = expFilterVal === 'all' || 

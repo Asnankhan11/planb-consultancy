@@ -321,6 +321,9 @@
                 if (currentWorkMode === 'Hybrid' && !modeStr.includes('hybrid') && !modeStr.includes('flexible')) {
                     return false;
                 }
+                if (currentWorkMode === 'Freelance' && !modeStr.includes('freelance') && !modeStr.includes('contract') && !modeStr.includes('commission')) {
+                    return false;
+                }
             }
 
             // 4. Experience filter
