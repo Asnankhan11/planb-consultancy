@@ -6,11 +6,15 @@
     {
       "source": "/api/(.*)",
       "destination": "/api"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api"
     }
   ],
   "functions": {
     "api/**/*": {
-      "includeFiles": "{lib/**,data/**,jobs.json}",
+      "includeFiles": "{lib/**,data/**,jobs.json,dist/404.html}",
       "maxDuration": 60
     }
   },
