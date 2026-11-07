@@ -1,5 +1,5 @@
 'use strict';
-require('dotenv').config({ quiet: true });
+if (process.env.NODE_ENV !== 'test') require('dotenv').config({ quiet: true });
 const express = require('express');
 const helmet = require('helmet');
 const { rateLimit } = require('express-rate-limit');
