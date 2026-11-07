@@ -51,11 +51,32 @@
       const trigger=item.querySelector('button');
       if(trigger && !trigger.hasAttribute('onclick')) trigger.addEventListener('click',()=>window.toggleAccordion(trigger));
     });
-    document.querySelectorAll('[data-save-job]').forEach(button=>{
-      const id=String(button.dataset.saveJob);
-      const read=()=>{try{return JSON.parse(localStorage.getItem('pb_saved_job_ids')||'[]').map(String);}catch{return [];}};
-      const update=()=>{const saved=read().includes(id);button.textContent=saved?'Saved on this device':'Save this job';button.setAttribute('aria-pressed',String(saved));};
-      button.addEventListener('click',()=>{try{const ids=read();localStorage.setItem('pb_saved_job_ids',JSON.stringify(ids.includes(id)?ids.filter(x=>x!==id):[...ids,id]));update();}catch{button.textContent='Saving is unavailable in this browser';}});update();
+    const readSaved = () => { try { const values = JSON.parse(localStorage.getItem('pb_saved_job_ids') || '[]'); return Array.isArray(values) ? [...new Set(values.map(String).filter(value => /^\d+$/.test(value)))] : []; } catch { return []; } };
+    const updateSaved = () => {
+      const ids = readSaved();
+      document.querySelectorAll('[data-saved-count]').forEach(count => { count.textContent = String(ids.length); });
+      document.querySelectorAll('[data-save-job]').forEach(button => {
+        const saved = ids.includes(String(button.dataset.saveJob));
+        button.textContent = saved ? 'Saved' : 'Save job';
+        button.setAttribute('aria-pressed', String(saved));
+        const title = button.dataset.jobTitle;
+        button.setAttribute('aria-label', (saved ? 'Saved job' : 'Save job') + (title ? ': ' + title : '') + (saved ? '. Remove from saved jobs' : ''));
+      });
+    };
+    document.querySelectorAll('[data-save-job]').forEach(button => {
+      button.addEventListener('click', () => {
+        try {
+          const id = String(button.dataset.saveJob); const ids = readSaved();
+          localStorage.setItem('pb_saved_job_ids', JSON.stringify(ids.includes(id) ? ids.filter(value => value !== id) : [...ids, id]));
+          window.dispatchEvent(new Event('planb:saved-jobs'));
+        } catch { button.textContent = 'Saving unavailable'; button.setAttribute('aria-label', 'Saving is unavailable in this browser'); }
+      });
+    });
+    window.addEventListener('planb:saved-jobs', updateSaved);
+    window.addEventListener('storage', event => { if (event.key === 'pb_saved_job_ids') updateSaved(); });
+    updateSaved();
+    document.querySelectorAll('.desktop-nav a,.mobile-nav a').forEach(link => {
+      if (new URL(link.href).pathname === window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '')) link.setAttribute('aria-current', 'page');
     });
     document.querySelectorAll('a[target="_blank"]').forEach(a=>a.rel='noopener noreferrer');
     if (window.lucide) window.lucide.createIcons();

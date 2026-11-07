@@ -26,6 +26,7 @@ with sync_playwright() as p:
         page.set_viewport_size({'width':1440,'height':1000});page.goto(BASE+url,wait_until='networkidle');check('desktop width '+url,page.evaluate('document.documentElement.scrollWidth <= innerWidth+1'));page.screenshot(path=str(OUT/((url.strip('/').replace('/','-') or 'home')+'-desktop.png')),full_page=True)
     page.set_viewport_size({'width':390,'height':844});page.goto(BASE+'/',wait_until='networkidle');page.screenshot(path=str(OUT/'home-mobile.png'),full_page=True)
     page.goto(BASE+'/jobs',wait_until='networkidle');check('eight hydrated jobs',page.locator('#jobCards article').count()==8)
+    if page.locator('#moreFilters').count():page.locator('#moreFilters').evaluate('(el)=>el.open=true')
     options=page.locator('#industryFilter option').evaluate_all('(els)=>els.map(e=>e.value)')
     for value in options[1:]:
         page.select_option('#industryFilter',value);check('industry has matching inventory '+value,page.locator('#jobCards article').count()>0)
@@ -33,6 +34,8 @@ with sync_playwright() as p:
     page.click('#clearFilters');page.locator('[data-job-save]').first.click();page.goto(BASE+'/dashboard',wait_until='networkidle');check('saved job available',page.locator('#savedJobs article').count()==1)
     page.click('#clearSavedData');check('saved data cleared',page.evaluate("localStorage.getItem('pb_saved_job_ids')") in [None,'[]'])
     page.goto(BASE+'/apply-job?job_id=2',wait_until='networkidle');check('closed role not selectable',page.locator('#job_id').input_value()=='' and 'not accepting' in page.locator('#selectedJobNotice').inner_text())
+    check('known unavailable intake disclosed before typing',page.locator('#applicationAvailability').is_visible() and not page.locator('#jobApplicationForm').is_visible())
+    page.route('**/api/health',lambda route:route.fulfill(status=200,content_type='application/json',body=json.dumps({'applicationIntakeAvailable':True})))
     page.goto(BASE+'/apply-job?job_id=4',wait_until='networkidle');check('selected role binds',page.locator('#job_id').input_value()=='4')
     page.fill('#name','Synthetic Browser Test');page.fill('#mobile','9000000001');page.fill('#email','candidate@example.invalid');page.fill('#city','Akola');page.set_input_files('#resume',{'name':'synthetic.pdf','mimeType':'application/pdf','buffer':b'%PDF-1.4\nSynthetic test only\n%%EOF'})
     page.evaluate("window.testConversions=[];window.addEventListener('planb:conversion',e=>window.testConversions.push(e.detail))")

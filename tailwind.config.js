@@ -14,7 +14,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['system-ui', 'sans-serif'],
-        display: ['system-ui', 'sans-serif'],
+        display: ['Bricolage Grotesque', 'system-ui', 'sans-serif'],
         outfit: ['system-ui', 'sans-serif'],
       },
       colors: {

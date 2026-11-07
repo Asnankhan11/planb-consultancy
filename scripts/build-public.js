@@ -7,12 +7,12 @@ const shared = require('../lib/site-layout');
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 const pages = ['index','404','about','admissions','apply-job','business','contact','dashboard','disclaimer','fast-track','job-details','jobs','legal','privacy-policy','refund-policy','resources','service-fees','success-stories','terms','trust','verify-candidate','women-wfh','career-guidance-akola','jobs-vidarbha','connect','apply-admission','admissions-impact','jobs-impact','women-wfh-impact','students-earning-impact'];
-const files = pages.map(name => name + '.html').concat(['admin/index.html','jobs.json','robots.txt','sitemap.xml','sitemap-jobs.xml','llms.txt','llms-full.txt','7f2e1a498b3c419fa82b5e90d12e847c.txt','googlef9c124eb9271294f.html','css/styles.css','css/white-theme.css','images/optimized/planb-logo.webp','images/optimized/founder.webp','resources/Plan_B_Careers_ATS_Resume_Template_Branded.docx']);
+const files = pages.map(name => name + '.html').concat(['admin/index.html','jobs.json','robots.txt','sitemap.xml','sitemap-jobs.xml','llms.txt','llms-full.txt','7f2e1a498b3c419fa82b5e90d12e847c.txt','googlef9c124eb9271294f.html','css/styles.css','css/white-theme.css','assets/fonts/bricolage-grotesque-latin.woff2','assets/fonts/OFL-Bricolage-Grotesque.txt','images/optimized/planb-logo.webp','images/optimized/founder.webp','resources/Plan_B_Careers_ATS_Resume_Template_Branded.docx']);
 for (const dir of ['job','jobs','resources']) for (const filename of fs.readdirSync(path.join(root,dir)).sort()) if (/^[a-z0-9-]+\.html$/.test(filename)) files.push(`${dir}/${filename}`);
-for (const name of ['main','jobs','jobs-data','forms','candidate-workspace','job-redirect','admin','analytics']) files.push(`js/${name}.js`);
+for (const name of ['main','jobs','jobs-data','job-card','forms','candidate-workspace','job-redirect','admin','analytics']) files.push(`js/${name}.js`);
 fs.rmSync(dist,{recursive:true,force:true});
 for (const relative of new Set(files)) {
-  const source = path.join(root,relative === 'js/jobs-data.js' ? 'lib/jobs-data.js' : relative);
+  const source = path.join(root,relative === 'js/jobs-data.js' ? 'lib/jobs-data.js' : relative === 'js/job-card.js' ? 'lib/job-card.js' : relative);
   if (!fs.existsSync(source)) throw new Error(`Required public file missing: ${relative}`);
   const target = path.join(dist,relative);fs.mkdirSync(path.dirname(target),{recursive:true});
   if (!relative.endsWith('.html') || relative.startsWith('google')) {fs.copyFileSync(source,target);continue;}
@@ -20,6 +20,7 @@ for (const relative of new Set(files)) {
   if (!relative.startsWith('admin/')) {
     $('body > .skip-link, body > .utility-bar, body > header.site-header').remove();
     $('body').prepend(shared.header());
+    $('head').append('<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>');
     $('body > footer.site-footer').replaceWith(shared.footer());
     $('script[type="application/ld+json"]').each((_,el) => {
       const graph=JSON.parse($(el).html());

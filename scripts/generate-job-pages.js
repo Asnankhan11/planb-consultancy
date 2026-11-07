@@ -16,7 +16,22 @@ function dateOnly(value) {
 
 function descriptionHtml(value) {
     if (!known(value)) return '';
-    return String(value).split(/\n\s*\n/).map(block => `<p>${esc(block).replace(/\n/g, '<br>')}</p>`).join('\n');
+    return String(value).replace(/\r\n?/g, '\n').split(/\n\s*\n/).map(block => {
+        const groups = [];
+        let lines = [], list = false;
+        const flush = () => {
+            if (!lines.length) return;
+            groups.push(list ? `<ul>${lines.map(line => `<li>${esc(line)}</li>`).join('')}</ul>` : `<p>${lines.map(esc).join('<br>')}</p>`);
+            lines = [];
+        };
+        for (const line of block.split('\n')) {
+            const bullet = line.match(/^\s*[-•]\s+(.+)$/);
+            if (Boolean(bullet) !== list) { flush(); list = Boolean(bullet); }
+            lines.push(bullet ? bullet[1] : line);
+        }
+        flush();
+        return groups.join('\n');
+    }).join('\n');
 }
 function salarySchema(job) {
     if (job.base_salary && job.base_salary.currency === 'INR') {
@@ -86,17 +101,7 @@ function jobSchema(job) {
     if (known(job.experience_level)) schema.experienceRequirements = job.experience_level;
     return schema;
 }
-function renderJobCards(jobs) {
-    return jobs.filter(job => isOpenJob(job)).map(normalizeJob).map(job => `<article class="job-card bg-white rounded-2xl border border-gray-200 p-6 flex flex-col" data-job-id="${esc(job.id)}">
-<div class="flex flex-wrap gap-2 text-xs font-semibold text-navy-800 mb-3"><span>${esc(isRemote(job) ? 'Remote' : job.location)}</span><span aria-hidden="true">·</span><span>${esc(job.industry)}</span></div>
-<h3 class="font-display text-xl font-bold text-navy-900"><a class="hover:underline" href="${esc(jobPath(job))}">${esc(job.title)}</a></h3>
-<p class="mt-2 text-sm text-gray-600">${esc(job.company)}</p>
-<p class="mt-4 font-semibold text-navy-900">${esc(job.salary || 'Compensation to be confirmed')}</p>
-<p class="mt-2 text-sm text-gray-600">${esc(job.experience_level || 'Experience to be confirmed')}</p>
-<p class="mt-1 text-sm text-gray-600">${esc(job.qualification || 'Qualification to be confirmed')}</p>
-<div class="mt-5 pt-4 border-t border-gray-100"><a class="font-semibold text-navy-800 underline underline-offset-4" href="${esc(jobPath(job))}">View details and eligibility<span class="sr-only"> for ${esc(job.title)}</span></a></div>
-</article>`).join('\n');
-}
+const { renderJobCards } = require('../lib/job-card');
 function renderPage(job, allJobs) {
     const open = isOpenJob(job), closed = String(job.status).toLowerCase() === 'closed';
     const status = open ? 'Open for enquiries and applications' : closed ? 'This listing is closed' : 'Details pending — applications paused';
@@ -106,16 +111,19 @@ function renderPage(job, allJobs) {
     const description = open ? `${job.title} with ${company}. Advertised compensation: ${job.salary || 'to be confirmed'}. Read the listed duties, eligibility, equipment and application details.` : `${job.title}: ${closed ? 'this listing is closed' : 'applications are paused while missing details are confirmed'}. Browse current openings and contact Plan B Careers for guidance.`;
     const rows = [['Advertised compensation', job.salary], ['Work arrangement', job.work_mode], ['Advertised location', job.location], ['Employment type', known(job.employment_type) ? job.employment_type : 'Confirm contract type'], ['Experience', job.experience_level], ['Qualification', job.qualification], ['Languages', job.languages], ['Shift / schedule', job.shifts]].filter(([, v]) => known(v));
     const related = allJobs.filter(other => other.id !== job.id && isOpenJob(other)).slice(0, 3);
-    const body = `<div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
-<nav aria-label="Breadcrumb" class="text-sm text-gray-600 mb-8"><a class="underline" href="/">Home</a> / <a class="underline" href="/jobs">Jobs</a> / <span>${esc(job.title)}</span></nav>
-<header class="max-w-4xl"><p class="text-sm font-semibold text-amber-700 mb-3">${esc(status)}</p><h1 class="font-display text-3xl sm:text-4xl font-extrabold text-navy-900 leading-tight">${esc(job.title)}</h1><p class="text-lg mt-4 text-gray-700">${esc(company)}${known(job.location) ? ' · ' + esc(job.location) : ''}</p><p class="text-sm text-gray-500 mt-3">Listing #${esc(job.id)}${dateOnly(job.last_updated) ? ' · Source record updated ' + esc(dateOnly(job.last_updated)) : ''}</p></header>
-${!open ? `<section class="mt-8 p-6 rounded-2xl border border-amber-300 bg-amber-50"><h2 class="font-bold text-xl text-navy-900">${closed ? 'Applications are no longer accepted' : 'Confirm the missing details first'}</h2><p class="mt-3 leading-relaxed">${esc(job.publication_note || (closed ? 'This vacancy is retained as an archive. It is excluded from our active job listings and job sitemap.' : 'Applications are paused until the missing vacancy information is available.'))}</p><a class="inline-block mt-4 font-semibold underline" href="/jobs">View current job listings</a></section>` : ''}
-<div class="grid lg:grid-cols-3 gap-8 mt-8"><div class="lg:col-span-2 space-y-8">
-<section class="border border-gray-200 rounded-2xl p-6"><h2 class="font-display text-2xl font-bold text-navy-900">Listing details</h2><dl class="mt-5 grid sm:grid-cols-2 gap-5">${rows.map(([label, value]) => `<div><dt class="text-sm text-gray-500">${esc(label)}</dt><dd class="font-medium mt-1">${esc(value)}</dd></div>`).join('')}</dl></section>
-<section class="border border-gray-200 rounded-2xl p-6"><h2 class="font-display text-2xl font-bold text-navy-900">${known(job.description) ? 'Duties and requirements in the source listing' : 'Job description pending'}</h2><div class="mt-5 space-y-5 leading-relaxed text-gray-700">${descriptionHtml(job.description) || '<p>A complete description is not available for this record. Contact the team for the actual responsibilities and selection requirements.</p>'}</div></section>
-<section class="border border-gray-200 rounded-2xl p-6"><h2 class="font-display text-2xl font-bold text-navy-900">Before you proceed</h2><p class="mt-4 leading-relaxed">Compensation is reproduced as advertised. An “up to” figure is a ceiling, incentives depend on targets, and commission or task-based work has no stated fixed monthly pay. Confirm take-home pay, deductions, shifts and any training terms in writing.</p>${isRemote(job) && !job.applicant_countries?.length ? '<p class="mt-4 leading-relaxed">This source record does not state all eligible applicant locations. Confirm that your city or state is accepted before proceeding.</p>' : ''}<p class="mt-4 leading-relaxed">${esc(facts.fees?.statement || 'Ask for written service terms and any charges before agreeing to a service. Hiring decisions remain with the employer.')}</p><p class="mt-4"><a class="underline" href="/resources/salary-offer-checklist">Use the salary and offer checklist</a> · <a class="underline" href="/resources/remote-job-safety">Check a remote job offer</a></p></section>
-</div><aside class="lg:col-span-1"><div class="border border-gray-200 rounded-2xl p-6 lg:sticky lg:top-28"><h2 class="text-xl font-bold text-navy-900">${open ? 'Next step' : 'Looking for another role?'}</h2><p class="mt-3 text-gray-600 leading-relaxed">${open ? 'Read the requirements, then send your application. The team can clarify availability and the employer’s selection process.' : 'Explore the open listings or contact the team about the information missing from this record.'}</p>${open ? `<a class="block mt-5 rounded-xl bg-navy-900 text-white text-center font-bold px-5 py-3" href="/apply-job?job_id=${esc(job.id)}">Apply for this listing</a>` : '<a class="block mt-5 rounded-xl bg-navy-900 text-white text-center font-bold px-5 py-3" href="/jobs">Browse open jobs</a>'}${open ? `<button type="button" class="button button-outline mt-3" data-save-job="${esc(job.id)}" aria-pressed="false">Save this job</button>` : ''}<a class="block mt-3 text-center underline font-semibold" href="/contact">Ask the Plan B team</a><p class="mt-5 text-xs text-gray-500">A listing does not establish an exclusive partnership or guarantee a job offer.</p></div></aside></div>
-<section class="mt-14"><h2 class="font-display text-2xl font-bold text-navy-900">Other open listings</h2><div class="grid md:grid-cols-3 gap-5 mt-6">${renderJobCards(related)}</div></section></div>`;
+    const body = `<section class="job-detail-header"><div class="page-shell">
+<nav aria-label="Breadcrumb" class="job-breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/jobs">Jobs</a><span aria-hidden="true">/</span><span>${esc(job.title)}</span></nav>
+<div class="job-heading-row"><div><p class="job-status${open ? ' is-open' : ''}">${esc(status)}</p><h1>${esc(job.title)}</h1><p class="lead">${esc(company)}</p><p class="small-note">Listing #${esc(job.id)}${dateOnly(job.last_updated) ? ' · Source updated ' + esc(dateOnly(job.last_updated)) : ''}</p></div>${open ? `<div class="job-heading-actions"><a class="button button-gold" href="/apply-job?job_id=${esc(job.id)}">Apply for this listing</a><a class="button button-outline" href="#requirements">Read requirements</a></div>` : ''}</div>
+<dl class="job-summary"><div class="job-summary-item"><dt>Advertised compensation</dt><dd>${esc(job.salary || 'Confirm compensation')}</dd></div><div class="job-summary-item"><dt>Work arrangement</dt><dd>${esc(job.work_mode || 'Confirm arrangement')}</dd></div><div class="job-summary-item"><dt>Advertised location</dt><dd>${esc(job.location || 'Confirm eligible location')}</dd></div></dl>
+</div></section>
+<div class="page-shell section">
+${!open ? `<section class="notice"><h2>${closed ? 'Applications are no longer accepted' : 'Confirm the missing details first'}</h2><p>${esc(job.publication_note || (closed ? 'This vacancy is retained as an archive. It is excluded from our active job listings and job sitemap.' : 'Applications are paused until the missing vacancy information is available.'))}</p><a class="button button-outline" href="/jobs">View current job listings</a></section>` : ''}
+<div class="job-detail-grid"><div class="job-detail-content">
+<section class="detail-section"><h2>The role at a glance</h2><dl class="job-facts">${rows.filter(([label]) => !['Advertised compensation', 'Work arrangement', 'Advertised location'].includes(label)).map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl></section>
+<section id="requirements" class="detail-section"><h2>${known(job.description) ? 'What the work involves' : 'Job description pending'}</h2><p class="small-note">Responsibilities and requirements reproduced from the source listing.</p><div class="prose">${descriptionHtml(job.description) || '<p>A complete description is not available for this record. Contact the team for the actual responsibilities and selection requirements.</p>'}</div></section>
+<section class="detail-section"><h2>Make an informed decision</h2><p>Compensation is reproduced as advertised. An “up to” figure is a ceiling, incentives depend on targets, and commission or task-based work has no stated fixed monthly pay. Confirm take-home pay, deductions, shifts and any training terms in writing.</p>${isRemote(job) && !job.applicant_countries?.length ? '<p>This source record does not state all eligible applicant locations. Confirm that your city or state is accepted before proceeding.</p>' : ''}<p>${esc(facts.fees?.statement || 'Ask for written service terms and any charges before agreeing to a service. Hiring decisions remain with the employer.')}</p><div class="link-row"><a href="/resources/salary-offer-checklist">Salary and offer checklist</a><a href="/resources/remote-job-safety">Remote job safety</a></div></section>
+</div><aside><div class="job-apply-panel"><p class="eyebrow">Your next step</p><h2>${open ? 'Interested in this role?' : 'Find another opportunity.'}</h2><p>${open ? 'Check the requirements, then share your interest. The Akola team can help clarify availability and the selection process.' : 'Explore the open listings or ask the team about the information missing from this record.'}</p>${open ? `<a class="button button-gold" href="/apply-job?job_id=${esc(job.id)}">Apply for this listing</a><button type="button" class="button button-outline" data-save-job="${esc(job.id)}" aria-pressed="false">Save this job</button>` : '<a class="button button-gold" href="/jobs">Browse open jobs</a>'}<a class="job-contact-link" href="/contact">Ask the Plan B team</a><h3 class="job-next-heading">What happens next?</h3><ol class="job-next-steps"><li>Confirm that the role fits your experience and location.</li><li>Prepare your resume and questions about the work.</li><li>Discuss the employer’s selection process with the team.</li></ol><p class="small-note">A listing does not establish an exclusive partnership or guarantee a job offer.</p></div></aside></div>
+<section class="section related-jobs"><div class="section-heading"><div><h2>Keep exploring.</h2><p>Compare a few roles before choosing your next step.</p></div><a href="/jobs">See all current listings</a></div><div class="card-grid">${renderJobCards(related, { save: true })}</div></section></div>`;
     const schema = jobSchema(job);
     return layout({ title, description, pathname: jobPath(job), body, noindex: !open,
         schemas: [breadcrumbs([['Home', '/'], ['Jobs', '/jobs'], [job.title, jobPath(job)]]), ...(schema ? [schema] : [])] });

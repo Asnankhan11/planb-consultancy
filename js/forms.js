@@ -28,7 +28,7 @@
       const a = document.createElement('a'); a.href = link; a.textContent = linkLabel; a.className = 'button button-outline'; a.target = '_blank'; a.rel = 'noopener noreferrer'; result.append(a);
       const p = document.createElement('p'); p.textContent = 'This opens a prepared message. You choose whether to send it in WhatsApp.'; result.append(p);
     }
-    result.focus({preventScroll:true}); result.scrollIntoView({behavior:'smooth',block:'nearest'});
+    result.focus({preventScroll:true}); result.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
   }
   function saveReference(reference) {
     try {
@@ -68,6 +68,55 @@
     }
     return true;
   }
+  // A health check avoids asking candidates to fill a form we already know cannot be received.
+  // Unknown or timed-out checks leave normal submission available; the POST response remains authoritative.
+  function applicationAvailability(form, selectedRole) {
+    const panel = document.createElement('section');
+    panel.id = 'applicationAvailability'; panel.className = 'notice intake-availability';
+    panel.setAttribute('aria-label','Online application availability');
+    panel.setAttribute('aria-live','polite');
+    form.before(panel);
+    let unavailable = false, checking = false;
+    async function check() {
+      if (checking) return;
+      checking = true;
+      const retryHadFocus = panel.contains(document.activeElement);
+      panel.hidden = false; panel.setAttribute('aria-busy','true'); panel.replaceChildren();
+      const status = document.createElement('p'); status.textContent = 'Checking online application availability…'; panel.append(status);
+      form.hidden = true;
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(),4000);
+      try {
+        const response = await fetch('/api/health',{headers:{Accept:'application/json'},cache:'no-store',signal:controller.signal});
+        const health = response.ok ? await response.json() : null;
+        unavailable = health?.applicationIntakeAvailable === false;
+      } catch { unavailable = false; }
+      finally { clearTimeout(timeout); checking = false; panel.removeAttribute('aria-busy'); }
+      const restoreFocus = retryHadFocus && (document.activeElement === document.body || panel.contains(document.activeElement));
+      panel.replaceChildren();
+      if (unavailable) {
+        const role = selectedRole();
+        const heading = document.createElement('h2'); heading.textContent = 'Apply with help from the team'; panel.append(heading);
+        const text = document.createElement('p');
+        text.textContent = 'Online applications are temporarily unavailable. You can still ask our Akola team about ' + (role ? 'this role' : 'current roles') + ' and the next step.'; panel.append(text);
+        const actions = document.createElement('div'); actions.className = 'actions';
+        const contact = document.createElement('a'); contact.className = 'button button-gold'; contact.textContent = 'Ask about this role on WhatsApp';
+        contact.href = whatsapp(role ? `I would like to apply for ${role.title} (listing #${role.id}). Please help me with the next step.` : 'I would like help finding and applying for a current job listing.');
+        if (!role) contact.textContent = 'Ask the team on WhatsApp';
+        contact.target = '_blank'; contact.rel = 'noopener noreferrer'; actions.append(contact);
+        const retry = document.createElement('button'); retry.type = 'button'; retry.className = 'button button-outline'; retry.textContent = 'Check online availability again';
+        retry.addEventListener('click',check); actions.append(retry); panel.append(actions);
+        const note = document.createElement('p'); note.className = 'small-note'; note.textContent = 'No application has been sent. You choose whether to send the prepared message in WhatsApp.'; panel.append(note);
+        const browse = document.createElement('a'); browse.href = '/jobs'; browse.textContent = 'Choose a different role'; panel.append(browse);
+        if (restoreFocus) retry.focus({preventScroll:true});
+      } else {
+        panel.hidden = true; form.hidden = false;
+        if (restoreFocus) form.elements.namedItem('job_id')?.focus({preventScroll:true});
+      }
+    }
+    check();
+    return () => unavailable || checking;
+  }
   document.querySelectorAll('input[type="tel"]').forEach(input => input.addEventListener('input',() => input.setCustomValidity('')));
 
   const application = document.getElementById('jobApplicationForm');
@@ -78,17 +127,18 @@
     if (requested) {
       const option = [...select.options].find(item => item.value === requested);
       if (option && option.value) { select.value = option.value; notice.textContent = 'Selected role: ' + option.textContent; }
-      else { select.value = ''; notice.textContent = 'The requested listing is not accepting applications in the current publication. Choose an open role below.'; }
+      else { select.value = ''; notice.textContent = 'The requested listing is not accepting applications in the current publication. Choose a different open role.'; }
       notice.hidden = false;
     }
     select.addEventListener('change',() => { if (notice) { notice.textContent = select.value ? 'Selected role: ' + select.selectedOptions[0].textContent : 'Choose an open role before submitting.'; notice.hidden = false; } });
+    const unavailable = applicationAvailability(application,() => select.value ? {id:select.value,title:select.selectedOptions[0].textContent} : null);
     const resume = application.elements.namedItem('resume');
     resume.addEventListener('change',() => resume.setCustomValidity(''));
     let sending = false;
     // A retry token identifies this in-memory attempt, never an applicant or public application reference.
     let retryToken = retryId();
     application.addEventListener('submit',async event => {
-      event.preventDefault(); if (sending) return;
+      event.preventDefault(); if (sending || unavailable()) return;
       if (!validatePhones(application,['mobile']) || !application.reportValidity()) return;
       const file = resume.files[0];
       let issue;
