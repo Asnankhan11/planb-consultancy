@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "url": "https://www.justdial.com/Akola/Placement-Services-Candidate/nct-10372869",
+        "title": "Placement Services for Candidates in Akola - Justdial",
+        "description": "Find Trusted Placement Agencies for Candidates in Akola · H.R. Solutions Akola · Tiwari Realty & Resources Pvt Ltd · Kalyani Consultancy · Rise Up Human Resources.",
+        "position": 1,
+        "source": "web"
+      },
+      {
+        "url": "https://www.placementindia.com/recruitment-agency/placement-services-in-akola",
+        "title": "Top Recruitment Agencies in Akola - Placement India",
+        "description": "Find 18 Top Recruitment Agencies in Akola. List of top Placement Consultants. Job Dila is a leading recruitment agency in Khadki, Akola, Maharashtra, dedicated ...",
+        "position": 2,
+        "source": "web"
+      },
+      {
+        "url": "https://www.careerchoicesolution.com/blog/job-consultancy-placement-services-for-employers-in-akola_36411.htm",
+        "title": "Job Consultancy & Placement Services For Employers in Akola",
+        "description": "10 Mar 2025 · At Akola, Career Choice Solution provides Placement Services for Employers and Candidates. Get suitable and reliable candidates to your office.",
+        "position": 3,
+        "source": "web"
+      },
+      {
+        "url": "https://in.indeed.com/q-in-akola-l-maharashtra-jobs.html",
+        "title": "25 In Akola Job Vacancies in Maharashtra - Indeed",
+        "description": "47 In Akola jobs available in Maharashtra on Indeed.com. Consultancy Akola, Maharashtra WE ARE HIRING | MATHEMATICS FACULTY Location: Akola, Maharashtra ...",
+        "position": 4,
+        "source": "web"
+      },
+      {
+        "url": "https://www.naukri.com/recruitment-jobs-in-akola",
+        "title": "35 Recruitment Job Vacancies In Akola - Naukri.com",
+        "description": "Explore Latest Recruitment Job Vacancies In Akola Now! 35 jobs found Barbate Automotive. HR Coordination · Payroll Management · Interview Scheduling · ...",
+        "position": 5,
+        "source": "web"
+      },
+      {
+        "url": "https://www.sulekha.com/placement-consultants/akola",
+        "title": "Placement Consultants in Akola - Sulekha",
+        "description": "Placement Consultants in Akola. Find the best placement agency, recruitment companies, abroad job consultancy services in Akola. Akola 3.4 (84 Reviews) Closed ...",
+        "position": 6,
+        "source": "web"
+      }
+    ],
+    "tools": [
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/search_jobs",
+        "description": "Start here for a keyword or cross-company search, or for a company's newest openings. For every opening of one company use list_company_jobs; for the full text use get_job."
+      },
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/find_companies",
+        "description": "When you know an employer's name but not its SmartRecruiters identifier."
+      },
+      {
+        "provider": "apollo",
+        "capability": "companies/job-postings",
+        "description": "Find current hiring activity at a known company. Each requested page costs 30 Firecrawl credits."
+      },
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/list_company_jobs",
+        "description": "To enumerate a company's openings, e.g. from a pasted careers.smartrecruiters.com/<company> or api.smartrecruiters.com/v1/companies/<company>/postings URL. Pass next_cursor back as cursor until it is null; use get_job for a posting's full text and salary."
+      },
+      {
+        "provider": "purchasing-alberta-ca",
+        "capability": "public-tenders/list_organizations",
+        "description": "Find the exact organization name or id to filter search_postings, or to resolve a posting's contracting_organization_id."
+      },
+      {
+        "provider": "join-com",
+        "capability": "jobs/company",
+        "description": "To resolve an employer slug (the segment after join.com/companies/) to its numeric company id and city ids before listing jobs, or to read the employer's benefits and offices."
+      }
+    ]
+  },
+  "id": "01a1b7d3-a842-77be-9e26-07727f00ad11",
+  "creditsUsed": 2,
+  "agent_hints": [
+    "All 6 web results are excerpts only (#1 \"https://www.justdial.com/Akola/Placement-Services-Candidate/nct-10372869\", #2 \"https://www.placementindia.com/recruitment-agency/placement-services-in-akola\", #3 \"https://www.careerchoicesolution.com/blog/job-consultancy-placement-services-for-employers-in-akola_36411.htm\" and 3 more). If you need more than an excerpt, use firecrawl_scrape with {\"url\":\"<one of these URLs>\",\"formats\":[\"markdown\"]}. Retrieve only needed pages; do not re-scrape results that already contain the required content."
+  ],
+  "conversationId": "eb7b245b-836b-8438-980c-ca5f4cfd258b"
+}

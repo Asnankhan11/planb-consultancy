@@ -1,918 +1,141 @@
-/**
- * Plan B Careers - Programmatic Job Leaf Pages & Schema Generator
- * Generates SEO & Google Jobs compliant pre-rendered HTML pages for all active openings
- */
-
+'use strict';
+/** Generate honest, crawlable vacancy pages from jobs.json. No inferred hiring facts. */
 const fs = require('fs');
 const path = require('path');
-
-const jobsFilePath = path.join(__dirname, '..', 'jobs.json');
-const outputDir = path.join(__dirname, '..', 'job');
-
-if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
+const jobsData = require('../lib/jobs-data');
+const { ROOT, BASE, esc, layout, breadcrumbs, siteFacts } = require('./seo-template');
+const { normalizeJob, isOpenJob, isRemote, jobPath } = jobsData;
+const readJobs = () => JSON.parse(fs.readFileSync(path.join(ROOT, 'jobs.json'), 'utf8')).map(normalizeJob);
+const known = value => typeof value === 'string' && value.trim() && !/^(?:not specified|unknown|tbd|n\/?a)$/i.test(value.trim());
+function dateOnly(value) {
+    const text = String(value || '').slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) return null;
+    const date = new Date(text + 'T00:00:00Z');
+    return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === text ? text : null;
 }
 
-const rawJobs = JSON.parse(fs.readFileSync(jobsFilePath, 'utf8'));
-
-function createSlug(id, title) {
-    const cleanTitle = (title || 'job')
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-    return `${id}-${cleanTitle}`;
+function descriptionHtml(value) {
+    if (!known(value)) return '';
+    return String(value).split(/\n\s*\n/).map(block => `<p>${esc(block).replace(/\n/g, '<br>')}</p>`).join('\n');
 }
-
-function parseSalary(salaryStr) {
-    if (!salaryStr) return null;
-    const str = salaryStr.toLowerCase();
-    
-    // Check for LPA (Lakhs Per Annum)
-    const lpaMatch = str.match(/([0-9.]+)\s*lpa/);
-    if (lpaMatch) {
-        const val = parseFloat(lpaMatch[1]) * 100000;
-        return {
-            "@type": "MonetaryAmount",
-            "currency": "INR",
-            "value": {
-                "@type": "QuantitativeValue",
-                "value": val,
-                "unitText": "YEAR"
-            }
-        };
+function salarySchema(job) {
+    if (job.base_salary && job.base_salary.currency === 'INR') {
+        const v = job.base_salary;
+        if (!['HOUR', 'DAY', 'WEEK', 'MONTH', 'YEAR'].includes(v.unitText)) return null;
+        const amount = { '@type': 'QuantitativeValue', unitText: v.unitText };
+        for (const key of ['value', 'minValue', 'maxValue']) if (Number.isFinite(v[key]) && v[key] >= 0) amount[key] = v[key];
+        return Object.keys(amount).length > 2 ? { '@type': 'MonetaryAmount', currency: 'INR', value: amount } : null;
     }
-
-    // Check for range e.g. "13,000–15,000" or "40,000–60,000"
-    const rangeMatch = str.match(/(?:₹|rs\.?)?\s*([0-9,]+)\s*(?:–|-|to)\s*(?:₹|rs\.?)?\s*([0-9,]+)/);
-    if (rangeMatch) {
-        const minVal = parseInt(rangeMatch[1].replace(/,/g, ''), 10);
-        const maxVal = parseInt(rangeMatch[2].replace(/,/g, ''), 10);
-        return {
-            "@type": "MonetaryAmount",
-            "currency": "INR",
-            "value": {
-                "@type": "QuantitativeValue",
-                "minValue": minVal,
-                "maxValue": maxVal,
-                "unitText": "MONTH"
-            }
-        };
-    }
-
-    // Check for single value e.g. "₹20,000" or "up to ₹30,000"
-    const singleMatch = str.match(/(?:₹|rs\.?)?\s*([0-9,]+)/);
-    if (singleMatch) {
-        const val = parseInt(singleMatch[1].replace(/,/g, ''), 10);
-        if (str.includes('up to') || str.includes('upto')) {
-            return {
-                "@type": "MonetaryAmount",
-                "currency": "INR",
-                "value": {
-                    "@type": "QuantitativeValue",
-                    "minValue": Math.round(val * 0.6),
-                    "maxValue": val,
-                    "unitText": "MONTH"
-                }
-            };
-        }
-        return {
-            "@type": "MonetaryAmount",
-            "currency": "INR",
-            "value": {
-                "@type": "QuantitativeValue",
-                "value": val,
-                "unitText": "MONTH"
-            }
-        };
-    }
-
-    return null;
+    const text = String(job.salary || '');
+    // A take-home figure, CTC, commission or task target is not established base salary.
+    if (/commission|performance|in.hand|ctc|after training/i.test(text)) return null;
+    // LPA alone may describe a package/CTC. Keep it visible but require explicit
+    // base_salary data before asserting an annual base salary in structured data.
+    if (/\bLPA\b/i.test(text)) return null;
+    const unit = /(?:\/|per)\s*month/i.test(text) ? 'MONTH' : /(?:\/|per)\s*year/i.test(text) ? 'YEAR' : null;
+    if (!unit) return null;
+    const range = text.match(/₹\s*([\d,]+)\s*[–—-]\s*₹?\s*([\d,]+)/);
+    const number = text.match(/₹\s*([\d,]+)/);
+    if (!number) return null;
+    const value = { '@type': 'QuantitativeValue', unitText: unit };
+    if (range) { value.minValue = Number(range[1].replace(/,/g, '')); value.maxValue = Number(range[2].replace(/,/g, '')); }
+    else if (/up\s*to/i.test(text)) value.maxValue = Number(number[1].replace(/,/g, ''));
+    else value.value = Number(number[1].replace(/,/g, ''));
+    return { '@type': 'MonetaryAmount', currency: 'INR', value };
 }
-
-function formatHtmlDescription(job) {
-    let out = '';
-    const rawDesc = job.description || '';
-    if (!rawDesc.trim()) {
-        return `<p>Verified recruitment opening for <strong>${job.title}</strong> at <strong>${job.company || 'Plan B Careers Hiring Partner'}</strong>. We facilitate transparent screening, candidate grooming, and direct interview scheduling through our professional placement services.</p>
-        <h3>Key Highlights:</h3>
-        <ul>
-            <li>Work Mode: ${job.work_mode || job.type || 'Standard'}</li>
-            <li>Experience Required: ${job.experience_level || 'Fresher friendly'}</li>
-            <li>Eligibility: ${job.qualification || '12th Pass / Any Graduate'}</li>
-            <li>Compensation: ${job.salary || 'As per industry standards'}</li>
-        </ul>`;
+function schemaIssues(job) {
+    const issues = [];
+    if (!isOpenJob(job)) issues.push('Listing is not open for applications.');
+    if (!known(job.title)) issues.push('Job title is missing.');
+    if (!known(job.company)) issues.push('Hiring employer is missing.');
+    if (!known(job.description) || /^Job Category:[^\n]*$/i.test(job.description.trim())) issues.push('Complete job description is missing.');
+    if (!dateOnly(job.created_at || job.date_posted)) issues.push('Original publication date is missing.');
+    if (isRemote(job)) {
+        if (!Array.isArray(job.applicant_countries) || !job.applicant_countries.length) issues.push('Eligible applicant country needs confirmation.');
+    } else if (!job.workplace || !known(job.workplace.addressLocality) || !known(job.workplace.addressCountry)) {
+        issues.push('Actual workplace locality and country need confirmation.');
     }
-
-    const lines = rawDesc.split('\n');
-    let inList = false;
-
-    lines.forEach(line => {
-        const trimmed = line.trim();
-        if (!trimmed) {
-            if (inList) { out += '</ul>'; inList = false; }
-            return;
-        }
-
-        if (trimmed.startsWith('-') || trimmed.startsWith('•')) {
-            if (!inList) { out += '<ul>'; inList = true; }
-            out += `<li>${trimmed.replace(/^[-•]\s*/, '')}</li>`;
-        } else if (trimmed.endsWith(':')) {
-            if (inList) { out += '</ul>'; inList = false; }
-            out += `<h3 class="font-bold text-navy-900 mt-4 mb-2 text-sm">${trimmed}</h3>`;
-        } else {
-            if (inList) { out += '</ul>'; inList = false; }
-            out += `<p>${trimmed}</p>`;
-        }
-    });
-
-    if (inList) out += '</ul>';
-    return out;
+    return issues;
 }
-
-function generateJobPageHtml(job, allJobs) {
-    const slug = createSlug(job.id, job.title);
-    const canonicalUrl = `https://planbcareers.in/job/${slug}`;
-    const isWfh = (job.work_mode || job.type || job.location || '').toLowerCase().includes('home') ||
-                  (job.location || '').toLowerCase().includes('remote');
-    const isClosed = (job.status || '').toLowerCase() === 'closed';
-
-    const cleanSalary = job.salary || 'Salary Negotiable';
-    const cleanCompany = job.company || 'Plan B Careers Hiring Partner';
-    const cleanLocation = job.location || (isWfh ? 'Work From Home (Pan-India)' : 'Maharashtra, India');
-    const cleanDesc = formatHtmlDescription(job);
-
-    // Schema logic
-    const postDate = job.created_at ? new Date(job.created_at).toISOString().split('T')[0] : '2026-10-25';
-    const validThroughDate = '2026-12-31T23:59:59+05:30';
-
-    let employmentType = "FULL_TIME";
-    if ((job.type || '').toLowerCase().includes('part')) employmentType = "PART_TIME";
-    if ((job.type || '').toLowerCase().includes('freelance') || (job.type || '').toLowerCase().includes('contract')) employmentType = "CONTRACTOR";
-
-    const schemaObj = {
-        "@context": "https://schema.org",
-        "@type": "JobPosting",
-        "title": job.title,
-        "description": cleanDesc,
-        "identifier": {
-            "@type": "PropertyValue",
-            "name": "Plan B Careers",
-            "value": `JOB-${job.id}`
-        },
-        "datePosted": `${postDate}T00:00:00+05:30`,
-        "validThrough": validThroughDate,
-        "employmentType": employmentType,
-        "hiringOrganization": {
-            "@type": "Organization",
-            "name": cleanCompany,
-            "sameAs": "https://planbcareers.in",
-            "logo": "https://planbcareers.in/images/logos/Plan-B-Careers-logo.png"
-        },
-        "directApply": true
+function jobSchema(job) {
+    if (schemaIssues(job).length) return null;
+    const schema = {
+        '@context': 'https://schema.org', '@type': 'JobPosting',
+        '@id': BASE + jobPath(job) + '#job', url: BASE + jobPath(job),
+        title: job.title,
+        description: descriptionHtml(job.description),
+        datePosted: dateOnly(job.created_at || job.date_posted),
+        identifier: { '@type': 'PropertyValue', name: 'Plan B Careers listing', value: String(job.id) },
+        hiringOrganization: { '@type': 'Organization', name: job.company }
     };
-
-    if (isWfh) {
-        schemaObj.jobLocationType = "TELECOMMUTE";
-        schemaObj.applicantLocationRequirements = {
-            "@type": "Country",
-            "name": "IN"
-        };
+    if (known(job.employer_url)) schema.hiringOrganization.sameAs = job.employer_url;
+    if (known(job.employer_logo)) schema.hiringOrganization.logo = job.employer_logo;
+    if (job.valid_through) schema.validThrough = job.valid_through;
+    const employmentTypes = { 'full time': 'FULL_TIME', 'part time': 'PART_TIME', freelance: 'CONTRACTOR', internship: 'INTERN', temporary: 'TEMPORARY' };
+    const employmentType = employmentTypes[String(job.employment_type || '').toLowerCase()];
+    if (employmentType) schema.employmentType = employmentType;
+    if (isRemote(job)) {
+        schema.jobLocationType = 'TELECOMMUTE';
+        schema.applicantLocationRequirements = job.applicant_countries.map(name => ({ '@type': 'Country', name }));
     } else {
-        schemaObj.jobLocation = {
-            "@type": "Place",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Civil Lines / Corporate Station",
-                "addressLocality": job.location && job.location.includes('Akola') ? "Akola" : "Chhatrapati Sambhajinagar",
-                "addressRegion": "MH",
-                "postalCode": "444001",
-                "addressCountry": "IN"
-            }
-        };
+        schema.jobLocation = { '@type': 'Place', address: { '@type': 'PostalAddress', ...job.workplace } };
     }
-
-    const salarySchema = parseSalary(job.salary);
-    if (salarySchema) {
-        schemaObj.baseSalary = salarySchema;
-    }
-
-    const breadcrumbSchema = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://planbcareers.in/"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Jobs",
-                "item": "https://planbcareers.in/jobs.html"
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "name": job.title,
-                "item": canonicalUrl
-            }
-        ]
-    };
-
-    // Filter other active jobs for related section
-    const otherJobs = allJobs
-        .filter(j => j.id !== job.id && (j.status || '').toLowerCase() !== 'closed')
-        .slice(0, 3);
-
-    const relatedJobsHtml = otherJobs.map(oj => {
-        const oSlug = createSlug(oj.id, oj.title);
-        const ojWfh = (oj.work_mode || oj.type || oj.location || '').toLowerCase().includes('home');
-        return `
-            <div class="card-modern flex flex-col justify-between p-5 hover:shadow-lg transition-all">
-                <div>
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${ojWfh ? 'bg-teal-50 text-teal-800' : 'bg-navy-50 text-navy-900'}">${oj.work_mode || 'Full Time'}</span>
-                        <span class="text-xs text-teal-700 font-semibold">${oj.salary || 'Best in Industry'}</span>
-                    </div>
-                    <h3 class="font-bold text-navy-900 hover:text-teal-700 transition-colors mb-1 text-sm line-clamp-1">
-                        <a href="/job/${oSlug}.html">${oj.title}</a>
-                    </h3>
-                    <p class="text-xs text-slate mb-3">${oj.company || 'Hiring Partner'} • ${oj.location || 'Remote'}</p>
-                </div>
-                <a href="/job/${oSlug}.html" class="btn-outline-navy text-xs py-1.5 px-3 justify-center gap-1">
-                    <span>View Role</span>
-                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
-            </div>
-        `;
-    }).join('');
-
-    const cleanTitleShort = job.title.length > 32 ? job.title.substring(0, 30) + '...' : job.title;
-    const pageTitle = `${cleanTitleShort} at ${cleanCompany} | Plan B Careers`;
-    const metaDescription = `Apply for ${job.title} at ${cleanCompany} (${cleanSalary}). Location: ${cleanLocation}. Verified Opening via Plan B Careers.`;
-
-    return `<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8FKFJBJPM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-N8FKFJBJPM');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${pageTitle}</title>
-    <meta name="description" content="${metaDescription}">
-    <link rel="canonical" href="${canonicalUrl}">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="${canonicalUrl}">
-    <meta property="og:title" content="${pageTitle}">
-    <meta property="og:description" content="${metaDescription}">
-    <meta property="og:image" content="https://planbcareers.in/images/logos/Plan-B-Careers-logo.png">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="${pageTitle}">
-    <meta name="twitter:description" content="${metaDescription}">
-    <meta name="twitter:image" content="https://planbcareers.in/images/logos/Plan-B-Careers-logo.png">
-
-    <link rel="stylesheet" href="/css/styles.css?v=5.0">
-    <link rel="stylesheet" href="/css/white-theme.css?v=2.0">
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Google Jobs Structured Data -->
-    <script type="application/ld+json">
-${JSON.stringify(schemaObj, null, 2)}
-    </script>
-
-    <!-- Breadcrumbs Structured Data -->
-    <script type="application/ld+json">
-${JSON.stringify(breadcrumbSchema, null, 2)}
-    </script>
-</head>
-<body class="bg-ivory text-charcoal min-h-screen flex flex-col font-sans selection:bg-lime-400 selection:text-navy-950">
-
-    <!-- TOP ANNOUNCEMENT BAR -->
-    <div class="bg-navy-900 text-white text-xs py-2 px-4 border-b border-navy-800">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-            <div class="flex items-center gap-2">
-                <span class="badge-lime text-[10px] py-0.5 px-2">Verified Job Vacancy</span>
-                <span class="text-slate font-medium">Direct recruitment assistance across India • Professional Career Support</span>
-            </div>
-            <div class="flex items-center gap-4 text-slate">
-                <a href="https://wa.me/919420512501" target="_blank" class="hover:text-lime-300 transition-colors flex items-center gap-1">
-                    <i data-lucide="phone-call" class="w-3.5 h-3.5 text-lime-400"></i> +91 9420512501
-                </a>
-                <span>•</span>
-                <a href="/verify-candidate.html" class="hover:text-white transition-colors">Candidate Verification</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN NAVBAR -->
-    <header id="navbar" class="header-glass sticky top-0 z-40 transition-all duration-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20 gap-4">
-                <!-- Brand Logo & Tagline -->
-                <a href="/" class="flex items-center gap-3 group shrink-0 py-1">
-                    <img src="/images/logos/Plan-B-Careers-logo.png" alt="Plan B Careers Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105 shrink-0">
-                    <div class="flex flex-col shrink-0 justify-center">
-                        <span class="font-display font-extrabold text-base sm:text-lg text-navy-900 leading-none whitespace-nowrap tracking-tight">PLAN B CAREERS</span>
-                        <span class="text-[10px] font-semibold text-teal-600 uppercase leading-none mt-1 whitespace-nowrap tracking-wider">Backup jo kaam kare</span>
-                    </div>
-                </a>
-
-                <!-- Desktop Nav Links -->
-                <nav class="hidden xl:flex items-center gap-1 shrink-0">
-                    <a href="/" class="nav-item">Home</a>
-                    <a href="/jobs.html" class="nav-item active">Find Jobs</a>
-                    <a href="/women-wfh.html" class="nav-item">Work From Home</a>
-                    <a href="/admissions.html" class="nav-item">Admissions</a>
-                    <a href="/trust.html" class="nav-item">Trust Center</a>
-                    <a href="/about.html" class="nav-item">About Us</a>
-                    <a href="/contact.html" class="nav-item">Contact</a>
-                </nav>
-
-                <!-- Actions -->
-                <div class="hidden sm:flex items-center gap-2.5 shrink-0">
-                    <a href="/dashboard.html" class="btn-outline-navy text-xs py-2 px-3 gap-1.5 whitespace-nowrap">
-                        <i data-lucide="user" class="w-3.5 h-3.5 text-teal-600"></i>
-                        <span>Candidate Portal</span>
-                    </a>
-                    <a href="https://wa.me/919420512501?text=Hello%20HR,%20I%20am%20applying%20for%20${encodeURIComponent(job.title)}" target="_blank" class="btn-accent text-xs py-2 px-3.5 gap-1.5 whitespace-nowrap">
-                        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                        <span>HR WhatsApp</span>
-                    </a>
-                </div>
-
-                <!-- Mobile Hamburger -->
-                <button id="mobileMenuBtn" class="xl:hidden p-2 rounded-xl text-navy-900 hover:bg-gray-100 transition-colors" aria-label="Toggle navigation">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Drawer -->
-        <div id="mobileMenu" class="hidden xl:hidden fixed inset-0 z-50 bg-navy-950/70 backdrop-blur-md">
-            <div class="fixed top-0 right-0 w-80 max-w-full h-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
-                <div>
-                    <div class="flex items-center justify-between pb-6 border-b border-gray-100">
-                        <div class="flex items-center gap-2.5">
-                            <img src="/images/logos/Plan-B-Careers-logo.png" alt="Plan B Careers Logo" class="h-8 w-auto">
-                            <div class="flex flex-col">
-                                <span class="font-display font-extrabold text-sm text-navy-900 leading-none whitespace-nowrap">PLAN B CAREERS</span>
-                                <span class="text-[9px] font-semibold text-teal-600 uppercase leading-none mt-1 whitespace-nowrap">Backup jo kaam kare</span>
-                            </div>
-                        </div>
-                        <button id="closeMobileMenuBtn" class="p-2 text-slate hover:text-navy-900 rounded-lg">
-                            <i data-lucide="x" class="w-5 h-5"></i>
-                        </button>
-                    </div>
-
-                    <div class="py-6 flex flex-col gap-1.5">
-                        <a href="/" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Home</a>
-                        <a href="/jobs.html" class="px-4 py-2.5 rounded-xl font-semibold bg-teal-50 text-teal-800">Find Jobs</a>
-                        <a href="/women-wfh.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Work From Home</a>
-                        <a href="/admissions.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Admissions Guidance</a>
-                        <a href="/dashboard.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Candidate Portal</a>
-                        <a href="/verify-candidate.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Verify Candidate</a>
-                        <a href="/trust.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Trust Center</a>
-                        <a href="/about.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">About Us</a>
-                        <a href="/contact.html" class="px-4 py-2.5 rounded-xl font-medium text-navy-900 hover:bg-teal-50">Contact</a>
-                    </div>
-                </div>
-
-                <div class="pt-6 border-t border-gray-100 flex flex-col gap-3">
-                    <a href="/dashboard.html" class="btn-outline-navy w-full py-2.5 justify-center gap-2 text-xs">
-                        <i data-lucide="user" class="w-4 h-4 text-teal-600"></i>
-                        <span>Candidate Portal</span>
-                    </a>
-                    <a href="https://wa.me/919420512501" target="_blank" class="btn-accent w-full py-3 justify-center gap-2 text-xs">
-                        <i data-lucide="message-circle" class="w-4 h-4"></i>
-                        <span>HR WhatsApp Desk</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-grow py-8 sm:py-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Breadcrumbs -->
-            <nav class="flex items-center gap-2 text-xs text-slate mb-6 flex-wrap" aria-label="Breadcrumb">
-                <a href="/" class="hover:text-teal-700 transition-colors">Home</a>
-                <span>/</span>
-                <a href="/jobs.html" class="hover:text-teal-700 transition-colors">Jobs</a>
-                <span>/</span>
-                <span class="text-navy-900 font-semibold truncate max-w-xs">${job.title}</span>
-            </nav>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
-                <!-- Left 2 Cols: Main Job Details -->
-                <div class="lg:col-span-2 space-y-6">
-                    
-                    <!-- Hero Card -->
-                    <div class="card-modern p-6 sm:p-8">
-                        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="${isWfh ? 'badge-teal' : 'badge-navy'} text-xs py-1 px-3">
-                                    <i data-lucide="${isWfh ? 'laptop' : 'building-2'}" class="w-3.5 h-3.5 inline mr-1"></i>
-                                    ${job.work_mode || (isWfh ? 'Work From Home' : 'Work From Office')}
-                                </span>
-                                <span class="${isClosed ? 'bg-gray-200 text-slate' : 'badge-lime'} text-xs py-1 px-3">
-                                    ${isClosed ? 'Closed' : 'Active Opening'}
-                                </span>
-                            </div>
-                            <span class="text-xs text-slate font-medium">Job ID: #JOB-${job.id}</span>
-                        </div>
-
-                        <h1 class="text-2xl sm:text-3xl font-display font-bold text-navy-900 mb-2 leading-tight">
-                            ${job.title}
-                        </h1>
-
-                        <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate mb-6">
-                            <span class="font-semibold text-navy-900 flex items-center gap-1.5">
-                                <i data-lucide="building-2" class="w-4 h-4 text-teal-600"></i> ${cleanCompany}
-                            </span>
-                            <span>•</span>
-                            <span class="flex items-center gap-1 text-teal-700 font-medium">
-                                <i data-lucide="shield-check" class="w-4 h-4 text-teal-600"></i> Verified Employer Partner
-                            </span>
-                        </div>
-
-                        <!-- Highlights Box -->
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-ivory border border-gray-200/80 mb-6">
-                            <div>
-                                <span class="text-[10px] uppercase font-bold text-slate block mb-1">Monthly Salary</span>
-                                <span class="text-sm font-bold text-navy-900 font-outfit text-teal-800">${cleanSalary}</span>
-                            </div>
-                            <div>
-                                <span class="text-[10px] uppercase font-bold text-slate block mb-1">Location</span>
-                                <span class="text-sm font-semibold text-navy-900 truncate block">${cleanLocation}</span>
-                            </div>
-                            <div>
-                                <span class="text-[10px] uppercase font-bold text-slate block mb-1">Experience</span>
-                                <span class="text-sm font-semibold text-navy-900">${job.experience_level || 'Fresher Friendly'}</span>
-                            </div>
-                            <div>
-                                <span class="text-[10px] uppercase font-bold text-slate block mb-1">Education</span>
-                                <span class="text-sm font-semibold text-navy-900">${job.qualification || '12th Pass / Any'}</span>
-                            </div>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div class="flex flex-wrap items-center gap-3 pt-2 border-t border-gray-100">
-                            <button onclick="openApplyModal('${job.title.replace(/'/g, "\\'")}', ${job.id})" class="btn-primary py-3 px-6 gap-2 shadow-lg shadow-navy-900/10 flex-1 sm:flex-initial justify-center" ${isClosed ? 'disabled' : ''}>
-                                <i data-lucide="send" class="w-4 h-4"></i>
-                                <span>Apply for Position</span>
-                            </button>
-                            <a href="https://wa.me/919420512501?text=Hello%20HR,%20I%20am%20interested%20in%20applying%20for%20the%20role:%20${encodeURIComponent(job.title)}%20(ID:%23JOB-${job.id})" target="_blank" class="btn-accent py-3 px-6 gap-2 flex-1 sm:flex-initial justify-center">
-                                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                                <span>WhatsApp HR Directly</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Full Description Card -->
-                    <div class="card-modern p-6 sm:p-8 space-y-4">
-                        <h2 class="text-lg font-bold text-navy-900 flex items-center gap-2 border-b border-gray-100 pb-3">
-                            <i data-lucide="file-text" class="w-5 h-5 text-teal-600"></i>
-                            Role Overview & Responsibilities
-                        </h2>
-                        
-                        <div class="prose prose-sm max-w-none text-charcoal leading-relaxed space-y-3">
-                            ${cleanDesc}
-                        </div>
-
-                        <div class="mt-6 pt-6 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                            <div class="p-3 rounded-xl bg-ivory">
-                                <span class="font-bold text-navy-900 block mb-1">Working Shifts:</span>
-                                <span class="text-slate">${job.shifts || 'Day Shift / Standard Hours'}</span>
-                            </div>
-                            <div class="p-3 rounded-xl bg-ivory">
-                                <span class="font-bold text-navy-900 block mb-1">Language Skills:</span>
-                                <span class="text-slate">${job.languages || 'Hindi, English, or Marathi'}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Professional Service Standards Banner -->
-                    <div class="p-6 rounded-2xl bg-teal-50 border border-teal-200 flex items-start gap-4">
-                        <i data-lucide="shield-check" class="w-6 h-6 text-teal-700 shrink-0 mt-0.5"></i>
-                        <div class="text-xs">
-                            <h3 class="font-bold text-teal-900 text-sm mb-1">Professional Placement Support</h3>
-                            <p class="text-teal-800 leading-relaxed">
-                                Plan B Careers provides professional career guidance, recruitment assistance, interview coordination and placement support through its paid services. Final hiring and selection decisions remain solely with employer partners.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Right Col: Sidebar & Quick Apply -->
-                <div class="space-y-6">
-                    
-                    <!-- Direct Apply Widget -->
-                    <div class="card-modern p-6">
-                        <h3 class="font-bold text-navy-900 mb-1 text-base">Quick WhatsApp Application</h3>
-                        <p class="text-xs text-slate mb-4">Connect with our recruitment coordinator for document verification and interview slot booking.</p>
-                        
-                        <div class="space-y-3">
-                            <a href="https://wa.me/919420512501?text=Hello%20HR,%20I%20am%20applying%20for%20${encodeURIComponent(job.title)}%20(Job%20ID:%20${job.id})" target="_blank" class="btn-accent w-full py-3 justify-center gap-2">
-                                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                                <span>Apply via HR WhatsApp</span>
-                            </a>
-                            <button onclick="openApplyModal('${job.title.replace(/'/g, "\\'")}', ${job.id})" class="btn-outline-navy w-full py-2.5 justify-center gap-2 text-xs">
-                                <i data-lucide="file-up" class="w-4 h-4 text-teal-600"></i>
-                                <span>Upload Resume via Portal</span>
-                            </button>
-                        </div>
-
-                        <div class="mt-4 pt-4 border-t border-gray-100 text-[11px] text-slate space-y-1.5">
-                            <div class="flex items-center gap-2 text-charcoal">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-lime-600"></i>
-                                <span>Direct client interview rounds</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-charcoal">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-lime-600"></i>
-                                <span>Mock interview preparation & profile review</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-charcoal">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-lime-600"></i>
-                                <span>Verifiable Candidate ID upon selection</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Related Jobs -->
-                    <div class="space-y-3">
-                        <h3 class="font-bold text-navy-900 text-sm px-1">Other Open Positions</h3>
-                        <div class="space-y-3">
-                            ${relatedJobsHtml}
-                        </div>
-                    </div>
-
-                    <!-- Recruiter Contact Card -->
-                    <div class="card-modern p-5 text-xs">
-                        <h3 class="font-bold text-navy-900 mb-2">Recruitment Office</h3>
-                        <p class="text-slate leading-relaxed mb-2">Opposite Nagar Parishad Girls Urdu School, Old City, Akola, Maharashtra – 444002, India</p>
-                        <a href="https://maps.google.com/?q=Plan+B+Careers+Opposite+Nagar+Parishad+Girls+Urdu+School+Old+City+Akola+Maharashtra+444002" target="_blank" class="text-teal-700 hover:text-teal-900 font-bold underline block mb-3">Get Directions on Google Maps &rarr;</a>
-                        <p class="text-navy-900 font-semibold mb-1">Direct HR Contacts:</p>
-                        <p class="text-teal-700 font-bold mb-1">+91 9420512501 / +91 7972731811</p>
-                        <p class="text-slate">Email: contact.planbcareers@gmail.com</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </main>
-
-    <!-- APPLICATION MODAL -->
-    <div id="applyModal" class="fixed inset-0 z-50 bg-navy-950/70 backdrop-blur-md flex items-center justify-center p-4 hidden">
-        <div class="bg-white border border-gray-200 max-w-lg w-full rounded-3xl p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto shadow-2xl">
-            
-            <button class="absolute top-4 right-4 w-9 h-9 rounded-full bg-ivory border border-gray-200 text-slate hover:text-navy-900 flex items-center justify-center transition-colors" onclick="closeApplyModal()" aria-label="Close Modal">
-                <i data-lucide="x" class="w-4 h-4"></i>
-            </button>
-            
-            <div class="mb-5">
-                <span class="badge-teal text-[10px] py-0.5 px-2.5 mb-2 inline-block">Direct Application</span>
-                <h2 class="text-xl sm:text-2xl font-display font-bold text-navy-900 leading-tight">Apply for Position</h2>
-                <p class="text-xs text-slate mt-1">Applying for: <strong class="text-teal-700">${job.title}</strong></p>
-            </div>
-
-            <form id="applyForm" class="space-y-4">
-                <input type="hidden" id="jobApplied" name="JobApplied" value="${job.title}">
-                <input type="hidden" id="jobId" name="JobId" value="${job.id}">
-
-                <div class="flex flex-col gap-1.5">
-                    <label for="fullName" class="text-xs font-semibold text-navy-900">Full Name *</label>
-                    <input type="text" id="fullName" name="FullName" class="input-premium text-xs" required placeholder="Enter your full name">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div class="flex flex-col gap-1.5">
-                        <label for="mobile" class="text-xs font-semibold text-navy-900">WhatsApp Mobile *</label>
-                        <input type="tel" id="mobile" name="Mobile" class="input-premium text-xs" required placeholder="10-digit number">
-                    </div>
-                    <div class="flex flex-col gap-1.5">
-                        <label for="email" class="text-xs font-semibold text-navy-900">Email Address *</label>
-                        <input type="email" id="email" name="Email" class="input-premium text-xs" required placeholder="name@example.com">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div class="flex flex-col gap-1.5">
-                        <label for="city" class="text-xs font-semibold text-navy-900">Current City *</label>
-                        <input type="text" id="city" name="City" class="input-premium text-xs" required placeholder="e.g. Pune, Akola">
-                    </div>
-                    <div class="flex flex-col gap-1.5">
-                        <label for="qualification" class="text-xs font-semibold text-navy-900">Highest Qualification *</label>
-                        <input type="text" id="qualification" name="Qualification" class="input-premium text-xs" required placeholder="e.g. 12th Pass, Any Graduate">
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-1.5">
-                    <label for="experience" class="text-xs font-semibold text-navy-900">Experience Level *</label>
-                    <select id="experience" name="Experience" class="input-premium text-xs cursor-pointer" required>
-                        <option value="" disabled selected>Select your experience</option>
-                        <option value="Fresher">Fresher (0 Years)</option>
-                        <option value="1-2 Years">1 - 2 Years</option>
-                        <option value="3+ Years">3+ Years</option>
-                    </select>
-                </div>
-
-                <div class="flex flex-col gap-1.5">
-                    <label for="resume" class="text-xs font-semibold text-navy-900">Resume / CV (PDF, DOCX) *</label>
-                    <input type="file" id="resume" name="resume" class="input-premium text-xs file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-teal-50 file:text-teal-800 hover:file:bg-teal-100 cursor-pointer" accept=".pdf,.doc,.docx" required>
-                </div>
-
-                <div class="pt-2">
-                    <button type="submit" id="submitBtn" class="btn-primary w-full py-3 justify-center gap-2 shadow-lg shadow-navy-900/10">
-                        <i data-lucide="send" class="w-4 h-4"></i>
-                        <span>Submit Application</span>
-                    </button>
-                </div>
-            </form>
-
-            <div id="successMessage" class="hidden text-center py-6 space-y-4">
-                <div class="w-16 h-16 rounded-full bg-lime-100 border border-lime-300 text-teal-800 flex items-center justify-center mx-auto text-3xl">
-                    <i data-lucide="check" class="w-8 h-8 text-teal-700"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-display font-bold text-navy-900">Application Received!</h3>
-                    <p class="text-xs text-slate max-w-sm mx-auto mt-1 leading-relaxed">
-                        Your application has been logged with Plan B Careers. Connect directly with our HR team on WhatsApp for instant confirmation.
-                    </p>
-                </div>
-                <div id="modalAppIdRow" class="p-3 bg-navy-50 rounded-lg text-left text-xs space-y-1 hidden max-w-xs mx-auto">
-                    <div class="flex justify-between"><span class="text-slate font-medium">Application ID:</span><span id="modalAppIdText" class="font-mono font-bold text-amber-700"></span></div>
-                    <div id="modalDriveResumeRow" class="flex justify-between hidden"><span class="text-slate font-medium">Resume:</span><a id="modalDriveResumeLink" href="#" target="_blank" class="text-teal-700 font-bold hover:underline inline-flex items-center gap-1">Google Drive ↗</a></div>
-                </div>
-                <div class="pt-2 max-w-xs mx-auto space-y-2">
-                    <a id="mainWhatsAppBtn" href="https://wa.me/919420512501" target="_blank" class="btn-accent w-full py-3 justify-center gap-2">
-                        <i data-lucide="message-circle" class="w-4 h-4"></i>
-                        <span>Confirm via HR WhatsApp</span>
-                    </a>
-                </div>
-                <button class="btn-outline-navy text-xs py-2 px-4 mt-3" onclick="closeApplyModal()">Close</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="bg-navy-950 text-white pt-12 pb-8 border-t border-navy-800 mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate pb-6 border-b border-navy-800">
-                <div class="flex items-center gap-3">
-                    <img src="/images/logos/Plan-B-Careers-logo.png" alt="Plan B Careers Logo" class="h-8 w-auto">
-                    <span class="font-display font-bold text-white text-base">PLAN B CAREERS</span>
-                </div>
-                <div class="flex flex-wrap gap-4 text-xs">
-                    <a href="/" class="hover:text-white">Home</a>
-                    <a href="/jobs.html" class="hover:text-white">All Jobs</a>
-                    <a href="/women-wfh.html" class="hover:text-white">Work From Home</a>
-                    <a href="/trust.html" class="hover:text-white">Trust & Compliance</a>
-                    <a href="/contact.html" class="hover:text-white">Contact HR</a>
-                </div>
-            </div>
-            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate/70 gap-2">
-                <p>&copy; 2026 Plan B Careers. MSME Reg: UDYAM-MH-01-0027668. All rights reserved.</p>
-                <p>Professional Recruitment & Career Guidance Platform</p>
-
-            <div class="flex items-center gap-2.5 pt-4">
-                <a href="https://www.instagram.com/planbcareers_india/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-navy-900 border border-navy-800 flex items-center justify-center text-gray-300 hover:text-white hover:bg-[#E4405F]/20 hover:border-[#E4405F]/60 transition-all duration-200" aria-label="Plan B Careers on Instagram">
-                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                </a>
-                <a href="https://www.facebook.com/share/1C1xoJXv4H/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-navy-900 border border-navy-800 flex items-center justify-center text-gray-300 hover:text-white hover:bg-[#1877F2]/20 hover:border-[#1877F2]/60 transition-all duration-200" aria-label="Plan B Careers on Facebook">
-                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/planbcareers" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-navy-900 border border-navy-800 flex items-center justify-center text-gray-300 hover:text-white hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/60 transition-all duration-200" aria-label="Plan B Careers on LinkedIn">
-                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                </a>
-                <a href="https://www.youtube.com/@planbcareers" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-navy-900 border border-navy-800 flex items-center justify-center text-gray-300 hover:text-white hover:bg-[#FF0000]/20 hover:border-[#FF0000]/60 transition-all duration-200" aria-label="Plan B Careers on YouTube">
-                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                </a>
-                <a href="https://whatsapp.com/channel/0029Vb8Jj0ZFnSz0gEqmgK10" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-navy-900 border border-navy-800 flex items-center justify-center text-gray-300 hover:text-white hover:bg-[#25D366]/20 hover:border-[#25D366]/60 transition-all duration-200" aria-label="Plan B Careers on WhatsApp">
-                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.71 4.3 3.8.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.3z"/></svg>
-                </a>
-            </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-        });
-
-        function openApplyModal(title, id) {
-            const modal = document.getElementById('applyModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-        }
-
-        function closeApplyModal() {
-            const modal = document.getElementById('applyModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = '';
-            const form = document.getElementById('applyForm');
-            if (form) delete form.dataset.applicationId;
-        }
-
-        document.getElementById('applyForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const originalBtnText = btn ? btn.innerHTML : 'Submit Application';
-
-            const name = document.getElementById('fullName').value.trim();
-            const mobile = document.getElementById('mobile').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const city = document.getElementById('city').value.trim();
-            const qualification = document.getElementById('qualification').value;
-            const experience = document.getElementById('experience').value;
-            const role = '${job.title.replace(/'/g, "\\\'")}';
-
-            const resumeInput = document.getElementById('resume');
-            const hasResume = resumeInput && resumeInput.files && resumeInput.files.length > 0;
-            const resumeFileName = hasResume ? resumeInput.files[0].name : '';
-
-            if (!hasResume || !resumeInput.files[0]) {
-                alert('Resume document is required. Please upload your resume in PDF, DOC, or DOCX format (up to 5MB).');
-                return;
-            }
-
-            const file = resumeInput.files[0];
-            const allowedExts = ['.pdf', '.doc', '.docx'];
-            const ext = file.name.slice(file.name.lastIndexOf('.')).toLowerCase();
-            if (!allowedExts.includes(ext)) {
-                alert('Only PDF, DOC, and DOCX resume formats are supported.');
-                return;
-            }
-            if (file.size > 5 * 1024 * 1024) {
-                alert('Resume file size must be under 5MB.');
-                return;
-            }
-
-            // Reliable Idempotency: assign or reuse application ID for retries / double-clicks
-            let formAppId = this.dataset.applicationId;
-            if (!formAppId) {
-                const datePart = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-                const randPart = Math.floor(1000 + Math.random() * 9000);
-                formAppId = 'PB-' + datePart + '-' + randPart;
-                this.dataset.applicationId = formAppId;
-            }
-
-            if (btn) {
-                btn.disabled = true;
-                btn.innerText = 'Submitting & Backing Up to Cloud...';
-            }
-
-            const formData = new FormData();
-            formData.append('application_id', formAppId);
-            formData.append('job_id', '${job.id}');
-            formData.append('name', name);
-            formData.append('mobile', mobile);
-            formData.append('email', email);
-            formData.append('city', city);
-            formData.append('qualification', qualification);
-            formData.append('experience', experience);
-            formData.append('preferred_company', role);
-            formData.append('resume', resumeInput.files[0]);
-
-            let cloudResumeUrl = null;
-            let returnedAppId = null;
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 25000);
-                const resp = await fetch('/api/applications', { method: 'POST', body: formData, signal: controller.signal });
-                clearTimeout(timeoutId);
-                const data = await resp.json().catch(() => ({}));
-                if (resp.ok && data && data.success) {
-                    cloudResumeUrl = data.resume_url || null;
-                    returnedAppId = data.application_id || data.applicationId || null;
-                } else {
-                    const errorMsg = data.error || data.message || 'Application submission failed. Please try again.';
-                    alert(errorMsg);
-                    if (btn) {
-                        btn.disabled = false;
-                        btn.innerHTML = originalBtnText;
-                    }
-                    return;
-                }
-            } catch(e) {
-                console.warn('API sync warning:', e);
-                alert('Connection timeout submitting application. Please try again.');
-                if (btn) {
-                    btn.disabled = false;
-                    btn.innerHTML = originalBtnText;
-                }
-                return;
-            }
-
-            try {
-                let apps = JSON.parse(localStorage.getItem('pb_applied_jobs') || '[]');
-                apps.unshift({ id: ${job.id}, applicationId: returnedAppId || null, title: role, company: '${cleanCompany}', date: new Date().toLocaleDateString(), status: 'Under Review', resumeUrl: cloudResumeUrl });
-                localStorage.setItem('pb_applied_jobs', JSON.stringify(apps));
-            } catch(e) {}
-
-            let resumeLine = '';
-            if (cloudResumeUrl) {
-                resumeLine = \`📄 *Resume Link (Google Drive):* \${cloudResumeUrl} (👈 Click to View/Download)%0A%0A\`;
-            } else if (resumeFileName) {
-                resumeLine = \`📄 *Resume Document:* \${encodeURIComponent(resumeFileName)}%0A%0A\`;
-            }
-
-            const appIdText = returnedAppId ? \`🆔 *Application ID:* \${encodeURIComponent(returnedAppId)}%0A\` : '';
-
-            const waMsg = \`*📋 Job Application - Plan B Careers*%0A%0A\` +
-                appIdText +
-                \`*Name:* \${encodeURIComponent(name)}%0A*Phone:* \${encodeURIComponent(mobile)}%0A*Role:* \${encodeURIComponent(role)}%0A*City:* \${encodeURIComponent(city)}%0A*Qualification:* \${encodeURIComponent(qualification)}%0A*Experience:* \${encodeURIComponent(experience)}%0A\` +
-                resumeLine +
-                \`_Applied via planbcareers.in_\`;
-            const waUrl = \`https://wa.me/919420512501?text=\${waMsg}\`;
-
-            this.style.display = 'none';
-            const successEl = document.getElementById('successMessage');
-            if (successEl) successEl.classList.remove('hidden');
-
-            const appIdRow = document.getElementById('modalAppIdRow');
-            const appIdTextEl = document.getElementById('modalAppIdText');
-            const driveRow = document.getElementById('modalDriveResumeRow');
-            const driveLink = document.getElementById('modalDriveResumeLink');
-
-            if (returnedAppId && appIdRow && appIdTextEl) {
-                appIdTextEl.textContent = returnedAppId;
-                appIdRow.classList.remove('hidden');
-                appIdRow.style.display = 'block';
-            }
-            if (cloudResumeUrl && driveRow && driveLink) {
-                driveLink.href = cloudResumeUrl;
-                driveRow.classList.remove('hidden');
-                driveRow.style.display = 'flex';
-            }
-
-            document.getElementById('mainWhatsAppBtn').href = waUrl;
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-
-            window.open(waUrl, '_blank');
-        });
-    </script>
-</body>
-</html>`;
+    const salary = salarySchema(job);
+    if (salary) schema.baseSalary = salary;
+    if (known(job.qualification)) schema.educationRequirements = job.qualification;
+    if (known(job.experience_level)) schema.experienceRequirements = job.experience_level;
+    return schema;
 }
-
-// Generate all pages
-console.log('Generating pre-rendered job leaf pages...');
-const generatedUrls = [];
-
-rawJobs.forEach(job => {
-    const slug = createSlug(job.id, job.title);
-    const htmlContent = generateJobPageHtml(job, rawJobs);
-    
-    // Save as /job/<slug>.html
-    const slugFile = path.join(outputDir, `${slug}.html`);
-    fs.writeFileSync(slugFile, htmlContent, 'utf8');
-
-    // Also save as /job/<id>.html for direct ID matching
-    const idFile = path.join(outputDir, `${job.id}.html`);
-    fs.writeFileSync(idFile, htmlContent, 'utf8');
-
-    generatedUrls.push({
-        loc: `https://planbcareers.in/job/${slug}`,
-        lastmod: (job.last_updated || '2026-10-25') + 'T00:00:00+05:30',
-        changefreq: 'daily',
-        priority: '0.9'
-    });
-    console.log(`Generated: /job/${slug}.html and /job/${job.id}.html`);
-});
-
-// Generate sitemap-jobs.xml
-const jobsSitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${generatedUrls.map(u => `  <url>
-    <loc>${u.loc}</loc>
-    <lastmod>${u.lastmod}</lastmod>
-    <changefreq>${u.changefreq}</changefreq>
-    <priority>${u.priority}</priority>
-  </url>`).join('\n')}
-</urlset>
-`;
-
-fs.writeFileSync(path.join(__dirname, '..', 'sitemap-jobs.xml'), jobsSitemapContent, 'utf8');
-console.log(`Successfully generated ${generatedUrls.length} jobs and written to sitemap-jobs.xml`);
+function renderJobCards(jobs) {
+    return jobs.filter(job => isOpenJob(job)).map(normalizeJob).map(job => `<article class="job-card bg-white rounded-2xl border border-gray-200 p-6 flex flex-col" data-job-id="${esc(job.id)}">
+<div class="flex flex-wrap gap-2 text-xs font-semibold text-navy-800 mb-3"><span>${esc(isRemote(job) ? 'Remote' : job.location)}</span><span aria-hidden="true">·</span><span>${esc(job.industry)}</span></div>
+<h3 class="font-display text-xl font-bold text-navy-900"><a class="hover:underline" href="${esc(jobPath(job))}">${esc(job.title)}</a></h3>
+<p class="mt-2 text-sm text-gray-600">${esc(job.company)}</p>
+<p class="mt-4 font-semibold text-navy-900">${esc(job.salary || 'Compensation to be confirmed')}</p>
+<p class="mt-2 text-sm text-gray-600">${esc(job.experience_level || 'Experience to be confirmed')}</p>
+<p class="mt-1 text-sm text-gray-600">${esc(job.qualification || 'Qualification to be confirmed')}</p>
+<div class="mt-5 pt-4 border-t border-gray-100"><a class="font-semibold text-navy-800 underline underline-offset-4" href="${esc(jobPath(job))}">View details and eligibility<span class="sr-only"> for ${esc(job.title)}</span></a></div>
+</article>`).join('\n');
+}
+function renderPage(job, allJobs) {
+    const open = isOpenJob(job), closed = String(job.status).toLowerCase() === 'closed';
+    const status = open ? 'Open for enquiries and applications' : closed ? 'This listing is closed' : 'Details pending — applications paused';
+    const facts = siteFacts();
+    const company = known(job.company) ? job.company : 'Hiring employer to be confirmed';
+    const title = `${job.title}${open ? '' : closed ? ' — Closed' : ' — Details pending'} | Plan B Careers`;
+    const description = open ? `${job.title} with ${company}. Advertised compensation: ${job.salary || 'to be confirmed'}. Read the listed duties, eligibility, equipment and application details.` : `${job.title}: ${closed ? 'this listing is closed' : 'applications are paused while missing details are confirmed'}. Browse current openings and contact Plan B Careers for guidance.`;
+    const rows = [['Advertised compensation', job.salary], ['Work arrangement', job.work_mode], ['Advertised location', job.location], ['Employment type', known(job.employment_type) ? job.employment_type : 'Confirm contract type'], ['Experience', job.experience_level], ['Qualification', job.qualification], ['Languages', job.languages], ['Shift / schedule', job.shifts]].filter(([, v]) => known(v));
+    const related = allJobs.filter(other => other.id !== job.id && isOpenJob(other)).slice(0, 3);
+    const body = `<div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+<nav aria-label="Breadcrumb" class="text-sm text-gray-600 mb-8"><a class="underline" href="/">Home</a> / <a class="underline" href="/jobs">Jobs</a> / <span>${esc(job.title)}</span></nav>
+<header class="max-w-4xl"><p class="text-sm font-semibold text-amber-700 mb-3">${esc(status)}</p><h1 class="font-display text-3xl sm:text-4xl font-extrabold text-navy-900 leading-tight">${esc(job.title)}</h1><p class="text-lg mt-4 text-gray-700">${esc(company)}${known(job.location) ? ' · ' + esc(job.location) : ''}</p><p class="text-sm text-gray-500 mt-3">Listing #${esc(job.id)}${dateOnly(job.last_updated) ? ' · Source record updated ' + esc(dateOnly(job.last_updated)) : ''}</p></header>
+${!open ? `<section class="mt-8 p-6 rounded-2xl border border-amber-300 bg-amber-50"><h2 class="font-bold text-xl text-navy-900">${closed ? 'Applications are no longer accepted' : 'Confirm the missing details first'}</h2><p class="mt-3 leading-relaxed">${esc(job.publication_note || (closed ? 'This vacancy is retained as an archive. It is excluded from our active job listings and job sitemap.' : 'Applications are paused until the missing vacancy information is available.'))}</p><a class="inline-block mt-4 font-semibold underline" href="/jobs">View current job listings</a></section>` : ''}
+<div class="grid lg:grid-cols-3 gap-8 mt-8"><div class="lg:col-span-2 space-y-8">
+<section class="border border-gray-200 rounded-2xl p-6"><h2 class="font-display text-2xl font-bold text-navy-900">Listing details</h2><dl class="mt-5 grid sm:grid-cols-2 gap-5">${rows.map(([label, value]) => `<div><dt class="text-sm text-gray-500">${esc(label)}</dt><dd class="font-medium mt-1">${esc(value)}</dd></div>`).join('')}</dl></section>
+<section class="border border-gray-200 rounded-2xl p-6"><h2 class="font-display text-2xl font-bold text-navy-900">${known(job.description) ? 'Duties and requirements in the source listing' : 'Job description pending'}</h2><div class="mt-5 space-y-5 leading-relaxed text-gray-700">${descriptionHtml(job.description) || '<p>A complete description is not available for this record. Contact the team for the actual responsibilities and selection requirements.</p>'}</div></section>
+<section class="border border-gray-200 rounded-2xl p-6"><h2 class="font-display text-2xl font-bold text-navy-900">Before you proceed</h2><p class="mt-4 leading-relaxed">Compensation is reproduced as advertised. An “up to” figure is a ceiling, incentives depend on targets, and commission or task-based work has no stated fixed monthly pay. Confirm take-home pay, deductions, shifts and any training terms in writing.</p>${isRemote(job) && !job.applicant_countries?.length ? '<p class="mt-4 leading-relaxed">This source record does not state all eligible applicant locations. Confirm that your city or state is accepted before proceeding.</p>' : ''}<p class="mt-4 leading-relaxed">${esc(facts.fees?.statement || 'Ask for written service terms and any charges before agreeing to a service. Hiring decisions remain with the employer.')}</p><p class="mt-4"><a class="underline" href="/resources/salary-offer-checklist">Use the salary and offer checklist</a> · <a class="underline" href="/resources/remote-job-safety">Check a remote job offer</a></p></section>
+</div><aside class="lg:col-span-1"><div class="border border-gray-200 rounded-2xl p-6 lg:sticky lg:top-28"><h2 class="text-xl font-bold text-navy-900">${open ? 'Next step' : 'Looking for another role?'}</h2><p class="mt-3 text-gray-600 leading-relaxed">${open ? 'Read the requirements, then send your application. The team can clarify availability and the employer’s selection process.' : 'Explore the open listings or contact the team about the information missing from this record.'}</p>${open ? `<a class="block mt-5 rounded-xl bg-navy-900 text-white text-center font-bold px-5 py-3" href="/apply-job?job_id=${esc(job.id)}">Apply for this listing</a>` : '<a class="block mt-5 rounded-xl bg-navy-900 text-white text-center font-bold px-5 py-3" href="/jobs">Browse open jobs</a>'}${open ? `<button type="button" class="button button-outline mt-3" data-save-job="${esc(job.id)}" aria-pressed="false">Save this job</button>` : ''}<a class="block mt-3 text-center underline font-semibold" href="/contact">Ask the Plan B team</a><p class="mt-5 text-xs text-gray-500">A listing does not establish an exclusive partnership or guarantee a job offer.</p></div></aside></div>
+<section class="mt-14"><h2 class="font-display text-2xl font-bold text-navy-900">Other open listings</h2><div class="grid md:grid-cols-3 gap-5 mt-6">${renderJobCards(related)}</div></section></div>`;
+    const schema = jobSchema(job);
+    return layout({ title, description, pathname: jobPath(job), body, noindex: !open,
+        schemas: [breadcrumbs([['Home', '/'], ['Jobs', '/jobs'], [job.title, jobPath(job)]]), ...(schema ? [schema] : [])] });
+}
+function generateJobPages() {
+    const jobs = readJobs();
+    const dir = path.join(ROOT, 'job');
+    fs.mkdirSync(dir, { recursive: true });
+    const keep = new Set();
+    for (const job of jobs) {
+        const html = renderPage(job, jobs);
+        for (const file of [String(job.id) + '.html', path.basename(jobPath(job)) + '.html']) {
+            fs.writeFileSync(path.join(dir, file), html); keep.add(file);
+        }
+    }
+    // Remove only obsolete pages in this generator's numeric-ID namespace.
+    for (const file of fs.readdirSync(dir)) if (/^\d+(?:-[a-z0-9-]+)?\.html$/.test(file) && !keep.has(file)) fs.unlinkSync(path.join(dir, file));
+    const eligible = jobs.filter(j => jobSchema(j));
+    console.log(`Generated ${jobs.length} vacancy records (${jobs.filter(j => isOpenJob(j)).length} open; ${eligible.length} eligible for JobPosting markup).`);
+    return jobs;
+}
+if (require.main === module) generateJobPages();
+module.exports = { readJobs, descriptionHtml, salarySchema, schemaIssues, jobSchema, renderJobCards, renderPage, generateJobPages, dateOnly };

@@ -1,0 +1,92 @@
+{
+  "checkedOn": "2026-11-08",
+  "method": "HTMLParser assertions, local file targets, JSON-LD graph parsing",
+  "pages": [
+    {
+      "page": "resources.html",
+      "titleLength": 56,
+      "descriptionLength": 155,
+      "links": 44,
+      "schemaTypes": [
+        "Organization",
+        "WebPage",
+        "BreadcrumbList",
+        "CollectionPage"
+      ]
+    },
+    {
+      "page": "career-guidance-akola.html",
+      "titleLength": 55,
+      "descriptionLength": 154,
+      "links": 45,
+      "schemaTypes": [
+        "Organization",
+        "WebPage",
+        "BreadcrumbList",
+        "Article"
+      ]
+    },
+    {
+      "page": "jobs-vidarbha.html",
+      "titleLength": 55,
+      "descriptionLength": 153,
+      "links": 47,
+      "schemaTypes": [
+        "Organization",
+        "WebPage",
+        "BreadcrumbList",
+        "Article"
+      ]
+    },
+    {
+      "page": "resources/resume-guide.html",
+      "titleLength": 53,
+      "descriptionLength": 152,
+      "links": 39,
+      "schemaTypes": [
+        "Organization",
+        "WebPage",
+        "BreadcrumbList",
+        "Article"
+      ]
+    },
+    {
+      "page": "resources/salary-offer-checklist.html",
+      "titleLength": 58,
+      "descriptionLength": 158,
+      "links": 37,
+      "schemaTypes": [
+        "Organization",
+        "WebPage",
+        "BreadcrumbList",
+        "Article"
+      ]
+    },
+    {
+      "page": "resources/interview-preparation.html",
+      "titleLength": 52,
+      "descriptionLength": 152,
+      "links": 38,
+      "schemaTypes": [
+        "Organization",
+        "WebPage",
+        "BreadcrumbList",
+        "Article"
+      ]
+    },
+    {
+      "page": "resources/remote-job-safety.html",
+      "titleLength": 52,
+      "descriptionLength": 159,
+      "links": 46,
+      "schemaTypes": [
+        "Organization",
+        "WebPage",
+        "BreadcrumbList",
+        "Article"
+      ]
+    }
+  ],
+  "errors": [],
+  "result": "passed"
+}

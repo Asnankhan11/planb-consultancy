@@ -5,14 +5,17 @@ module.exports = {
     "./job/**/*.html",
     "./jobs/**/*.html",
     "./admin/**/*.html",
+    "./resources/**/*.html",
+    "./scripts/**/*.js",
+    "./lib/**/*.js",
     "./js/**/*.js"
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Inter"', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'sans-serif'],
-        outfit: ['"Outfit"', 'sans-serif'],
+        sans: ['system-ui', 'sans-serif'],
+        display: ['system-ui', 'sans-serif'],
+        outfit: ['system-ui', 'sans-serif'],
       },
       colors: {
         // Deep Midnight Navy - Primary Brand
@@ -25,40 +28,40 @@ module.exports = {
           500: '#627D98',
           600: '#486581',
           700: '#334E68',
-          800: '#1A2942',
-          900: '#101A2C', // Primary
+          800: '#1B3A7D',
+          900: '#061D45', // Primary
           950: '#090F1B',
         },
         // Rich Teal - Secondary Brand
         teal: {
-          50: '#EBF9FA',
-          100: '#D2F4F7',
-          200: '#A6E9EE',
-          300: '#72D9E2',
-          400: '#3BC3D1',
-          500: '#15AAB9',
-          600: '#087F8C', // Secondary
-          700: '#066570',
-          800: '#054E57',
-          900: '#043A40',
+          50: '#EFF4FC',
+          100: '#DBE6F8',
+          200: '#BDD0EF',
+          300: '#95B3E1',
+          400: '#678CC6',
+          500: '#345D9A',
+          600: '#1B3A7D', // Secondary
+          700: '#153168',
+          800: '#102654',
+          900: '#061D45',
         },
         // Electric Lime - Accent Brand
         lime: {
-          50: '#F8FEE9',
-          100: '#EFFCD2',
-          200: '#E1FAA7',
-          300: '#D6F887',
-          400: '#C7F36B', // Accent
-          500: '#A6DC39',
-          600: '#83B621',
-          700: '#648E19',
-          800: '#4A6915',
-          900: '#324810',
+          50: '#FFFBEF',
+          100: '#FFF4CC',
+          200: '#FFE39A',
+          300: '#F6C964',
+          400: '#E8A317', // Accent
+          500: '#D4920A',
+          600: '#A96C00',
+          700: '#805100',
+          800: '#653F00',
+          900: '#4A2D00',
         },
         // Surface & Neutrals
-        ivory: '#F7F6F0',
+        ivory: '#FFFFFF',
         charcoal: '#202A36',
-        slate: '#8993A2',
+        slate: '#526174',
         surface: '#FFFFFF',
         border: '#E5E7EB',
       },

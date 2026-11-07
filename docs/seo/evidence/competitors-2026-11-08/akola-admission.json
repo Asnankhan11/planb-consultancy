@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "url": "https://www.edumilestones.com/career-counselling-experts/Students/Akola",
+        "title": "Best Career counselling in Akola Near me - Edumilestones",
+        "description": "Connect with the 2 Best Career Counsellors in Akola. Instant Appointment booking, live chat, helps students and professionals with career-related decisions ...",
+        "position": 1,
+        "source": "web"
+      },
+      {
+        "url": "https://www.justdial.com/Akola/Career-Counselling-Centres/nct-10080210",
+        "title": "Popular Career Counselling Centres in Akola - Justdial",
+        "description": "80 Career Guidance Centres in Akola. Find ✓Career Counselors, ✓Job Counselling, ✓Career Coach, ✓Career Consultants in Akola. Get Phone Numbers, Address, ...",
+        "position": 2,
+        "source": "web"
+      },
+      {
+        "url": "https://v4edusolution.com/neet-counsellor-in-akola",
+        "title": "Best NEET & MBBS Counsellor in Akola for Medical Admissions",
+        "description": "Top NEET & MBBS Counsellor in Akola providing expert guidance for NEET UG & PG counselling, college prediction, choice filling, documentation and complete ...",
+        "position": 3,
+        "source": "web"
+      },
+      {
+        "url": "https://www.mindgroom.com/career-counselling-in-akola/",
+        "title": "Top Career Counselling in Akola | Expert Guidance Near Me",
+        "description": "Discover the best career counselling in Akola near me. Our top expert counsellors provide personalized guidance to help you achieve your career goals.",
+        "position": 4,
+        "source": "web"
+      },
+      {
+        "url": "https://chanakyacp.com/",
+        "title": "Chanakya Career Point – We Predict What You Deserve",
+        "description": "Leading admission consultants in Maharashtra. For over 8+ years, we've guided students with precision data and strategic counselling. Admission Tracks.",
+        "position": 5,
+        "source": "web"
+      },
+      {
+        "url": "https://ekalacademy.com/blog/best-career-counselling-services-in-akola-expert-guidance-by-ekal-academy/",
+        "title": "Best Career Counselling Services in Akola – Expert Guidance ...",
+        "description": "14 Jul 2026 · 1. NEP Aligned Counseling Framework · 2. AI-Based Aptitude & Interest Evaluations · 3. Counseling Services Starting from Grade 8 till Graduation.",
+        "position": 6,
+        "source": "web"
+      }
+    ],
+    "tools": [
+      {
+        "provider": "azroc-my-site-com",
+        "capability": "licenses/list_classifications",
+        "description": "To pick the exact classification spelling before a filtered search_contractors call."
+      },
+      {
+        "provider": "apollo",
+        "capability": "companies/job-postings",
+        "description": "Find current hiring activity at a known company. Each requested page costs 30 Firecrawl credits."
+      },
+      {
+        "provider": "azroc-my-site-com",
+        "capability": "licenses/search_contractors",
+        "description": "Start here to find a contractor and the `license_id` of each of its licenses; then call get_license for the full record, bonds and complaints."
+      },
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/find_companies",
+        "description": "When you know an employer's name but not its SmartRecruiters identifier."
+      },
+      {
+        "provider": "join-com",
+        "capability": "jobs/company",
+        "description": "To resolve an employer slug (the segment after join.com/companies/) to its numeric company id and city ids before listing jobs, or to read the employer's benefits and offices."
+      },
+      {
+        "provider": "lda-gov",
+        "capability": "lobbying-disclosures/search_clients",
+        "description": "Find which firms lobby for a company, or resolve a client to client_id values for search_filings."
+      }
+    ]
+  },
+  "id": "01a1b7d3-a75f-708b-880e-a8653689072e",
+  "creditsUsed": 2,
+  "agent_hints": [
+    "All 6 web results are excerpts only (#1 \"https://www.edumilestones.com/career-counselling-experts/Students/Akola\", #2 \"https://www.justdial.com/Akola/Career-Counselling-Centres/nct-10080210\", #3 \"https://v4edusolution.com/neet-counsellor-in-akola\" and 3 more). If you need more than an excerpt, use firecrawl_scrape with {\"url\":\"<one of these URLs>\",\"formats\":[\"markdown\"]}. Retrieve only needed pages; do not re-scrape results that already contain the required content."
+  ],
+  "conversationId": "eb7b245b-836b-8438-980c-ca5f4cfd258b"
+}

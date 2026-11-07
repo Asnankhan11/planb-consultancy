@@ -1,0 +1,49 @@
+{
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "url": "https://in.indeed.com/q-job-vacancy-nagpur,-amravati-katol,-morshi-l-maharashtra-jobs.html",
+        "title": "Job Vacancy Nagpur, Amravati Katol, Morshi jobs in Maharashtra",
+        "description": "470 Job Vacancy Nagpur, Amravati Katol, Morshi jobs available in Maharashtra , you will be directly responsible for at least 30 kids. Qualification: Diploma/ ...",
+        "position": 1,
+        "source": "web"
+      },
+      {
+        "url": "https://www.naukri.com/fresher-jobs-in-amravati",
+        "title": "71 Fresher Job Vacancies In Amravati - Naukri.com",
+        "description": "Fresher jobs in Amravati · Hiring For Store HR - Vidarbha · Hiring For Accounts Officer - Vidarbha · Senior Executive - Debt Management Services - SME.",
+        "position": 2,
+        "source": "web"
+      },
+      {
+        "url": "https://www.jobhai.com/hi/jobs-in-amravati-nagpur-lcty",
+        "title": "Amravati, नागपुर में रोजगार के अवसर - Job Hai",
+        "description": "Ans: Job Hai पर अमरावती में 2+ jobs उपलब्ध हैं, जिनमें अमरावती में डिलिवरी jobs, अमरावती में सेल्स / ...",
+        "position": 3,
+        "source": "web"
+      },
+      {
+        "url": "https://www.instagram.com/p/CQTerTbnH5f/",
+        "title": "Urgent vacancies for Amravati, Nagpur locations for ... - Instagram",
+        "description": "19 Jun 2021 · Urgent vacancies for Amravati, Nagpur locations for more details contact on 9890995057. Vacancy available for Multiple Positions Intrested ...",
+        "position": 4,
+        "source": "web"
+      },
+      {
+        "url": "https://www.facebook.com/jobsandnaukariprovider/posts/urgent-job-vacanciesurgent-job-vacancies-for-amravati-nagpur-locations-any-fresh/1203548617094706/",
+        "title": "HI - TECH JOB Provider - Facebook",
+        "description": "28 Feb 2022 · job vacancies for Amravati, Nagpur locations. For more details contact on 9890995057",
+        "position": 5,
+        "source": "web"
+      }
+    ],
+    "tools": []
+  },
+  "id": "01a1b7d3-f955-756a-b18c-e8e5dbe0e39d",
+  "creditsUsed": 2,
+  "agent_hints": [
+    "All 5 web results are excerpts only (#1 \"https://in.indeed.com/q-job-vacancy-nagpur,-amravati-katol,-morshi-l-maharashtra-jobs.html\", #2 \"https://www.naukri.com/fresher-jobs-in-amravati\", #3 \"https://www.jobhai.com/hi/jobs-in-amravati-nagpur-lcty\" and 2 more). If you need more than an excerpt, use firecrawl_scrape with {\"url\":\"<one of these URLs>\",\"formats\":[\"markdown\"]}. Retrieve only needed pages; do not re-scrape results that already contain the required content."
+  ],
+  "conversationId": "eb7b245b-836b-8438-980c-ca5f4cfd258b"
+}

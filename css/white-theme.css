@@ -1,7 +1,7 @@
 /* ==========================================================================
    PLAN B CAREERS - THEME REFINEMENT
-   Palette: Deep Midnight Navy (#101A2C) · Rich Teal (#087F8C) · Electric Lime (#C7F36B)
-   Surfaces: Warm Ivory (#F7F6F0) · Pure White (#FFFFFF) · Deep Charcoal (#202A36)
+   Palette: Deep Midnight Navy (#061D45) · Navy Blue (#1B3A7D) · Amber Gold (#E8A317)
+   Surfaces: Corporate White (#FFFFFF) · Pure White (#FFFFFF) · Deep Charcoal (#202A36)
    ========================================================================== */
 
 html {
@@ -9,13 +9,13 @@ html {
 }
 
 body {
-  background-color: #F7F6F0;
+  background-color: #FFFFFF;
   color: #202A36;
 }
 
 /* Ensure headings have crisp letter-spacing */
 h1, h2, h3, h4, h5, h6 {
-  color: #101A2C;
+  color: #061D45;
 }
 
 /* Prevent text overflow on mobile */
