@@ -49,6 +49,54 @@ function initPlanBCareers() {
     }
 
     // --- 3. Interactive FAQ Accordion ---
+    window.toggleAccordion = function(btn) {
+        if (!btn) return;
+        const item = btn.closest('.accordion-item, .faq-item');
+        if (!item) return;
+        const collapse = item.querySelector('.accordion-collapse, .accordion-content, .faq-answer');
+        const arrow = item.querySelector('.accordion-arrow, .accordion-icon, svg');
+        const isCurrentlyActive = item.classList.contains('active');
+        const container = item.closest('.space-y-4, .accordion-container') || item.parentElement;
+
+        // Close other accordion items in the same container
+        if (container) {
+            container.querySelectorAll('.accordion-item.active, .faq-item.active').forEach(sibling => {
+                if (sibling !== item) {
+                    sibling.classList.remove('active');
+                    const sibBtn = sibling.querySelector('.accordion-trigger, .faq-question, button');
+                    const sibCollapse = sibling.querySelector('.accordion-collapse, .accordion-content, .faq-answer');
+                    const sibArrow = sibling.querySelector('.accordion-arrow, .accordion-icon, svg');
+                    if (sibBtn) sibBtn.setAttribute('aria-expanded', 'false');
+                    if (sibCollapse) {
+                        sibCollapse.style.maxHeight = '0px';
+                        sibCollapse.style.opacity = '0';
+                    }
+                    if (sibArrow) sibArrow.style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+
+        // Toggle current item
+        if (isCurrentlyActive) {
+            item.classList.remove('active');
+            btn.setAttribute('aria-expanded', 'false');
+            if (collapse) {
+                collapse.style.maxHeight = '0px';
+                collapse.style.opacity = '0';
+            }
+            if (arrow) arrow.style.transform = 'rotate(0deg)';
+        } else {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
+            if (collapse) {
+                collapse.style.maxHeight = (collapse.scrollHeight + 32) + 'px';
+                collapse.style.opacity = '1';
+            }
+            if (arrow) arrow.style.transform = 'rotate(180deg)';
+        }
+    };
+    window.toggleFaq = window.toggleAccordion;
+
     function setupAccordions() {
         document.querySelectorAll('.accordion-item, .faq-item').forEach(item => {
             const trigger = item.querySelector('.accordion-trigger, .faq-question, button');
@@ -61,45 +109,16 @@ function initPlanBCareers() {
                 trigger.setAttribute('aria-expanded', item.classList.contains('active') ? 'true' : 'false');
             }
 
-            // Guard against duplicate listener binding
-            if (trigger.dataset.accordionBound === 'true') return;
-            trigger.dataset.accordionBound = 'true';
+            // Only attach listener if no inline onclick is present to prevent double-toggle
+            if (!trigger.getAttribute('onclick')) {
+                if (trigger.dataset.accordionBound === 'true') return;
+                trigger.dataset.accordionBound = 'true';
 
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                const isOpen = item.classList.contains('active');
-                const container = item.closest('.space-y-4, .accordion-container') || item.parentElement;
-
-                // Close other accordion items in the same container
-                if (container) {
-                    container.querySelectorAll('.accordion-item.active, .faq-item.active').forEach(sibling => {
-                        if (sibling !== item) {
-                            sibling.classList.remove('active');
-                            const sibTrigger = sibling.querySelector('.accordion-trigger, .faq-question, button');
-                            const sibCollapse = sibling.querySelector('.accordion-collapse, .accordion-content, .faq-answer');
-                            const sibArrow = sibling.querySelector('.accordion-arrow, .accordion-icon, svg');
-                            if (sibTrigger) sibTrigger.setAttribute('aria-expanded', 'false');
-                            if (sibCollapse) sibCollapse.style.maxHeight = '0px';
-                            if (sibArrow) sibArrow.style.transform = '';
-                        }
-                    });
-                }
-
-                // Toggle current item
-                if (isOpen) {
-                    item.classList.remove('active');
-                    trigger.setAttribute('aria-expanded', 'false');
-                    collapse.style.maxHeight = '0px';
-                    const arrow = item.querySelector('.accordion-arrow, .accordion-icon, svg');
-                    if (arrow) arrow.style.transform = '';
-                } else {
-                    item.classList.add('active');
-                    trigger.setAttribute('aria-expanded', 'true');
-                    collapse.style.maxHeight = collapse.scrollHeight + 'px';
-                    const arrow = item.querySelector('.accordion-arrow, .accordion-icon, svg');
-                    if (arrow) arrow.style.transform = 'rotate(180deg)';
-                }
-            });
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.toggleAccordion(trigger);
+                });
+            }
         });
     }
     setupAccordions();
