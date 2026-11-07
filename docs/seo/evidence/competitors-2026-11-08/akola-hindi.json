@@ -1,0 +1,75 @@
+{
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "url": "https://www.justdial.com/Akola/Placement-Services-Candidate/nct-10372869",
+        "title": "Placement Services for Candidates in Akola - Justdial",
+        "description": "Find Trusted Placement Agencies for Candidates in Akola · H.R. Solutions Akola · Tiwari Realty & Resources Pvt Ltd · Kalyani Consultancy · Rise Up Human Resources.",
+        "position": 1,
+        "source": "web"
+      },
+      {
+        "url": "https://www.naukri.com/counselling-jobs-in-akola",
+        "title": "Counselling Jobs In Akola - Naukri.com",
+        "description": "Admission Counsellor | AKOLA | PUNE| Immediate Joiner · Akola, Indore, Pune · 1-3 Yrs ; Admission Officer/ Akola · Akola, Nagpur, Pune · 1-3 Yrs ; Doctor.",
+        "position": 2,
+        "source": "web"
+      },
+      {
+        "url": "https://in.indeed.com/q-in-akola-l-maharashtra-jobs.html",
+        "title": "25 In Akola Job Vacancies in Maharashtra - Indeed",
+        "description": "... career counselling within your training and… ... WE ARE HIRING | MATHEMATICS FACULTY Location: Akola, Maharashtra Recruitment By: AS Consultancy Job Details ...",
+        "position": 3,
+        "source": "web"
+      },
+      {
+        "url": "https://dir.indiamart.com/akola/placement-service.html",
+        "title": "Placement Service, Placement Work in Akola - IndiaMART",
+        "description": "Placement Service Providers in Akola, Maharashtra. Get contact details and address of Placement Service, Placement Work, Industrial Placement Services firms ...",
+        "position": 4,
+        "source": "web"
+      },
+      {
+        "url": "https://www.sulekha.com/placement-consultants/akola",
+        "title": "Placement Consultants in Akola - Sulekha",
+        "description": "Best Placement Consultants in Akola – Recruitment & Hiring Made Easy ... Their team of experts also provide career counseling and image consulting services.",
+        "position": 5,
+        "source": "web"
+      }
+    ],
+    "tools": [
+      {
+        "provider": "azroc-my-site-com",
+        "capability": "licenses/list_classifications",
+        "description": "To pick the exact classification spelling before a filtered search_contractors call."
+      },
+      {
+        "provider": "purchasing-alberta-ca",
+        "capability": "public-tenders/list_codes",
+        "description": "Translate a code seen in a posting (e.g. TA-01, RFQual, OPEN-COMPETITIVE) or find valid filter values for search_postings."
+      },
+      {
+        "provider": "cslb-ca-gov",
+        "capability": "licenses/find_contractors_by_location",
+        "description": "You need licensed contractors of a given classification (B, C-10, C-53 ...) near a California ZIP code or in a city."
+      },
+      {
+        "provider": "ziprecruiter-com",
+        "capability": "jobs/job",
+        "description": "After search_jobs or company_jobs, with a card's url. Any pasted ziprecruiter.com /c/.../Job/... URL with a jid works."
+      },
+      {
+        "provider": "sumble",
+        "capability": "jobs/titles",
+        "description": "Map raw job titles to Sumble job functions and levels. 1 Sumble credit per 100 matched titles, so 10 Firecrawl credits per started hundred, and nothing when none match. At most 1000 titles, which is the 100 Firecrawl credit ceiling when every title matches."
+      }
+    ]
+  },
+  "id": "01a1b7d3-f7e8-7440-b298-68bff14bdbe4",
+  "creditsUsed": 2,
+  "agent_hints": [
+    "All 5 web results are excerpts only (#1 \"https://www.justdial.com/Akola/Placement-Services-Candidate/nct-10372869\", #2 \"https://www.naukri.com/counselling-jobs-in-akola\", #3 \"https://in.indeed.com/q-in-akola-l-maharashtra-jobs.html\" and 2 more). If you need more than an excerpt, use firecrawl_scrape with {\"url\":\"<one of these URLs>\",\"formats\":[\"markdown\"]}. Retrieve only needed pages; do not re-scrape results that already contain the required content."
+  ],
+  "conversationId": "eb7b245b-836b-8438-980c-ca5f4cfd258b"
+}

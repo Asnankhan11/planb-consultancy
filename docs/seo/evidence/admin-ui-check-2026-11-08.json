@@ -1,0 +1,90 @@
+{
+  "checkedOn": "2026-11-08",
+  "method": "Chromium browser with mocked documented API contracts; not a live database test",
+  "checks": [
+    "initial signed-out session",
+    "legacy token removal",
+    "invalid credentials",
+    "cookie login/session flow",
+    "untrusted applicant text is inert",
+    "search filter",
+    "application status and notes PUT",
+    "authenticated resume download",
+    "admission status and notes PUT",
+    "confirmed admission deletion",
+    "read-only jobs",
+    "503 is unavailable not zero records",
+    "logout clears private records",
+    "no Authorization bearer header",
+    "no browser errors"
+  ],
+  "requests": [
+    {
+      "url": "/api/admin/session",
+      "method": "GET",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/admin/login",
+      "method": "POST",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/admin/login",
+      "method": "POST",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/admin/session",
+      "method": "GET",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/applications",
+      "method": "GET",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/applications/1/status",
+      "method": "PUT",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/admin/applications/app-1/resume",
+      "method": "GET",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/admin/admission-enquiries",
+      "method": "GET",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/admin/admission-enquiries/2",
+      "method": "PUT",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/admin/admission-enquiries/2",
+      "method": "DELETE",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/jobs",
+      "method": "GET",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/applications",
+      "method": "GET",
+      "hasAuthorization": false
+    },
+    {
+      "url": "/api/admin/logout",
+      "method": "POST",
+      "hasAuthorization": false
+    }
+  ],
+  "browserErrors": [],
+  "result": "passed"
+}

@@ -1,0 +1,92 @@
+# Plan B Careers audit closure map
+
+Prepared **8 November 2026** against the implementation worktree. This maps all **33 original findings** and **A01–A21** from the later SEO/AEO/GEO action plan.
+
+**Code** means a corrective implementation exists and can be checked locally. It does not mean the production deployment, accounts or historical incident response are complete. **Partial** means useful corrective work exists but a material acceptance condition remains. **External** means account access, operational evidence or deployment configuration is still required. Search rankings, AI recommendations and commercial outcomes are not established by these implementation checks.
+
+## Audit inputs and evidence
+
+- Original audit: [Plan-B-Careers-Audit-2026-11-08/report.md](/Users/sheikhwasique/Downloads/Plan-B-Careers-Audit-2026-11-08/report.md), baseline commit efba42e.
+- SEO/AEO/GEO action plan: [ACTION-PLAN.md](/Users/sheikhwasique/Downloads/Plan-B-Careers-SEO-AEO-GEO-Audit-2026-11-08/planbcareers.in-audit/ACTION-PLAN.md).
+- [Backend setup and remaining deployment requirements](backend-setup.md).
+- [Competitor research, queries, sources and coverage limits](../seo/competitor-research-2026-11-08.md).
+- [Independent built-publication review](../seo/evidence/publication-review-2026-11-08.json).
+- [Editorial static checks](../seo/evidence/editorial-static-check-2026-11-08.json) and [skill audit output](../seo/evidence/editorial-skill-audit-2026-11-08.json).
+- [Admin browser contract checks](../seo/evidence/admin-ui-check-2026-11-08.json); these used mocked API responses, not production candidate records.
+- [Aggregate browser verification](browser-verification.json). Final build/test, deployment and PR evidence is recorded by the release owner separately.
+
+Independent review of the current built output found **69 HTML pages**, **29 main-sitemap URLs** and **8 job-sitemap URLs**. The publication validator checked **3,032 internal links/assets** without missing targets or private-source publication. Source inventory is **12 records: 8 open, 1 closed and 3 awaiting details**. All 8 open records are remote; **0 open Akola office vacancies** are published. These are source-derived publication counts, not independently verified live employer availability.
+
+## Original audit: findings 1–33
+
+| ID | Finding | State | Implemented correction and remaining acceptance work |
+|---|---|---|---|
+| 1 | Public database and backend source | Partial | Explicit dist allowlist and restricted Express static serving exclude database, source, operational documents and private assets. Verify the replacement production deployment returns 403/404; inspect historical access and rotate exposed credentials. |
+| 2 | Serverless mock acknowledges lost writes | Partial | Removed success-producing mock. Remote libSQL support and authenticated Script fallback fail honestly when unavailable. Production database/account configuration, migration and cross-instance persistence still require a real configured smoke test. |
+| 3 | Applicant identity collisions and resume disclosure | Code / external rollout | Server-generated cryptographic identity, payload-bound retry checks, durable uniqueness and protected resumes replace short client IDs. Updated Apps Script must be deployed for its full fingerprint/privacy protections. No public resume URL is returned by the API. |
+| 4 | Default secret and seeded administrator | Partial | Strong configured secret, explicit administrator bootstrap and active-account verification replace defaults; legacy default-account migration is covered. Rotate old production credentials and configure the real administrator separately. |
+| 5 | Stored HTML injection in admin | Code | Admin uses textContent/DOM nodes and validated local links. HttpOnly cookie session replaces browser-stored tokens; old adminToken is removed. A synthetic HTML-like applicant name remained inert in Chromium. |
+| 6 | Fabricated trust activity, scores and reviews | Code | Demo fallbacks and public unverified proof were retired. Trust page explains what must be checked; empty review/activity endpoints stay empty. Real consented evidence remains an operational task. |
+| 7 | Contradictory fee promises | Code | Owner directed that prices be discussed case by case. Shared facts, service-fees page, forms, policies, generated pages and AI context use that policy. Free guide access is distinguished from individual services. |
+| 8 | Closed vacancies still advertised/applicable | Code | Shared open/published/expiry rule controls API acceptance, cards, counts, CTAs, schema and sitemap. Closed/pending pages have no application CTA or JobPosting and are noindex archives. |
+| 9 | Sector filters hide existing roles | Code | Canonical industry IDs and shared normalization drive source data, filters and generated hubs. Counts derive from eligible records; genuinely empty categories remain empty. |
+| 10 | Disconnected mobile navigation | Code | Shared header and initializer replace mismatched handlers across core, resource, job and category templates. Final desktop/mobile behavior is covered in aggregate browser verification. |
+| 11 | Contact draft shown as delivered lead | Code | Contact explicitly prepares a WhatsApp message. It does not claim receipt or delivery; the visitor must send it in WhatsApp. |
+| 12 | Invented job pay/location/employer schema | Code / source limits | Unknown workplace/pay facts are omitted; “up to” has no invented minimum and employer identity is not replaced with Plan B's URL/logo. Only records meeting known-field gates receive JobPosting. Employer provenance still needs operational confirmation. |
+| 13 | Fabricated city office combinations | Code / external profiles | One owner-confirmed office: near City Kotwali, Akola, Maharashtra. No unsupported PIN, coordinates, hours or other branches. Regional pages separate service areas from workplaces; external profiles remain unverified. |
+| 14 | Broken advertised admin media upload | Partial | Backend media pipeline validates and transforms memory buffers and stores real bytes in persistent storage. Unsupported legacy media-editor UI was retired. Production storage and any future publication-approved media workflow need configuration/verification. |
+| 15 | Fake candidate profile and recruiter status | Code | Candidate workspace is described as browser-local saved jobs/references. Fake identity, verification and recruiter-side status claims are removed. Authenticated candidate account infrastructure is not claimed. |
+| 16 | Fresh database remaps job identities | Partial | Canonical source IDs drive public APIs/pages and new applications. Historical applications associated with previously remapped database IDs need manual reconciliation; the upgrade does not guess the original employer. |
+| 17 | Location/experience filters misrepresent meaning | Code | Structured experience eligibility and location/work-mode filters replace prose-digit heuristics. Current local office inventory is separated from remote alternatives. |
+| 18 | Admissions request/response mismatch | Code / external rollout | Backend accepts the legacy alias and current WhatsApp field, preserves distinct numbers and returns compatible response links/references. Updated frontend follows confirmed receipt/failure states. Durable production destination still needs setup. |
+| 19 | Inconsistent email configuration/completion | Partial | Unified SMTP/Gmail configuration, awaited sends and explicit outcomes replace premature completion. Real credentials, inbox delivery and operational retry/queue behavior are not verified; SMTP acceptance is not inbox delivery. |
+| 20 | Unauthenticated diagnostic sends mail | Code | Diagnostic endpoint is authenticated and configuration-only; it does not send email. Tests use non-delivering transport doubles. |
+| 21 | Sequential public candidate lookup | Code | Public candidate lookup returns 410; personal records and resumes require authorised administrator access. Existing externally shared resume permissions still need review. |
+| 22 | File limit exceeds platform body limit | Code / deployment check | UI/backend limit one PDF, DOC or DOCX resume to 3 MB with signature checks, below the documented whole-request ceiling. Verify the actual production platform boundary after deployment. |
+| 23 | Spreadsheet formula injection | Code / external rollout | Updated Script writes formula-looking input as literal text and validates authenticated retries. The source fix is not live until the actual Script version is deployed and verified. |
+| 24 | Missing labels, keyboard behavior and contrast | Code / verification scope | Semantic controls, labels, visible focus and shared accessible navigation replace click-only or unlabeled controls; application flow uses real pages. Aggregate browser checks cover tested routes, not a blanket accessibility certification. |
+| 25 | Orphan JSON above contact header | Code | Contact page regenerated with structured data contained in valid JSON-LD. No orphan address text remains above the intended header. |
+| 26 | Brand system conflicts with workspace | Code | Shared white/navy/amber styling and compiled Tailwind output replace dark/purple/teal variants. Source CSS and shared templates own the styling; final visual review belongs to the release verification. |
+| 27 | No measured confirmed lead conversions | Partial | Confirmed receipt hooks exclude duplicate receipts, are separate from contact intent and exclude candidate fields. Sensitive form pages deliberately do not load general GA tracking. Provider delivery, account-side key events, attribution and real conversion reporting remain unconfigured/unverified. |
+| 28 | No regression gate or integrated publication | Code / documentation check | npm check combines generation, CSS, public allowlist validation and tests; CI workflow is present. Shared generators rebuild dependent pages/discovery. Release documentation and final clean-checkout run must accompany the release. |
+| 29 | Canonical/sitemap URL inconsistency | Code / production check | Extensionless canonicals, sitemap entries and internal links agree; numeric and legacy routes have deliberate handling. Alternate Vercel-host consolidation is configured but must be verified on the deployed host. |
+| 30 | Vulnerable locked dependencies | Code / final audit | Dependency/lockfile upgrades are included. Use the final production npm audit result and targeted backend regression evidence; advisory counts are not proof of exploitable application flaws. No assertion about historical exploitation is made. |
+| 31 | Heavy assets and stale immutable delivery | Code / field measurement | Small optimized logo/founder assets replace oversized published originals; unversioned CSS/JS/images revalidate rather than caching immutably for a year. Production transfer and real-user CWV require measurement. |
+| 32 | Static requests share API rate limit | Code / distributed operations | Limits apply to API/intake/login paths, not normal static navigation. Per-instance memory limiting is not a distributed abuse-control system; platform rules/shared store remain an operational consideration. |
+| 33 | Broken internal fragment destinations | Code | Published-file validator checks local targets and fragment IDs. Current built output passes all internal link/asset checks. |
+
+## SEO/AEO/GEO action plan: A01–A21
+
+| ID | Action | State | Closure evidence or remaining work |
+|---|---|---|---|
+| A01 | Contain exposure and review old artefacts | Partial | Public allowlist and private-path restrictions implemented. Replacement deployment, historical access review, credential rotation and old public artefact/Drive permission cleanup remain external. |
+| A02 | Approve one fee policy | Code | Owner approved case-specific discussion and removal of public fixed amounts. Shared service language covers scope, written terms, refunds and employer-controlled outcomes. No exact price matrix was invented. |
+| A03 | Verify offices, NAP and service areas | Partial | Owner confirmed near City Kotwali, Akola. Unsupported branches/PIN/coordinates/hours removed. Real profile identities, hours and external consistency require account verification. |
+| A04 | Establish employer-supported vacancy facts | Partial | Missing employer/workplace/description records are paused; source pay/experience/mode is preserved and unknown schema facts omitted. Live hiring status, employer authorisation, provenance and remaining location restrictions need HR confirmation. |
+| A05 | Remove fabricated proof | Code | Simulated trust metrics, reviews, events and unsupported partner/outcome claims removed. Genuine proof cannot be created by code and has not been fabricated. |
+| A06 | Coherent status-aware publication | Code | One source/model feeds API, core cards, job pages, hubs and discovery; generation removes obsolete job outputs. Close/pending state is consistent across current built artefacts. |
+| A07 | Shared industry and experience taxonomy | Code | Canonical industry IDs and structured fresher eligibility drive filters/hubs. Experienced-only EdTech sales and collection roles are excluded from fresher promises. |
+| A08 | Shared mobile navigation | Code | Shared shell/initializer applies across templates. Aggregate browser verification records responsive/keyboard outcomes. |
+| A09 | Render jobs before JavaScript | Code | Built jobs HTML contains exactly the 8 current open detail links and substantive role information. JavaScript enhances filters; it is not required to discover the initial inventory. |
+| A10 | Final canonicals and legacy-host consolidation | Code / deployment check | 29 main and 8 job sitemap URLs match their local canonical targets. Redirect configuration is present; direct HTTP behavior on the production and alternate host remains a deployment check. |
+| A11 | True missing-resource status | Code / deployment check | Homepage catch-all removed; unknown paths use actual missing-resource handling. Final hosting rewrite behavior must be checked on deployment, including missing assets/XML/jobs. |
+| A12 | Coherent search/AI crawler exclusions | Code / policy scope | One shared robots group keeps intended admin/API/temp exclusions without a contradictory Google override. Private-file protection is enforced separately. Robots access does not promise indexing or AI inclusion. |
+| A13 | Useful local/regional content | Code / demand measurement | Akola separates 0 local office vacancies from remote alternatives. New Akola career and Vidarbha decision guides supply distinct utility. Other empty location hubs are noindex; demand and user outcomes remain unmeasured. |
+| A14 | Deliver genuine resources and snippets | Code / human editorial ownership | Four complete guides replace placeholder downloads; the real Word template remains. Organisation authorship, dates, primary links and original labelled examples are provided. No human expert review or credential is claimed without evidence. |
+| A15 | Accessible controls and clean contact markup | Code / verification scope | Labels, landmarks, focus and contrast-oriented shared styles implemented; contact JSON fixed. Automated/browser evidence is scoped to the checks actually run. |
+| A16 | Lighter images/fonts/icons | Code / performance measurement | Published optimized images and local/shared assets replace oversized originals and unstable icon CDN dependencies. Final lab/field measurements must determine performance impact; no field CWV guarantee. |
+| A17 | AI context matches approved public facts | Code | llms files derive from shared business facts and canonical navigation. They explain fee/office/pay limits and point to authoritative job pages rather than duplicating an alternate vacancy catalogue. |
+| A18 | Verify Google/Bing/Apple/social identities | External | No authenticated profile verification or edits were performed. Same-name records are not assumed to belong to this business. Confirm ownership and reconcile approved facts in the actual accounts. |
+| A19 | Search indexing/impressions and AI settings baseline | External / unmeasured | GSC/Bing property exports, URL inspections and available AI inclusion/performance settings require account access. No scanner score or site-search count is substituted for those records. |
+| A20 | Real-user CWV and confirmed action measurement | Partial / unmeasured | Receipt-based event hooks and privacy-conscious contact intent exist. General tracking is excluded from sensitive forms. Provider configuration, account-side event verification, real-user CWV and actual successful application rates remain separate measurement work. |
+| A21 | Dated multilingual AI answer cohort | Partial / unmeasured | Eight exploratory English/Hindi/Marathi web searches and a reusable evaluation approach are documented. No controlled multi-engine AI-answer cohort, recommendation share or actual rank has been measured. |
+
+## Required external completion work
+
+1. **Deployment and incident response:** replace the public deployment, verify old sensitive paths, review historical access, rotate potentially exposed credentials and inspect legacy file/Drive sharing. Source exclusion cannot undo previous downloads.
+2. **Durable services:** configure the remote database and administrator, deploy the reviewed Apps Script version and matching properties, configure email if needed, then prove persistence across fresh serverless instances using approved synthetic records.
+3. **Operational truth:** re-confirm live vacancies with employers, document recruitment relationships and missing eligibility facts, and retain consent/provenance before publishing reviews, placements or partner evidence.
+4. **Owned accounts:** verify the real GBP, Search Console, Bing and any other claimed profiles. Confirm actual identity, service information, indexing, redirects and settings in those accounts.
+5. **Measurement:** configure privacy-safe confirmed-action reporting, inspect real-user performance and run a dated repeatable query/prompt cohort. Do not describe the owner's “tenth” observation as an independently verified baseline.
+
+No first-place ranking, AI recommendation, placement, salary, admission or indexing outcome is guaranteed. This closure map records implementation and remaining evidence needs; it is not a declaration that every external acceptance condition is complete.

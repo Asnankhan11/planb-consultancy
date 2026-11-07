@@ -1,0 +1,75 @@
+{
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "url": "https://in.linkedin.com/jobs/job-consultancy-jobs-nagpur",
+        "title": "Job Consultancy Jobs in Nagpur (75 Open Roles) | LinkedIn",
+        "description": "75 Job Consultancy Jobs in Nagpur · Senior Project Engineer (Solar EPC) · Hiring for ICICI Life Insurance - Agency channel · State Lead, Lead Exposure · Researcher ...",
+        "position": 1,
+        "source": "web"
+      },
+      {
+        "url": "https://www.cphrservices.in/best-job-recruitment-agency-and-placement-consultancy-in-nagpur/",
+        "title": "Job Recruitment Agency & Placement Consultancy in Nagpur​",
+        "description": "CP HR is a leading recruitment agency and placement consultancy in Nagpur, offering customized hiring and staffing solutions for industries like software, ...",
+        "position": 2,
+        "source": "web"
+      },
+      {
+        "url": "https://www.instagram.com/suyashjobplacement/",
+        "title": "Job Consultancy (@suyashjobplacement) · Nagpur - Instagram",
+        "description": "All Types Of Job Providers In Nagpur For Interview Call US : 9309251229 | 8668722869. Follow. Message. The most zealous time of the year is here.",
+        "position": 3,
+        "source": "web"
+      },
+      {
+        "url": "https://in.indeed.com/q-consultancy-l-nagpur,-maharashtra-jobs.html",
+        "title": "100 Consultancy Job Vacancies in Nagpur, Maharashtra | Indeed",
+        "description": "Consultancy jobs in Nagpur, Maharashtra · Talent Acquisition Specialist – Consultancy & Engineering Industry · HR Executive · Business Development Executive (BDE).",
+        "position": 4,
+        "source": "web"
+      },
+      {
+        "url": "https://www.justdial.com/Nagpur/Placement-Services-Candidate/nct-10372869",
+        "title": "Placement Services for Candidates in Nagpur - Justdial",
+        "description": "Peramid Placement Agency · Pankaj Sir Recruitment Consultant · Optima Placement · Uniguidance · Maha Employment · Iga Job Placement Services · Amcat - Freshers ...",
+        "position": 5,
+        "source": "web"
+      }
+    ],
+    "tools": [
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/list_company_jobs",
+        "description": "To enumerate a company's openings, e.g. from a pasted careers.smartrecruiters.com/<company> or api.smartrecruiters.com/v1/companies/<company>/postings URL. Pass next_cursor back as cursor until it is null; use get_job for a posting's full text and salary."
+      },
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/search_jobs",
+        "description": "Start here for a keyword or cross-company search, or for a company's newest openings. For every opening of one company use list_company_jobs; for the full text use get_job."
+      },
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/find_companies",
+        "description": "When you know an employer's name but not its SmartRecruiters identifier."
+      },
+      {
+        "provider": "nissanusa-com",
+        "capability": "vehicles/search_dealers",
+        "description": "The user supplies a place name or ZIP code. Returns dealer_id values for get_dealer and list_dealer_inventory. Sales hours are not in this feed; call get_dealer for them."
+      },
+      {
+        "provider": "nissanusa-com",
+        "capability": "vehicles/nearby_dealers",
+        "description": "You already have coordinates and want the locator's own record (including hours) in one call. The source caps a call at 100 dealers; there is no paging."
+      }
+    ]
+  },
+  "id": "01a1b7d3-f7e8-749b-a3e8-ba86ae559c66",
+  "creditsUsed": 2,
+  "agent_hints": [
+    "All 5 web results are excerpts only (#1 \"https://in.linkedin.com/jobs/job-consultancy-jobs-nagpur\", #2 \"https://www.cphrservices.in/best-job-recruitment-agency-and-placement-consultancy-in-nagpur/\", #3 \"https://www.instagram.com/suyashjobplacement/\" and 2 more). If you need more than an excerpt, use firecrawl_scrape with {\"url\":\"<one of these URLs>\",\"formats\":[\"markdown\"]}. Retrieve only needed pages; do not re-scrape results that already contain the required content."
+  ],
+  "conversationId": "eb7b245b-836b-8438-980c-ca5f4cfd258b"
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Plan B Careers",
+  "url": "https://planbcareers.in",
+  "phone": "+91 94205 12501",
+  "phoneE164": "+919420512501",
+  "whatsapp": "919420512501",
+  "email": "contact.planbcareers@gmail.com",
+  "founder": "Asnan Khan",
+  "baseCity": "Akola",
+  "region": "Vidarbha, Maharashtra",
+  "serviceAreas": [
+    "Akola",
+    "Vidarbha",
+    "Maharashtra"
+  ],
+  "office": {
+    "confirmed": true,
+    "locality": "Akola",
+    "region": "Maharashtra",
+    "country": "IN",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Near City Kotwali",
+      "addressLocality": "Akola",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    },
+    "visitNote": "Near City Kotwali, Akola, Maharashtra. Contact the team to arrange a visit and confirm directions.",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Plan+B+Careers+Near+City+Kotwali+Akola+Maharashtra"
+  },
+  "fees": {
+    "confirmed": true,
+    "url": "/service-fees",
+    "statement": "Service scope and any charges are discussed directly with the team for your situation. Ask for the scope, amount and applicable refund terms in writing before agreeing or paying. Hiring decisions remain with the employer.",
+    "applicationNote": "There is no online payment step in this form. Discuss any separate service charges with the team before proceeding."
+  },
+  "verifiedPartnerships": [],
+  "verifiedStatistics": {},
+  "socialProfiles": [],
+  "contentUpdated": "2026-11-08",
+  "factsConfirmedOn": "2026-11-08"
+}

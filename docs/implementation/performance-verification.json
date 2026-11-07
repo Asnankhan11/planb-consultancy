@@ -1,0 +1,118 @@
+{
+  "status": "final verification passed",
+  "verificationType": "Local mobile Lighthouse laboratory audit",
+  "lighthouseVersion": "13.6.0",
+  "environment": {
+    "baseUrl": "http://127.0.0.1:4190",
+    "nodeEnv": "production",
+    "servedDirectory": "dist",
+    "mobileViewport": {
+      "width": 412,
+      "height": 823,
+      "deviceScaleFactor": 1.75
+    },
+    "throttlingMethod": "simulate",
+    "cpuSlowdownMultiplier": 4,
+    "rttMs": 150,
+    "throughputKbps": 1638.4
+  },
+  "pages": [
+    {
+      "route": "/",
+      "capturedAt": "2026-11-07T21:31:24.911Z",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 1068,
+        "LCP_ms": 1068,
+        "TBT_ms": 0,
+        "CLS": 0,
+        "speedIndex_ms": 1068,
+        "INP_ms": null
+      },
+      "checks": {
+        "colorContrast": true,
+        "touchTargetSize": true,
+        "headingOrder": true,
+        "visibleTextMatchesAccessibleNames": true
+      },
+      "evidence": {
+        "json": "/Users/sheikhwasique/Downloads/Plan-B-Careers-Upgrade-2026-11-08/lighthouse/home-mobile.report.json",
+        "html": "/Users/sheikhwasique/Downloads/Plan-B-Careers-Upgrade-2026-11-08/lighthouse/home-mobile.report.html",
+        "screenshot": "/Users/sheikhwasique/Downloads/Plan-B-Careers-Upgrade-2026-11-08/lighthouse/home-mobile.jpg"
+      },
+      "runWarnings": []
+    },
+    {
+      "route": "/jobs",
+      "capturedAt": "2026-11-07T21:31:37.197Z",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 1058,
+        "LCP_ms": 1058,
+        "TBT_ms": 150,
+        "CLS": 0,
+        "speedIndex_ms": 1058,
+        "INP_ms": null
+      },
+      "checks": {
+        "colorContrast": true,
+        "touchTargetSize": true,
+        "headingOrder": true,
+        "visibleTextMatchesAccessibleNames": true
+      },
+      "evidence": {
+        "json": "/Users/sheikhwasique/Downloads/Plan-B-Careers-Upgrade-2026-11-08/lighthouse/jobs-mobile.report.json",
+        "html": "/Users/sheikhwasique/Downloads/Plan-B-Careers-Upgrade-2026-11-08/lighthouse/jobs-mobile.report.html",
+        "screenshot": "/Users/sheikhwasique/Downloads/Plan-B-Careers-Upgrade-2026-11-08/lighthouse/jobs-mobile.jpg"
+      },
+      "runWarnings": []
+    }
+  ],
+  "findings": [
+    {
+      "severity": "medium",
+      "issue": "Job-card H3 headings follow the page H1 without an H2.",
+      "action": "Add a Current listings H2 before the card collection.",
+      "status": "resolved; final Lighthouse heading-order audit passes"
+    },
+    {
+      "severity": "medium",
+      "issue": "Header brand and Menu button accessible names omit part of the visible text.",
+      "action": "Use visible brand text and Open menu / Close menu accessible names.",
+      "status": "resolved; final Lighthouse visible-label audit passes"
+    },
+    {
+      "severity": "low",
+      "issue": "Approximately 36–37 KiB of CSS is unused on these representative pages; CSS blocks initial rendering.",
+      "status": "Optimization opportunity; final mobile lab performance is 100 on home and 98 on jobs. No contrast or layout-shift failure."
+    }
+  ],
+  "limitations": [
+    "One simulated mobile run per page; these are laboratory observations, not real-user Core Web Vitals.",
+    "INP and CrUX field data were not measured.",
+    "Localhost excludes production network, CDN, serverless cold starts and TLS behavior.",
+    "Analytics is intentionally disabled on localhost; these measurements do not include the live GA request cost.",
+    "Lighthouse SEO and accessibility scores do not establish ranking position or complete accessibility compliance.",
+    "No live forms, credentials or real candidate information were submitted.",
+    "The initial jobs run scored performance 100 with TBT 0 ms; the final run scored 98 with TBT 150 ms. Single-run variability is retained rather than selecting the highest result."
+  ],
+  "initialEvidenceDirectory": "/Users/sheikhwasique/Downloads/Plan-B-Careers-Upgrade-2026-11-08/lighthouse/initial",
+  "artifactHashes": {
+    "dist/index.html": "429fcaa4ab8de8b72e907d0acd07fc742e8376a10f4368232afa4dd6b3af08b9",
+    "dist/jobs.html": "5f82578e37e90488051a5d10763c08a05db5e3dcfaa8d3c1cc04ca05a063f46d",
+    "dist/css/styles.css": "60d37b36759b57eb06ee843782a4b1120d775261970d820e7651237ee1b3fcbf",
+    "dist/css/white-theme.css": "c76bb1a6725dcd8ae348b15bd230236c8db806861e12f2150685653394da276d",
+    "dist/js/main.js": "bf0663f3c175a8cb2c9ba1ee9d4c8970a48ba8f3e151cfe783a479426b5be5ba",
+    "dist/js/jobs.js": "8c6693d4547a0a8ab1f8d5287eff0875b2bbd67ad9bda43b05f25a17b12cb4aa"
+  }
+}

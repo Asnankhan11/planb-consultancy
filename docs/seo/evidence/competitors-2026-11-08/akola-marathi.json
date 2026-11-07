@@ -1,0 +1,75 @@
+{
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "url": "https://www.justdial.com/Akola/Placement-Services-Candidate/nct-10372869",
+        "title": "Placement Services for Candidates in Akola - Justdial",
+        "description": "Find Trusted Placement Agencies for Candidates in Akola ; H.R. Solutions Akola. 4.3176 Ratings ; Tiwari Realty & Resources Pvt Ltd. 3.881 Ratings ; Kalyani ...",
+        "position": 1,
+        "source": "web"
+      },
+      {
+        "url": "https://www.sulekha.com/placement-consultants/akola",
+        "title": "Placement Consultants in Akola - Sulekha",
+        "description": "The recruitment agencies help the job seekers find a suitable job, fix and schedule an interview and help build the future of the candidates. Based on the job ...",
+        "position": 2,
+        "source": "web"
+      },
+      {
+        "url": "https://dir.indiamart.com/akola/placement-service.html",
+        "title": "Placement Service, Placement Work in Akola - IndiaMART",
+        "description": "Placement Service Providers in Akola, Maharashtra. Get contact details and address of Placement Service, Placement Work, Industrial Placement (प्लेसमेंट सर्विस, अकोला)",
+        "position": 3,
+        "source": "web"
+      },
+      {
+        "url": "https://www.jobhai.com/hi/jobs-in-akola-for-12th-pass-qtypj",
+        "title": "अकोला में 12वीं पास के लिए 3 जॉब्स - Job Hai",
+        "description": "अकोला में 12वीं पास के लिए 3 जॉब्स ; बैक ऑफिस असिस्टेंट. ₹ 18,000 - 35,000 per महीना · Central Board For Business ...",
+        "position": 4,
+        "source": "web"
+      },
+      {
+        "url": "https://www.placementindia.com/recruitment-agency/placement-services-in-akola",
+        "title": "Top Recruitment Agencies in Akola - Placement India",
+        "description": "Find 18 Top Recruitment Agencies in Akola. Job Dila is a leading recruitment agency in Khadki, Akola, Maharashtra, dedicated to helping job seekers find their ...",
+        "position": 5,
+        "source": "web"
+      }
+    ],
+    "tools": [
+      {
+        "provider": "apollo",
+        "capability": "companies/job-postings",
+        "description": "Find current hiring activity at a known company. Each requested page costs 30 Firecrawl credits."
+      },
+      {
+        "provider": "cslb-ca-gov",
+        "capability": "licenses/search_contractors_by_name",
+        "description": "You know (the start of) a California contractor's business name and need the license number(s) to look up."
+      },
+      {
+        "provider": "azroc-my-site-com",
+        "capability": "licenses/list_classifications",
+        "description": "To pick the exact classification spelling before a filtered search_contractors call."
+      },
+      {
+        "provider": "cslb-ca-gov",
+        "capability": "licenses/find_contractors_by_location",
+        "description": "You need licensed contractors of a given classification (B, C-10, C-53 ...) near a California ZIP code or in a city."
+      },
+      {
+        "provider": "ashbyhq-com",
+        "capability": "jobs/job",
+        "description": "When you have a posting id from jobs (items[].id) or a pasted jobs.ashbyhq.com posting or /application URL and need the description, compensation details or the questions the application form asks."
+      }
+    ]
+  },
+  "id": "01a1b7d3-f7eb-7047-a1a1-34f4e5ea83d9",
+  "creditsUsed": 2,
+  "agent_hints": [
+    "All 5 web results are excerpts only (#1 \"https://www.justdial.com/Akola/Placement-Services-Candidate/nct-10372869\", #2 \"https://www.sulekha.com/placement-consultants/akola\", #3 \"https://dir.indiamart.com/akola/placement-service.html\" and 2 more). If you need more than an excerpt, use firecrawl_scrape with {\"url\":\"<one of these URLs>\",\"formats\":[\"markdown\"]}. Retrieve only needed pages; do not re-scrape results that already contain the required content."
+  ],
+  "conversationId": "eb7b245b-836b-8438-980c-ca5f4cfd258b"
+}

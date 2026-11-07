@@ -1,0 +1,88 @@
+{
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "url": "https://www.naukri.com/home-based-jobs-in-akola",
+        "title": "38 Home Based Job Vacancies In Akola - Naukri.com",
+        "description": "Home Based jobs in Akola · NBFC Hiring - Relationship Manager- Home Loan & Lap - On Roll · Retail Sales Associate · Team Leader - Medium Merchant Business 2.",
+        "position": 1,
+        "source": "web"
+      },
+      {
+        "url": "https://internshala.com/jobs/data-entry-jobs-in-akola/work-from-home/",
+        "title": "50 Data Entry Work From Home Jobs in Akola - Internshala",
+        "description": "Currently, there are 50 active work from home Data Entry job vacancies in Akola from 15 companies across key sector(s) such as IT/Technology, Advertising/ ...",
+        "position": 2,
+        "source": "web"
+      },
+      {
+        "url": "https://in.indeed.com/q-work-from-l-akola,-maharashtra-jobs.html",
+        "title": "25 Work From Job Vacancies in Akola, Maharashtra - Indeed",
+        "description": "Work from jobs in Akola, Maharashtra · Tele Caller Executive · Admissions Officer · Education Admissions Cordinator-Internal Hiring · Hostel Warden · Hostel Warden.",
+        "position": 3,
+        "source": "web"
+      },
+      {
+        "url": "https://www.olx.in/en-in/akola_g4058951/jobs_c4?filter=work_mode_eq_work_from_home",
+        "title": "2 Work from Home Jobs in Akola - OLX India",
+        "description": "OLX features 40 verified work from home jobs across Akola, offering flexible opportunities with average salary of around ₹14,525 per month. At OLX, you'll find ...",
+        "position": 4,
+        "source": "web"
+      },
+      {
+        "url": "https://www.quikr.com/jobs/work-from-home-jobs-for-women+akola+zwqxj4157493934",
+        "title": "Work From Home Jobs For Women 2026-27 Job Vacancy, Akola",
+        "description": "Data Entry Operator Work From HomeyaPart Time Online Typing Job +more · 15,000 - 30,000 per month · IT Software - Developer ; Cleaner and dish washer job opening + ...",
+        "position": 5,
+        "source": "web"
+      },
+      {
+        "url": "https://getlokalapp.com/jobs/jobs-in-akola",
+        "title": "Jobs in akola | Find Job Vacancies in akola : https ... - Lokal",
+        "description": "Job Listing · Field Sales Executive · ₹17000 - ₹24000 · Service Engineer · ₹12000 - ₹15000 · Personal Secretary · ₹15000 - ₹25000 · Quick Links · Jobs by category.",
+        "position": 6,
+        "source": "web"
+      }
+    ],
+    "tools": [
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/search_jobs",
+        "description": "Start here for a keyword or cross-company search, or for a company's newest openings. For every opening of one company use list_company_jobs; for the full text use get_job."
+      },
+      {
+        "provider": "wayfair-com",
+        "capability": "job-postings/search_jobs",
+        "description": "Discovery: find Wayfair jobs by title words or filters and get their job_id for get_job. Keywords match the job title only (not the description). Use list_filters for the id vocabularies."
+      },
+      {
+        "provider": "apollo",
+        "capability": "companies/job-postings",
+        "description": "Find current hiring activity at a known company. Each requested page costs 30 Firecrawl credits."
+      },
+      {
+        "provider": "join-com",
+        "capability": "jobs/job",
+        "description": "When you have a job id or last_id from jobs, or a pasted ad URL (join.com/companies/<slug>/<id_param> or join.com/jobs/<last_id>), and need the description, salary, hours, vacation or contract terms."
+      },
+      {
+        "provider": "workable",
+        "capability": "jobs/employer_job",
+        "description": "Full text, application link and application questions for a job listed by employer_jobs. Read only: it never submits an application."
+      },
+      {
+        "provider": "join-com",
+        "capability": "jobs/jobs",
+        "description": "Start here with an employer slug (or company_id from company) to enumerate its openings; pass next_page back as page. Use category_ids from categories or this function's aggregations, city_id from company offices or aggregations. There is no keyword search on JOIN."
+      }
+    ]
+  },
+  "id": "01a1b7d3-a76c-7269-9d98-2be9de2341e6",
+  "creditsUsed": 2,
+  "agent_hints": [
+    "There's a structured data provider for this kind of query: Indeed (indeed-com). firecrawl_find_tools {\"providers\":[\"indeed-com\"]} shows what it can look up, and firecrawl_scrape {\"alexandria\":{\"provider\":\"indeed-com\",\"capability\":\"<capability>\",\"options\":{...}}} returns its data as typed records.",
+    "All 6 web results are excerpts only (#1 \"https://www.naukri.com/home-based-jobs-in-akola\", #2 \"https://internshala.com/jobs/data-entry-jobs-in-akola/work-from-home/\", #3 \"https://in.indeed.com/q-work-from-l-akola,-maharashtra-jobs.html\" and 3 more). If you need more than an excerpt, use firecrawl_scrape with {\"url\":\"<one of these URLs>\",\"formats\":[\"markdown\"]}. Retrieve only needed pages; do not re-scrape results that already contain the required content."
+  ],
+  "conversationId": "eb7b245b-836b-8438-980c-ca5f4cfd258b"
+}

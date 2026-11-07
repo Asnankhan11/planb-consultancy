@@ -15,3 +15,6 @@ remotion/node_modules/
 
 planb.sqlite
 *.sqlite
+
+.data/
+test-results/

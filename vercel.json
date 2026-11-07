@@ -1,5 +1,5 @@
 {
-  "outputDirectory": ".",
+  "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
@@ -10,72 +10,313 @@
   ],
   "functions": {
     "api/**/*": {
-      "includeFiles": "{planb.sqlite,jobs.json,images/**}"
+      "includeFiles": "{lib/**,data/**,jobs.json}",
+      "maxDuration": 60
     }
   },
   "headers": [
     {
       "source": "/resources/(.*).docx",
       "headers": [
-        { "key": "Content-Type", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document" },
-        { "key": "Content-Disposition", "value": "attachment; filename=\"Plan_B_Careers_ATS_Resume_Template_Branded.docx\"" },
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
-      ]
-    },
-    {
-      "source": "/public/resources/(.*).docx",
-      "headers": [
-        { "key": "Content-Type", "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document" },
-        { "key": "Content-Disposition", "value": "attachment; filename=\"Plan_B_Careers_ATS_Resume_Template_Branded.docx\"" },
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Plan_B_Careers_ATS_Resume_Template_Branded.docx\""
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     },
     {
       "source": "/sitemap(.*).xml",
       "headers": [
-        { "key": "Content-Type", "value": "application/xml; charset=UTF-8" },
-        { "key": "Cache-Control", "value": "public, max-age=3600" }
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=UTF-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
       ]
     },
     {
       "source": "/llms(.*).txt",
       "headers": [
-        { "key": "Content-Type", "value": "text/plain; charset=UTF-8" },
-        { "key": "Cache-Control", "value": "public, max-age=3600" }
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=UTF-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
       ]
     },
     {
       "source": "/robots.txt",
       "headers": [
-        { "key": "Content-Type", "value": "text/plain; charset=UTF-8" }
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=UTF-8"
+        }
       ]
     },
     {
       "source": "/css/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
     },
     {
       "source": "/js/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
     },
     {
       "source": "/images/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
+    },
+    {
+      "source": "/admin/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
+  ],
+  "buildCommand": "npm run build",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "planb-consultancy.vercel.app"
+        }
+      ],
+      "destination": "https://planbcareers.in/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/connect",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/connect.html",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/apply-admission",
+      "destination": "/admissions#enquiry",
+      "permanent": true
+    },
+    {
+      "source": "/apply-admission.html",
+      "destination": "/admissions#enquiry",
+      "permanent": true
+    },
+    {
+      "source": "/admissions-impact",
+      "destination": "/admissions",
+      "permanent": true
+    },
+    {
+      "source": "/admissions-impact.html",
+      "destination": "/admissions",
+      "permanent": true
+    },
+    {
+      "source": "/jobs-impact",
+      "destination": "/jobs",
+      "permanent": true
+    },
+    {
+      "source": "/jobs-impact.html",
+      "destination": "/jobs",
+      "permanent": true
+    },
+    {
+      "source": "/women-wfh-impact",
+      "destination": "/women-wfh",
+      "permanent": true
+    },
+    {
+      "source": "/women-wfh-impact.html",
+      "destination": "/women-wfh",
+      "permanent": true
+    },
+    {
+      "source": "/students-earning-impact",
+      "destination": "/jobs/freshers",
+      "permanent": true
+    },
+    {
+      "source": "/students-earning-impact.html",
+      "destination": "/jobs/freshers",
+      "permanent": true
+    },
+    {
+      "source": "/job/2",
+      "destination": "/job/2-data-entry-operator",
+      "permanent": true
+    },
+    {
+      "source": "/job/2.html",
+      "destination": "/job/2-data-entry-operator",
+      "permanent": true
+    },
+    {
+      "source": "/job/3",
+      "destination": "/job/3-hr-recruiter",
+      "permanent": true
+    },
+    {
+      "source": "/job/3.html",
+      "destination": "/job/3-hr-recruiter",
+      "permanent": true
+    },
+    {
+      "source": "/job/4",
+      "destination": "/job/4-backend-process-executive",
+      "permanent": true
+    },
+    {
+      "source": "/job/4.html",
+      "destination": "/job/4-backend-process-executive",
+      "permanent": true
+    },
+    {
+      "source": "/job/5",
+      "destination": "/job/5-remote-telesales-specialist",
+      "permanent": true
+    },
+    {
+      "source": "/job/5.html",
+      "destination": "/job/5-remote-telesales-specialist",
+      "permanent": true
+    },
+    {
+      "source": "/job/10",
+      "destination": "/job/10-recharge-assistant",
+      "permanent": true
+    },
+    {
+      "source": "/job/10.html",
+      "destination": "/job/10-recharge-assistant",
+      "permanent": true
+    },
+    {
+      "source": "/job/12",
+      "destination": "/job/12-barcode-generation-data-processing-associate",
+      "permanent": true
+    },
+    {
+      "source": "/job/12.html",
+      "destination": "/job/12-barcode-generation-data-processing-associate",
+      "permanent": true
+    },
+    {
+      "source": "/job/17",
+      "destination": "/job/17-inventory-executive",
+      "permanent": true
+    },
+    {
+      "source": "/job/17.html",
+      "destination": "/job/17-inventory-executive",
+      "permanent": true
+    },
+    {
+      "source": "/job/18",
+      "destination": "/job/18-edtech-sales-executive",
+      "permanent": true
+    },
+    {
+      "source": "/job/18.html",
+      "destination": "/job/18-edtech-sales-executive",
+      "permanent": true
+    },
+    {
+      "source": "/job/19",
+      "destination": "/job/19-collection-agent",
+      "permanent": true
+    },
+    {
+      "source": "/job/19.html",
+      "destination": "/job/19-collection-agent",
+      "permanent": true
+    },
+    {
+      "source": "/job/21",
+      "destination": "/job/21-customer-support-executive",
+      "permanent": true
+    },
+    {
+      "source": "/job/21.html",
+      "destination": "/job/21-customer-support-executive",
+      "permanent": true
+    },
+    {
+      "source": "/job/22",
+      "destination": "/job/22-international-customer-support-executive",
+      "permanent": true
+    },
+    {
+      "source": "/job/22.html",
+      "destination": "/job/22-international-customer-support-executive",
+      "permanent": true
+    },
+    {
+      "source": "/job/23",
+      "destination": "/job/23-edtech-counsellor",
+      "permanent": true
+    },
+    {
+      "source": "/job/23.html",
+      "destination": "/job/23-edtech-counsellor",
+      "permanent": true
     }
   ]
 }

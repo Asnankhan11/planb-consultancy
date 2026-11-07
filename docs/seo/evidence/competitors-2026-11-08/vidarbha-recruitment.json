@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "url": "https://www.naukri.com/jobs-in-amravati",
+        "title": "Jobs In Amravati - 321 Job Vacancies In November 2026",
+        "description": "Jobs in Amravati · Multi Purpose Worker · Cook · Assistant Manager - Rural Term Loan - Emerging Markets · Hiring For Store HR - Vidarbha · Urgent Hiring | ...",
+        "position": 1,
+        "source": "web"
+      },
+      {
+        "url": "https://in.indeed.com/l-amravati,-maharashtra-jobs.html",
+        "title": "100 Job Vacancies in Amravati, Maharashtra - Indeed",
+        "description": "jobs in Amravati, Maharashtra · Bussiness Development Executive. We iconic pvt LTD. Amravati, Maharashtra · Admin Assistant. Daga Infratech Pvt. Ltd. · District ...",
+        "position": 2,
+        "source": "web"
+      },
+      {
+        "url": "https://www.instagram.com/hitechjobprovider/?hl=en",
+        "title": "HI-TECH JOB PROVIDER ( Consultancy) (@hitechjobprovider)",
+        "description": "HI-TECH JOB Provider We provide all type of jobs in all over India Mob - 9890995057 Branch - Pune, Nagpur, Amravati · 593 followers · 99 posts ...",
+        "position": 3,
+        "source": "web"
+      },
+      {
+        "url": "https://www.jobhai.com/jobs-in-amravati-nagpur-lcty",
+        "title": "Find Latest Job Vacancies in Amravati, Nagpur",
+        "description": "Apply to verified job Openings in Amravati, Nagpur on Jobhai.com | ✓Free Registration ✓Apply to latest jobs in Amravati, Nagpur | ✓Call HR ...",
+        "position": 4,
+        "source": "web"
+      },
+      {
+        "url": "https://www.cphrservices.in/best-job-placement-consultancy-in-amravati/",
+        "title": "Best Job Placement Consultancy in Amravati - CP HR Services",
+        "description": "CP HR is a leading Best Job Placement Consultancy in Amravati, offering customised hiring and staffing solutions for industries like software, & more.",
+        "position": 5,
+        "source": "web"
+      },
+      {
+        "url": "https://dir.indiamart.com/amravati/recruitment-service.html",
+        "title": "Recruitment Support Service in Amravati (भर्ती की सेवाएं, अमरावती)",
+        "description": "Recruitment Support Service in Amravati (भर्ती की सेवाएं, अमरावती) · Unskilled Labour Supply Service · Recruitment Service · Job At Bharat Pe ...",
+        "position": 6,
+        "source": "web"
+      }
+    ],
+    "tools": [
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/search_jobs",
+        "description": "Start here for a keyword or cross-company search, or for a company's newest openings. For every opening of one company use list_company_jobs; for the full text use get_job."
+      },
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/find_companies",
+        "description": "When you know an employer's name but not its SmartRecruiters identifier."
+      },
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/list_company_jobs",
+        "description": "To enumerate a company's openings, e.g. from a pasted careers.smartrecruiters.com/<company> or api.smartrecruiters.com/v1/companies/<company>/postings URL. Pass next_cursor back as cursor until it is null; use get_job for a posting's full text and salary."
+      },
+      {
+        "provider": "ziprecruiter-com",
+        "capability": "jobs/job",
+        "description": "After search_jobs or company_jobs, with a card's url. Any pasted ziprecruiter.com /c/.../Job/... URL with a jid works."
+      },
+      {
+        "provider": "smartrecruiters-com",
+        "capability": "jobs/get_job",
+        "description": "For a pasted posting URL in any SmartRecruiters shape (jobs.smartrecruiters.com/<company>/<id>-<slug>, /ni/<company>/<uuid>, /oneclick-ui/company/<company>/publication/<uuid>, www.smartrecruiters.com/<company>/<id>, api.smartrecruiters.com/v1/companies/<company>/postings/<id>), or a company and id from list_company_jobs or search_jobs."
+      },
+      {
+        "provider": "ziprecruiter-com",
+        "capability": "jobs/company_jobs",
+        "description": "After search_jobs, with the company slug from a card's company_url (e.g. YO-AI-Labs from /co/YO-AI-Labs/Jobs) and a city."
+      }
+    ]
+  },
+  "id": "01a1b7d3-a718-77e8-89f6-184b240c5507",
+  "creditsUsed": 2,
+  "agent_hints": [
+    "All 6 web results are excerpts only (#1 \"https://www.naukri.com/jobs-in-amravati\", #2 \"https://in.indeed.com/l-amravati,-maharashtra-jobs.html\", #3 \"https://www.instagram.com/hitechjobprovider/?hl=en\" and 3 more). If you need more than an excerpt, use firecrawl_scrape with {\"url\":\"<one of these URLs>\",\"formats\":[\"markdown\"]}. Retrieve only needed pages; do not re-scrape results that already contain the required content."
+  ],
+  "conversationId": "eb7b245b-836b-8438-980c-ca5f4cfd258b"
+}

@@ -1,0 +1,109 @@
+{
+  "checkedOn": "2026-11-08",
+  "scope": "Independent static review of built public output, job source/generators, shared facts and discovery files. No live ranking or production configuration assertions.",
+  "pages": 69,
+  "jobCounts": {
+    "total": 12,
+    "open": 8,
+    "closed": 1,
+    "pending": 3,
+    "remote": 8,
+    "akolaOffice": 0
+  },
+  "sitemapPages": 29,
+  "sitemapJobs": 8,
+  "jobs": [
+    {
+      "id": 2,
+      "status": "Closed",
+      "applicationEligible": false,
+      "jobPosting": false,
+      "noindex": true
+    },
+    {
+      "id": 3,
+      "status": "Details pending",
+      "applicationEligible": false,
+      "jobPosting": false,
+      "noindex": true
+    },
+    {
+      "id": 4,
+      "status": "Open",
+      "applicationEligible": true,
+      "jobPosting": true,
+      "noindex": false
+    },
+    {
+      "id": 5,
+      "status": "Open",
+      "applicationEligible": true,
+      "jobPosting": false,
+      "noindex": false
+    },
+    {
+      "id": 10,
+      "status": "Open",
+      "applicationEligible": true,
+      "jobPosting": false,
+      "noindex": false
+    },
+    {
+      "id": 12,
+      "status": "Open",
+      "applicationEligible": true,
+      "jobPosting": false,
+      "noindex": false
+    },
+    {
+      "id": 17,
+      "status": "Open",
+      "applicationEligible": true,
+      "jobPosting": false,
+      "noindex": false
+    },
+    {
+      "id": 18,
+      "status": "Open",
+      "applicationEligible": true,
+      "jobPosting": false,
+      "noindex": false
+    },
+    {
+      "id": 19,
+      "status": "Open",
+      "applicationEligible": true,
+      "jobPosting": true,
+      "noindex": false
+    },
+    {
+      "id": 21,
+      "status": "Open",
+      "applicationEligible": true,
+      "jobPosting": false,
+      "noindex": false
+    },
+    {
+      "id": 22,
+      "status": "Details pending",
+      "applicationEligible": false,
+      "jobPosting": false,
+      "noindex": true
+    },
+    {
+      "id": 23,
+      "status": "Details pending",
+      "applicationEligible": false,
+      "jobPosting": false,
+      "noindex": true
+    }
+  ],
+  "issues": [],
+  "result": "passed",
+  "remaining": [
+    "Employer authorization and live hiring availability require operational confirmation.",
+    "Production secrets, persistent storage, Apps Script deployment, historical exposure response and external account access are not established by code review.",
+    "Conversion provider delivery and account-side event verification remain external; duplicate receipt hooks were corrected in the implementation.",
+    "Real Google, local-pack and AI rankings are unmeasured."
+  ]
+}
