@@ -44,10 +44,10 @@ async function initialize() {
     await db.execute('CREATE UNIQUE INDEX IF NOT EXISTS idx_admission_enquiry_id ON admission_enquiries(enquiry_id) WHERE enquiry_id IS NOT NULL');
     // Preserve source IDs; do not silently remap jobs 2/3/4 to database IDs 1/2/3.
     const jobs = require('./jobs.json');
-    const count = await db.execute('SELECT COUNT(*) AS count FROM jobs');
-    if (!Number(count.rows[0]?.count)) {
-        await db.batch(jobs.map(job => ({ sql: 'INSERT INTO jobs (id,title,company,location,salary,type,status,description,created_at) VALUES (?,?,?,?,?,?,?,?,?)', args: [job.id,job.title,job.company,job.location,job.salary,job.type,job.status || 'Details pending',job.description,job.created_at] })));
-    }
+    await db.batch(jobs.map(job => ({
+        sql: 'INSERT INTO jobs (id,title,company,location,salary,type,status,description,created_at) VALUES (?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET title=excluded.title,company=excluded.company,location=excluded.location,salary=excluded.salary,type=excluded.type,status=excluded.status,description=excluded.description,created_at=excluded.created_at',
+        args: [job.id,job.title,job.company,job.location,job.salary,job.type,job.status || 'Details pending',job.description,job.created_at]
+    })));
     // Revoke the historical, publicly-known bootstrap password rather than leaving it valid after upgrade.
     const legacy = await db.execute('SELECT id,password FROM admins WHERE username=?', ['admin']);
     if (legacy.rows[0] && await bcrypt.compare('admin123', legacy.rows[0].password)) await db.execute('DELETE FROM admins WHERE id=?', [legacy.rows[0].id]);
