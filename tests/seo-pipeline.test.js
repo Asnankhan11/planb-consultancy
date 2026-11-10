@@ -18,7 +18,7 @@ function schemas(html) {
 }
 
 test('one availability rule rejects closed, incomplete, unknown and expired records', () => {
-    assert.deepEqual(jobs.filter(job => data.isOpenJob(job)).map(job => job.id), [10, 12, 17, 24, 25, 26, 27, 28, 29, 30, 31]);
+    assert.deepEqual(jobs.filter(job => data.isOpenJob(job)).map(job => job.id), [10, 12, 17, 24, 25, 26, 27, 28, 29, 30, 31, 32]);
     for (const status of ['Closed', 'Details pending', '', null, undefined]) assert.equal(data.isOpenJob({ status }), false);
     assert.equal(data.isOpenJob({ status: 'Open', publication_status: 'details_pending' }), false);
     assert.equal(data.isOpenJob({ status: 'Open', valid_through: '2026-10-01' }, '2026-11-08'), false);
@@ -35,7 +35,7 @@ test('shared taxonomy and experience eligibility fix filters without using quali
     assert.equal(data.acceptsFreshers(byId(19)), false);
     assert.equal(data.acceptsFreshers(byId(18)), false);
     assert.equal(data.acceptsFreshers({ qualification: '12th Pass', experience_level: '2–5 Years' }), false);
-    assert.deepEqual(hubs.categoryJobs(hubs.categories.find(c => c.slug === 'freshers'), jobs).map(job => job.id), [10, 12, 17, 24, 25, 26, 27, 28, 29, 30]);
+    assert.deepEqual(hubs.categoryJobs(hubs.categories.find(c => c.slug === 'freshers'), jobs).map(job => job.id), [10, 12, 17, 24, 25, 26, 27, 28, 29, 30, 32]);
 });
 
 test('salary markup and filters preserve annual/monthly basis and never invent an up-to minimum', () => {
@@ -54,7 +54,7 @@ test('salary markup and filters preserve annual/monthly basis and never invent a
 });
 
 test('Google job markup requires actual facts and omits unsupported optional fields', () => {
-    assert.deepEqual(jobs.filter(job => jobPages.jobSchema(job)).map(job => job.id), [24, 25, 27, 29, 30, 31]);
+    assert.deepEqual(jobs.filter(job => jobPages.jobSchema(job)).map(job => job.id), [24, 25, 27, 29, 30, 31, 32]);
     const sampleOpenJob = { ...byId(4), status: 'Open', publication_status: 'published' };
     const schema = jobPages.jobSchema(sampleOpenJob);
     assert.equal(schema.jobLocationType, 'TELECOMMUTE');
@@ -81,7 +81,7 @@ test('publication keeps closed and pending pages useful without active CTAs or J
         assert.match(html, /View current job listings/);
     }
     const cards = jobPages.renderJobCards(jobs);
-    assert.equal((cards.match(/data-job-id=/g) || []).length, 11);
+    assert.equal((cards.match(/data-job-id=/g) || []).length, 12);
     assert.doesNotMatch(cards, /data-job-id="(?:2|3|4|5|18|19|21|22|23)"/);
     assert.doesNotMatch(cards, /href="[^"?#]*\.html/);
 });
@@ -124,7 +124,7 @@ test('the browser and Node share identical job rules', () => {
 
 test('generated discovery includes only final canonical public URLs and active job slugs', () => {
     const result = discovery.generateDiscovery();
-    assert.equal(result.jobs.length, 11);
+    assert.equal(result.jobs.length, 12);
     for (const entry of [...result.pages, ...result.jobs]) {
         assert.doesNotMatch(entry.url, /\.html(?:$|[?#])/);
         assert.doesNotMatch(entry.url, /\/job\/\d+$/);

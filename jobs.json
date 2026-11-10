@@ -629,5 +629,37 @@
     "applicant_countries": [
       "IN"
     ]
+  },
+  {
+    "id": 32,
+    "title": "HR Executive",
+    "company": "4 AM Tea Brand",
+    "location": "Remote",
+    "salary": "₹10,000 – ₹12,000 / month",
+    "type": "Work From Home",
+    "status": "Open",
+    "description": "Leading FMCG brand 4 AM Tea is hiring an HR Executive (Female Candidates) for remote HR coordination and communication support.\n\nCompensation & Role Details:\n- Monthly Salary: ₹10,000 – ₹12,000 / month\n- Work Arrangement: 100% Work from home\n- Industry: FMCG / Corporate HR Support\n\nMandatory Requirements:\n- Fluent English communication skills (verbal and written)\n- Must know mail handling and email correspondence\n- Basic computer literacy, documentation, and spreadsheet handling\n- Personal laptop or desktop with stable internet connection\n\nKey Responsibilities:\n- Manage day-to-day HR email communications and candidate correspondence\n- Coordinate candidate inquiries, screen profiles, and schedule interviews\n- Maintain structured HR databases, tracker sheets, and candidate records\n- Assist with onboarding documentation and team coordination\n\nCandidate Profile:\n- Profile: Female HR Executive\n- Qualification: 12th Pass or Any Graduate\n- Experience: Freshers and experienced candidates both welcome\n- Strong interpersonal attitude and willingness to grow with the brand",
+    "created_at": "2026-11-10 10:00:00",
+    "categories": [
+      "Work From Home Jobs",
+      "Freshers Jobs",
+      "Customer Support — Chat / Non-Voice"
+    ],
+    "work_mode": "Work From Home",
+    "experience_level": "Fresher",
+    "qualification": "12th Pass / Any Graduate",
+    "languages": "English (Fluent) and Hindi",
+    "shifts": "Day Shift (Work From Home)",
+    "last_updated": "2026-11-10",
+    "industry_ids": [
+      "bpo",
+      "other"
+    ],
+    "accepts_freshers": true,
+    "experience_min": 0,
+    "publication_status": "published",
+    "applicant_countries": [
+      "IN"
+    ]
   }
 ]
