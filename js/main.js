@@ -1,4 +1,23 @@
 /* Shared accessible navigation and candidate actions. No fabricated live counters. */
+/* Cookie/analytics notice for public pages only. */
+(() => {
+  'use strict';
+  const NOTICE_KEY = 'pb_cookie_notice_dismissed';
+  const NO_ANALYTICS_PAGES = ['apply-job','apply-admission','contact','dashboard','admin'];
+  const isAnalyticsPage = !NO_ANALYTICS_PAGES.some(p => window.location.pathname.includes(p));
+  if (isAnalyticsPage && !localStorage.getItem(NOTICE_KEY)) {
+    const bar = document.createElement('div');
+    bar.id = 'cookieNotice';
+    bar.setAttribute('role', 'region');
+    bar.setAttribute('aria-label', 'Cookie notice');
+    bar.innerHTML = '<div class="cookie-notice-inner"><p>We use Google Analytics on public pages to understand how the site is used. No personal form data is tracked. <a href="/privacy-policy#cookies">Learn more</a>.</p><button type="button" id="cookieDismiss" aria-label="Dismiss cookie notice">OK, got it</button></div>';
+    document.body.appendChild(bar);
+    document.getElementById('cookieDismiss').addEventListener('click', () => {
+      try { localStorage.setItem(NOTICE_KEY, '1'); } catch {}
+      bar.remove();
+    });
+  }
+})();
 (() => {
   'use strict';
   if (window.__planBInitialized) return;
