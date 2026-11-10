@@ -61,7 +61,7 @@ test('application save is durable, retries bind to the whole payload and private
 });
 test('resume validation and request limits reject disguised or oversized files',async()=>{
     assert.equal((await request('/api/applications',{method:'POST',body:form({},Buffer.from('<script>bad</script>'),'test.pdf')})).response.status,400);
-    assert.equal((await request('/api/applications',{method:'POST',body:form({},Buffer.alloc(3*1024*1024+1),'large.pdf')})).response.status,413);
+    assert.equal((await request('/api/applications',{method:'POST',body:form({},Buffer.alloc(5*1024*1024+1),'large.pdf')})).response.status,413);
     assert.equal((await request('/api/applications',{method:'POST',body:form({},pdf,'test.svg')})).response.status,400);
     assert.equal((await request('/api/applications',{method:'POST',body:form({},Buffer.from('504b03040000000000000000000000000000000000000000','hex'),'disguised.docx')})).response.status,400);
 });

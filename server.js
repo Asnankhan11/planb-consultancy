@@ -22,7 +22,7 @@ const authConfigured = JWT_SECRET.length >= 32 && JWT_SECRET !== 'supersecretpla
 const cookieOptions = { httpOnly: true, secure: process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL), sameSite: 'strict', path: '/api', maxAge: 8 * 60 * 60 * 1000 };
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: intake.MAX_UPLOAD_BYTES, files: 1, fields: 24, fieldSize: 10000, parts: 26 } });
 const inFlight = new Map();
-const stableRetrySecret = [process.env.APPLICATION_ID_SECRET, JWT_SECRET, process.env.GOOGLE_APPS_SCRIPT_SECRET].find(value => typeof value === 'string' && value.length >= 32);
+const stableRetrySecret = [process.env.APPLICATION_ID_SECRET, JWT_SECRET, process.env.GOOGLE_APPS_SCRIPT_SECRET].find(value => typeof value === 'string' && value.length > 0);
 const retrySecret = stableRetrySecret || crypto.randomBytes(32).toString('hex');
 
 app.disable('x-powered-by');
@@ -31,7 +31,7 @@ app.use(helmet({ contentSecurityPolicy: false }));
 app.use('/api', (req, res, next) => {
     res.set('Cache-Control', 'no-store');
     res.set('X-Robots-Tag', 'noindex, nofollow');
-    if (Number(req.headers['content-length']) > 4 * 1024 * 1024) return res.status(413).json({ success: false, error: 'Request is too large. Upload one file, no larger than 3 MB.' });
+    if (Number(req.headers['content-length']) > 8 * 1024 * 1024) return res.status(413).json({ success: false, error: 'Request is too large. Upload one file, no larger than 5 MB.' });
     next();
 });
 app.use('/api', rateLimit({ windowMs: 15 * 60 * 1000, limit: 500, standardHeaders: 'draft-8', legacyHeaders: false, message: { error: 'Too many requests. Please try again later.' } }));
@@ -78,7 +78,17 @@ app.post('/api/admin/login', sameOrigin, loginLimit, asyncRoute(async (req, res)
 }));
 app.get('/api/admin/session', verifyToken, (req, res) => res.json({ authenticated: true }));
 app.post('/api/admin/logout', sameOrigin, (req, res) => res.clearCookie('pb_admin', { ...cookieOptions, maxAge: undefined }).json({ success: true }));
-app.get('/api/health', asyncRoute(async (req, res) => { await db.ready; res.json({ status: 'ok', storageAvailable: db.available, applicationIntakeAvailable: (db.available || intake.gasConfigured()) && (!(process.env.VERCEL || process.env.NODE_ENV === 'production') || Boolean(stableRetrySecret)) }); }));
+app.get('/api/health', asyncRoute(async (req, res) => {
+    await db.ready;
+    const isProduction = Boolean(process.env.VERCEL || process.env.NODE_ENV === 'production');
+    const intakeAvailable = (db.available || intake.gasConfigured()) && (!isProduction || Boolean(stableRetrySecret));
+    res.json({
+        status: 'ok',
+        storageAvailable: db.available,
+        gasConfigured: intake.gasConfigured(),
+        applicationIntakeAvailable: intakeAvailable
+    });
+}));
 app.get('/api/jobs', (req, res) => res.json(sourceJobs().filter(job => jobsModel.isOpenJob(job)).map(jobsModel.normalizeJob)));
 app.get('/api/categories', (req, res) => res.json(jobsModel.INDUSTRIES.map((item, i) => ({ ...item, icon: 'briefcase', display_order: i }))));
 // Canonical vacancy publication is a reviewed jobs.json change followed by the static build.
@@ -124,37 +134,72 @@ app.post('/api/applications', intakeLimit, upload.single('resume'), asyncRoute(a
         if (!job) throw httpError(404,'This vacancy was not found.');
         if (!jobsModel.isOpenJob(job)) throw httpError(409,'This vacancy is not accepting applications. Please choose an open role.');
     }
-    const fields = { job_id:job?.id || null, name:required(req.body.name,'Name'), mobile:phone(req.body.mobile || req.body.whatsapp), email:email(req.body.email), city:required(req.body.city,'City'), state:text(req.body.state,80), qualification:text(req.body.qualification), experience:text(req.body.experience,100), experienceYears:text(req.body.experienceYears || req.body.experience_years,20), role:job ? `${job.title} — ${job.company}` : 'General career enquiry' };
-    if (!fields.mobile) throw httpError(400,'Enter a valid 10-digit Indian mobile number.');
-    const identity = intake.applicationIdentity(fields,req.file,req.body.requestId || req.body.applicationId || req.body.application_id,retrySecret);
+    const fields = {
+        job_id: job?.id || null,
+        name: required(req.body.name, 'Name'),
+        mobile: phone(req.body.mobile || req.body.whatsapp),
+        email: email(req.body.email),
+        city: required(req.body.city, 'City'),
+        state: text(req.body.state, 80) || 'Maharashtra',
+        qualification: text(req.body.qualification, 120),
+        experience: text(req.body.experience, 100) || 'Fresher',
+        experienceYears: text(req.body.experienceYears || req.body.experience_years, 20) || '0',
+        role: job ? `${job.title} — ${job.company}` : text(req.body.role, 200) || 'General career enquiry'
+    };
+    if (!fields.mobile) throw httpError(400, 'Enter a valid 10-digit Indian mobile number.');
+    const identity = intake.applicationIdentity(fields, req.file, req.body.requestId || req.body.applicationId || req.body.application_id, retrySecret);
     const save = async () => {
         await db.ready;
         let duplicate = false;
+        let gasResult = null;
+
+        // Primary Google Apps Script submission when configured
+        if (intake.gasConfigured()) {
+            gasResult = await intake.submitToGoogleAppsScript({
+                ...fields,
+                whatsapp: fields.mobile,
+                applicationId: identity.id,
+                requestHash: identity.fingerprint,
+                resumeBase64: req.file.buffer.toString('base64'),
+                resumeFileName: req.file.originalname,
+                resumeMimeType: req.file.mimetype
+            });
+            duplicate = Boolean(gasResult?.duplicate);
+        }
+
+        // Database persistence when db is available
         if (db.available) {
-            const existing = await first('SELECT request_hash FROM applications WHERE application_id=?',[identity.id]);
+            const existing = await first('SELECT request_hash FROM applications WHERE application_id=?', [identity.id]);
             if (existing) {
-                if (existing.request_hash !== identity.fingerprint) throw httpError(409,'This retry could not be matched to your submission. Please start a new application.');
+                if (existing.request_hash !== identity.fingerprint) throw httpError(409, 'This retry could not be matched to your submission. Please start a new application.');
                 duplicate = true;
             } else {
                 const fileId = crypto.randomUUID();
                 try {
                     await db.batch([
-                        {sql:'INSERT INTO stored_files (id,bytes,mime_type,filename,private) VALUES (?,?,?,?,1)',args:[fileId,req.file.buffer,req.file.mimetype,req.file.originalname]},
-                        {sql:'INSERT INTO applications (application_id,request_hash,job_id,name,mobile,email,city,qualification,experience,resume_url,resume_file_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)',args:[identity.id,identity.fingerprint,fields.job_id,fields.name,fields.mobile,fields.email,fields.city,fields.qualification,fields.experience,`/api/admin/applications/${identity.id}/resume`,fileId]}
+                        { sql: 'INSERT INTO stored_files (id,bytes,mime_type,filename,private) VALUES (?,?,?,?,1)', args: [fileId, req.file.buffer, req.file.mimetype, req.file.originalname] },
+                        { sql: 'INSERT INTO applications (application_id,request_hash,job_id,name,mobile,email,city,qualification,experience,resume_url,resume_file_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)', args: [identity.id, identity.fingerprint, fields.job_id, fields.name, fields.mobile, fields.email, fields.city, fields.qualification, fields.experience, gasResult?.resumeUrl || `/api/admin/applications/${identity.id}/resume`, fileId] }
                     ]);
                 } catch (error) {
-                    // Another serverless instance may have committed the same retry first.
                     const concurrent = await first('SELECT request_hash FROM applications WHERE application_id=?', [identity.id]);
                     if (!concurrent || concurrent.request_hash !== identity.fingerprint) throw error;
                     duplicate = true;
                 }
             }
-        } else if (intake.gasConfigured()) {
-            const result = await intake.submitToGoogleAppsScript({ ...fields,whatsapp:fields.mobile,applicationId:identity.id,requestHash:identity.fingerprint,resumeBase64:req.file.buffer.toString('base64'),resumeFileName:req.file.originalname,resumeMimeType:req.file.mimetype });
-            duplicate = Boolean(result.duplicate);
-        } else throw httpError(503,'Online applications are temporarily unavailable. Please contact +91 94205 12501 for help.','STORAGE_UNAVAILABLE');
-        const notifications = duplicate ? {admin:'not_repeated',applicant:'not_repeated'} : await intake.notifyApplication(fields,req.file,identity.id);
-        return { success:true,applicationId:identity.id,duplicate,resumeName:req.file.originalname,message:duplicate?'Your application was already recorded.':'Your application has been recorded. Receipt does not guarantee an interview or selection.',notifications };
+        } else if (!intake.gasConfigured()) {
+            throw httpError(503, 'Online applications are temporarily unavailable. Please contact +91 94205 12501 for help.', 'STORAGE_UNAVAILABLE');
+        }
+
+        const notifications = duplicate ? { admin: 'not_repeated', applicant: 'not_repeated' } : await intake.notifyApplication(fields, req.file, identity.id);
+        return {
+            success: true,
+            applicationId: identity.id,
+            duplicate,
+            resumeName: req.file.originalname,
+            resumeUrl: gasResult?.resumeUrl || undefined,
+            message: duplicate ? 'Your application was already recorded.' : 'Your application has been recorded. Receipt does not guarantee an interview or selection.',
+            notifications
+        };
     };
     let pending = inFlight.get(identity.id);
     if (!pending) { pending = save(); inFlight.set(identity.id,pending); }
@@ -273,7 +318,7 @@ app.use((req,res)=>{if(req.path.startsWith('/api/'))return res.status(404).json(
 app.use((error,req,res,next)=>{
     if(res.headersSent)return next(error);
     let status=Number(error.status)||500,message=status<500 || error.expose === true?error.message:'This request could not be completed. Please try again or contact our team.';
-    if(error instanceof multer.MulterError){status=error.code==='LIMIT_FILE_SIZE'?413:400;message=error.code==='LIMIT_FILE_SIZE'?'File must be no larger than 3 MB.':'Upload one file and check the form fields.';}
+    if(error instanceof multer.MulterError){status=error.code==='LIMIT_FILE_SIZE'?413:400;message=error.code==='LIMIT_FILE_SIZE'?'File must be no larger than 5 MB.':'Upload one file and check the form fields.';}
     if(error.code==='STORAGE_UNAVAILABLE'||error.code==='STORAGE_NOT_CONFIRMED'||error.code==='STORAGE_CONFIGURATION')message=error.message;
     if(status>=500)console.error('Request failed.',error.code||'REQUEST_ERROR');
     res.status(status).json({success:false,error:message,...(error.code&&String(error.code).startsWith('STORAGE_')?{code:error.code}:{})});

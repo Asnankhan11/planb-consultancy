@@ -1,9 +1,7 @@
 /* Submission state follows the API receipt. Personal form data stays out of browser storage. */
 (() => {
   'use strict';
-  const result = document.getElementById('formResult');
-  if (!result) return;
-  const MAX_BYTES = 3 * 1024 * 1024;
+  const MAX_BYTES = 5 * 1024 * 1024;
   const WHATSAPP = 'https://wa.me/919420512501';
   const phone = value => {
     let digits = String(value || '').replace(/\D/g,'');
@@ -17,18 +15,27 @@
     try { const url = new URL(value); return url.origin === 'https://wa.me' && url.pathname === '/919420512501' ? url.href : fallback; }
     catch { return fallback; }
   }
-  function show(title, text, { reference, link, linkLabel = 'Open WhatsApp with the team', note, error = false } = {}) {
-    result.replaceChildren(); result.hidden = false; result.className = 'notice';
-    result.setAttribute('role', error ? 'alert' : 'status'); result.setAttribute('tabindex','-1');
-    const heading = document.createElement('h2'); heading.textContent = title; result.append(heading);
-    const paragraph = document.createElement('p'); paragraph.textContent = text; result.append(paragraph);
-    if (reference) { const p = document.createElement('p'); p.textContent = 'Your reference: '; const strong = document.createElement('strong'); strong.textContent = reference; p.append(strong); result.append(p); }
-    if (note) { const p = document.createElement('p'); p.textContent = note; result.append(p); }
-    if (link) {
-      const a = document.createElement('a'); a.href = link; a.textContent = linkLabel; a.className = 'button button-outline'; a.target = '_blank'; a.rel = 'noopener noreferrer'; result.append(a);
-      const p = document.createElement('p'); p.textContent = 'This opens a prepared message. You choose whether to send it in WhatsApp.'; result.append(p);
+  function show(title, text, { reference, link, linkLabel = 'Confirm on WhatsApp', note, error = false } = {}, targetId = 'formResult') {
+    const target = document.getElementById(targetId) || document.getElementById('formResult') || document.getElementById('modalFormResult');
+    if (!target) return;
+    target.replaceChildren(); target.hidden = false; target.className = 'notice';
+    target.setAttribute('role', error ? 'alert' : 'status'); target.setAttribute('tabindex','-1');
+    const heading = document.createElement('h2'); heading.textContent = title; target.append(heading);
+    const paragraph = document.createElement('p'); paragraph.textContent = text; target.append(paragraph);
+    if (reference) {
+      const p = document.createElement('p');
+      p.textContent = 'Application ID: ';
+      const strong = document.createElement('strong');
+      strong.textContent = reference;
+      p.append(strong);
+      target.append(p);
     }
-    result.focus({preventScroll:true}); result.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
+    if (note) { const p = document.createElement('p'); p.textContent = note; target.append(p); }
+    if (link) {
+      const a = document.createElement('a'); a.href = link; a.textContent = linkLabel; a.className = 'button button-whatsapp'; a.target = '_blank'; a.rel = 'noopener noreferrer'; target.append(a);
+      const p = document.createElement('p'); p.textContent = 'Opening WhatsApp sends your details directly to the HR team.'; target.append(p);
+    }
+    target.focus({preventScroll:true}); target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
   }
   function saveReference(reference) {
     try {
@@ -41,7 +48,7 @@
   }
   async function resumeProblem(file) {
     if (!file || !file.size) return 'Choose a non-empty PDF, DOC or DOCX resume.';
-    if (file.size > MAX_BYTES) return 'Your resume is larger than 3 MB. Choose a smaller file.';
+    if (file.size > MAX_BYTES) return 'Your resume is larger than 5 MB. Choose a smaller file.';
     const extension = file.name.split('.').pop().toLowerCase();
     if (!['pdf','doc','docx'].includes(extension)) return 'Choose a PDF, DOC or DOCX resume.';
     const bytes = new Uint8Array(await file.slice(0,8).arrayBuffer());
@@ -57,7 +64,7 @@
   function busy(form, value, label) {
     const button = form.querySelector('button[type="submit"]');
     form.setAttribute('aria-busy',String(value));
-    if (button) { button.disabled = value; button.textContent = value ? 'Sending…' : label; }
+    if (button) { button.disabled = value; button.textContent = value ? 'Submitting…' : label; }
   }
   function validatePhones(form,names) {
     for (const name of names) {
@@ -68,22 +75,18 @@
     }
     return true;
   }
-  // A health check avoids asking candidates to fill a form we already know cannot be received.
-  // Unknown or timed-out checks leave normal submission available; the POST response remains authoritative.
+  // Online health check never hides the form on load
   function applicationAvailability(form, selectedRole) {
     const panel = document.createElement('section');
     panel.id = 'applicationAvailability'; panel.className = 'notice intake-availability';
     panel.setAttribute('aria-label','Online application availability');
     panel.setAttribute('aria-live','polite');
+    panel.hidden = true;
     form.before(panel);
     let unavailable = false, checking = false;
     async function check() {
       if (checking) return;
       checking = true;
-      const retryHadFocus = panel.contains(document.activeElement);
-      panel.hidden = false; panel.setAttribute('aria-busy','true'); panel.replaceChildren();
-      const status = document.createElement('p'); status.textContent = 'Checking online application availability…'; panel.append(status);
-      form.hidden = true;
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(),4000);
       try {
@@ -91,84 +94,157 @@
         const health = response.ok ? await response.json() : null;
         unavailable = health?.applicationIntakeAvailable === false;
       } catch { unavailable = false; }
-      finally { clearTimeout(timeout); checking = false; panel.removeAttribute('aria-busy'); }
-      const restoreFocus = retryHadFocus && (document.activeElement === document.body || panel.contains(document.activeElement));
-      panel.replaceChildren();
+      finally { clearTimeout(timeout); checking = false; }
       if (unavailable) {
+        panel.hidden = false;
+        panel.replaceChildren();
         const role = selectedRole();
         const heading = document.createElement('h2'); heading.textContent = 'Apply with help from the team'; panel.append(heading);
         const text = document.createElement('p');
-        text.textContent = 'Online applications are temporarily unavailable. You can still ask our Akola team about ' + (role ? 'this role' : 'current roles') + ' and the next step.'; panel.append(text);
-        const actions = document.createElement('div'); actions.className = 'actions';
-        const contact = document.createElement('a'); contact.className = 'button button-gold'; contact.textContent = 'Ask about this role on WhatsApp';
-        contact.href = whatsapp(role ? `I would like to apply for ${role.title} (listing #${role.id}). Please help me with the next step.` : 'I would like help finding and applying for a current job listing.');
-        if (!role) contact.textContent = 'Ask the team on WhatsApp';
-        contact.target = '_blank'; contact.rel = 'noopener noreferrer'; actions.append(contact);
-        const retry = document.createElement('button'); retry.type = 'button'; retry.className = 'button button-outline'; retry.textContent = 'Check online availability again';
-        retry.addEventListener('click',check); actions.append(retry); panel.append(actions);
-        const note = document.createElement('p'); note.className = 'small-note'; note.textContent = 'No application has been sent. You choose whether to send the prepared message in WhatsApp.'; panel.append(note);
-        const browse = document.createElement('a'); browse.href = '/jobs'; browse.textContent = 'Choose a different role'; panel.append(browse);
-        if (restoreFocus) retry.focus({preventScroll:true});
+        text.textContent = 'Online intake is experiencing high volume. You can submit the form below or apply directly on WhatsApp:'; panel.append(text);
+        const contact = document.createElement('a'); contact.className = 'button button-whatsapp'; contact.textContent = 'Apply via WhatsApp';
+        contact.href = whatsapp(role ? `Hello HR, I am applying for ${role.title} (Job ID: ${role.id}).` : 'Hello HR, I would like to apply for open job opportunities.');
+        contact.target = '_blank'; contact.rel = 'noopener noreferrer'; panel.append(contact);
       } else {
-        panel.hidden = true; form.hidden = false;
-        if (restoreFocus) form.elements.namedItem('job_id')?.focus({preventScroll:true});
+        panel.hidden = true;
       }
     }
     check();
-    return () => unavailable || checking;
+    return () => unavailable;
   }
   document.querySelectorAll('input[type="tel"]').forEach(input => input.addEventListener('input',() => input.setCustomValidity('')));
 
-  const application = document.getElementById('jobApplicationForm');
-  if (application) {
-    const select = application.elements.namedItem('job_id');
-    const notice = document.getElementById('selectedJobNotice');
-    const requested = new URLSearchParams(location.search).get('job_id') || new URLSearchParams(location.search).get('id');
-    if (requested) {
-      const option = [...select.options].find(item => item.value === requested);
-      if (option && option.value) { select.value = option.value; notice.textContent = 'Selected role: ' + option.textContent; }
-      else { select.value = ''; notice.textContent = 'The requested listing is not accepting applications in the current publication. Choose a different open role.'; }
-      notice.hidden = false;
-    }
-    select.addEventListener('change',() => { if (notice) { notice.textContent = select.value ? 'Selected role: ' + select.selectedOptions[0].textContent : 'Choose an open role before submitting.'; notice.hidden = false; } });
-    const unavailable = applicationAvailability(application,() => select.value ? {id:select.value,title:select.selectedOptions[0].textContent} : null);
-    const resume = application.elements.namedItem('resume');
-    resume.addEventListener('change',() => resume.setCustomValidity(''));
-    let sending = false;
-    // A retry token identifies this in-memory attempt, never an applicant or public application reference.
-    let retryToken = retryId();
-    application.addEventListener('submit',async event => {
-      event.preventDefault(); if (sending || unavailable()) return;
-      if (!validatePhones(application,['mobile']) || !application.reportValidity()) return;
-      const file = resume.files[0];
-      let issue;
-      try { issue = await resumeProblem(file); } catch { issue = 'The resume could not be read. Choose the file again.'; }
-      if (issue) { resume.setCustomValidity(issue); resume.reportValidity(); return; }
-      if (sending) return;
-      if (!select.value || ![...select.options].some(option => option.value === select.value)) return;
-      const jobid = select.value, title = select.selectedOptions[0].textContent;
-      const fallback = whatsapp(`I need help submitting an application for ${title} (listing #${jobid}).`);
-      const label = application.querySelector('button[type="submit"]').textContent;
-      sending = true; busy(application,true,label);
-      try {
-        const payload = new FormData(application); payload.set('requestId',retryToken);
-        const {response,body} = await post('/api/applications',{body:payload});
-        if (!response.ok || body.success !== true || !/^PB-[A-Z0-9-]{8,80}$/.test(body.applicationId || '')) {
-          show('Application not confirmed',body.error || 'We could not confirm that your application was saved. Keep this form open to retry, or contact the team.',{error:true,link:fallback}); return;
+  // Experience level helper
+  function setupExperienceToggle(form) {
+    const expSelect = form.elements.namedItem('experience');
+    const expYears = form.elements.namedItem('experienceYears');
+    if (expSelect && expYears) {
+      expSelect.addEventListener('change', () => {
+        if (expSelect.value === 'Fresher') {
+          expYears.value = '0';
+        } else if (expYears.value === '0') {
+          expYears.value = '1';
         }
-        const stored = saveReference({id:body.applicationId,jobid,title,date:new Date().toISOString()});
-        let note = stored ? 'This reference is saved on this browser. Keep a copy if you plan to clear your browser data.' : 'Browser storage is unavailable. Keep a copy of this reference.';
+      });
+    }
+  }
+
+  // Generic Job Application Form Handler
+  function setupApplicationForm(form, targetResultId) {
+    if (!form) return;
+    setupExperienceToggle(form);
+    const select = form.elements.namedItem('job_id');
+    const notice = document.getElementById('selectedJobNotice');
+    if (select && select.tagName === 'SELECT') {
+      const requested = new URLSearchParams(location.search).get('job_id') || new URLSearchParams(location.search).get('id');
+      if (requested) {
+        const option = [...select.options].find(item => item.value === requested);
+        if (option && option.value) {
+          select.value = option.value;
+          if (notice) { notice.textContent = 'Selected role: ' + option.textContent; notice.hidden = false; }
+        }
+      }
+      select.addEventListener('change',() => {
+        if (notice) {
+          notice.textContent = select.value ? 'Selected role: ' + select.selectedOptions[0].textContent : 'Choose an open role before submitting.';
+          notice.hidden = false;
+        }
+      });
+      applicationAvailability(form, () => select.value ? {id:select.value,title:select.selectedOptions[0].textContent} : null);
+    }
+
+    const resume = form.elements.namedItem('resume');
+    if (resume) resume.addEventListener('change', () => resume.setCustomValidity(''));
+    let sending = false;
+    let retryToken = retryId();
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (sending) return;
+      if (!validatePhones(form, ['mobile']) || !form.reportValidity()) return;
+      if (resume) {
+        const file = resume.files[0];
+        let issue;
+        try { issue = await resumeProblem(file); } catch { issue = 'The resume could not be read. Choose the file again.'; }
+        if (issue) { resume.setCustomValidity(issue); resume.reportValidity(); return; }
+      }
+      if (select && select.tagName === 'SELECT' && (!select.value || ![...select.options].some(option => option.value === select.value))) {
+        select.setCustomValidity('Please select an open job role.');
+        select.reportValidity();
+        return;
+      }
+      const jobid = select ? select.value : '';
+      const title = select && select.selectedOptions ? select.selectedOptions[0].textContent : (form.querySelector('input[name="role"]')?.value || 'Job');
+      const fallback = whatsapp(`Hello HR, I am applying for ${title} (Job ID: ${jobid}).`);
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const label = submitBtn ? submitBtn.textContent : 'Submit application';
+      sending = true; busy(form, true, label);
+      try {
+        const payload = new FormData(form);
+        payload.set('requestId', retryToken);
+        const { response, body } = await post('/api/applications', { body: payload });
+        if (!response.ok || body.success !== true || !/^PB-[A-Z0-9-]{8,80}$/.test(body.applicationId || '')) {
+          show('Application not confirmed', body.error || 'We could not confirm that your application was saved. Keep this form open to retry, or apply directly on WhatsApp.', { error: true, link: fallback }, targetResultId);
+          return;
+        }
+        const stored = saveReference({ id: body.applicationId, jobid, title, date: new Date().toISOString() });
+        let note = stored ? 'This reference is saved on this browser for your records.' : 'Keep a note of your Application ID reference.';
         if (body.notifications?.applicant === 'sent') note += ' A confirmation email was sent.';
-        else if (body.notifications?.applicant === 'failed') note += ' The confirmation email could not be sent; your application is recorded.';
-        show('Application recorded',body.message || 'Your application has been recorded. Hiring decisions remain with the employer.',{reference:body.applicationId,note,link:whatsapp(`Please help me with application reference ${body.applicationId}.`)});
-        application.reset(); application.hidden = true; if (notice) notice.hidden = true; retryToken = retryId();
-        if (!body.duplicate) window.planBTrack?.('application_received',{job_id:jobid,form_type:'job'});
+        const waConfirm = whatsapp(`Hello HR, I have submitted my job application for ${title}. My Application ID is ${body.applicationId}.`);
+        show('Application Submitted Successfully', body.message || 'Your job application has been recorded in Google Sheets and Drive. Our HR team will review your profile.', {
+          reference: body.applicationId,
+          note,
+          link: waConfirm,
+          linkLabel: 'Send Confirmation to HR on WhatsApp'
+        }, targetResultId);
+        form.reset();
+        form.hidden = true;
+        if (notice) notice.hidden = true;
+        retryToken = retryId();
+        if (!body.duplicate) window.planBTrack?.('application_received', { job_id: jobid, form_type: 'job' });
       } catch {
-        show('Application not confirmed','We could not confirm receipt. Keep this form open to retry with the same details, or contact the team before submitting again.',{error:true,link:fallback});
-      } finally { sending = false; busy(application,false,label); }
+        show('Application not confirmed', 'We could not confirm receipt of your application. You can retry with the same form, or contact our HR team directly on WhatsApp.', { error: true, link: fallback }, targetResultId);
+      } finally {
+        sending = false;
+        busy(form, false, label);
+      }
     });
   }
 
+  // Setup full-page application form
+  const application = document.getElementById('jobApplicationForm');
+  if (application) setupApplicationForm(application, 'formResult');
+
+  // Setup modal application form
+  const modalApplication = document.getElementById('modalJobApplicationForm');
+  if (modalApplication) setupApplicationForm(modalApplication, 'modalFormResult');
+
+  // Setup Modal open/close trigger handlers
+  document.querySelectorAll('[data-open-modal]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const modalId = btn.getAttribute('data-open-modal');
+      const dialog = document.getElementById(modalId);
+      if (dialog && typeof dialog.showModal === 'function') {
+        e.preventDefault();
+        dialog.showModal();
+      }
+    });
+  });
+  document.querySelectorAll('[data-close-modal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dialog = btn.closest('dialog');
+      if (dialog && typeof dialog.close === 'function') dialog.close();
+    });
+  });
+  document.querySelectorAll('dialog.job-modal').forEach(dialog => {
+    dialog.addEventListener('click', e => {
+      const rect = dialog.getBoundingClientRect();
+      const inDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+      if (!inDialog && typeof dialog.close === 'function') dialog.close();
+    });
+  });
+
+  // Admission enquiry form
   const admission = document.getElementById('admissionForm');
   if (admission) {
     let sending = false;
@@ -193,6 +269,7 @@
     });
   }
 
+  // Contact draft form
   const contact = document.getElementById('contactDraftForm');
   contact?.addEventListener('submit',event => {
     event.preventDefault(); if (!contact.reportValidity()) return;

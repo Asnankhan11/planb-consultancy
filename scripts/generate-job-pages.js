@@ -111,9 +111,12 @@ function renderPage(job, allJobs) {
     const description = open ? `${job.title} with ${company}. Advertised compensation: ${job.salary || 'to be confirmed'}. Read the listed duties, eligibility, equipment and application details.` : `${job.title}: ${closed ? 'this listing is closed' : 'applications are paused while missing details are confirmed'}. Browse current openings and contact Plan B Careers for guidance.`;
     const rows = [['Advertised compensation', job.salary], ['Work arrangement', job.work_mode], ['Advertised location', job.location], ['Employment type', known(job.employment_type) ? job.employment_type : 'Confirm contract type'], ['Experience', job.experience_level], ['Qualification', job.qualification], ['Languages', job.languages], ['Shift / schedule', job.shifts]].filter(([, v]) => known(v));
     const related = allJobs.filter(other => other.id !== job.id && isOpenJob(other)).slice(0, 3);
+    const waText = encodeURIComponent(`Hello HR, I am applying for ${job.title} (Job ID: ${job.id})`);
+    const waUrl = `https://wa.me/919420512501?text=${waText}`;
+
     const body = `<section class="job-detail-header"><div class="page-shell">
 <nav aria-label="Breadcrumb" class="job-breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/jobs">Jobs</a><span aria-hidden="true">/</span><span>${esc(job.title)}</span></nav>
-<div class="job-heading-row"><div><p class="job-status${open ? ' is-open' : ''}">${esc(status)}</p><h1>${esc(job.title)}</h1><p class="lead">${esc(company)}</p><p class="small-note">Listing #${esc(job.id)}${dateOnly(job.last_updated) ? ' · Source updated ' + esc(dateOnly(job.last_updated)) : ''}</p></div>${open ? `<div class="job-heading-actions"><a class="button button-gold" href="/apply-job?job_id=${esc(job.id)}">Apply for this listing</a><a class="button button-outline" href="#requirements">Read requirements</a></div>` : ''}</div>
+<div class="job-heading-row"><div><p class="job-status${open ? ' is-open' : ''}">${esc(status)}</p><h1>${esc(job.title)}</h1><p class="lead">${esc(company)}</p><p class="small-note">Listing #${esc(job.id)}${dateOnly(job.last_updated) ? ' · Source updated ' + esc(dateOnly(job.last_updated)) : ''}</p></div>${open ? `<div class="job-heading-actions"><a class="button button-gold job-apply-btn" href="/apply-job?job_id=${esc(job.id)}" data-open-modal="jobModal">Apply Now</a><a class="button button-whatsapp" href="${esc(waUrl)}" target="_blank" rel="noopener noreferrer">Apply via WhatsApp</a><a class="button button-outline" href="#requirements">Read requirements</a></div>` : ''}</div>
 <dl class="job-summary"><div class="job-summary-item"><dt>Advertised compensation</dt><dd>${esc(job.salary || 'Confirm compensation')}</dd></div><div class="job-summary-item"><dt>Work arrangement</dt><dd>${esc(job.work_mode || 'Confirm arrangement')}</dd></div><div class="job-summary-item"><dt>Advertised location</dt><dd>${esc(job.location || 'Confirm eligible location')}</dd></div></dl>
 </div></section>
 <div class="page-shell section">
@@ -122,10 +125,79 @@ ${!open ? `<section class="notice"><h2>${closed ? 'Applications are no longer ac
 <section class="detail-section"><h2>The role at a glance</h2><dl class="job-facts">${rows.filter(([label]) => !['Advertised compensation', 'Work arrangement', 'Advertised location'].includes(label)).map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl></section>
 <section id="requirements" class="detail-section"><h2>${known(job.description) ? 'What the work involves' : 'Job description pending'}</h2><p class="small-note">Responsibilities and requirements reproduced from the source listing.</p><div class="prose">${descriptionHtml(job.description) || '<p>A complete description is not available for this record. Contact the team for the actual responsibilities and selection requirements.</p>'}</div></section>
 <section class="detail-section"><h2>Make an informed decision</h2><p>Compensation is reproduced as advertised. An “up to” figure is a ceiling, incentives depend on targets, and commission or task-based work has no stated fixed monthly pay. Confirm take-home pay, deductions, shifts and any training terms in writing.</p>${isRemote(job) && !job.applicant_countries?.length ? '<p>This source record does not state all eligible applicant locations. Confirm that your city or state is accepted before proceeding.</p>' : ''}<p>${esc(facts.fees?.statement || 'Ask for written service terms and any charges before agreeing to a service. Hiring decisions remain with the employer.')}</p><div class="link-row"><a href="/resources/salary-offer-checklist">Salary and offer checklist</a><a href="/resources/remote-job-safety">Remote job safety</a></div></section>
-</div><aside><div class="job-apply-panel"><p class="eyebrow">Your next step</p><h2>${open ? 'Interested in this role?' : 'Find another opportunity.'}</h2><p>${open ? 'Check the requirements, then share your interest. The Akola team can help clarify availability and the selection process.' : 'Explore the open listings or ask the team about the information missing from this record.'}</p>${open ? `<a class="button button-gold" href="/apply-job?job_id=${esc(job.id)}">Apply for this listing</a><button type="button" class="button button-outline" data-save-job="${esc(job.id)}" aria-pressed="false">Save this job</button>` : '<a class="button button-gold" href="/jobs">Browse open jobs</a>'}<a class="job-contact-link" href="/contact">Ask the Plan B team</a><h3 class="job-next-heading">What happens next?</h3><ol class="job-next-steps"><li>Confirm that the role fits your experience and location.</li><li>Prepare your resume and questions about the work.</li><li>Discuss the employer’s selection process with the team.</li></ol><p class="small-note">A listing does not establish an exclusive partnership or guarantee a job offer.</p></div></aside></div>
-<section class="section related-jobs"><div class="section-heading"><div><h2>Keep exploring.</h2><p>Compare a few roles before choosing your next step.</p></div><a href="/jobs">See all current listings</a></div><div class="card-grid">${renderJobCards(related, { save: true })}</div></section></div>`;
+</div><aside><div class="job-apply-panel"><p class="eyebrow">Your next step</p><h2>${open ? 'Interested in this role?' : 'Find another opportunity.'}</h2><p>${open ? 'Check the requirements, then share your interest. The Akola team can help clarify availability and the selection process.' : 'Explore the open listings or ask the team about the information missing from this record.'}</p>${open ? `<div class="job-panel-actions"><a class="button button-gold job-apply-btn" href="/apply-job?job_id=${esc(job.id)}" data-open-modal="jobModal">Apply Now</a><a class="button button-whatsapp" href="${esc(waUrl)}" target="_blank" rel="noopener noreferrer">Apply via WhatsApp</a><button type="button" class="button button-outline" data-save-job="${esc(job.id)}" aria-pressed="false">Save this job</button></div>` : '<a class="button button-gold" href="/jobs">Browse open jobs</a>'}<a class="job-contact-link" href="/contact">Ask the Plan B team</a><h3 class="job-next-heading">What happens next?</h3><ol class="job-next-steps"><li>Confirm that the role fits your experience and location.</li><li>Prepare your resume and questions about the work.</li><li>Discuss the employer’s selection process with the team.</li></ol><p class="small-note">A listing does not establish an exclusive partnership or guarantee a job offer.</p></div></aside></div>
+<section class="section related-jobs"><div class="section-heading"><div><h2>Keep exploring.</h2><p>Compare a few roles before choosing your next step.</p></div><a href="/jobs">See all current listings</a></div><div class="card-grid">${renderJobCards(related, { save: true })}</div></section></div>
+${open ? `<dialog id="jobModal" class="job-modal" aria-labelledby="modalTitle">
+  <div class="job-modal-content">
+    <div class="job-modal-header">
+      <h2 id="modalTitle">Apply for ${esc(job.title)}</h2>
+      <button type="button" class="job-modal-close" data-close-modal aria-label="Close dialog">&times;</button>
+    </div>
+    <p class="small-note">${esc(company)} · Listing #${esc(job.id)}</p>
+    <div id="modalFormResult" role="status" aria-live="polite" hidden></div>
+    <form id="modalJobApplicationForm" class="job-modal-form" enctype="multipart/form-data">
+      <input type="hidden" name="job_id" value="${esc(job.id)}">
+      <div class="form-grid">
+        <div class="field">
+          <label for="m_name">Candidate Name *</label>
+          <input id="m_name" name="name" type="text" required autocomplete="name" maxlength="120" placeholder="Your full name">
+        </div>
+        <div class="field">
+          <label for="m_mobile">WhatsApp Number *</label>
+          <input id="m_mobile" name="mobile" type="tel" required autocomplete="tel" pattern="[+0-9 ()-]{10,18}" maxlength="18" placeholder="10-digit WhatsApp number">
+        </div>
+        <div class="field">
+          <label for="m_email">Email Address *</label>
+          <input id="m_email" name="email" type="email" required autocomplete="email" maxlength="254" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="m_city">City *</label>
+          <input id="m_city" name="city" type="text" required autocomplete="address-level2" maxlength="100" placeholder="e.g. Akola">
+        </div>
+        <div class="field">
+          <label for="m_state">State *</label>
+          <input id="m_state" name="state" type="text" required value="Maharashtra" maxlength="80">
+        </div>
+        <div class="field">
+          <label for="m_qualification">Qualification *</label>
+          <select id="m_qualification" name="qualification" required>
+            <option value="">Select qualification</option>
+            <option value="10th Pass">10th Pass</option>
+            <option value="12th Pass">12th Pass</option>
+            <option value="ITI / Diploma">ITI / Diploma</option>
+            <option value="Graduate (Any)">Graduate (Any)</option>
+            <option value="B.Com / B.Sc / B.A">B.Com / B.Sc / B.A</option>
+            <option value="B.Tech / B.E / BCA">B.Tech / B.E / BCA</option>
+            <option value="Post Graduate / MBA">Post Graduate / MBA</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="m_experience">Experience Type *</label>
+          <select id="m_experience" name="experience" required>
+            <option value="Fresher">Fresher</option>
+            <option value="Experienced">Experienced</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="m_experienceYears">Experience in Years *</label>
+          <input id="m_experienceYears" name="experienceYears" type="number" min="0" max="40" step="0.5" value="0" required placeholder="0 for fresher">
+        </div>
+        <div class="field full">
+          <label for="m_resume">Resume Upload (PDF, DOC or DOCX, maximum 5 MB) *</label>
+          <input id="m_resume" name="resume" type="file" accept=".pdf,.doc,.docx" required>
+          <small>Only upload your own resume (PDF/DOC/DOCX up to 5 MB).</small>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="button button-gold" type="submit">Submit application</button>
+        <button type="button" class="button button-outline" data-close-modal>Cancel</button>
+      </div>
+    </form>
+  </div>
+</dialog>` : ''}`;
     const schema = jobSchema(job);
-    return layout({ title, description, pathname: jobPath(job), body, noindex: !open,
+    return layout({ title, description, pathname: jobPath(job), body, noindex: !open, scripts: open ? ['/js/forms.js'] : [],
         schemas: [breadcrumbs([['Home', '/'], ['Jobs', '/jobs'], [job.title, jobPath(job)]]), ...(schema ? [schema] : [])] });
 }
 function generateJobPages() {

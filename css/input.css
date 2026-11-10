@@ -499,6 +499,109 @@ input::placeholder,textarea::placeholder { color: var(--slate); opacity: 1; }
 .job-prep-strip { padding-top: 2rem; margin-top: 2rem; border-top: 1px solid var(--line); }
 .job-prep-strip h2 { font-size: 1.7rem; }
 .job-prep-strip p { color: var(--slate); }
+
+/* ── JOB CARD BUTTONS & WHATSAPP ── */
+.job-card-cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-top: .8rem;
+  margin-bottom: .2rem;
+}
+@media (min-width: 480px) {
+  .job-card-cta-row {
+    flex-direction: row;
+  }
+}
+.job-card-cta-row .button {
+  flex: 1;
+  min-height: 42px;
+  padding: .5rem .8rem;
+  font-size: .86rem;
+  text-align: center;
+  justify-content: center;
+}
+.job-panel-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  margin-top: .8rem;
+}
+.button-whatsapp {
+  background: #25D366 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #1EBE5D !important;
+  font-weight: 650;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--duration-fast, 0.2s), transform var(--duration-fast, 0.2s);
+}
+.button-whatsapp:hover, .button-whatsapp:focus {
+  background: #1EBE5D !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+}
+
+/* ── ACCESSIBLE JOB APPLICATION MODAL ── */
+.job-modal {
+  border: none;
+  border-radius: 1.2rem;
+  padding: 0;
+  max-width: 640px;
+  width: 94vw;
+  box-shadow: 0 25px 60px rgba(6, 29, 69, 0.28);
+  background: var(--white, #FFFFFF);
+  margin: auto;
+}
+.job-modal::backdrop {
+  background: rgba(6, 29, 69, 0.65);
+  backdrop-filter: blur(4px);
+}
+.job-modal-content {
+  padding: 1.8rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.job-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: .3rem;
+}
+.job-modal-header h2 {
+  font-size: 1.45rem;
+  margin: 0;
+  color: var(--navy, #061D45);
+}
+.job-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--slate, #526174);
+  padding: .2rem .5rem;
+  border-radius: .4rem;
+}
+.job-modal-close:hover {
+  color: var(--navy, #061D45);
+  background: rgba(6, 29, 69, 0.05);
+}
+.job-modal-form {
+  margin-top: 1rem;
+}
+.job-modal .modal-actions {
+  display: flex;
+  gap: .8rem;
+  margin-top: 1.4rem;
+}
+.job-modal .modal-actions .button {
+  flex: 1;
+}
+
 /* A single arrival sequence; nothing waits for JavaScript or scroll to become visible. */
 @media (prefers-reduced-motion: no-preference) {
   .hero-copy { animation: arrive 500ms cubic-bezier(.2,.7,.3,1) both; }
