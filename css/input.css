@@ -490,10 +490,57 @@ input::placeholder,textarea::placeholder { color: var(--slate); opacity: 1; }
   .spotlight-actions { grid-template-columns: minmax(0,1fr); }
   .spotlight-card .spotlight-actions .save-job { width: 100%; }
 }
-.career-track-record { display: flex; flex-wrap: wrap; gap: 1rem 2.4rem; border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.2rem; }
-.career-track-record > div { display: flex; flex-direction: column-reverse; }
-.career-track-record dt { color: var(--slate); font-size: .8rem; }
-.career-track-record dd { color: var(--navy); font: 650 1.7rem/1.2 var(--font-heading); }
+.career-track-record {
+  display: flex;
+  align-items: stretch;
+  gap: 1.25rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.25rem;
+  margin-top: 1.5rem;
+}
+.career-track-record .track-record-item {
+  display: flex;
+  flex-direction: column-reverse;
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.85rem 1.4rem;
+  min-width: 160px;
+  box-shadow: 0 1px 3px rgba(6, 29, 69, 0.04);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.career-track-record .track-record-item:hover {
+  border-color: var(--amber);
+  box-shadow: 0 4px 12px -2px rgba(6, 29, 69, 0.08);
+}
+.career-track-record dt {
+  color: var(--slate);
+  font-size: 0.78rem;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  margin-top: 0.25rem;
+}
+.career-track-record dd {
+  color: var(--navy);
+  font: 700 1.85rem/1.1 var(--font-heading);
+  letter-spacing: -0.02em;
+}
+@media (max-width: 640px) {
+  .career-track-record {
+    gap: 0.75rem;
+  }
+  .career-track-record .track-record-item {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.75rem 1rem;
+  }
+  .career-track-record dd {
+    font-size: 1.5rem;
+  }
+  .career-track-record dt {
+    font-size: 0.72rem;
+  }
+}
 .job-eligibility { color: var(--navy); font-size: .85rem; }
 .job-eligibility span { color: var(--slate); display: block; font-size: .72rem; }
 .job-prep-strip { padding-top: 2rem; margin-top: 2rem; border-top: 1px solid var(--line); }
