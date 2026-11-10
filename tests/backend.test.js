@@ -33,9 +33,9 @@ test('private source files, database and configuration never become public stati
     assert.equal((await request('/this-page-does-not-exist.html',{redirect:'manual'})).response.status,404);
 });
 test('canonical open jobs match their source IDs and reject closed/pending applications',async()=>{
-    const {body}=await request('/api/jobs');assert.ok(body.length>0);assert.ok(body.every(job=>job.status==='Open'));assert.ok(!body.some(job=>[2,3,22,23].includes(job.id)));
+    const {body}=await request('/api/jobs');assert.ok(body.length>0);assert.ok(body.every(job=>job.status==='Open'));assert.ok(!body.some(job=>[2,3,4,5,18,19,21,22,23].includes(job.id)));
     const actual=(await db.query('SELECT id FROM jobs ORDER BY id')).rows.map(row=>row.id);const expected=require('../jobs.json').map(job=>job.id).sort((a,b)=>a-b);assert.deepEqual(actual,expected);
-    for(const id of [2,3,22,23])assert.equal((await request('/api/applications',{method:'POST',body:form({job_id:String(id)})})).response.status,409);
+    for(const id of [2,3,4,5,18,19,21,22,23])assert.equal((await request('/api/applications',{method:'POST',body:form({job_id:String(id)})})).response.status,409);
     assert.equal((await request('/api/applications',{method:'POST',body:form({job_id:'999999'})})).response.status,404);
 });
 test('admin actions require a real configured account and use an HttpOnly session',async()=>{
@@ -61,7 +61,7 @@ test('application save is durable, retries bind to the whole payload and private
 });
 test('resume validation and request limits reject disguised or oversized files',async()=>{
     assert.equal((await request('/api/applications',{method:'POST',body:form({},Buffer.from('<script>bad</script>'),'test.pdf')})).response.status,400);
-    assert.equal((await request('/api/applications',{method:'POST',body:form({},Buffer.alloc(3*1024*1024+1),'large.pdf')})).response.status,413);
+    assert.equal((await request('/api/applications',{method:'POST',body:form({},Buffer.alloc(5*1024*1024+1),'large.pdf')})).response.status,413);
     assert.equal((await request('/api/applications',{method:'POST',body:form({},pdf,'test.svg')})).response.status,400);
     assert.equal((await request('/api/applications',{method:'POST',body:form({},Buffer.from('504b03040000000000000000000000000000000000000000','hex'),'disguised.docx')})).response.status,400);
 });

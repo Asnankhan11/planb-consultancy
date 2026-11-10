@@ -5,7 +5,7 @@ const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(item=>item.isDi
 const files=walk(root), errors=[];let pages=0,schemas=0,links=0;
 const exists=url=>{let p;try{p=decodeURIComponent(new URL(url,'https://planbcareers.in').pathname);}catch{return null;}const candidate=path.join(root,p==='/'?'index.html':p.replace(/^\//,''));return [candidate,candidate+'.html',path.join(candidate,'index.html')].find(f=>fs.existsSync(f)&&fs.statSync(f).isFile());};
 for(const file of files){
- const rel=path.relative(root,file);
+ const rel=path.relative(root,file).split(path.sep).join('/');
  if(/(?:^|\/)(?:node_modules|lib|data|api|docs|tests|\.git)(?:\/|$)|\.(?:sqlite|gs|env|md)$|(?:^|\/)(?:server|database)\.js$|images\/(?:team|salary|receipts|offer-letters|payment-proofs|certificates|reviews)\//.test(rel))errors.push('Private file published: '+rel);
  if(!rel.endsWith('.html')||rel.startsWith('google'))continue;
  pages++;const $=cheerio.load(fs.readFileSync(file,'utf8'));

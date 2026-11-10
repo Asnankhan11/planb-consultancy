@@ -67,7 +67,7 @@
     const filter = values(), query = filter.q.trim().toLowerCase(), saved = readSaved();
     const filtered = jobs.filter(job => {
       const experience = rules.getExperience(job);
-      const searchable = [job.title, job.company, job.description, job.qualification, job.languages, job.location, job.industry, ...(job.categories || [])].join(' ').toLowerCase();
+      const searchable = [job.title, job.company, job.description, job.qualification, job.languages, job.location, job.industry, job.type, ...(job.categories || [])].join(' ').toLowerCase();
       return (!query || searchable.includes(query)) && rules.matchesIndustry(job, filter.industry) &&
         (filter.mode === 'all' || (filter.mode === 'remote' ? rules.isRemote(job) : !rules.isRemote(job))) &&
         (filter.experience === 'all' || (filter.experience === 'fresher' ? rules.acceptsFreshers(job) : experience.min > 0)) &&

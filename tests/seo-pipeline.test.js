@@ -18,7 +18,7 @@ function schemas(html) {
 }
 
 test('one availability rule rejects closed, incomplete, unknown and expired records', () => {
-    assert.deepEqual(jobs.filter(job => data.isOpenJob(job)).map(job => job.id), [4, 5, 10, 12, 17, 18, 19, 21]);
+    assert.deepEqual(jobs.filter(job => data.isOpenJob(job)).map(job => job.id), [10, 12, 17, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]);
     for (const status of ['Closed', 'Details pending', '', null, undefined]) assert.equal(data.isOpenJob({ status }), false);
     assert.equal(data.isOpenJob({ status: 'Open', publication_status: 'details_pending' }), false);
     assert.equal(data.isOpenJob({ status: 'Open', valid_through: '2026-10-01' }, '2026-11-08'), false);
@@ -35,7 +35,7 @@ test('shared taxonomy and experience eligibility fix filters without using quali
     assert.equal(data.acceptsFreshers(byId(19)), false);
     assert.equal(data.acceptsFreshers(byId(18)), false);
     assert.equal(data.acceptsFreshers({ qualification: '12th Pass', experience_level: '2–5 Years' }), false);
-    assert.deepEqual(hubs.categoryJobs(hubs.categories.find(c => c.slug === 'freshers'), jobs).map(job => job.id), [4, 5, 10, 12, 17, 21]);
+    assert.deepEqual(hubs.categoryJobs(hubs.categories.find(c => c.slug === 'freshers'), jobs).map(job => job.id), [10, 12, 17, 24, 25, 26, 27, 28, 29, 30, 32]);
 });
 
 test('salary markup and filters preserve annual/monthly basis and never invent an up-to minimum', () => {
@@ -54,8 +54,9 @@ test('salary markup and filters preserve annual/monthly basis and never invent a
 });
 
 test('Google job markup requires actual facts and omits unsupported optional fields', () => {
-    assert.deepEqual(jobs.filter(job => jobPages.jobSchema(job)).map(job => job.id), [4, 19]);
-    const schema = jobPages.jobSchema(byId(4));
+    assert.deepEqual(jobs.filter(job => jobPages.jobSchema(job)).map(job => job.id), [24, 25, 27, 29, 30, 31, 32]);
+    const sampleOpenJob = { ...byId(4), status: 'Open', publication_status: 'published' };
+    const schema = jobPages.jobSchema(sampleOpenJob);
     assert.equal(schema.jobLocationType, 'TELECOMMUTE');
     assert.equal(schema.applicantLocationRequirements[0].name, 'IN');
     assert.equal(schema.employmentType, undefined);
@@ -64,24 +65,24 @@ test('Google job markup requires actual facts and omits unsupported optional fie
     assert.equal(schema.hiringOrganization.sameAs, undefined);
     assert.equal(schema.hiringOrganization.logo, undefined);
     assert.equal(schema.baseSalary.value.maxValue, 30000);
-    assert.equal(jobPages.jobSchema({ ...byId(4), company: 'Not specified' }), null);
-    assert.equal(jobPages.jobSchema({ ...byId(4), description: null }), null);
-    assert.equal(jobPages.jobSchema({ ...byId(4), applicant_countries: [] }), null);
+    assert.equal(jobPages.jobSchema({ ...sampleOpenJob, company: 'Not specified' }), null);
+    assert.equal(jobPages.jobSchema({ ...sampleOpenJob, description: null }), null);
+    assert.equal(jobPages.jobSchema({ ...sampleOpenJob, applicant_countries: [] }), null);
     assert.equal(jobPages.dateOnly('2026-02-30'), null);
     assert.equal(jobPages.dateOnly('2026-13-01'), null);
 });
 
 test('publication keeps closed and pending pages useful without active CTAs or JobPosting', () => {
-    for (const id of [2, 3, 22, 23]) {
+    for (const id of [2, 3, 4, 5, 18, 19, 21, 22, 23]) {
         const html = jobPages.renderPage(byId(id), jobs);
         assert.match(html, /noindex,follow/);
         assert.doesNotMatch(html, new RegExp('/apply-job\\?job_id=' + id + '(?:"|&|$)'));
         assert.equal(schemas(html).some(schema => schema['@type'] === 'JobPosting'), false);
-        assert.match(html, /Browse open jobs/);
+        assert.match(html, /View current job listings/);
     }
     const cards = jobPages.renderJobCards(jobs);
-    assert.equal((cards.match(/data-job-id=/g) || []).length, 8);
-    assert.doesNotMatch(cards, /data-job-id="(?:2|3|22|23)"/);
+    assert.equal((cards.match(/data-job-id=/g) || []).length, 13);
+    assert.doesNotMatch(cards, /data-job-id="(?:2|3|4|5|18|19|21|22|23)"/);
     assert.doesNotMatch(cards, /href="[^"?#]*\.html/);
 });
 
@@ -123,13 +124,13 @@ test('the browser and Node share identical job rules', () => {
 
 test('generated discovery includes only final canonical public URLs and active job slugs', () => {
     const result = discovery.generateDiscovery();
-    assert.equal(result.jobs.length, 8);
+    assert.equal(result.jobs.length, 13);
     for (const entry of [...result.pages, ...result.jobs]) {
         assert.doesNotMatch(entry.url, /\.html(?:$|[?#])/);
         assert.doesNotMatch(entry.url, /\/job\/\d+$/);
         assert.doesNotMatch(entry.url, /\/(apply-job|apply-admission|dashboard|verify-candidate|job-details)$/);
     }
-    for (const id of [2, 3, 22, 23]) assert.equal(result.jobs.some(entry => entry.url === 'https://planbcareers.in' + data.jobPath(byId(id))), false);
+    for (const id of [2, 3, 4, 5, 18, 19, 21, 22, 23]) assert.equal(result.jobs.some(entry => entry.url === 'https://planbcareers.in' + data.jobPath(byId(id))), false);
     assert.ok(result.pages.some(entry => entry.url.endsWith('/jobs-vidarbha')));
     assert.ok(result.pages.some(entry => entry.url.endsWith('/resources/remote-job-safety')));
     const robots = fs.readFileSync(path.join(ROOT, 'robots.txt'), 'utf8');
