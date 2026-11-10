@@ -292,7 +292,7 @@ app.delete('/api/admin/success-stories/:id',verifyToken,asyncRoute(async(req,res
 const distribution = path.join(__dirname, 'dist');
 const publicRoot = fs.existsSync(path.join(distribution, 'index.html')) || process.env.VERCEL || process.env.NODE_ENV === 'production' ? distribution : __dirname;
 const rootPages=new Set(['index','404','about','admissions','service-fees','jobs-vidarbha','admissions-impact','apply-admission','apply-job','business','connect','contact','dashboard','disclaimer','fast-track','job-details','jobs','jobs-impact','legal','privacy-policy','refund-policy','resources','students-earning-impact','success-stories','terms','trust','verify-candidate','women-wfh','women-wfh-impact','job-consultancy-akola','jobs-in-akola','jobs-in-vidarbha','career-guidance-akola','recruitment-services-akola','admission-guidance-akola']);
-const publicFiles=new Set(['resources/Plan_B_Careers_ATS_Resume_Template_Branded.docx','jobs.json','robots.txt','sitemap.xml','sitemap-jobs.xml','llms.txt','llms-full.txt','7f2e1a498b3c419fa82b5e90d12e847c.txt','googlef9c124eb9271294f.html']);
+const publicFiles=new Set(['resources/Plan_B_Careers_ATS_Resume_Template_Branded.docx','jobs.json','robots.txt','sitemap.xml','sitemap-jobs.xml','llms.txt','llms-full.txt','7f2e1a498b3c419fa82b5e90d12e847c.txt','googlef9c124eb9271294f.html','favicon.ico','icon.png','planbcareers-icon-512.png']);
 app.use((req,res,next)=>{
     if(!['GET','HEAD'].includes(req.method)||req.path.startsWith('/api/'))return next();
     let requested;try{requested=decodeURIComponent(req.path);}catch{return next();}
