@@ -18,7 +18,7 @@ function schemas(html) {
 }
 
 test('one availability rule rejects closed, incomplete, unknown and expired records', () => {
-    assert.deepEqual(jobs.filter(job => data.isOpenJob(job)).map(job => job.id), [10, 12, 17, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]);
+    assert.deepEqual(jobs.filter(job => data.isOpenJob(job)).map(job => job.id), [10, 12, 17, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]);
     for (const status of ['Closed', 'Details pending', '', null, undefined]) assert.equal(data.isOpenJob({ status }), false);
     assert.equal(data.isOpenJob({ status: 'Open', publication_status: 'details_pending' }), false);
     assert.equal(data.isOpenJob({ status: 'Open', valid_through: '2026-10-01' }, '2026-11-08'), false);
@@ -81,7 +81,7 @@ test('publication keeps closed and pending pages useful without active CTAs or J
         assert.match(html, /View current job listings/);
     }
     const cards = jobPages.renderJobCards(jobs);
-    assert.equal((cards.match(/data-job-id=/g) || []).length, 13);
+    assert.equal((cards.match(/data-job-id=/g) || []).length, 17);
     assert.doesNotMatch(cards, /data-job-id="(?:2|3|4|5|18|19|21|22|23)"/);
     assert.doesNotMatch(cards, /href="[^"?#]*\.html/);
 });
@@ -124,7 +124,7 @@ test('the browser and Node share identical job rules', () => {
 
 test('generated discovery includes only final canonical public URLs and active job slugs', () => {
     const result = discovery.generateDiscovery();
-    assert.equal(result.jobs.length, 13);
+    assert.equal(result.jobs.length, 17);
     for (const entry of [...result.pages, ...result.jobs]) {
         assert.doesNotMatch(entry.url, /\.html(?:$|[?#])/);
         assert.doesNotMatch(entry.url, /\/job\/\d+$/);
