@@ -54,7 +54,12 @@ test('salary markup and filters preserve annual/monthly basis and never invent a
 });
 
 test('Google job markup requires actual facts and omits unsupported optional fields', () => {
-    assert.deepEqual(jobs.filter(job => jobPages.jobSchema(job)).map(job => job.id), [24, 25, 27, 29, 30, 31, 32]);
+    assert.deepEqual(jobs.filter(job => jobPages.jobSchema(job)).map(job => job.id), [24, 25, 27, 29, 30, 31, 32, 34, 35, 36]);
+    const mumbaiSchema = jobPages.jobSchema(byId(34));
+    assert.equal(mumbaiSchema.jobLocation.address.addressLocality, 'Mumbai');
+    assert.equal(mumbaiSchema.jobLocation.address.addressRegion, 'Maharashtra');
+    assert.equal(mumbaiSchema.jobLocation.address.addressCountry, 'IN');
+    assert.equal(mumbaiSchema.jobLocationType, undefined);
     const sampleOpenJob = { ...byId(4), status: 'Open', publication_status: 'published' };
     const schema = jobPages.jobSchema(sampleOpenJob);
     assert.equal(schema.jobLocationType, 'TELECOMMUTE');
@@ -94,7 +99,13 @@ test('local hubs never turn remote inventory into local offices or local job cou
     assert.match(akolaHtml, /Remote alternatives to check/);
     assert.match(akolaHtml, /City Kotwali/);
     assert.doesNotMatch(akolaHtml, /Garkheda|Civil Lines|431005|444001/);
-    for (const config of hubs.categories.filter(c => c.city && c.city !== 'Akola')) {
+    const mumbai = hubs.categories.find(c => c.city === 'Mumbai');
+    assert.deepEqual(hubs.categoryJobs(mumbai, jobs).map(job => job.id), [34, 35, 36]);
+    const mumbaiHtml = hubs.renderCategory(mumbai, jobs);
+    assert.match(mumbaiHtml, /3 open listings with a stated Mumbai workplace/);
+    assert.doesNotMatch(mumbaiHtml, /noindex,follow/);
+    assert.equal(schemas(mumbaiHtml).some(schema => schema['@type'] === 'LocalBusiness'), false);
+    for (const config of hubs.categories.filter(c => c.city && c.city !== 'Akola' && hubs.categoryJobs(c, jobs).length === 0)) {
         const html = hubs.renderCategory(config, jobs);
         assert.match(html, /noindex,follow/);
         assert.equal(schemas(html).some(schema => schema['@type'] === 'LocalBusiness'), false);
