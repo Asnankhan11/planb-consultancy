@@ -98,13 +98,12 @@
       if (unavailable) {
         panel.hidden = false;
         panel.replaceChildren();
-        const role = selectedRole();
         const heading = document.createElement('h2'); heading.textContent = 'Apply with help from the team'; panel.append(heading);
         const text = document.createElement('p');
-        text.textContent = 'Online intake is experiencing high volume. You can submit the form below or apply directly on WhatsApp:'; panel.append(text);
-        const contact = document.createElement('a'); contact.className = 'button button-whatsapp'; contact.textContent = 'Apply via WhatsApp';
-        contact.href = whatsapp(role ? `Hello HR, I am applying for ${role.title} (Job ID: ${role.id}).` : 'Hello HR, I would like to apply for open job opportunities.');
-        contact.target = '_blank'; contact.rel = 'noopener noreferrer'; panel.append(contact);
+        text.textContent = 'Online intake is experiencing high volume. Please try submitting the form below, or contact our team for assistance.'; panel.append(text);
+        const contact = document.createElement('a'); contact.className = 'button button-outline'; contact.textContent = 'Ask the Plan B team';
+        contact.href = '/contact';
+        panel.append(contact);
       } else {
         panel.hidden = true;
       }
@@ -175,7 +174,6 @@
       }
       const jobid = select ? select.value : '';
       const title = select && select.selectedOptions ? select.selectedOptions[0].textContent : (form.querySelector('input[name="role"]')?.value || 'Job');
-      const fallback = whatsapp(`Hello HR, I am applying for ${title} (Job ID: ${jobid}).`);
       const submitBtn = form.querySelector('button[type="submit"]');
       const label = submitBtn ? submitBtn.textContent : 'Submit application';
       sending = true; busy(form, true, label);
@@ -184,7 +182,7 @@
         payload.set('requestId', retryToken);
         const { response, body } = await post('/api/applications', { body: payload });
         if (!response.ok || body.success !== true || !/^PB-[A-Z0-9-]{8,80}$/.test(body.applicationId || '')) {
-          show('Application not confirmed', body.error || 'We could not confirm that your application was saved. Keep this form open to retry, or apply directly on WhatsApp.', { error: true, link: fallback }, targetResultId);
+          show('Application not confirmed', body.error || 'We could not confirm that your application was saved. Please keep this form open and try again.', { error: true }, targetResultId);
           return;
         }
         const stored = saveReference({ id: body.applicationId, jobid, title, date: new Date().toISOString() });
@@ -203,7 +201,7 @@
         retryToken = retryId();
         if (!body.duplicate) window.planBTrack?.('application_received', { job_id: jobid, form_type: 'job' });
       } catch {
-        show('Application not confirmed', 'We could not confirm receipt of your application. You can retry with the same form, or contact our HR team directly on WhatsApp.', { error: true, link: fallback }, targetResultId);
+        show('Application not confirmed', 'We could not confirm receipt of your application. Please try submitting the form again, or contact our team for assistance.', { error: true }, targetResultId);
       } finally {
         sending = false;
         busy(form, false, label);

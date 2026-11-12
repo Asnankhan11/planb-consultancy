@@ -89,6 +89,11 @@ test('publication keeps closed and pending pages useful without active CTAs or J
     assert.equal((cards.match(/data-job-id=/g) || []).length, 17);
     assert.doesNotMatch(cards, /data-job-id="(?:2|3|4|5|18|19|21|22|23)"/);
     assert.doesNotMatch(cards, /href="[^"?#]*\.html/);
+    assert.match(cards, /Apply Now/);
+    assert.doesNotMatch(cards, /Apply via WhatsApp/);
+    const openDetailHtml = jobPages.renderPage(byId(34), jobs);
+    assert.match(openDetailHtml, /Apply Now/);
+    assert.doesNotMatch(openDetailHtml, /Apply via WhatsApp/);
 });
 
 test('local hubs never turn remote inventory into local offices or local job counts', () => {
