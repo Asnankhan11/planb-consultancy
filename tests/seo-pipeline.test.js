@@ -18,7 +18,7 @@ function schemas(html) {
 }
 
 test('one availability rule rejects closed, incomplete, unknown and expired records', () => {
-    assert.deepEqual(jobs.filter(job => data.isOpenJob(job)).map(job => job.id), [10, 12, 17, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]);
+    assert.deepEqual(jobs.filter(job => data.isOpenJob(job)).map(job => job.id), [10, 12, 17, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]);
     for (const status of ['Closed', 'Details pending', '', null, undefined]) assert.equal(data.isOpenJob({ status }), false);
     assert.equal(data.isOpenJob({ status: 'Open', publication_status: 'details_pending' }), false);
     assert.equal(data.isOpenJob({ status: 'Open', valid_through: '2026-10-01' }, '2026-11-08'), false);
@@ -86,7 +86,7 @@ test('publication keeps closed and pending pages useful without active CTAs or J
         assert.match(html, /View current job listings/);
     }
     const cards = jobPages.renderJobCards(jobs);
-    assert.equal((cards.match(/data-job-id=/g) || []).length, 17);
+    assert.equal((cards.match(/data-job-id=/g) || []).length, 18);
     assert.doesNotMatch(cards, /data-job-id="(?:2|3|4|5|18|19|21|22|23)"/);
     assert.doesNotMatch(cards, /href="[^"?#]*\.html/);
     assert.match(cards, /Apply Now/);
@@ -98,16 +98,16 @@ test('publication keeps closed and pending pages useful without active CTAs or J
 
 test('local hubs never turn remote inventory into local offices or local job counts', () => {
     const akola = hubs.categories.find(c => c.city === 'Akola');
-    assert.equal(hubs.categoryJobs(akola, jobs).length, 0);
+    assert.equal(hubs.categoryJobs(akola, jobs).length, 1);
     const akolaHtml = hubs.renderCategory(akola, jobs);
-    assert.match(akolaHtml, /0 open listings with a stated Akola workplace/);
+    assert.match(akolaHtml, /1 open listing with a stated Akola workplace/);
     assert.match(akolaHtml, /Remote alternatives to check/);
     assert.match(akolaHtml, /City Kotwali/);
     assert.doesNotMatch(akolaHtml, /Garkheda|Civil Lines|431005|444001/);
     const mumbai = hubs.categories.find(c => c.city === 'Mumbai');
-    assert.deepEqual(hubs.categoryJobs(mumbai, jobs).map(job => job.id), [34, 35, 36]);
+    assert.deepEqual(hubs.categoryJobs(mumbai, jobs).map(job => job.id), [34, 35, 36, 38]);
     const mumbaiHtml = hubs.renderCategory(mumbai, jobs);
-    assert.match(mumbaiHtml, /3 open listings with a stated Mumbai workplace/);
+    assert.match(mumbaiHtml, /4 open listings with a stated Mumbai workplace/);
     assert.doesNotMatch(mumbaiHtml, /noindex,follow/);
     assert.equal(schemas(mumbaiHtml).some(schema => schema['@type'] === 'LocalBusiness'), false);
     for (const config of hubs.categories.filter(c => c.city && c.city !== 'Akola' && hubs.categoryJobs(c, jobs).length === 0)) {
@@ -140,7 +140,7 @@ test('the browser and Node share identical job rules', () => {
 
 test('generated discovery includes only final canonical public URLs and active job slugs', () => {
     const result = discovery.generateDiscovery();
-    assert.equal(result.jobs.length, 17);
+    assert.equal(result.jobs.length, 18);
     for (const entry of [...result.pages, ...result.jobs]) {
         assert.doesNotMatch(entry.url, /\.html(?:$|[?#])/);
         assert.doesNotMatch(entry.url, /\/job\/\d+$/);
