@@ -7,7 +7,7 @@ const shared = require('../lib/site-layout');
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 const pages = ['index','404','about','admissions','apply-job','business','contact','dashboard','disclaimer','fast-track','job-details','jobs','legal','privacy-policy','refund-policy','resources','service-fees','success-stories','terms','trust','verify-candidate','women-wfh','career-guidance-akola','jobs-vidarbha','connect','apply-admission','admissions-impact','jobs-impact','women-wfh-impact','students-earning-impact'];
-const files = pages.map(name => name + '.html').concat(['admin/index.html','jobs.json','robots.txt','sitemap.xml','sitemap-jobs.xml','llms.txt','llms-full.txt','7f2e1a498b3c419fa82b5e90d12e847c.txt','googlef9c124eb9271294f.html','css/styles.css','css/white-theme.css','assets/fonts/bricolage-grotesque-latin.woff2','assets/fonts/OFL-Bricolage-Grotesque.txt','images/optimized/planb-logo.webp','images/optimized/founder.webp','resources/Plan_B_Careers_ATS_Resume_Template_Branded.docx','favicon.ico','icon.png','planbcareers-icon-512.png']);
+const files = pages.map(name => name + '.html').concat(['admin/index.html','jobs.json','robots.txt','sitemap.xml','sitemap-jobs.xml','llms.txt','llms-full.txt','7f2e1a498b3c419fa82b5e90d12e847c.txt','googlef9c124eb9271294f.html','css/styles.css','css/white-theme.css','assets/fonts/bricolage-grotesque-latin.woff2','assets/fonts/OFL-Bricolage-Grotesque.txt','images/optimized/planb-logo.webp','images/optimized/founder.webp','images/logos/Plan-B-Careers-logo.png','images/avatars/asnan-khan-founder.jpeg','images/avatars/female-avatar-hijab.jpg','images/avatars/Mustaqueem-saad-recruitment.jpeg','images/qr-connect.svg','resources/Plan_B_Careers_ATS_Resume_Template_Branded.docx','favicon.ico','icon.png','planbcareers-icon-512.png']);
 for (const dir of ['job','jobs','resources']) for (const filename of fs.readdirSync(path.join(root,dir)).sort()) if (/^[a-z0-9-]+\.html$/.test(filename)) files.push(`${dir}/${filename}`);
 for (const name of ['main','jobs','jobs-data','job-card','forms','candidate-workspace','job-redirect','admin','analytics']) files.push(`js/${name}.js`);
 fs.rmSync(dist,{recursive:true,force:true});
@@ -17,7 +17,7 @@ for (const relative of new Set(files)) {
   const target = path.join(dist,relative);fs.mkdirSync(path.dirname(target),{recursive:true});
   if (!relative.endsWith('.html') || relative.startsWith('google')) {fs.copyFileSync(source,target);continue;}
   const $ = cheerio.load(fs.readFileSync(source,'utf8'));
-  if (!relative.startsWith('admin/')) {
+  if (!relative.startsWith('admin/') && relative !== 'connect.html') {
     $('body > .skip-link, body > .utility-bar, body > header.site-header').remove();
     $('body').prepend(shared.header());
     $('link[rel="icon"], link[rel="shortcut icon"], link[rel="apple-touch-icon"]').remove();
@@ -34,7 +34,7 @@ for (const relative of new Set(files)) {
   $('#mobileMenuBtn').attr('aria-label','Open menu');
   // Keep relative content links aligned with Vercel clean URLs.
   $('a[href]').each((_,el)=>{const link=$(el);let href=link.attr('href');if (/^(?:\/?[a-z0-9/-]+)\.html(?:[?#].*)?$/i.test(href)) link.attr('href',href.replace(/\.html(?=[?#]|$)/,''));if(link.attr('target')==='_blank')link.attr('rel','noopener noreferrer');});
-  if (!['apply-job.html','admissions.html','contact.html','dashboard.html','verify-candidate.html'].includes(relative) && !relative.startsWith('admin/')) $('head').append('<script src="/js/analytics.js" defer></script>');
+  if (!['apply-job.html','admissions.html','contact.html','dashboard.html','verify-candidate.html','connect.html'].includes(relative) && !relative.startsWith('admin/')) $('head').append('<script src="/js/analytics.js" defer></script>');
   $('img').each((_,el)=>{const image=$(el);if(!image.attr('loading') && image.attr('fetchpriority')!=='high')image.attr('loading','lazy');image.attr('decoding','async');});
   fs.writeFileSync(target,$.html()+'\n');
 }
