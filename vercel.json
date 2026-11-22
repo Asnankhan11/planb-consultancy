@@ -143,16 +143,6 @@
       "permanent": true
     },
     {
-      "source": "/connect",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/connect.html",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
       "source": "/apply-admission",
       "destination": "/admissions#enquiry",
       "permanent": true

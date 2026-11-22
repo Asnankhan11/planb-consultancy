@@ -297,7 +297,7 @@ app.use((req,res,next)=>{
     if(!['GET','HEAD'].includes(req.method)||req.path.startsWith('/api/'))return next();
     let requested;try{requested=decodeURIComponent(req.path);}catch{return next();}
     if(requested.includes('..')||requested.includes('\\')||requested.split('/').some(segment=>segment.startsWith('.')))return next();
-    const legacyRedirects = {'/connect':'/contact','/apply-admission':'/admissions#enquiry','/admissions-impact':'/admissions','/jobs-impact':'/jobs','/women-wfh-impact':'/women-wfh','/students-earning-impact':'/jobs/freshers'};
+    const legacyRedirects = {'/apply-admission':'/admissions#enquiry','/admissions-impact':'/admissions','/jobs-impact':'/jobs','/women-wfh-impact':'/women-wfh','/students-earning-impact':'/jobs/freshers'};
     const redirect = legacyRedirects[requested.replace(/\.html$/, '')];
     if (redirect) return res.redirect(301, redirect);
     if(/^\/job\/\d+(?:\.html)?$/.test(requested)){const id=Number(requested.match(/\d+/)[0]),job=sourceJobs().find(j=>Number(j.id)===id);if(job)return res.redirect(301,jobsModel.jobPath(job));}

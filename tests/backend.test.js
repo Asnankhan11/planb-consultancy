@@ -103,9 +103,17 @@ test('email status waits for transport acceptance and reports failures honestly'
 });
 
 test('legacy pages redirect directly and only the approved resume template can be downloaded',async()=>{
-    for(const [oldPath,newPath] of Object.entries({'connect':'/contact','apply-admission':'/admissions#enquiry','admissions-impact':'/admissions','jobs-impact':'/jobs','women-wfh-impact':'/women-wfh','students-earning-impact':'/jobs/freshers'})){
+    for(const [oldPath,newPath] of Object.entries({'apply-admission':'/admissions#enquiry','admissions-impact':'/admissions','jobs-impact':'/jobs','women-wfh-impact':'/women-wfh','students-earning-impact':'/jobs/freshers'})){
         for(const suffix of ['', '.html']){const result=await request('/'+oldPath+suffix,{redirect:'manual'});assert.equal(result.response.status,301);assert.equal(result.response.headers.get('location'),newPath);}
     }
+    const connectHtml = await request('/connect.html', {redirect:'manual'});
+    assert.equal(connectHtml.response.status, 301);
+    assert.equal(connectHtml.response.headers.get('location'), '/connect');
+    const connectPage = await request('/connect');
+    assert.equal(connectPage.response.status, 200);
+    assert.match(String(connectPage.body), /PLAN B CAREERS/);
+    assert.match(String(connectPage.body), /Asnan Khan/);
+    assert.match(String(connectPage.body), /Zeba Khan/);
     const template='/resources/Plan_B_Careers_ATS_Resume_Template_Branded.docx';
     if(fs.existsSync(path.join(__dirname,'..',template))) assert.equal((await request(template)).response.status,200);
     assert.equal((await request('/resources/private.docx')).response.status,404);
