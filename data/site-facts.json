@@ -42,7 +42,12 @@
     "confirmedOn": "2026-11-08",
     "source": "Business owner"
   },
-  "socialProfiles": [],
+  "socialProfiles": [
+    "https://www.facebook.com/share/1C1xoJXv4H/",
+    "https://www.instagram.com/planbcareers_?dmpr=Z21vamJoODNrNHgy",
+    "https://www.youtube.com/@planbcareers",
+    "https://x.com/Hey_asnan"
+  ],
   "contentUpdated": "2026-11-08",
   "factsConfirmedOn": "2026-11-08"
 }
