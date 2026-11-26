@@ -123,7 +123,9 @@ app.post('/api/admission-enquiries', intakeLimit, asyncRoute(async (req, res) =>
     } else {
         return res.status(503).json({ success:false,error:'Online admission enquiries are temporarily unavailable. Send the prepared WhatsApp message to contact our team.',whatsappUrl,admin_whatsapp_link:whatsappUrl,fallback:{type:'whatsapp',requires_send:true} });
     }
-    res.status(201).json({ success:true,id,enquiryId:id,message:'Your enquiry has been recorded. Admission and eligibility are decided by the institution.',whatsappUrl,admin_whatsapp_link:whatsappUrl });
+    // Fire-and-forget email notifications — do not block the response or fail the enquiry
+    const notifications = await intake.notifyAdmission(fields, id).catch(() => ({ admin: 'failed', student: 'failed' }));
+    res.status(201).json({ success:true,id,enquiryId:id,message:'Your enquiry has been recorded. Admission and eligibility are decided by the institution.',whatsappUrl,admin_whatsapp_link:whatsappUrl,notifications });
 }));
 app.post('/api/applications', intakeLimit, upload.single('resume'), asyncRoute(async (req, res) => {
     if ((process.env.VERCEL || process.env.NODE_ENV === 'production') && !stableRetrySecret) throw httpError(503,'Online applications are temporarily unavailable. Please contact the team.','STORAGE_CONFIGURATION');

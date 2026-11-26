@@ -95,7 +95,7 @@ test('spreadsheet intake escapes formulas and rejects a colliding application fi
 
 test('email status waits for transport acceptance and reports failures honestly',async()=>{
     let acceptAdmin, rejectApplicant, completed=false;
-    const context={module:{exports:{}},Buffer,process:{env:{SMTP_USER:'synthetic@example.test',SMTP_PASS:'synthetic-password'}},console:{warn:()=>{}},require:name=>name==='nodemailer'?{createTransport:()=>({sendMail:message=>new Promise((resolve,reject)=>{if(message.to==='candidate@example.test')rejectApplicant=reject;else acceptAdmin=resolve;})})}:require(name)};
+    const context={module:{exports:{}},Buffer,process:{env:{SMTP_USER:'synthetic@example.test',SMTP_PASS:'synthetic-password'}},console:{warn:()=>{}},require:name=>name==='nodemailer'?{createTransport:()=>({sendMail:message=>new Promise((resolve,reject)=>{if(message.to==='candidate@example.test')rejectApplicant=reject;else acceptAdmin=resolve;})})}:name==='./email-templates'?require('../lib/email-templates'):require(name)};
     vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../lib/intake.js'),'utf8'),context);
     const pending=context.module.exports.notifyApplication({name:'Synthetic',mobile:'9999999999',email:'candidate@example.test',city:'Akola',role:'Test'},null,'PB-TEST').then(value=>{completed=true;return value;});
     await Promise.resolve();assert.equal(completed,false);acceptAdmin({accepted:['admin@example.test']});rejectApplicant(new Error('simulated SMTP failure'));
@@ -132,7 +132,7 @@ test('every Script intake path requires version 2 and probes the deployment befo
     const env={GOOGLE_APPS_SCRIPT_SECRET:'synthetic-only-test-secret',GOOGLE_APPS_SCRIPT_VERSION:''};
     let probeVersion=1,receiptVersion=2;
     const id='PB-'+'C'.repeat(32);
-    const context={module:{exports:{}},Buffer,AbortSignal,process:{env},console:{error:()=>{}},require,fetch:async(url,options)=>{
+    const context={module:{exports:{}},Buffer,AbortSignal,process:{env},console:{error:()=>{}},require:name=>name==='./email-templates'?require('../lib/email-templates'):require(name),fetch:async(url,options)=>{
         calls.push({url,options});
         return {ok:true,json:async()=>options.method==='POST'?{success:true,version:receiptVersion,applicationId:id,resumeUrl:'https://drive.google.com/private-synthetic'}:{success:true,version:probeVersion}};
     }};
